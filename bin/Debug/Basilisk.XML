@@ -1,0 +1,682 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Basilisk</name>
+    </assembly>
+    <members>
+        <member name="T:Fastrak.FastrakNode">
+            <summary>
+            Fastrak Node class
+            BuroHappold
+            <class name="Node">Fastrak node tools</class>
+            </summary>
+        </member>
+        <member name="M:Fastrak.FastrakNode.Import(System.String)">
+            <summary>
+            Imports nodes from a Fastrak XML file (Tekla Designer 2015 .cxl format)
+            BuroHappold
+            </summary>
+            <param name="fileName">Input a string that represents the Fastrak(Tekla) XML file location and name</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fastrak.FastrakNode.WriteToXML(BHoM.Structural.Node[],System.String)">
+            <summary>
+            Takes extisting XML file (Tekla Designer 2015 .cxl format) and overwrites joint coordinates
+            </summary>
+            <param name="fileName">XML file to be updated</param>
+            <param name="Nodes">BHoM nodes with coordinates and indexes</param>
+        </member>
+        <member name="T:File.Read">
+            <summary>
+            Class containing functions to read/import data to Dynamo
+            BuroHappold
+            <class name="Read"></class>
+            </summary>
+        </member>
+        <member name="M:File.Read.GetFilePaths(System.String,System.String)">
+            <summary>
+            Reads in a list of files inside a specified folder, with specified file type and search string (if input)
+            To return a specific file type use the syntax "*.xls"
+            BuroHappold
+            </summary>
+            <param name="folderPath">String input for folder name/location</param>
+            <param name="searchString">Optional string input for search. To return a specific file type use the syntax "*.xls"</param>
+            <returns></returns>
+        </member>
+        <member name="T:Kinect.BodyTracking">
+            <summary>
+            This class converts Kinect body frames to Dynamo objects through the BHoM HumanBody classes. 
+            BuroHappold
+            </summary>
+        </member>
+        <member name="M:Kinect.BodyTracking.GetSkeletons(KinectToolkit.Sensor,System.Boolean)">
+            <summary>
+            Tracks skeletal movement using Kinect sensor
+            BuroHappold
+            </summary>
+            <param name="activate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kinect.BodyTracking.GetHands(BHoM.HumanBody.Skeleton)">
+            <summary>
+            Explode a skeleton into its body parts
+            BuroHappold
+            </summary>
+            <param name="skeleton">Use the GetSkeleton node to get a skeleton from Kinect</param>
+            <returns></returns>
+        </member>
+        <member name="M:Kinect.BodyTracking.GetSkeletonLines(BHoM.HumanBody.Skeleton)">
+            <summary>
+            Explode a skeleton into its body parts
+            BuroHappold
+            </summary>
+            <param name="skeleton">Use the GetSkeleton node to get a skeleton from Kinect</param>
+            <returns></returns>
+        </member>
+        <member name="M:Kinect.BodyTracking.ToDesignScriptLine(BHoM.Geometry.Line)">
+            <summary>
+            Internal function to convert a BHoM line object to a DesignScript line object
+            </summary>
+            <param name="line"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kinect.Sensor">
+             <summary>
+            Body tracking using Kinect
+             </summary>
+        </member>
+        <member name="T:Robot.RobotNodalDisplacement">
+            <summary>
+            Robot load application tools
+            BuroHappold
+            <class name="RobotLoad">Robot bar tools</class>
+            </summary>
+        </member>
+        <member name="T:Robot.RobotApp">
+            <summary>
+            Robot Application tools
+            BuroHappold
+            <class name="Applicaiton">Robot application tools</class>
+            </summary>
+        </member>
+        <member name="M:Robot.RobotApp.ClearStructure(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Clears elements from a structural analysis model, and provides a true/false output to trigger downstream nodes
+            BuroHappold
+            </summary>
+            <param name="clearStructure"></param>
+            <param name="deleteNodes"></param>
+            <param name="deleteIsolatedNodes"></param>
+            <param name="deleteBars"></param>
+            <param name="activate"></param>
+            <returns></returns>
+            <search>BH, clear, delete</search>
+        </member>
+        <member name="M:Robot.RobotApp.GetFreeNumbers(System.Boolean)">
+            <summary>
+            Get free Robot object model numbers - so that new objects can be created using higher index values. 
+            BuroHappold
+            </summary>
+            <param name="activate"></param>
+            <returns></returns>
+            <search>BH, robot, getfree</search>
+        </member>
+        <member name="T:Robot.Loads.RobotLoadcase">
+            <summary>
+            Robot load application tools
+            BuroHappold
+            <class name="RobotLoad">Robot bar tools</class>
+            </summary>
+        </member>
+        <member name="T:Robot.RobotBar">
+            <summary>
+            Robot bar tools
+            BuroHappold
+            <class name="Bar">Robot bar tools</class>
+            </summary>
+        </member>
+        <member name="M:Robot.RobotBar.CreateByBar(System.Collections.Generic.IEnumerable{BHoM.Structural.Bar},System.Boolean,System.Boolean)">
+            <summary>
+            Create Robot bars using the cache method
+            BuroHappold
+            </summary>
+            <param name="bars">BHoM bars must be constructed first</param>
+            <param name="deleteBars">Set true to delete all bars in model first</param>
+            <param name="activate">Set true to activate</param>
+            <returns></returns>
+            <search>BH, robot, bars</search>
+        </member>
+        <member name="M:Robot.RobotBar.Import(System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Get bar elements from Robot
+            BuroHappold
+            </summary>
+            <param name="activate">Set true to activate</param>
+            <param name="allBarData">If true gets all data for each node - slower method</param>
+            <param name="filepath">If path string is added then Robot file will be opened in a new instance</param>
+            <returns></returns>
+            <search>BH, robot, bars</search>
+        </member>
+        <member name="T:Robot.RobotFE">
+            <summary>
+            Robot finite element tools
+            BuroHappold
+            <class name="FiniteElement">Robot finite element tools</class>
+            </summary>
+        </member>
+        <member name="M:Robot.RobotFE.Import(System.Boolean)">
+            <summary>
+            Gets 2D shell finite element shells from Robot
+            BuroHappold
+            </summary>
+            <param name="activate">Set true to activate</param>
+            <returns></returns>
+            <search>BH, robot, fe</search>
+        </member>
+        <member name="T:Robot.RobotNode">
+            <summary>
+            Robot node tools
+            BuroHappold
+            <class name="RobotNodes">Robot node tools</class>
+            </summary>
+        </member>
+        <member name="M:Robot.RobotNode.ByNodes(System.Collections.Generic.IEnumerable{BHoM.Structural.Node},System.Boolean,System.Boolean)">
+            <summary>
+            Creates Robot nodes from a BHoM structural node. 
+            BuroHappold
+            </summary>
+            <param name="nodes"></param>
+            <param name="allowRenumbering"></param>
+            <param name="activate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Robot.RobotNode.Import(System.Boolean,System.Boolean)">
+            <summary>
+            Get nodes from Robot model
+            BuroHappold
+            </summary>
+            <param name="activate">Set true to activate</param>
+            <param name="allNodeData">If true gets all data for each node - slower method</param>
+            <returns></returns>
+            <search>BH, robot, nodes</search>
+        </member>
+        <member name="M:Robot.RobotNode.SetProperties(System.Collections.Generic.IEnumerable{BHoM.Structural.Node},System.String)">
+            <summary>
+            Set a support in Robot at a node. Input node numbers and restraints to apply supports to existing nodes in Robot. 
+            Input BHoM node objects to generate new nodes with the associated restraints. If BHoM nodes don't already have restraints, 
+            add them here. 
+            </summary>
+            <param name="nodes"></param>
+            <param name="restraintName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Robot.RobotNode.RigidLinks(System.Int32,System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="masterNodeNumber"></param>
+            <param name="slaveNodeNumbers"></param>
+            <param name="activate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Robot.WindCFD">
+            <summary>
+            Robot WindCFD tools
+            BuroHappold
+            <class name="RobotPanels">Robot panel tools</class>
+            </summary>
+        </member>
+        <member name="T:Robot.RobotPanel">
+            <summary>
+            Robot panel tools
+            BuroHappold
+            <class name="RobotPanels">Robot panel tools</class>
+            </summary>
+        </member>
+        <member name="M:Robot.RobotPanel.CreateBySurfaces(Autodesk.DesignScript.Geometry.Surface[],System.String[],System.String[],System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Gets panel and contour geometry as surfaces from Robot. Note: edge curves are simplifed to polylines.
+            BuroHappold
+            </summary>
+            <param name="surfaces">Input surfaces to convert to panels</param>
+            <param name="thicknessNames">Name of thickness property</param>
+            <param name="panelType">"Floor Diaphragm","Shell", "Cladding" or "Contour"</param>
+            <param name="deletePanels">If set to true, will delete existing panels in the model</param>
+            <param name="activate">Set true to activate the node</param>
+            <returns name="Panel Surfaces">Patch surface based on polycurves with straight segments</returns>
+            <returns name="Panel Numbers">Robot panel numbers in same sequential order as panel surfaces</returns>
+            <returns name="ContourPolyCurves">Polycurves for countours</returns>
+            <returns name="ContourNumbers">Robot contour numbers in same sequential order as panel surfaces</returns>
+            <search>
+            BH, robot, structure, panels
+            </search>
+        </member>
+        <member name="M:Robot.RobotPanel.Import(System.Boolean,System.Boolean)">
+            <summary>
+            Creates Panels and Contours in Robot. Note: edge curves are simplifed to polylines.
+            BuroHappold
+            </summary>
+            <param name="activate">Use a boolean 'true/false' node to activate</param>
+            <param name="contours">Set to true to include contours in the import</param>
+            <returns name="Panel Surfaces">Patch surface based on polycurves with straight segments</returns>
+            <returns name="Panel Numbers">Robot panel numbers in same sequential order as panel surfaces</returns>
+            <returns name="ContourPolyCurves">Polycurves for countours</returns>
+            <returns name="ContourNumbers">Robot contour numbers in same sequential order as panel surfaces</returns>
+            <search>
+            BH, robot, structure, panels import
+            </search>
+        </member>
+        <member name="M:Robot.RobotPanel.UpdateGeometry(Autodesk.DesignScript.Geometry.Surface[],System.Int32[],System.Boolean)">
+            <summary>
+            Updates panel and contour geometry as surfaces from Robot. Note: edge curves are simplifed to polylines.
+            BuroHappold
+            </summary>
+            <param name="surfaces">Input surfaces used to define updated geometry</param>
+            <param name="activate">Set true to activate the node</param>
+            <search>
+            BH, robot, structure, panels
+            </search>
+        </member>
+        <member name="T:Robot.RobotSAT">
+            <summary>
+            Robot panel tools
+            BuroHappold
+            <class name="SAT">Robot SAT tools</class>
+            </summary>
+        </member>
+        <member name="M:Robot.RobotSAT.CreateBySurfaces(System.Collections.Generic.IEnumerable{Autodesk.DesignScript.Geometry.Geometry},System.Boolean,System.Boolean)">
+            <summary>
+            Generates an SAT surface model in Robot through export of a SAT file. Note that if 'withOrigin' is set to true
+            a dummy surface 10 units square is generated at 0,0,0 to force the SAT geometry to maintain it's relationship
+            to the origin.
+            BuroHappold
+            </summary>
+            <param name="geometry">Input surfaces to convert to panels</param>
+            <param name="withOrigin">If set to true, a dummy surface 10x10 units square is exported at 0,0,0 to force origin to origin export</param>
+            <param name="activate">Set true to activate the node</param>
+            <search>
+            BH, robot, SAT
+            </search>
+        </member>
+        <member name="T:Structural.SectionProperty">
+            <summary>
+            Structural tools
+            BuroHappold
+            <class name="BHGeometryTools">Geometry tools for Dynamo</class>
+            </summary>
+        </member>
+        <member name="M:Structural.SectionProperty.ByType(System.String,System.Int32,System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.String,System.String)">
+            <summary>
+            Create a BHoM structural section property
+            BuroHappold
+            </summary>
+            <param name="type"></param>
+            <param name="number"></param>
+            <param name="description"></param>
+            <param name="D"></param>
+            <param name="B"></param>
+            <param name="tw"></param>
+            <param name="tf"></param>
+            <param name="zOffset"></param>
+            <param name="cutbackS"></param>
+            <param name="cutbackE"></param>
+            <param name="taperPosition1"></param>
+            <param name="taperPosition2"></param>
+            <param name="tag1"></param>
+            <param name="tag2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Structural.SectionProperty.Deconstruct(BHoM.Structural.SectionProperty)">
+            <summary>
+            Deconstructs a BHoM Section Property
+            BuroHappold
+            </summary>
+            <param name="secProp"></param>
+            <returns></returns>
+            <search>BH, sectionproperty, deconstruct</search>
+        </member>
+        <member name="T:Structural.Loads.Loadcase">
+            <summary>
+            Nodal load class - to create and set BHoM nodal load objects.
+            BuroHappold
+            </summary>
+        </member>
+        <member name="T:Structural.Loads.NodalLoad">
+            <summary>
+            Nodal load class - to create and set BHoM nodal load objects.
+            BuroHappold
+            </summary>
+        </member>
+        <member name="M:Structural.Loads.NodalLoad.Force(BHoM.Structural.Node,BHoM.Structural.Loads.Loadcase,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Create a new nodal load with forces and moments. For all other nodal loads (displacement etc) use the relevant constructor.
+            BuroHappold
+            </summary>
+            <param name="loadcase"></param>
+            <param name="node"></param>
+            <param name="fx"></param>
+            <param name="fy"></param>
+            <param name="fz"></param>
+            <param name="mx"></param>
+            <param name="my"></param>
+            <param name="mz"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Structural.Loads.NodalLoad.Translation(BHoM.Structural.Node,BHoM.Structural.Loads.Loadcase,System.Double,System.Double,System.Double)">
+            <summary>
+            Create a new nodal load with translational (imposed) displacements. 
+            BuroHappold
+            </summary>
+            <param name="node"></param>
+            <param name="loadcase"></param>
+            <param name="ux"></param>
+            <param name="uy"></param>
+            <param name="uz"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Structural.TallBuildings">
+            <summary>
+            Structural tools
+            BuroHappold
+            <class name="TallBuildings">Tall buildings structural for Dynamo</class>
+            </summary>
+        </member>
+        <member name="M:Structural.barID.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Ctor used by the serialisation engine
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Structural.Constraint">
+            <summary>
+            Structural tools
+            BuroHappold
+            <class name="BHGeometryTools">Geometry tools for Dynamo</class>
+            </summary>
+        </member>
+        <member name="M:Structural.Constraint.Create(System.String,System.Object[])">
+            <summary>
+            Create a BHoM constraint (support/boundary condition/release) for downstream application to nodes, bar ends, surfaces 
+            and surface edges. If name only is inserted the program will attempt to construct a constraint based on intent 
+            (e.g. setting the name to "Pinned" will set the constraints input to {-1,-1,-1,0,0,0}, "Fixed" will set contraints 
+            input to {-1,-1,-1,-1,-1,-1}). Rigid or Elastic constraints can be set. For Friction, Gap, Non-linear and Damping 
+            constraints, use the relevant node.
+            BuroHappold
+            </summary>
+            <param name="name">Provide a name for the constraint</param>
+            <param name="dof">Example input {-1,-1,-1,0,0,0} for a pinned support, {0,0,100,0,0,0} for a 
+            vertical spring with stiffness 100 N/m </param>
+            <returns></returns>
+            <search>BH, constraint, restraint, support, release</search>
+        </member>
+        <member name="M:Structural.Constraint.Deconstruct(BHoM.Structural.Constraint)">
+            <summary>
+            Deconstructs a BHoM constraint
+            BuroHappold
+            </summary>
+            <param name="constraint"></param>
+            <returns></returns>
+            <search>BH, constraint, deconstruct</search>
+        </member>
+        <member name="T:Structural.ConstraintManager">
+            <summary>
+            A class which maintains a static dictionary for storing
+            objects, keyed by their trace id.
+            </summary>
+        </member>
+        <member name="M:Structural.nodeID.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Ctor used by the serialisation engine
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Structural.Truss2D">
+            <summary>
+            Structural tools
+            BuroHappold
+            <class name="BHGeometryTools">Geometry tools for Dynamo</class>
+            </summary>
+        </member>
+        <member name="M:Structural.Truss2D.WarrenByChords(Autodesk.DesignScript.Geometry.Curve,Autodesk.DesignScript.Geometry.Curve,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            Creates a 2D Warren type truss between a top chord and a bottom chord. The angle between 
+            the lacers can be modified (not strictly a Warren truss unless all internal angles are 60 degrees).
+            BuroHappold
+            </summary>
+            <param name="topChord">Curve representing the top chord of the truss. Reversed curves will be automatically flipped</param>
+            <param name="bottomChord">Curve representing the bottom chord of the truss</param>
+            <param name="lacerAngle">Angle between lacers (set to 60 for true Warren truss</param>
+            <param name="splitChords">Set to true to break the chords into straight segments for input to analysis (forced if chords are not straight)</param>
+            <returns></returns>
+            <search>BH, truss, warren</search>
+        </member>
+        <member name="M:Structural.Structure.FromLines(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Line},System.Double)">
+             <summary>
+            Calculate gamma angles for rotation of beam/column/bar objects
+             BuroHappold
+             </summary>
+             <param name="CLs"></param>
+             <param name="tol"></param>
+             <returns></returns>
+             <search>BH</search>
+        </member>
+        <member name="M:Structural.Structure.AutoCreateFaces(BHoM.Structural.Structure)">
+            <summary>
+            TEST FUNCTION
+            BuroHappold
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+            <search>BH</search>
+        </member>
+        <member name="M:Structural.Structure.Deconstruct(BHoM.Structural.Structure)">
+            <summary>
+            BuroHappold
+            </summary>
+            <param name="structure"></param>
+            <returns></returns>
+            <search>BH</search>
+        </member>
+        <member name="T:Structural.Node">
+            <summary>
+            Structural tools
+            BuroHappold
+            <class name="BHGeometryTools">Geometry tools for Dynamo</class>
+            </summary>
+        </member>
+        <member name="M:Structural.Node.ByPoint(Autodesk.DesignScript.Geometry.Point,System.String,System.Int32,System.Object,Autodesk.DesignScript.Geometry.CoordinateSystem)">
+            <summary>
+            Create a BHoM structural node by point
+            BuroHappold
+            </summary>
+            <param name="point"></param>
+            <param name="number"></param>
+            <param name="constraint"></param>
+            <param name="localAxes"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Structural.Node.Deconstruct(BHoM.Structural.Node)">
+            <summary>
+            Deconstructs a single BHoM Node
+            BuroHappold
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+            <search>BH, node, deconstruct</search>
+        </member>
+        <member name="M:Structural.Node.SetProperties(BHoM.Structural.Node,System.String,System.Int32,System.Object,Autodesk.DesignScript.Geometry.CoordinateSystem)">
+            <summary>
+            Set the properties of a BHoM structural node.
+            BuroHappold
+            </summary>
+            <param name="node"></param>
+            <param name="name"></param>
+            <param name="number"></param>
+            <param name="constraint"></param>
+            <param name="coordSys"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Structural.Bar">
+            <summary>
+            Structural tools
+            BuroHappold
+            <class name="BHGeometryTools">Geometry tools for Dynamo</class>
+            </summary>
+        </member>
+        <member name="M:Structural.Bar.CreateByCurves(System.Collections.Generic.IEnumerable{Autodesk.DesignScript.Geometry.Curve},System.Double)">
+            <summary>
+            Creates BHoM structural bar elements by inputing curves. When curves are not lines, they are split into lines
+            based on the input facet length.
+            BuroHappold
+            </summary>
+            <param name="curves"></param>
+            <param name="facetLength"></param>
+            <returns></returns>
+            <search>BH, structure, bar, barbycurves</search>
+        </member>
+        <member name="M:Structural.Bar.CalculateOrientation(Autodesk.DesignScript.Geometry.Curve[])">
+            <summary>
+            Calculate gamma angles for rotation of beam/column/bar objects
+            BuroHappold
+            </summary>
+            <param name="barCentrelines"></param>
+            <returns></returns>
+            <search>BH, gamma, orientation, angle</search>
+        </member>
+        <member name="M:Structural.Bar.Deconstruct(BHoM.Structural.Bar)">
+            <summary>
+            Deconstructs a single BHoM Bar
+            BuroHappold
+            </summary>
+            <param name="bar"></param>
+            <returns></returns>
+            <search>BH</search>
+        </member>
+        <member name="M:Structural.Bar.SetProperties(System.Collections.Generic.IEnumerable{BHoM.Structural.Bar},System.String,System.String)">
+            <summary>
+            Sets the properties to to BHoM bars
+            BuroHappold
+            </summary>
+            <param name="Bar"></param>
+            <param name="sectionName"></param>
+            <param name="typeName"></param>
+            <returns></returns>
+            <search>BH, bar, properties</search>
+        </member>
+        <member name="T:ProjectSpecific.CustomNodes">
+            <summary>
+            This class is just a placeholder in the menu system for somewhere to save project-specific custom nodes
+            BuroHappold
+            <class name="ProjectNodes">Placeholder for custom nodes created on projects</class>
+            </summary>
+        </member>
+        <member name="T:ListTools.Dictionary">
+            <summary>
+            Create and manage dictionary type collections of data
+            BuroHappold
+            <class name="Dictionary">Dictionary tools</class>
+            </summary>
+            <search>BH, dictionary, collection</search>
+        </member>
+        <member name="M:ListTools.Dictionary.ByKeyValuePair(System.Object[],System.String[])">
+            <summary>
+            Generates a key Dictionary (collection of objects) for later quick retreival of objects 
+            by 'keys'. Similar to lists, but the 'index' is a reference key.
+            BuroHappold
+            </summary>
+            <param name="objects">Input objects - can be anything</param>
+            <param name="keys">A list of strings that will attach to each object</param>
+            <returns></returns>
+            <search>BH, create, dictionary</search>
+        </member>
+        <member name="M:ListTools.Dictionary.GetValuesByKey(System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])">
+            <summary>
+            Retrieves an object from a BHList.dictionary using a key.
+            BuroHappold
+            </summary>
+            <param name="dictionary">dictionary to retrieve item from</param>
+            <param name="keys">A list of strings used to retrieve the assocated values</param>
+            <returns></returns>
+            <search>BH, get, dictionary, key</search>
+        </member>
+        <member name="T:GeometryTools.Translate">
+            <summary>
+            Geometry operations
+            BuroHappold
+            <class name="GeometryTools">Geometry tools for Dynamo</class>
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:GeometryTools.Translate.PreviewAtOrigin(System.Collections.Generic.IEnumerable{Autodesk.DesignScript.Geometry.Geometry})" -->
+        <member name="T:GeometryTools.Curve">
+            <summary>
+            Curve tools
+            BuroHappold
+            <class name="CurveTools">Geometry tools for Dynamo</class>
+            </summary>
+        </member>
+        <member name="M:GeometryTools.Curve.DevelopCurve(Autodesk.DesignScript.Geometry.Curve,Autodesk.DesignScript.Geometry.Plane,System.Double)">
+            <summary>
+            Maps a 2D or 3D vertical curve onto a plane whilst maintaining the curve length and
+            slope (developed elevation). Increase divisions to improve accuracy.
+            BuroHappold
+            </summary>
+            <param name="curve">2D or 3D vertical curve</param>
+            <param name="projectionPlane">Vertical plane to project onto (plane rotation is ignored)</param>
+            <param name="sampleSpacing">Reduce spacing to improve accuracy</param>
+            <returns name="NurbsCurve">Returns approximated vertical nurbs curve through points</returns>
+            <returns name="PolyCurve">Returns a vertical PolyCurve with straight segments between points</returns>
+            <search>BH, develop, curve</search>
+        </member>
+        <member name="M:GeometryTools.Curve.ProjectCurvetoCurve(Autodesk.DesignScript.Geometry.Curve,Autodesk.DesignScript.Geometry.Curve,System.Double)">
+            <summary>
+            Maps a vertical or 3D curve onto a projection curve. 
+            Resulting curve should be same length.
+            BuroHappold
+            </summary>
+            <param name="curve">3D input curve</param>
+            <param name="projectionCurve">Planar projection curve at Z=0</param>
+            <param name="sampleSpacing">Reduce spacing to improve accuracy</param>
+            <returns></returns>
+            <search>BH, develop, curve</search>
+        </member>
+        <member name="M:GeometryTools.Curve.CurveStartMidEnd(Autodesk.DesignScript.Geometry.Curve)">
+            <summary>
+            Gets the start mid and end point of a curve (saves using multiple nodes)
+            BuroHappold
+            </summary>
+            <param name="curve">Input curve</param>
+            <returns></returns>
+            <search>BH, curve, midpoint, endpoint</search>
+        </member>
+        <member name="M:GeometryTools.Curve.SplitCurvesBySelf(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve})">
+            <summary>
+            Splits a list of curves by itself. Returns the new list of split curves
+            BuroHappold
+            </summary>
+            <param name="curves">Input curve</param>
+            <returns></returns>
+            <search>BH, curve, split, intersect</search>
+        </member>
+        <member name="T:GeometryTools.Point">
+            <summary>
+            Point class for all extra point utilities
+            BuroHappold
+            </summary>
+        </member>
+        <member name="M:GeometryTools.Point.ClosestPoint(Autodesk.DesignScript.Geometry.Point,System.Collections.Generic.IEnumerable{Autodesk.DesignScript.Geometry.Point},System.Int32)">
+            <summary>
+            Uses Sorted dictionary method of finding one or more closest points to a point. The tolerance of point distance collection
+            is set to 6 decimal places. 
+            BuroHappold
+            </summary>
+            <param name="point">Point from which to search</param>
+            <param name="pointsToSearch">Collection of points to get the closest points from</param>
+            <param name="numberOfPoints">The number of closest points to return</param>
+            <returns></returns>
+            <search>BH, closest</search>
+        </member>
+    </members>
+</doc>
