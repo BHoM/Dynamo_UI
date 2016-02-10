@@ -25,7 +25,7 @@ namespace Structural
         /// <param name="point"></param>
         /// <param name="number"></param>
         /// <param name="constraint"></param>
-        /// <param name="localAxes"></param>
+        /// <param name="coordSys"></param>
         /// <param name="name"></param>
         /// <returns></returns>
         [RegisterForTrace]

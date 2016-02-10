@@ -45,17 +45,29 @@ class BarManager
 
 }
 
+/// <summary>
+/// Serialisable bar ID object
+/// </summary>
 [IsVisibleInDynamoLibrary(false)]
 [Serializable]
 public class barID : ISerializable
 {
-    public int IntID { get; set; }
+        /// <summary>ID number as integer</summary>
+        public int IntID { get; set; }
 
+        /// <summary>
+        /// Get serialisation data
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
     public void GetObjectData(SerializationInfo info, StreamingContext context)
     {
         info.AddValue("intID", IntID, typeof(int));
     }
 
+        /// <summary>
+        /// Construct empty bar ID
+        /// </summary>
     public barID()
     {
         IntID = int.MinValue;
@@ -74,6 +86,9 @@ public class barID : ISerializable
     }
 }
 
+    /// <summary>
+    /// Traced bar
+    /// </summary>
 [IsVisibleInDynamoLibrary(false)]
 [DynamoServices.RegisterForTrace]
 public class TracedBar : IDisposable
@@ -82,10 +97,13 @@ public class TracedBar : IDisposable
     //TODO(lukechurch): This really should have been moved into the attribute already
     private const string REVIT_TRACE_ID = "{0459D869-0C72-447F-96D8-08A7FB92214B}-REVIT";
 
-    public double X { get; set; }
-    public double Y { get; set; }
+        /// <summary>X</summary>
+        public double X { get; set; }
+        /// <summary>Y</summary>
+        public double Y { get; set; }
 
-    public int ID { get; private set; }
+        /// <summary>ID</summary>
+        public int ID { get; private set; }
 
     private TracedBar(double x, double y)
         : this(x, y, BarManager.GetNextUnusedID())
@@ -109,6 +127,12 @@ public class TracedBar : IDisposable
         // What does a bar do when a workspace is opened?
     }
 
+        /// <summary>
+        /// Construct a traced bar by point
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
     public static TracedBar ByPoint(double x, double y)
     {
         TracedBar tbar;
@@ -131,11 +155,18 @@ public class TracedBar : IDisposable
         return tbar;
     }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
     public override string ToString()
     {
         return String.Format("{0}: ({1}, {2})", ID, X, Y);
     }
 
+        /// <summary>
+        /// 
+        /// </summary>
     public void Dispose()
     {
         // Unhook the workspace event handler.

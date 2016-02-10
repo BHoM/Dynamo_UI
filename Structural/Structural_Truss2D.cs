@@ -115,6 +115,15 @@ namespace Structural
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="topChord"></param>
+        /// <param name="bottomChord"></param>
+        /// <param name="lacerAngle"></param>
+        /// <param name="equalizeLength"></param>
+        /// <param name="splitChords"></param>
+        /// <returns></returns>
         [MultiReturn(new[] { "LacerCentrelines", "tcParameters", "bcParameters", "Bars", "LacerAngles", "LacerPlanes", "LacerRotPlanes" })]
         public static Dictionary<string, object> GoalSeekWarrenByChords(DS.Curve topChord, DS.Curve bottomChord, double lacerAngle = 60, bool equalizeLength = false, bool splitChords = false)
         {

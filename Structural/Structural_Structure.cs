@@ -13,7 +13,9 @@ using BHoM.Structural;
 
 namespace Structural
 {
-         
+    /// <summary>
+    /// Structure class for constructing a structure object consisting of child structure objects and dictionaries
+    /// </summary>
     public static class Structure
     {
 

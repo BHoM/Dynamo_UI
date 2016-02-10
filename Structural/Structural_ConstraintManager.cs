@@ -16,6 +16,10 @@ namespace Structural
     {
         private static Dictionary<string, BHoM.Structural.Constraint> Constraints = new Dictionary<string, BHoM.Structural.Constraint>();
 
+        /// <summary>
+        /// Store constraint object
+        /// </summary>
+        /// <param name="constraint"></param>
         public static void storeConstraint(BHoM.Structural.Constraint constraint)
         {
             if (Constraints.ContainsKey(constraint.Name))
@@ -29,11 +33,18 @@ namespace Structural
             }
         }
 
+        /// <summary>
+        /// Clear constriant dictionary
+        /// </summary>
         public static void Clear()
         {
             Constraints.Clear();
         }
 
+        /// <summary>
+        /// Get all constraints
+        /// </summary>
+        /// <returns></returns>
         public static Dictionary<string, BHoM.Structural.Constraint> GetConstraints()
         {
             return Constraints;

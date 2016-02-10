@@ -9,10 +9,18 @@ using Autodesk.DesignScript.Runtime;
 
 namespace Structural
 {
+    /// <summary>
+    /// Face object
+    /// </summary>
     public class Face
         
     {
         internal Face(){}
+        /// <summary>
+        /// Deconstruct face
+        /// </summary>
+        /// <param name="face"></param>
+        /// <returns></returns>
         [MultiReturn(new[] { "Corners", "Number", "Name" })]
         public static Dictionary<string, object> Deconstruct(BHoM.Structural.Face face)
         {

@@ -21,16 +21,17 @@ namespace Structural
     {        
         internal TallBuildings(){}
 
- 
+        /// <summary>
+         /// Create bars by curves
+        /// </summary>
+        /// <param name="curves"></param>
+        /// <param name="facetLength"></param>
+        /// <returns></returns>
         [MultiReturn(new[] { "Bars", "Nodes"})]
         public static Dictionary<string, object> CreateByCurves(IEnumerable<Curve> curves,
         double facetLength = 0)     
         {
             Dictionary<string, object> bars_out = new Dictionary<string, object>();
-           
-
-            
-            
             return bars_out;
         }
 

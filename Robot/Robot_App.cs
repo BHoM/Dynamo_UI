@@ -74,6 +74,10 @@ namespace Robot
             return freenums_out;
         }
 
+        /// <summary>
+        /// Run Robot calculations
+        /// </summary>
+        /// <param name="activate"></param>
         [CanUpdatePeriodically(true)]
         public static void RunCalculations(bool activate = false)
         {

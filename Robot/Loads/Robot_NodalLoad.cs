@@ -22,6 +22,10 @@ namespace Robot
     {
         internal RobotNodalDisplacement() {}
 
+        /// <summary>
+        /// Create nodal displacement by nodal loads
+        /// </summary>
+        /// <param name="nodalLoads"></param>
         public static void ByNodalLoads(IEnumerable<BHoM.Structural.Loads.NodalLoad> nodalLoads)
         {
             RobotToolkit.NodalLoad.CreateNodalLoadDisplacement(nodalLoads.ToArray());

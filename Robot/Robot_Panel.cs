@@ -28,6 +28,7 @@ namespace Robot
         /// <param name="surfaces">Input surfaces to convert to panels</param>
         /// <param name="thicknessNames">Name of thickness property</param>
         /// <param name="panelType">"Floor Diaphragm","Shell", "Cladding" or "Contour"</param>
+        /// <param name="isOpening">True if object is an opening</param>
         /// <param name="deletePanels">If set to true, will delete existing panels in the model</param>
         /// <param name="activate">Set true to activate the node</param>
         /// <returns name="Panel Surfaces">Patch surface based on polycurves with straight segments</returns>
@@ -171,6 +172,7 @@ namespace Robot
         /// BuroHappold
         /// </summary>
         /// <param name="surfaces">Input surfaces used to define updated geometry</param>
+        /// <param name="panelNumbers"></param>
         /// <param name="activate">Set true to activate the node</param>
         /// <search>
         /// BH, robot, structure, panels

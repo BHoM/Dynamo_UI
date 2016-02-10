@@ -19,13 +19,14 @@ namespace GeometryTools
     public class Translate
     {
          internal Translate(){}
+        
         /// <summary>
         /// Moves geometry to the origin based on centroid of bounding box, to make preview easier. Doesn't work on meshes!!
         /// BuroHappold
         /// </summary>
-        /// <param name="Activate">Use boolean true/false to activate</param>
-        /// <returns name"geometry">Geometry at origin</returns>
-        /// <search>BH, move, translate, preview, origin</search>
+        /// <param name="geometry">Geometry at origin</param>
+        /// <returns></returns>
+        /// /// <search>BH, move, translate, preview, origin</search>
         [MultiReturn(new[] { "Geometry" })]
         public static Dictionary<string, object> PreviewAtOrigin(IEnumerable<DS.Geometry> geometry = null)
         {

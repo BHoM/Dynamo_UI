@@ -22,6 +22,13 @@ namespace Robot
     {
         internal WindCFD() {}
 
+        /// <summary>
+        /// Gerenate Wind CFD analysis
+        /// </summary>
+        /// <param name="windDirection"></param>
+        /// <param name="windParams"></param>
+        /// <param name="activate"></param>
+        /// <returns></returns>
         public static bool Generate(RobotToolkit.WindDirection windDirection, RobotToolkit.WindParams windParams, bool activate = false)
         {
             if (activate)
@@ -31,6 +38,15 @@ namespace Robot
             return true;
         }
 
+        /// <summary>
+        /// Set Wind CFD analysis parameters
+        /// </summary>
+        /// <param name="xPositive"></param>
+        /// <param name="xNegative"></param>
+        /// <param name="yPositive"></param>
+        /// <param name="yNegative"></param>
+        /// <param name="quadrants"></param>
+        /// <returns></returns>
         public static WindDirection SetParameters(bool xPositive = true, bool xNegative = false, bool yPositive = true, bool yNegative = false, bool quadrants = false)
         {
             WindDirection windDir = new WindDirection();
@@ -38,6 +54,14 @@ namespace Robot
             return windDir;
         }      
 
+        /// <summary>
+        /// Set wind parameters for Wind CFD
+        /// </summary>
+        /// <param name="deviationPercent"></param>
+        /// <param name="terrainLevel"></param>
+        /// <param name="velocity"></param>
+        /// <param name="openingsClosed"></param>
+        /// <returns></returns>
          public static WindParams SetParameters(double deviationPercent = 0.5, double terrainLevel = 0, double velocity = 24.385, bool openingsClosed = true)
         {
             WindParams windParams = new WindParams();

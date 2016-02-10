@@ -14,7 +14,11 @@ namespace Kinect
     {
         internal Sensor() { }
 
-       
+       /// <summary>
+       /// Get Kinect sensor object
+       /// </summary>
+       /// <param name="activate"></param>
+       /// <returns></returns>
         [MultiReturn(new[] { "Sensor" })]
         public static Dictionary<string, object> GetSensor(bool activate = false)
         {

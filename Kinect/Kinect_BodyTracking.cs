@@ -19,11 +19,13 @@ namespace Kinect
     public class BodyTracking
     {
         internal BodyTracking() { }
+
         /// <summary>
         /// Tracks skeletal movement using Kinect sensor
         /// BuroHappold
         /// </summary>
         /// <param name="activate"></param>
+        /// <param name="sensor"></param>
         /// <returns></returns>
         [MultiReturn(new[] { "Skeletons", "Bool"})]
         [CanUpdatePeriodically(true)]
@@ -128,6 +130,11 @@ namespace Kinect
                 DS.Point.ByCoordinates(line.EndPoint.X, line.EndPoint.Y, line.EndPoint.Z));
         }
 
+        /// <summary>
+        /// Convert to designsript point object
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         [IsVisibleInDynamoLibrary(false)]
         public static DS.Point ToDesignScriptPoint(BHoM.Geometry.Point point)
         {

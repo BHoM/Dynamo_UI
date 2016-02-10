@@ -157,7 +157,7 @@ namespace Structural
         /// Sets the properties to to BHoM bars
         /// BuroHappold
         /// </summary>
-        /// <param name="Bar"></param>
+        /// <param name="bars"></param>
         /// <param name="sectionName"></param>
         /// <param name="typeName"></param>
         /// <returns></returns>

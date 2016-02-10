@@ -18,6 +18,12 @@ namespace Structural.Loads
     {
        internal Loadcase(){}
 
+        /// <summary>
+        /// Create a loadcase by name and number
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
        public static object Create(string name, int number)
         {
             return new Dictionary<string, object> { { "Loadcase", new BHoM.Structural.Loads.Loadcase(number, name) } };
