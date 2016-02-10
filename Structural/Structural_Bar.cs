@@ -88,7 +88,7 @@ namespace Structural
                             nod_kounta++;
                         }
                         int bar_num = Structural.BarManager.GetNextUnusedID();
-                        BHoM.Structural.Bar bar = new BHoM.Structural.Bar(str_nodes[start_node_key], str_nodes[end_node_key], bar_num);
+                        BHoM.Structural.Bar bar = new BHoM.Structural.Bar(bar_num, str_nodes[start_node_key], str_nodes[end_node_key]);
                         str_bars.Add(bar);
                         bar_kounta++;
                               }
@@ -146,9 +146,8 @@ namespace Structural
                 {"Number", bar.Number},
                 {"Name", bar.Name},
                 {"SectionName", bar.SectionPropertyName},
-                {"TypeName", bar.TypeName},
-                {"Group", bar.Group},
-                {"StartNode", bar.StartNode},
+                {"TypeName", bar.DesignGroupName},
+                { "StartNode", bar.StartNode},
                 {"EndNode", bar.EndNode},
             };
         }
@@ -172,7 +171,7 @@ namespace Structural
             foreach (BHoM.Structural.Bar bar in bars)
             {
                 bar.SectionProperty.Name = sectionName;
-                bar.TypeName = typeName;
+                bar.SetDesignGroupName(typeName);
             }
   
             bars_out.Add("Nodes", bars);

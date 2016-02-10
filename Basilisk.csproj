@@ -32,9 +32,8 @@
     <DocumentationFile>bin\Release\Basilisk.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BHoM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>External dlls\BHoM.dll</HintPath>
+    <Reference Include="BHoM">
+      <HintPath>..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
     <Reference Include="CoreNodeModelsWpf, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\CoreNodeModelsWpf.dll</HintPath>
@@ -131,9 +130,8 @@
       <HintPath>..\..\..\..\..\Program Files\Dynamo 0.8\Revit_2015\RevitServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RobotToolkit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>External dlls\RobotToolkit.dll</HintPath>
+    <Reference Include="RobotToolkit">
+      <HintPath>..\RobotToolkit\build\RobotToolkit.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>

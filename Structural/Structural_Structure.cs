@@ -35,9 +35,10 @@ namespace Structural
             {
                 BHoM.Structural.Node n0 = new BHoM.Structural.Node(CL.StartPoint.X, CL.StartPoint.Y, CL.StartPoint.Z);
                 BHoM.Structural.Node n1 = new BHoM.Structural.Node(CL.EndPoint.X, CL.EndPoint.Y, CL.EndPoint.Z);
-                BHoM.Structural.Bar b = new BHoM.Structural.Bar(n0, n1);
+                n0 = str.AddOrGetNode(n0);
+                n1 = str.AddOrGetNode(n1);
 
-                str.AddBar(b);
+                str.AddBar(n0, n1);
             }
             return str;
         }

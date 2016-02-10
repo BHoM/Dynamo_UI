@@ -94,7 +94,6 @@ namespace Structural
                 {
                     new_constraint = (BHoM.Structural.Constraint)constraint;
                     Structural.ConstraintManager.storeConstraint(new_constraint);
-                    new_constraint.AddNode(node);
                 }
                 catch
                 {
@@ -110,7 +109,6 @@ namespace Structural
                     }
                     catch { }
                 Structural.ConstraintManager.storeConstraint(new_constraint);
-                new_constraint.AddNode(node);
                 }
             }
             

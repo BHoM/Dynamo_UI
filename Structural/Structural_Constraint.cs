@@ -69,7 +69,6 @@ namespace Structural
                 {"Name", constraint.Name},
                 {"DOFValues", res_values},
                 {"DOFDescriptions", res_descriptions},
-                {"Nodes", constraint.Nodes}
              };
         }
        
