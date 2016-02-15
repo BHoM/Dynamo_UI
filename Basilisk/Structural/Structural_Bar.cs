@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.IO;
-using System.Drawing;
-using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
-using Dynamo.Services;
 
 namespace Structural
 {
@@ -31,7 +25,6 @@ namespace Structural
         /// <returns></returns>
         /// <search>BH, structure, bar, barbycurves</search>
         
-
         [RegisterForTrace]
         [MultiReturn(new[] { "Bars", "Nodes"})]
         public static Dictionary<string, object> CreateByCurves(IEnumerable<Curve> curves,
@@ -87,7 +80,7 @@ namespace Structural
                             str_nodes.Add(end_node_key, new BHoM.Structural.Node(end_pnt.X, end_pnt.Y, end_pnt.Z, end_nod_num));
                             nod_kounta++;
                         }
-                        int bar_num = Structural.BarManager.GetNextUnusedID();
+                        int bar_num = Basilisk.Structural.BarManager.GetNextUnusedID();
                         BHoM.Structural.Bar bar = new BHoM.Structural.Bar(bar_num, str_nodes[start_node_key], str_nodes[end_node_key]);
                         str_bars.Add(bar);
                         bar_kounta++;
@@ -127,31 +120,6 @@ namespace Structural
             return gammaAngles_out;
         }
 
-      
-        /// <summary>
-        /// Deconstructs a single BHoM Bar
-        /// BuroHappold
-        /// </summary>
-        /// <param name="bar"></param>
-        /// <returns></returns>
-        /// <search>BH</search>
-        [MultiReturn(new[] { "Centreline", "Number", "Name", "SectionName", "TypeName", "Group", "StartNode", "EndNode" })]
-        public static Dictionary<string, object> Deconstruct(BHoM.Structural.Bar bar)
-        {
-            Autodesk.DesignScript.Geometry.Point sPt = Point.ByCoordinates(bar.StartNode.X,bar.StartNode.Y,bar.StartNode.Z);
-            Autodesk.DesignScript.Geometry.Point ePt = Point.ByCoordinates(bar.EndNode.X,bar.EndNode.Y,bar.EndNode.Z);
-            return new Dictionary<string, object>
-            {
-                {"Centreline", Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(sPt,ePt)},
-                {"Number", bar.Number},
-                {"Name", bar.Name},
-                {"SectionName", bar.SectionPropertyName},
-                {"TypeName", bar.DesignGroupName},
-                { "StartNode", bar.StartNode},
-                {"EndNode", bar.EndNode},
-            };
-        }
-    
 
         /// <summary>
         /// Sets the properties to to BHoM bars
@@ -177,7 +145,5 @@ namespace Structural
             bars_out.Add("Nodes", bars);
             return bars_out;
         }
-    
     }
-
 }

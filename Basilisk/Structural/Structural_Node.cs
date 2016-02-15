@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 
 namespace Structural
@@ -65,7 +59,7 @@ namespace Structural
                 {"Name", node.Name},
                 {"Constraint", node.Constraint},
                 {"ConstraintName", node.ConstraintName},
-                {"CoordSys", node.CoordinateSystem}
+                {"CoordSys", node.Plane}
             };
         }
 

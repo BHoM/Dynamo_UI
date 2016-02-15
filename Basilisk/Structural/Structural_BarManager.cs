@@ -6,7 +6,7 @@ using System.Text;
 using Autodesk.DesignScript.Runtime;
 using DynamoServices;
 
-namespace Structural
+namespace Basilisk.Structural
 {
 
 class BarManager

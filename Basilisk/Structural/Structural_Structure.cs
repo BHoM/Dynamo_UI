@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.IO;
-using System.Drawing;
-using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
-
-using BHoM.Structural;
 
 namespace Structural
 {
@@ -55,32 +47,60 @@ namespace Structural
         /// <search>BH</search>
         public static BHoM.Structural.Structure AutoCreateFaces(BHoM.Structural.Structure str)
         {
-
             str.CreateFacesFromBars();
-
-
             return str;
-
-
         }
 
         /// <summary>
         /// BuroHappold
         /// </summary>
-        /// <param name="structure"></param>
+        /// <param name="obj"></param>
         /// <returns></returns>
         /// <search>BH</search>
-        [MultiReturn(new[] { "Nodes", "Bars", "Faces"})]
-        public static Dictionary<string, object> Deconstruct(BHoM.Structural.Structure structure)
+        [AllowRankReduction()]
+        [MultiReturn(new[] { "Names", "Properties"})]
+        public static Dictionary<string, object> Deconstruct(dynamic obj)
         {
-            return new Dictionary<string, object>
+            Dictionary<string, object> out_dict = new Dictionary<string, object>();
+            try
             {
-                {"Nodes", structure.Nodes},
-                {"Bars", structure.Bars},
-                {"Faces", structure.Faces},
-            };
+                BHoM.Collections.Dictionary<string, object> PropertiesDictionary = obj.GetProperties();
+              
+                out_dict.Add("Names", obj.GetType());
+                out_dict.Add("Properties", PropertiesDictionary);
+            }
+            catch
+            {
+                out_dict.Add("Names", null);
+                out_dict.Add("Properties", null);
+            }
 
+            return out_dict;
+        }
+
+        /// <summary>
+        /// Get the property of a structural object by property name
+        /// </summary>
+        /// <param name="structuralObject"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [IsVisibleInDynamoLibrary(false)]
+        public static object GetPropertyByName(dynamic structuralObject, string name)
+        {
+            BHoM.Collections.Dictionary<string, object> properties = new BHoM.Collections.Dictionary<string, object>();
+            object obj = new object();
+            try
+            {
+                obj = structuralObject.GetProperties()[name];
+            }
+            catch
+            {
+                obj = null;
+            }
+            return obj;
         }
 
     }
+
+    
 }

@@ -32,8 +32,9 @@
     <DocumentationFile>bin\Release\Basilisk.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BHoM">
-      <HintPath>..\BHoM\Build\BHoM.dll</HintPath>
+    <Reference Include="BHoM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
     <Reference Include="CoreNodeModelsWpf, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\CoreNodeModelsWpf.dll</HintPath>
@@ -95,6 +96,7 @@
       <HintPath>packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -179,21 +181,21 @@
     <Compile Include="Robot\Robot_WindCFD.cs" />
     <Compile Include="Robot\Robot_Panel.cs" />
     <Compile Include="Robot\Robot_SAT.cs" />
+    <Compile Include="Structural\Structural_Bar.cs" />
+    <Compile Include="Structural\Structural_BarManager.cs" />
+    <Compile Include="Structural\Structural_Constraint.cs" />
+    <Compile Include="Structural\Structural_ConstraintManager.cs" />
     <Compile Include="Structural\Structural_SectionPropertyManager.cs" />
     <Compile Include="Structural\Structural_SectionProperty.cs" />
     <Compile Include="Structural\Structural_Loadcase.cs" />
     <Compile Include="Structural\Structural_NodalLoad.cs" />
     <Compile Include="Structural\Structural_TallBuildings.cs" />
-    <Compile Include="Structural\Structural_BarManager.cs" />
-    <Compile Include="Structural\Structural_Constraint.cs" />
-    <Compile Include="Structural\Structural_ConstraintManager.cs" />
     <Compile Include="Structural\Structural_NodeManager.cs" />
     <Compile Include="ProjectSpecific\CustomNodes.cs" />
     <Compile Include="Structural\Structural_Truss2D.cs" />
     <Compile Include="Structural\Structural_Structure.cs" />
     <Compile Include="Structural\Structural_Face.cs" />
     <Compile Include="Structural\Structural_Node.cs" />
-    <Compile Include="Structural\Structural_Bar.cs" />
     <Compile Include="ListTools.cs" />
     <Compile Include="GeometryTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,7 +211,9 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Build\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).xml" "$(SolutionDir)Build\$(ProjectName).xml"</PostBuildEvent>
+copy /Y "$(TargetDir)$(ProjectName).xml" "$(SolutionDir)Build\$(ProjectName).xml"
+copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
+copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).xml"</PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo 0.9\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>

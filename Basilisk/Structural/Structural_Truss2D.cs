@@ -29,6 +29,7 @@ namespace Structural
         /// <param name="bottomChord">Curve representing the bottom chord of the truss</param>
         /// <param name="lacerAngle">Angle between lacers (set to 60 for true Warren truss</param>
         /// <param name="splitChords">Set to true to break the chords into straight segments for input to analysis (forced if chords are not straight)</param>
+        /// <param name="equalizeLength"></param>
         /// <returns></returns>
         /// <search>BH, truss, warren</search>
         [MultiReturn(new[] { "LacerCentrelines", "tcParameters", "bcParameters", "Bars", "LacerAngles", "LacerPlanes", "LacerRotPlanes" })]
