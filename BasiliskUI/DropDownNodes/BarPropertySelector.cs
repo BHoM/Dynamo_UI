@@ -50,14 +50,12 @@ namespace BasiliskNodesUI
         /// <returns></returns>
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-
             var nodeFunction = AstFactory.BuildFunctionCall(
                 new System.Func<BHoM.Structural.Bar, string, object>(Structural.Structure.GetPropertyByName),
                 new List<AssociativeNode>() { inputAstNodes[0], AstFactory.BuildStringNode(Items[SelectedIndex].Name) });
 
             var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), nodeFunction);
-
-
+            
             return new List<AssociativeNode> { assign };
         }
     }

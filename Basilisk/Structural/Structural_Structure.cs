@@ -66,7 +66,7 @@ namespace Structural
             {
                 BHoM.Collections.Dictionary<string, object> PropertiesDictionary = obj.GetProperties();
               
-                out_dict.Add("Names", obj.GetType());
+                out_dict.Add("Names", PropertiesDictionary.KeyList());
                 out_dict.Add("Properties", PropertiesDictionary);
             }
             catch

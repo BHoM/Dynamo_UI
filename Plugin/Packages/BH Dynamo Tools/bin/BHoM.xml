@@ -62,16 +62,546 @@
             </summary>
             <param name="Dictionary"></param>
         </member>
+        <member name="T:BHoM.Geometry.Transformation.Translation">
+            <summary>
+            Transformations
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Transformation.Translation.#ctor(BHoM.Geometry.Vector)">
+            <summary></summary>
+        </member>
+        <member name="M:BHoM.Geometry.Transformation.Translation.#ctor(System.Double,System.Double,System.Double)">
+            <summary></summary>
+        </member>
+        <member name="T:BHoM.Geometry.Line">
+            <summary>
+            BHoM Line object
+            </summary>
+        </member>
+        <member name="P:BHoM.Geometry.Line.StartPoint">
+            <summary>Start point as BHoM point</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Line.EndPoint">
+            <summary>End point as BHoM point</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Line.Length">
+            <summary>Length of the line</summary>
+        </member>
+        <member name="M:BHoM.Geometry.Line.#ctor">
+            <summary>
+            Construct an empty line
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Line.#ctor(BHoM.Geometry.Point,BHoM.Geometry.Point)">
+            <summary>
+            Construct line by start point and end point
+            </summary>
+            <param name="startpoint"></param>
+            <param name="endpoint"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Line.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Construct line by start and end point coordinates
+            </summary>
+            <param name="start_x"></param>
+            <param name="start_y"></param>
+            <param name="start_z"></param>
+            <param name="end_x"></param>
+            <param name="end_y"></param>
+            <param name="end_z"></param>
+        </member>
+        <member name="T:BHoM.Geometry.Plane">
+            <summary>
+            BHoM Plane object
+            </summary>
+        </member>
+        <member name="P:BHoM.Geometry.Plane.X">
+            <summary>X vector</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Plane.Y">
+            <summary>Y vector</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Plane.Z">
+            <summary>Z vector</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Plane.Origin">
+            <summary>Origin point</summary>
+        </member>
+        <member name="M:BHoM.Geometry.Plane.#ctor">
+            <summary>
+            Constructs a plane in global XYZ, with origin point at 0,0,0
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Plane.#ctor(BHoM.Geometry.Point)">
+            <summary>
+            Constructs a point in global XYZ at a prescribed point
+            </summary>
+            <param name="origin"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Plane.#ctor(BHoM.Geometry.Vector,BHoM.Geometry.Vector,BHoM.Geometry.Point)">
+            <summary>
+            Constructs a plane from XY vectors, the cross product and an origin point
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="origin"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Plane.CalculateOctant(System.Double)">
+            <summary>
+            Calculate which planar octant an angle lies within. 
+            Convention for Cardinal lines is 0 => 1, PI/4 => 2, PI/2 => 3, -PI/4 => 8 etc.
+            </summary>
+            <param name="angle"> Angle in Radians</param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Plane.GetAxisVectorFromOctant(System.Int32)">
+            <summary>
+            Returns the nearest local axis based on the octant number 
+            </summary>
+            <param name="octant"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Plane.Get45DegreeVectorFromOctant(System.Int32)">
+            <summary>
+            Returns the nearest 45 degree axis vector based on the octant number 
+            This vector is not unitised, having a magnitude of root2
+            </summary>
+            <param name="octant"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BHoM.Geometry.Arc">
+            <summary>
+            Arc object
+            </summary>
+        </member>
+        <member name="P:BHoM.Geometry.Arc.Plane">
+            <summary>Base plane for arc</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Arc.StartPoint">
+            <summary>Start point as BHoM point</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Arc.EndPoint">
+            <summary>End point as BHoM point</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Arc.Radius">
+            <summary>Radius</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Arc.Angle">
+            <summary>Angle in radians</summary>
+        </member>
+        <member name="M:BHoM.Geometry.Arc.#ctor(BHoM.Geometry.Point,BHoM.Geometry.Point,System.Double)">
+            <summary>
+            Constructs an arc in default global XY plane
+            </summary>
+            <param name="startpoint"></param>
+            <param name="endpoint"></param>
+            <param name="radius"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Arc.#ctor(BHoM.Geometry.Point,BHoM.Geometry.Point,System.Double,BHoM.Geometry.Plane)">
+            <summary>
+            Construct an arc using start point, end point and base plane
+            </summary>
+            <param name="startpoint"></param>
+            <param name="endpoint"></param>
+            <param name="radius"></param>
+            <param name="plane"></param>
+        </member>
+        <member name="T:BHoM.Geometry.MeshFace">
+            <summary>
+            BHoM Meshface object
+            </summary>
+        </member>
+        <member name="T:BHoM.Geometry.Mesh">
+            <summary>
+            BHoM Mesh geometry object
+            </summary>
+        </member>
+        <member name="P:BHoM.Geometry.Mesh.VerticeGroups">
+            <summary>Vertice groups for mesh face definition</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Mesh.Vertices">
+            <summary>Vertices as a list of points</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Mesh.Faces">
+            <summary>Faces as a list of integer arrays</summary>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.#ctor">
+            <summary>
+            Construct empty mesh
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.AddVertice(BHoM.Geometry.Point)">
+            <summary>
+            Add a mesh vertice
+            </summary>
+            <param name="vertice"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.AddVertices(System.Collections.Generic.List{BHoM.Geometry.Point})">
+            <summary>
+            Add multiple mesh vertices
+            </summary>
+            <param name="vertices"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.GetVertices">
+            <summary>
+            Get vertices as a list of points
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.RemoveVertice(System.Int32)">
+            <summary>
+            Remove a mesh vertice
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.AddFace(System.Int32[])">
+            <summary>
+            Add a meshface
+            </summary>
+            <param name="face"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.AddFaces(System.Collections.Generic.List{System.Int32[]})">
+            <summary>
+            Add multiple mesh faces
+            </summary>
+            <param name="faces"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.RemoveFace(System.Int32)">
+            <summary>
+            Remoeve a mesh face
+            </summary>
+            <param name="f"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Mesh.GetFaces">
+            <summary>
+            Get mesh faces as list of arrays
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BHoM.Geometry.Surface">
+            <summary>
+            BHoM Surface object
+            </summary>
+        </member>
+        <member name="T:BHoM.Geometry.Point">
+            <summary>
+            BHoM Point object
+            </summary>
+        </member>
+        <member name="P:BHoM.Geometry.Point.X">
+            <summary>X coordinate</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Point.Y">
+            <summary>Y coordinate</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Point.Z">
+            <summary>Z coordinate</summary>
+        </member>
+        <member name="M:BHoM.Geometry.Point.#ctor">
+            <summary>
+            Construct an empty point
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Point.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Construct a point from coordinates
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Point.#ctor(BHoM.Geometry.Point)">
+            <summary>
+            Duplicate a point
+            </summary>
+            <param name="dup"></param>
+        </member>
+        <member name="P:BHoM.Geometry.Point.CartesianCoordinates">
+            <summary>
+            Gets or sets the coordinates as an array
+            </summary>
+        </member>
+        <member name="P:BHoM.Geometry.Point.IsValid">
+            <summary>
+            True if the point has valid coordinates
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Point.Duplicate">
+            <summary>
+            Duplicates a point
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.op_Subtraction(BHoM.Geometry.Point,BHoM.Geometry.Point)">
+            <summary>
+            Vector operations a-b
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.op_Addition(BHoM.Geometry.Point,BHoM.Geometry.Point)">
+            <summary>
+            Vector operations a+b
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.op_Addition(BHoM.Geometry.Point,BHoM.Geometry.Vector)">
+            <summary>
+            Move point by adding a vector
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.op_Subtraction(BHoM.Geometry.Point,BHoM.Geometry.Vector)">
+            <summary>
+            Move point by subtracting a vector
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.op_Multiply(BHoM.Geometry.Point,System.Double)">
+            <summary>
+            Move a point by scaling coordinate values
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.op_Multiply(System.Double,BHoM.Geometry.Point)">
+            <summary>
+            Move a point by scaling coordinate values
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.op_Division(BHoM.Geometry.Point,System.Double)">
+            <summary>
+            Move a point by scaling coordinate values
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.op_Division(System.Double,BHoM.Geometry.Point)">
+            <summary>
+            Point operator
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.Average(System.Collections.Generic.List{BHoM.Geometry.Point})">
+            <summary>
+            Calcualte mean pt from list of points
+            </summary>
+            <param name="pts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Point.DistanceTo(BHoM.Geometry.Point)">
+            <summary>
+            Get the distance from a point 
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BHoM.Geometry.Point.Origin">
+            <summary>
+            Constructs a point at 0,0,0
+            </summary>
+        </member>
+        <member name="T:BHoM.Geometry.Vector">
+            <summary>
+            BHoM Vector object
+            </summary>
+        </member>
+        <member name="P:BHoM.Geometry.Vector.X">
+            <summary>X coordinate</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Vector.Y">
+            <summary>Y coordinate</summary>
+        </member>
+        <member name="P:BHoM.Geometry.Vector.Z">
+            <summary>Z coordinate</summary>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.#ctor">
+            <summary>
+            Constructs an empty vector
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Constructs a vector from XYZ coordinates
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.#ctor(BHoM.Geometry.Vector)">
+            <summary>
+            Duplicates a vector
+            </summary>
+            <param name="dup"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.#ctor(BHoM.Geometry.Point)">
+            <summary>
+            Constructs a vector from a point
+            </summary>
+            <param name="pt"></param>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.op_Addition(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
+            <summary>
+            Vector operations
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.op_Subtraction(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
+            <summary>
+            Vector operations
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.op_Division(BHoM.Geometry.Vector,System.Double)">
+            <summary>
+            Vector operations
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.op_Multiply(BHoM.Geometry.Vector,System.Double)">
+            <summary>
+            Vector operations
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.op_Multiply(System.Double,BHoM.Geometry.Vector)">
+            <summary>
+            Vector operations
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.op_Multiply(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
+            <summary>
+            Vector operations
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.CrossProduct(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
+            <summary>
+            Cross product of two vectors
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.DotProduct(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
+            <summary>
+            Dot product of two vectors
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BHoM.Geometry.Vector.Length">
+            <summary>
+            Calculates the vector length
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.Unitize">
+            <summary>
+            Sets the vector length to one unit
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BHoM.Geometry.Vector.IsValid">
+            <summary>
+            True if the vector XYZ values are set
+            </summary>
+        </member>
+        <member name="P:BHoM.Geometry.Vector.U">
+            <summary>
+            Gets the vector length
+            </summary>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.Duplicate">
+            <summary>
+            Duplicates the vector
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.Project(BHoM.Geometry.Plane)">
+            <summary>
+            Projects a vector onto a plane
+            </summary>
+            <param name="plane"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.Rotate(System.Double,BHoM.Geometry.Vector)">
+            <summary>
+            Roates vector using Rodrigues' rotation formula
+            </summary>
+            <param name="rad"></param>
+            <param name="axis"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.Reverse">
+            <summary>
+            Returns the reversed vector
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.VectorAngle(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
+            <summary>
+            Calculate the angle in radians between two vectors
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.SafeAcos(System.Double)">
+            <summary>
+            Computes Acos with tolerance for rounding errors
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BHoM.Geometry.Vector.VectorAngle(BHoM.Geometry.Vector,BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
+            <summary>
+            Calculate the angle in radians between two vectors with a guide normal vector to determine sign
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="normal"></param>
+            <returns></returns>
+        </member>
         <member name="T:BHoM.Global.BHoMObject">
             <summary>
             BHoM object abstract class, all methods and attributes applicable to all structural objects with
             BHoM implemented
             </summary>
         </member>
-        <member name="P:BHoM.Global.BHoMObject.BHoM_ID">
+        <member name="P:BHoM.Global.BHoMObject.BHoM_Guid">
             <summary>BHoM unique ID</summary>
         </member>
-        <member name="P:BHoM.Global.BHoMObject.UserText">
+        <member name="P:BHoM.Global.BHoMObject.UserData">
             <summary>User text input. Can be used to store user information in an object
             such as a user ID or a project specific parameter</summary>
         </member>
@@ -347,14 +877,8 @@
         <member name="P:BHoM.Structural.IStructuralObject.Number">
             <summary>Object number</summary>
         </member>
-        <member name="M:BHoM.Structural.IStructuralObject.SetNumber(System.Int32)">
-            <summary>Set object number</summary>
-        </member>
         <member name="P:BHoM.Structural.IStructuralObject.Name">
             <summary>Object name</summary>
-        </member>
-        <member name="M:BHoM.Structural.IStructuralObject.SetName(System.String)">
-            <summary>Set object name</summary>
         </member>
         <member name="M:BHoM.Structural.IStructuralObject.GetProperties">
             <summary>Method which gets a properties dictionary for simple downstream deconstruct</summary>
@@ -364,7 +888,7 @@
             Beam class, can be used as a wrapper for an analytical bar object
             </summary>
         </member>
-        <member name="P:BHoM.Structural.Beam.BHoM_ID">
+        <member name="P:BHoM.Structural.Beam.BHoM_Guid">
             <summary>BHoM unique ID</summary>
         </member>
         <member name="P:BHoM.Structural.Beam.Bars">
@@ -418,17 +942,11 @@
             Degrees of freedom class for use in constraint objects
             </summary>
         </member>
-        <member name="P:BHoM.Structural.DOF.BHoM_ID">
-            <summary>BHoM unique ID</summary>
-        </member>
         <member name="P:BHoM.Structural.DOF.Number">
             <summary>DOF number</summary>
         </member>
         <member name="P:BHoM.Structural.DOF.Name">
             <summary>DOF name</summary>
-        </member>
-        <member name="P:BHoM.Structural.DOF.UserText">
-            <summary>BHoM User Text</summary>
         </member>
         <member name="P:BHoM.Structural.DOF.Direction">
             <summary>Direction</summary>
@@ -471,7 +989,7 @@
             Constraint object - base class for all release, restraint, support classes. 
             </summary>
         </member>
-        <member name="P:BHoM.Structural.Constraint.BHoM_ID">
+        <member name="P:BHoM.Structural.Constraint.BHoM_Guid">
             <summary>BHoM unique ID</summary>
         </member>
         <member name="P:BHoM.Structural.Constraint.Number">
@@ -500,9 +1018,6 @@
         </member>
         <member name="P:BHoM.Structural.Constraint.ZZ">
             <summary>ZZ degree of freedom</summary>
-        </member>
-        <member name="P:BHoM.Structural.Constraint.UserText">
-            <summary>BHoM User Text</summary>
         </member>
         <member name="M:BHoM.Structural.Constraint.#ctor">
             <summary>
@@ -562,7 +1077,7 @@
             Storey class to store information about building storeys for post processing of results
             </summary>
         </member>
-        <member name="P:BHoM.Structural.Storey.BHoM_ID">
+        <member name="P:BHoM.Structural.Storey.BHoM_Guid">
             <summary>BHoM unique ID</summary>
         </member>
         <member name="P:BHoM.Structural.Storey.Number">
@@ -620,12 +1135,6 @@
             <summary>
             Bar objects for 1D finite element bars. Note, cable elements separate.
             </summary>
-        </member>
-        <member name="P:BHoM.Structural.Bar.BHoM_ID">
-            <summary>BHoM object global ID</summary>
-        </member>
-        <member name="P:BHoM.Structural.Bar.UserText">
-            <summary>User text</summary>
         </member>
         <member name="P:BHoM.Structural.Bar.Number">
             <summary>Bar number</summary>
@@ -704,11 +1213,6 @@
             <param name="startNode"></param>
             <param name="endNode"></param>
         </member>
-        <member name="M:BHoM.Structural.Bar.SetBHoM_ID">
-            <summary>
-            Sets the unique object ID
-            </summary>
-        </member>
         <member name="M:BHoM.Structural.Bar.SetNumber(System.Int32)">
             <summary>
             Sets the bar number
@@ -754,7 +1258,7 @@
             BHoM Face class
             </summary>
         </member>
-        <member name="P:BHoM.Structural.Face.BHoM_ID">
+        <member name="P:BHoM.Structural.Face.BHoM_Guid">
             <summary>BHoM unique ID</summary>
         </member>
         <member name="P:BHoM.Structural.Face.Number">
@@ -808,17 +1312,11 @@
             Node objects
             </summary>
         </member>
-        <member name="P:BHoM.Structural.Node.BHoM_ID">
-            <summary>BHoM object ID</summary>
-        </member>
         <member name="P:BHoM.Structural.Node.Number">
             <summary>Node number</summary>
         </member>
         <member name="P:BHoM.Structural.Node.Name">
             <summary>Node name</summary>
-        </member>
-        <member name="P:BHoM.Structural.Node.UserText">
-            <summary>BHoM User Test</summary>
         </member>
         <member name="P:BHoM.Structural.Node.Point">
             <summary>Node position as a point object</summary>
@@ -880,7 +1378,7 @@
         </member>
         <member name="M:BHoM.Structural.Node.#ctor(System.Double,System.Double,System.Double,System.Int32)">
             <summary>
-            Constructes a node from coordinates and an index number
+            Constructes a node from CartesianCoordinates and an index number
             </summary>
             <param name="x"></param>
             <param name="y"></param>
@@ -898,20 +1396,15 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BHoM.Structural.Node.SetBHoM_ID">
-            <summary>
-            Sets the unique object ID
-            </summary>
-        </member>
         <member name="M:BHoM.Structural.Node.SetNumber(System.Int32)">
             <summary>
             Sets the node number
             </summary>
             <param name="number"></param>
         </member>
-        <member name="P:BHoM.Structural.Node.XYZ">
+        <member name="P:BHoM.Structural.Node.CartesianCoordinates">
             <summary>
-            Gets or sets the XYZ of the node position
+            Gets or sets the CartesianCoordinates of the node position
             </summary>
         </member>
         <member name="P:BHoM.Structural.Node.X">
@@ -954,16 +1447,16 @@
             </summary>
             <param name="constraintName"></param>
         </member>
-        <member name="M:BHoM.Structural.Node.SetCoordinateSystemAsDefault">
+        <member name="M:BHoM.Structural.Node.SetCartesianCoordinatesystemAsDefault">
             <summary>
             Sets a default plane as coordinate system
             </summary>
         </member>
-        <member name="M:BHoM.Structural.Node.SetCoordinateSystem(BHoM.Geometry.Plane)">
+        <member name="M:BHoM.Structural.Node.SetCartesianCoordinatesystem(BHoM.Geometry.Plane)">
             <summary>
             Sets coordinate system as plane
             </summary>
-            <param name="coordinateSystem"></param>
+            <param name="CartesianCoordinatesystem"></param>
         </member>
         <member name="M:BHoM.Structural.Node.ResetTopology">
             <summary>
@@ -1013,7 +1506,7 @@
             for the start and end of a bar
             </summary>
         </member>
-        <member name="P:BHoM.Structural.BarRelease.BHoM_ID">
+        <member name="P:BHoM.Structural.BarRelease.BHoM_Guid">
             <summary>BHoM unique ID</summary>
         </member>
         <member name="P:BHoM.Structural.BarRelease.Name">
@@ -1063,12 +1556,6 @@
             <summary>
             Structure class represents a collection of structural objects
             </summary>
-        </member>
-        <member name="P:BHoM.Structural.Structure.BHoM_ID">
-            <summary>BHoM unique ID</summary>
-        </member>
-        <member name="P:BHoM.Structural.Structure.UserText">
-            <summary>BHoM User Text</summary>
         </member>
         <member name="P:BHoM.Structural.Structure.Number">
             <summary>Structure number</summary>
@@ -1762,7 +2249,7 @@
         <member name="P:BHoM.Structural.Results.Bars.BarForceEnvelope.OrientationPlane">
             <summary>Orientation of bar forces inherited from bar</summary>
         </member>
-        <member name="P:BHoM.Structural.Results.Bars.BarForceEnvelope.UserText">
+        <member name="P:BHoM.Structural.Results.Bars.BarForceEnvelope.UserData">
             <summary>User text field for any user data</summary>
         </member>
         <member name="T:BHoM.Structural.Results.Bars.BarForceCollection">
@@ -1831,7 +2318,7 @@
         <member name="P:BHoM.Structural.Results.Bars.BarForce.OrientationPlane">
             <summary>Orientation of bar forces inherited from bar</summary>
         </member>
-        <member name="P:BHoM.Structural.Results.Bars.BarForce.UserText">
+        <member name="P:BHoM.Structural.Results.Bars.BarForce.UserData">
             <summary>User text field for any user data</summary>
         </member>
         <member name="M:BHoM.Structural.Results.Bars.BarForce.#ctor(System.Int32,System.Double,BHoM.Structural.Loads.Loadcase,BHoM.Geometry.Plane)">
@@ -3078,525 +3565,6 @@
         </member>
         <member name="F:BHoM.HumanBody.HandStateName.Unknown">
             <summary>Not known</summary>
-        </member>
-        <member name="T:BHoM.Geometry.Plane">
-            <summary>
-            BHoM Plane object
-            </summary>
-        </member>
-        <member name="P:BHoM.Geometry.Plane.X">
-            <summary>X vector</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Plane.Y">
-            <summary>Y vector</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Plane.Z">
-            <summary>Z vector</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Plane.Origin">
-            <summary>Origin point</summary>
-        </member>
-        <member name="M:BHoM.Geometry.Plane.#ctor">
-            <summary>
-            Constructs a plane in global XYZ, with origin point at 0,0,0
-            </summary>
-        </member>
-        <member name="M:BHoM.Geometry.Plane.#ctor(BHoM.Geometry.Point)">
-            <summary>
-            Constructs a point in global XYZ at a prescribed point
-            </summary>
-            <param name="origin"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Plane.#ctor(BHoM.Geometry.Vector,BHoM.Geometry.Vector,BHoM.Geometry.Point)">
-            <summary>
-            Constructs a plane from XY vectors, the cross product and an origin point
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="origin"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Plane.CalculateOctant(System.Double)">
-            <summary>
-            Calculate which planar octant an angle lies within. 
-            Convention for Cardinal lines is 0 => 1, PI/4 => 2, PI/2 => 3, -PI/4 => 8 etc.
-            </summary>
-            <param name="angle"> Angle in Radians</param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Plane.GetAxisVectorFromOctant(System.Int32)">
-            <summary>
-            Returns the nearest local axis based on the octant number 
-            </summary>
-            <param name="octant"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Plane.Get45DegreeVectorFromOctant(System.Int32)">
-            <summary>
-            Returns the nearest 45 degree axis vector based on the octant number 
-            This vector is not unitised, having a magnitude of root2
-            </summary>
-            <param name="octant"></param>
-            <returns></returns>
-        </member>
-        <member name="T:BHoM.Geometry.Arc">
-            <summary>
-            Arc object
-            </summary>
-        </member>
-        <member name="P:BHoM.Geometry.Arc.Plane">
-            <summary>Base plane for arc</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Arc.StartPoint">
-            <summary>Start point as BHoM point</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Arc.EndPoint">
-            <summary>End point as BHoM point</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Arc.Radius">
-            <summary>Radius</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Arc.Angle">
-            <summary>Angle in radians</summary>
-        </member>
-        <member name="M:BHoM.Geometry.Arc.#ctor(BHoM.Geometry.Point,BHoM.Geometry.Point,System.Double)">
-            <summary>
-            Constructs an arc in default global XY plane
-            </summary>
-            <param name="startpoint"></param>
-            <param name="endpoint"></param>
-            <param name="radius"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Arc.#ctor(BHoM.Geometry.Point,BHoM.Geometry.Point,System.Double,BHoM.Geometry.Plane)">
-            <summary>
-            Construct an arc using start point, end point and base plane
-            </summary>
-            <param name="startpoint"></param>
-            <param name="endpoint"></param>
-            <param name="radius"></param>
-            <param name="plane"></param>
-        </member>
-        <member name="T:BHoM.Geometry.MeshFace">
-            <summary>
-            BHoM Meshface object
-            </summary>
-        </member>
-        <member name="T:BHoM.Geometry.Mesh">
-            <summary>
-            BHoM Mesh geometry object
-            </summary>
-        </member>
-        <member name="P:BHoM.Geometry.Mesh.VerticeGroups">
-            <summary>Vertice groups for mesh face definition</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Mesh.Vertices">
-            <summary>Vertices as a list of points</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Mesh.Faces">
-            <summary>Faces as a list of integer arrays</summary>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.#ctor">
-            <summary>
-            Construct empty mesh
-            </summary>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.AddVertice(BHoM.Geometry.Point)">
-            <summary>
-            Add a mesh vertice
-            </summary>
-            <param name="vertice"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.AddVertices(System.Collections.Generic.List{BHoM.Geometry.Point})">
-            <summary>
-            Add multiple mesh vertices
-            </summary>
-            <param name="vertices"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.GetVertices">
-            <summary>
-            Get vertices as a list of points
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.RemoveVertice(System.Int32)">
-            <summary>
-            Remove a mesh vertice
-            </summary>
-            <param name="v"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.AddFace(System.Int32[])">
-            <summary>
-            Add a meshface
-            </summary>
-            <param name="face"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.AddFaces(System.Collections.Generic.List{System.Int32[]})">
-            <summary>
-            Add multiple mesh faces
-            </summary>
-            <param name="faces"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.RemoveFace(System.Int32)">
-            <summary>
-            Remoeve a mesh face
-            </summary>
-            <param name="f"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Mesh.GetFaces">
-            <summary>
-            Get mesh faces as list of arrays
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BHoM.Geometry.Line">
-            <summary>
-            BHoM Line object
-            </summary>
-        </member>
-        <member name="P:BHoM.Geometry.Line.StartPoint">
-            <summary>Start point as BHoM point</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Line.EndPoint">
-            <summary>End point as BHoM point</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Line.Length">
-            <summary>Length of the line</summary>
-        </member>
-        <member name="M:BHoM.Geometry.Line.#ctor">
-            <summary>
-            Construct an empty line
-            </summary>
-        </member>
-        <member name="M:BHoM.Geometry.Line.#ctor(BHoM.Geometry.Point,BHoM.Geometry.Point)">
-            <summary>
-            Construct line by start point and end point
-            </summary>
-            <param name="startpoint"></param>
-            <param name="endpoint"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Line.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Construct line by start and end point coordinates
-            </summary>
-            <param name="start_x"></param>
-            <param name="start_y"></param>
-            <param name="start_z"></param>
-            <param name="end_x"></param>
-            <param name="end_y"></param>
-            <param name="end_z"></param>
-        </member>
-        <member name="T:BHoM.Geometry.Surface">
-            <summary>
-            BHoM Surface object
-            </summary>
-        </member>
-        <member name="T:BHoM.Geometry.Point">
-            <summary>
-            BHoM Point object
-            </summary>
-        </member>
-        <member name="P:BHoM.Geometry.Point.X">
-            <summary>X coordinate</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Point.Y">
-            <summary>Y coordinate</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Point.Z">
-            <summary>Z coordinate</summary>
-        </member>
-        <member name="M:BHoM.Geometry.Point.#ctor">
-            <summary>
-            Construct an empty point
-            </summary>
-        </member>
-        <member name="M:BHoM.Geometry.Point.#ctor(System.Double,System.Double,System.Double)">
-            <summary>
-            Construct a point from coordinates
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="z"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Point.#ctor(BHoM.Geometry.Point)">
-            <summary>
-            Duplicate a point
-            </summary>
-            <param name="dup"></param>
-        </member>
-        <member name="P:BHoM.Geometry.Point.XYZ">
-            <summary>
-            Gets or sets the coordinates as an array
-            </summary>
-        </member>
-        <member name="P:BHoM.Geometry.Point.IsValid">
-            <summary>
-            True if the point has valid coordinates
-            </summary>
-        </member>
-        <member name="M:BHoM.Geometry.Point.Duplicate">
-            <summary>
-            Duplicates a point
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.op_Subtraction(BHoM.Geometry.Point,BHoM.Geometry.Point)">
-            <summary>
-            Vector operations a-b
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.op_Addition(BHoM.Geometry.Point,BHoM.Geometry.Point)">
-            <summary>
-            Vector operations a+b
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.op_Addition(BHoM.Geometry.Point,BHoM.Geometry.Vector)">
-            <summary>
-            Move point by adding a vector
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.op_Subtraction(BHoM.Geometry.Point,BHoM.Geometry.Vector)">
-            <summary>
-            Move point by subtracting a vector
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.op_Multiply(BHoM.Geometry.Point,System.Double)">
-            <summary>
-            Move a point by scaling coordinate values
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.op_Multiply(System.Double,BHoM.Geometry.Point)">
-            <summary>
-            Move a point by scaling coordinate values
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.op_Division(BHoM.Geometry.Point,System.Double)">
-            <summary>
-            Move a point by scaling coordinate values
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.op_Division(System.Double,BHoM.Geometry.Point)">
-            <summary>
-            Point operator
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.Average(System.Collections.Generic.List{BHoM.Geometry.Point})">
-            <summary>
-            Calcualte mean pt from list of points
-            </summary>
-            <param name="pts"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Point.DistanceTo(BHoM.Geometry.Point)">
-            <summary>
-            Get the distance from a point 
-            </summary>
-            <param name="p"></param>
-            <returns></returns>
-        </member>
-        <member name="P:BHoM.Geometry.Point.Origin">
-            <summary>
-            Constructs a point at 0,0,0
-            </summary>
-        </member>
-        <member name="T:BHoM.Geometry.Vector">
-            <summary>
-            BHoM Vector object
-            </summary>
-        </member>
-        <member name="P:BHoM.Geometry.Vector.X">
-            <summary>X coordinate</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Vector.Y">
-            <summary>Y coordinate</summary>
-        </member>
-        <member name="P:BHoM.Geometry.Vector.Z">
-            <summary>Z coordinate</summary>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.#ctor">
-            <summary>
-            Constructs an empty vector
-            </summary>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.#ctor(System.Double,System.Double,System.Double)">
-            <summary>
-            Constructs a vector from XYZ coordinates
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="z"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.#ctor(BHoM.Geometry.Vector)">
-            <summary>
-            Duplicates a vector
-            </summary>
-            <param name="dup"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.#ctor(BHoM.Geometry.Point)">
-            <summary>
-            Constructs a vector from a point
-            </summary>
-            <param name="pt"></param>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.op_Addition(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
-            <summary>
-            Vector operations
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.op_Subtraction(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
-            <summary>
-            Vector operations
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.op_Division(BHoM.Geometry.Vector,System.Double)">
-            <summary>
-            Vector operations
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.op_Multiply(BHoM.Geometry.Vector,System.Double)">
-            <summary>
-            Vector operations
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.op_Multiply(System.Double,BHoM.Geometry.Vector)">
-            <summary>
-            Vector operations
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.op_Multiply(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
-            <summary>
-            Vector operations
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.CrossProduct(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
-            <summary>
-            Cross product of two vectors
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.DotProduct(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
-            <summary>
-            Dot product of two vectors
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="P:BHoM.Geometry.Vector.Length">
-            <summary>
-            Calculates the vector length
-            </summary>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.Unitize">
-            <summary>
-            Sets the vector length to one unit
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:BHoM.Geometry.Vector.IsValid">
-            <summary>
-            True if the vector XYZ values are set
-            </summary>
-        </member>
-        <member name="P:BHoM.Geometry.Vector.U">
-            <summary>
-            Gets the vector length
-            </summary>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.Duplicate">
-            <summary>
-            Duplicates the vector
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.Project(BHoM.Geometry.Plane)">
-            <summary>
-            Projects a vector onto a plane
-            </summary>
-            <param name="plane"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.Rotate(System.Double,BHoM.Geometry.Vector)">
-            <summary>
-            Roates vector using Rodrigues' rotation formula
-            </summary>
-            <param name="rad"></param>
-            <param name="axis"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.Reverse">
-            <summary>
-            Returns the reversed vector
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.VectorAngle(BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
-            <summary>
-            Calculate the angle in radians between two vectors
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.SafeAcos(System.Double)">
-            <summary>
-            Computes Acos with tolerance for rounding errors
-            </summary>
-            <param name="d"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BHoM.Geometry.Vector.VectorAngle(BHoM.Geometry.Vector,BHoM.Geometry.Vector,BHoM.Geometry.Vector)">
-            <summary>
-            Calculate the angle in radians between two vectors with a guide normal vector to determine sign
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <param name="normal"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>
