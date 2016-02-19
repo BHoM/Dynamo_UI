@@ -75,5 +75,27 @@ namespace ListTools
             }
             return objects;
         }
+
+        /// <summary>
+        /// Returns a list of keys as strings of a BHoM dictionary. 
+        /// BuroHappold
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns></returns>
+        public static List<string> GetKeys(BHoM.Collections.Dictionary<string, object> dictionary)
+        {
+            return dictionary.KeyList();
+        }
+
+        /// <summary>
+        /// Returns a list of keys as strings of a BHoM dictionary. 
+        /// BuroHappold
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns></returns>
+        public static List<object> GetValues(BHoM.Collections.Dictionary<string, object> dictionary)
+        {
+            return dictionary.Values.ToList();
+        }
     }
 }

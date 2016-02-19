@@ -196,7 +196,7 @@
     <Compile Include="Structural\Structural_Structure.cs" />
     <Compile Include="Structural\Structural_Face.cs" />
     <Compile Include="Structural\Structural_Node.cs" />
-    <Compile Include="ListTools.cs" />
+    <Compile Include="List Tools\Dictionary.cs" />
     <Compile Include="GeometryTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

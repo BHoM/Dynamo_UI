@@ -113,7 +113,7 @@ namespace Structural
             if (constraint != "Unassigned" && constraint != null) node.SetConstraint(new_constraint);
             try  
             {
-                node.SetCoordinateSystem(new BHoM.Geometry.Plane(
+                node.SetPlane(new BHoM.Geometry.Plane(
                     new BHoM.Geometry.Vector(coordSys.XAxis.X, coordSys.XAxis.Y, coordSys.XAxis.Z),
                     new BHoM.Geometry.Vector(coordSys.YAxis.X, coordSys.YAxis.Z, coordSys.YAxis.Z),
                     new BHoM.Geometry.Point(coordSys.Origin.X, coordSys.Origin.Y, coordSys.Origin.Z)));

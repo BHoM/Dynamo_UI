@@ -880,9 +880,6 @@
         <member name="P:BHoM.Structural.IStructuralObject.Name">
             <summary>Object name</summary>
         </member>
-        <member name="M:BHoM.Structural.IStructuralObject.GetProperties">
-            <summary>Method which gets a properties dictionary for simple downstream deconstruct</summary>
-        </member>
         <member name="T:BHoM.Structural.Beam">
             <summary>
             Beam class, can be used as a wrapper for an analytical bar object
@@ -989,9 +986,6 @@
             Constraint object - base class for all release, restraint, support classes. 
             </summary>
         </member>
-        <member name="P:BHoM.Structural.Constraint.BHoM_Guid">
-            <summary>BHoM unique ID</summary>
-        </member>
         <member name="P:BHoM.Structural.Constraint.Number">
             <summary>Constraint number</summary>
         </member>
@@ -1076,9 +1070,6 @@
             <summary>
             Storey class to store information about building storeys for post processing of results
             </summary>
-        </member>
-        <member name="P:BHoM.Structural.Storey.BHoM_Guid">
-            <summary>BHoM unique ID</summary>
         </member>
         <member name="P:BHoM.Structural.Storey.Number">
             <summary>Storey number</summary>
@@ -1205,25 +1196,13 @@
             <param name="startNode"></param>
             <param name="endNode"></param>
         </member>
-        <member name="M:BHoM.Structural.Bar.#ctor(System.Int32,BHoM.Structural.Node,BHoM.Structural.Node)">
+        <member name="M:BHoM.Structural.Bar.#ctor(BHoM.Structural.Node,BHoM.Structural.Node,System.Int32)">
             <summary>
             Construct a bar from BHoM nodes and set number
             </summary>
             <param name="barNumber"></param>
             <param name="startNode"></param>
             <param name="endNode"></param>
-        </member>
-        <member name="M:BHoM.Structural.Bar.SetNumber(System.Int32)">
-            <summary>
-            Sets the bar number
-            </summary>
-            <param name="number"></param>
-        </member>
-        <member name="M:BHoM.Structural.Bar.SetName(System.String)">
-            <summary>
-            Sets the bar name
-            </summary>
-            <param name="name"></param>
         </member>
         <member name="M:BHoM.Structural.Bar.GetOppositeNode(BHoM.Structural.Node)">
             <summary>
@@ -1452,11 +1431,11 @@
             Sets a default plane as coordinate system
             </summary>
         </member>
-        <member name="M:BHoM.Structural.Node.SetCartesianCoordinatesystem(BHoM.Geometry.Plane)">
+        <member name="M:BHoM.Structural.Node.SetPlane(BHoM.Geometry.Plane)">
             <summary>
             Sets coordinate system as plane
             </summary>
-            <param name="CartesianCoordinatesystem"></param>
+            <param name="plane"></param>
         </member>
         <member name="M:BHoM.Structural.Node.ResetTopology">
             <summary>
