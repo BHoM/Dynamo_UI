@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.DesignScript.Interfaces;
 
 namespace Structural
 {
@@ -11,9 +12,22 @@ namespace Structural
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public class Bar
+    public class Bar : IGraphicItem
     {        
         internal Bar(){}
+
+        BHoM.Structural.Bar[] Bars { get; set; }
+
+        /// <summary>
+        /// Bar section preview
+        /// </summary>
+        /// <returns></returns>
+        public static Bar Preview(BHoM.Structural.Bar[] bars)
+        {
+            Bar newbar = new Bar();
+            newbar.Bars = bars;
+            return newbar;
+        }
 
         /// <summary>
         /// Creates BHoM structural bar elements by inputing curves. When curves are not lines, they are split into lines
@@ -24,7 +38,6 @@ namespace Structural
         /// <param name="facetLength"></param>
         /// <returns></returns>
         /// <search>BH, structure, bar, barbycurves</search>
-        
         [RegisterForTrace]
         [MultiReturn(new[] { "Bars", "Nodes"})]
         public static Dictionary<string, object> CreateByCurves(IEnumerable<Curve> curves,
@@ -144,6 +157,32 @@ namespace Structural
   
             bars_out.Add("Nodes", bars);
             return bars_out;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="package"></param>
+        /// <param name="parameters"></param>
+        [IsVisibleInDynamoLibrary(false)]
+        public void Tessellate(IRenderPackage package, TessellationParameters parameters)
+        {
+            foreach (BHoM.Structural.Bar bar in Bars)
+            {
+                PushCentrelines(package, bar);
+            }
+        }
+
+        private void PushCentrelines(IRenderPackage package, BHoM.Structural.Bar bar)
+        {
+            package.AddLineStripVertex(bar.StartNode.Point.X, bar.StartNode.Y, bar.StartNode.Z);
+            package.AddLineStripVertexColor(255, 0, 0, 255);
+            package.AddLineStripVertex(bar.EndNode.Point.X, bar.EndNode.Y, bar.EndNode.Z);
+            package.AddLineStripVertexColor(255, 0, 0, 255);
+            package.AddPointVertex(bar.StartNode.Point.X, bar.StartNode.Y, bar.StartNode.Z);
+            package.AddPointVertexColor(0, 0, 255, 255);
+            package.AddPointVertex(bar.EndNode.Point.X, bar.EndNode.Y, bar.EndNode.Z);
+            package.AddPointVertexColor(0, 0, 255, 255);
         }
     }
 }

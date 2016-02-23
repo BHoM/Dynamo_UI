@@ -134,6 +134,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DropDownNodes\SectionPropertySelector.cs" />
     <Compile Include="DropDownNodes\DOFPropertySelector.cs" />
     <Compile Include="DropDownNodes\ConstraintPropertySelector.cs" />
     <Compile Include="DropDownNodes\NodePropertySet.cs" />
@@ -149,27 +150,16 @@
     <ProjectReference Include="..\Basilisk\Basilisk.csproj">
       <Project>{814ccb48-c68a-4d65-a4b4-958ea6ab0bb6}</Project>
       <Name>Basilisk</Name>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Build\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).xml" "$(SolutionDir)Build\$(ProjectName).xml"
-copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Program Files\Dynamo 0.9\nodes\$(ProjectName).dll"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Program Files\Dynamo 0.9\nodes\$(ProjectName).dll"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-    <ItemGroup>
-      <PackageFiles Include="$(OutDir)\BasiliskUI.dll;$(OutDir)\BasiliskUI.XML;$(OutDir)\BasiliskUI.dll.config" />
-      <ResourceFiles Include="$(OutDir)\en-US\*.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(SolutionDir)..\dynamo_package\Dynamo Samples\bin\" />
-    <Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(SolutionDir)..\dynamo_package\Dynamo Samples\bin\en-US" />
   </Target>
 </Project>

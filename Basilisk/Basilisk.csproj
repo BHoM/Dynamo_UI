@@ -36,104 +36,46 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
-    <Reference Include="CoreNodeModelsWpf, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\CoreNodeModelsWpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DSCoreNodesUI, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\DSCoreNodesUI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DynamoCore, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoCore.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DynamoCoreWpf, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\DynamoCoreWpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DynamoServices, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\DynamoServices.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\DynamoServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamoShapeManager, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoShapeManager.dll</HintPath>
+    <Reference Include="KinectToolkit">
+      <HintPath>..\External dlls\KinectToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamoUtilities, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoUtilities.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="KinectToolkit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>External dlls\KinectToolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Composition, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.Composition.5.0.0\lib\NET45\Microsoft.Practices.Prism.Composition.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.PubSubEvents.1.1.2\lib\portable-sl5+windowsphone8+windows8+net40+wpa81\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.Interactivity.5.0.0\lib\NET45\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.PubSubEvents.1.0.0\lib\portable-sl4+wp7+windows8+net40\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="ProtoCore, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoCore.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoGeometry.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ProtoInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoInterface.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RevitAPI, Version=2015.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\Revit 2015\RevitAPI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\Revit 2015\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitNodes">
-      <HintPath>..\..\..\..\..\Program Files\Dynamo 0.8\Revit_2015\RevitNodes.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RevitServices">
-      <HintPath>..\..\..\..\..\Program Files\Dynamo 0.8\Revit_2015\RevitServices.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\ProtoInterface.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RobotToolkit">
-      <HintPath>..\RobotToolkit\build\RobotToolkit.dll</HintPath>
+      <HintPath>..\..\RobotToolkit\Build\RobotToolkit.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -158,11 +100,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="SystemTestServices, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.Tests.0.9.0\lib\net45\SystemTestServices.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.Tests.0.9.0\lib\net45\SystemTestServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="TestServices, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DynamoVisualProgramming.Tests.0.9.0\lib\net45\TestServices.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.Tests.0.9.0\lib\net45\TestServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -170,6 +112,10 @@
   <ItemGroup>
     <Compile Include="Fastrak\Fastrak_Node.cs" />
     <Compile Include="File\Read.cs" />
+    <Compile Include="Geometry\BHoM_Vector.cs" />
+    <Compile Include="Geometry\BHoM_Plane.cs" />
+    <Compile Include="Geometry\BHoM_Point.cs" />
+    <Compile Include="Geometry\BHoM_Line.cs" />
     <Compile Include="Kinect\Kinect_BodyTracking.cs" />
     <Compile Include="Kinect\Kinect_App.cs" />
     <Compile Include="Robot\Loads\Robot_NodalLoad.cs" />
@@ -181,6 +127,7 @@
     <Compile Include="Robot\Robot_WindCFD.cs" />
     <Compile Include="Robot\Robot_Panel.cs" />
     <Compile Include="Robot\Robot_SAT.cs" />
+    <Compile Include="Structural\Results\Structural_BarForce.cs" />
     <Compile Include="Structural\Structural_Bar.cs" />
     <Compile Include="Structural\Structural_BarManager.cs" />
     <Compile Include="Structural\Structural_Constraint.cs" />
@@ -210,9 +157,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Build\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).xml" "$(SolutionDir)Build\$(ProjectName).xml"
-copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
 copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).xml"</PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo 0.9\DynamoSandbox.exe</StartProgram>

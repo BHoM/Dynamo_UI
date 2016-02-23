@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
-using Dynamo.Services;
+using DynamoServices;
 
 namespace Structural
 {

@@ -21,6 +21,9 @@ namespace Robot
     public class RobotBar
     {
         internal RobotBar() {}
+
+        
+        
         /// <summary>
         /// Create Robot bars using the cache method
         /// BuroHappold
@@ -74,12 +77,10 @@ namespace Robot
             List<int> bar_numbers = new List<int>();
                  
             if (activate == true)
-            {
-                                
+            {                                
                 if (allBarData != true)
                 {
                     try { RobotToolkit.Bar.GetBarsQuery(out str_bars, filepath); } catch { RobotToolkit.Bar.GetBars(out str_bars, filepath); }
-                    RobotToolkit.Bar.GetBarsQuery(out str_bars, filepath);
                     foreach (BHoM.Structural.Bar str_bar in str_bars.Values)
                     {
                         Line ln = Line.ByStartPointEndPoint(Point.ByCoordinates(str_bar.StartNode.X, str_bar.StartNode.Y,str_bar.StartNode.Z),
@@ -99,12 +100,15 @@ namespace Robot
                         bar_numbers.Add(str_bar.Number);
                     }
                 }
+
                 getbars_out.Add("Lines", lines.Values);
                 getbars_out.Add("Numbers", bar_numbers);
                 getbars_out.Add("Bars", str_bars.Values);
                 }
             return getbars_out;
         }
- }
+
+      
+    }
 }
 
