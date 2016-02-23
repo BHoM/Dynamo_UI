@@ -22,7 +22,7 @@ namespace BasiliskNodesUI
         /// </summary>
         public SectionPropertySelector() : base("Property")
         {
-            InPortData.Add(new PortData("bar", "Input BHoM bar object"));
+            InPortData.Add(new PortData("sectionProperty", "Input BHoM bar object"));
             RegisterInputPorts();
         }
         /// <summary>
@@ -31,9 +31,12 @@ namespace BasiliskNodesUI
         public override void PopulateItems()
         {
             Items.Clear();
+            BHoM.Structural.SectionProperties.SectionFactory sec_factory = new BHoM.Structural.SectionProperties.SectionFactory();
+            BHoM.Structural.SectionProperties.SteelISection sec_prop = (BHoM.Structural.SectionProperties.SteelISection)sec_factory.Create(BHoM.Structural.SectionProperties.ShapeType.SteelI);
+            
+            
 
-            BHoM.Structural.SectionProperties.SectionFactory dummySectionProperties = new BHoM.Structural.SectionProperties.SectionFactory();
-            BHoM.Collections.Dictionary<string, object> properties = BHoM.Structural.SectionProperties.SectionFactory.GetProperties();
+            BHoM.Collections.Dictionary<string, object> properties = sec_prop.GetProperties();
             List<string> propertyNames = properties.KeyList();
 
             for (int i = 0; i < propertyNames.Count; i++)
