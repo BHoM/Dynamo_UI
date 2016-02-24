@@ -118,6 +118,7 @@
     <Compile Include="Geometry\BHoM_Line.cs" />
     <Compile Include="Kinect\Kinect_BodyTracking.cs" />
     <Compile Include="Kinect\Kinect_App.cs" />
+    <Compile Include="Robot\Loads\Robot_Loads.cs" />
     <Compile Include="Robot\Loads\Robot_NodalLoad.cs" />
     <Compile Include="Robot\Robot_App.cs" />
     <Compile Include="Robot\Loads\Robot_Loadcase.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Structural\Structural_BarManager.cs" />
     <Compile Include="Structural\Structural_Constraint.cs" />
     <Compile Include="Structural\Structural_ConstraintManager.cs" />
+    <Compile Include="Structural\Structural_Load.cs" />
     <Compile Include="Structural\Structural_SectionPropertyManager.cs" />
     <Compile Include="Structural\Structural_SectionProperty.cs" />
     <Compile Include="Structural\Structural_Loadcase.cs" />
@@ -157,8 +159,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).xml"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\mcunliff\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
+copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\mcunliff\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).xml"</PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo 0.9\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>
