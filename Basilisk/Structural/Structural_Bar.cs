@@ -145,5 +145,29 @@ namespace Structural
             bars_out.Add("Nodes", bars);
             return bars_out;
         }
+
+
+        /// <summary>
+        /// Deconstructs a single BHoM Bar
+        /// BuroHappold
+        /// </summary>
+        /// <param name="bar"></param>
+        /// <returns></returns>
+        /// <search>BH, bar, deconstruct</search>
+        [RegisterForTrace]
+        [MultiReturn(new[] { "Name", "Number", "Start Node", "End Node", "SectionProperty"})]
+        public static Dictionary<string, object> Deconstruct(BHoM.Structural.Bar bar)
+        {
+            return new Dictionary<string, object>
+            {
+                {"Name", bar.Name},
+                {"Number", bar.Number},
+                {"Start Node", bar.StartNode},
+                {"End Node", bar.EndNode},
+                {"SectionProperty", bar.SectionProperty}  
+            };
+        }
+
+
     }
 }

@@ -156,7 +156,8 @@
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Build\$(ProjectName).dll"
 copy /Y "$(TargetDir)$(ProjectName).xml" "$(SolutionDir)Build\$(ProjectName).xml"
-copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Program Files\Dynamo 0.9\nodes\$(ProjectName).dll"</PostBuildEvent>
+copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\afisher\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
+copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\afisher\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).xml"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
@@ -165,11 +166,5 @@ copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Program Files\Dynamo 0.9\nodes\$(Pr
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <ItemGroup>
-      <PackageFiles Include="$(OutDir)\BasiliskUI.dll;$(OutDir)\BasiliskUI.XML;$(OutDir)\BasiliskUI.dll.config" />
-      <ResourceFiles Include="$(OutDir)\en-US\*.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(SolutionDir)..\dynamo_package\Dynamo Samples\bin\" />
-    <Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(SolutionDir)..\dynamo_package\Dynamo Samples\bin\en-US" />
   </Target>
 </Project>
