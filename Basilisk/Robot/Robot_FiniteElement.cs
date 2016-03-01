@@ -43,7 +43,9 @@ namespace Robot
             Dictionary<int, BHoM.Structural.Node> str_nodes = new Dictionary<int, BHoM.Structural.Node>();
             if (activate == true)
             {
-                RobotToolkit.FiniteElement.GetFEMeshQuery(out panel_ids, out nodeCoords, out vertex_indices, out str_nodes);
+                BHoM.Global.Project project = new BHoM.Global.Project();
+
+                RobotToolkit.FiniteElement.GetFEMeshQuery(project, out panel_ids, out nodeCoords, out vertex_indices, out str_nodes);
                 List<IndexGroup> _ig_list = new List<IndexGroup>();
                 IEnumerable<IndexGroup> ig_list = null;
                 for (int i = 0; i < str_nodes.Count; i++)

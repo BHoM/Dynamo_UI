@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using DSCoreNodesUI;
+using CoreNodeModels;
 using Dynamo.Nodes;
 using Dynamo.Models;
 using ProtoCore.AST.AssociativeAST;
+using Dynamo.Graph.Nodes;
 
 namespace BasiliskNodesUI
 {
@@ -22,8 +23,8 @@ namespace BasiliskNodesUI
         /// </summary>
         public DOFPropertySelector() : base("Property")
         {
-            InPortData.Add(new PortData("dof", "Input BHoM dof object"));
-            RegisterInputPorts();
+            InPortNamesAttribute in_names = new InPortNamesAttribute("dof");
+            RegisterAllPorts();
         }
         /// <summary>
         /// Set the dropdown list
@@ -33,8 +34,7 @@ namespace BasiliskNodesUI
             Items.Clear();
 
             BHoM.Structural.DOF dummyDOF = new BHoM.Structural.DOF();
-            BHoM.Collections.Dictionary<string, object> properties = dummyDOF.GetProperties();
-            List<string> propertyNames = properties.KeyList();
+            List<string> propertyNames = dummyDOF.GetPropertyNames();
 
             for (int i = 0; i < propertyNames.Count; i++)
             {

@@ -70,7 +70,11 @@ namespace Fastrak
                 multiLevelList.Add(sublist);
 
                 //writing BHoM node
-                str_nodes.Add(new BHoM.Structural.Node(pnt.X, pnt.Y, pnt.Z, (int)currentNodeIndex));
+                
+                BHoM.Global.Project bhomProject = new BHoM.Global.Project();
+
+                BHoM.Structural.NodeFactory nodeFactory = bhomProject.Structure.Nodes;
+                str_nodes.Add(nodeFactory.Create((int)currentNodeIndex, pnt.X, pnt.Y, pnt.Z));
             }
 
             //output

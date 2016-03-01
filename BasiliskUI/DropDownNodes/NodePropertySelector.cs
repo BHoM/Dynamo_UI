@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using DSCoreNodesUI;
 using Dynamo.Nodes;
 using Dynamo.Models;
 using ProtoCore.AST.AssociativeAST;
+using Dynamo.Graph.Nodes;
+using CoreNodeModels;
 
 namespace BasiliskNodesUI
 {
@@ -15,6 +16,10 @@ namespace BasiliskNodesUI
     [NodeSearchable(true)]
     [NodeSearchTags("BH", "Buro", "Node", "Property", "Get")]
     [IsDesignScriptCompatible]
+    [InPortNames("node")]
+    [InPortDescriptions("node")]
+    [InPortTypes("dynamic")]
+
     public class NodePropertySelector : DSDropDownBase
     {
         /// <summary>
@@ -22,8 +27,7 @@ namespace BasiliskNodesUI
         /// </summary>
         public NodePropertySelector() : base("Property")
         {
-            InPortData.Add(new PortData("node", "Input BHoM node object"));
-            RegisterInputPorts();
+
         }
         /// <summary>
         /// Set the dropdown list
@@ -32,9 +36,10 @@ namespace BasiliskNodesUI
         {
             Items.Clear();
 
-            BHoM.Structural.Node dummyNode = new BHoM.Structural.Node();
-            BHoM.Collections.Dictionary<string, object> properties = dummyNode.GetProperties();
-            List<string> propertyNames = properties.KeyList();
+
+            BHoM.Structural.NodeFactory nodeFactory = new BHoM.Structural.NodeFactory(new BHoM.Global.Project());
+            BHoM.Structural.Node dummyNode = nodeFactory.Create();
+            List<string> propertyNames = dummyNode.GetPropertyNames();
 
             for (int i = 0; i < propertyNames.Count; i++)
             {
@@ -50,13 +55,13 @@ namespace BasiliskNodesUI
         /// <returns></returns>
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-
             var nodeFunction = AstFactory.BuildFunctionCall(
+
                 new System.Func<BHoM.Structural.Node, string, object>(Structural.Structure.GetPropertyByName),
+
                 new List<AssociativeNode>() { inputAstNodes[0], AstFactory.BuildStringNode(Items[SelectedIndex].Name) });
 
             var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), nodeFunction);
-
 
             return new List<AssociativeNode> { assign };
         }

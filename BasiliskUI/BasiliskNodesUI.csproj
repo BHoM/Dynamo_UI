@@ -42,32 +42,32 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
-    <Reference Include="CoreNodeModelsWpf, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\CoreNodeModelsWpf.dll</HintPath>
+    <Reference Include="CoreNodeModels, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.1\lib\net45\CoreNodeModels.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DSCoreNodesUI, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\DSCoreNodesUI.dll</HintPath>
+    <Reference Include="CoreNodeModelsWpf, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.1\lib\net45\CoreNodeModelsWpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamoCore, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoCore.dll</HintPath>
+    <Reference Include="DynamoCore, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\DynamoCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamoCoreWpf, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\DynamoCoreWpf.dll</HintPath>
+    <Reference Include="DynamoCoreWpf, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.1\lib\net45\DynamoCoreWpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamoServices, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\DynamoServices.dll</HintPath>
+    <Reference Include="DynamoServices, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.1\lib\net45\DynamoServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamoShapeManager, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoShapeManager.dll</HintPath>
+    <Reference Include="DynamoShapeManager, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\DynamoShapeManager.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamoUtilities, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoUtilities.dll</HintPath>
+    <Reference Include="DynamoUtilities, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\DynamoUtilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Composition, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -78,24 +78,24 @@
       <HintPath>..\packages\Prism.Interactivity.5.0.0\lib\NET45\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.PubSubEvents.1.1.2\lib\portable-sl5+windowsphone8+windows8+net40+wpa81\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.PubSubEvents.1.0.0\lib\portable-sl4+wp7+windows8+net40\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -104,16 +104,16 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="ProtoCore, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoCore.dll</HintPath>
+    <Reference Include="ProtoCore, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\ProtoCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\ProtoGeometry.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.1\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ProtoInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\ProtoInterface.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.1\lib\net45\ProtoInterface.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SampleLibraryZeroTouch">
@@ -137,7 +137,6 @@
     <Compile Include="DropDownNodes\SectionPropertySelector.cs" />
     <Compile Include="DropDownNodes\DOFPropertySelector.cs" />
     <Compile Include="DropDownNodes\ConstraintPropertySelector.cs" />
-    <Compile Include="DropDownNodes\NodePropertySet.cs" />
     <Compile Include="DropDownNodes\NodePropertySelector.cs" />
     <Compile Include="DropDownNodes\BarPropertySelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

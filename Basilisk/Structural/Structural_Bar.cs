@@ -48,6 +48,10 @@ namespace Structural
             List<BHoM.Structural.Bar> str_bars = new List<BHoM.Structural.Bar>();
             Dictionary<string, BHoM.Structural.Node> str_nodes = new Dictionary<string, BHoM.Structural.Node>();
 
+            BHoM.Global.Project project = new BHoM.Global.Project();
+
+            BHoM.Structural.BarFactory barFactory = new BHoM.Structural.BarFactory(project);
+            BHoM.Structural.NodeFactory nodeFactory = new BHoM.Structural.NodeFactory(project);
 
             int tol = 12;
             List<Line> lines = new List<Line>();
@@ -80,7 +84,8 @@ namespace Structural
                     if (!str_nodes.ContainsKey(start_node_key))
                     {
                         int start_nod_num = Structural.NodeManager.GetNextUnusedID();
-                        str_nodes.Add(start_node_key, new BHoM.Structural.Node(start_pnt.X, start_pnt.Y, start_pnt.Z, start_nod_num));
+                        str_nodes.Add(start_node_key, nodeFactory.Create(start_nod_num, start_pnt.X, start_pnt.Y, start_pnt.Z));
+                        
                         nod_kounta++;
                     }
 
@@ -90,11 +95,12 @@ namespace Structural
                     if (!str_nodes.ContainsKey(end_node_key))
                     {
                         int end_nod_num = Structural.NodeManager.GetNextUnusedID();
-                        str_nodes.Add(end_node_key, new BHoM.Structural.Node(end_pnt.X, end_pnt.Y, end_pnt.Z, end_nod_num));
+                        str_nodes.Add(end_node_key, nodeFactory.Create(end_nod_num, end_pnt.X, end_pnt.Y, end_pnt.Z));
                         nod_kounta++;
                     }
                     int bar_num = Basilisk.Structural.BarManager.GetNextUnusedID();
-                    BHoM.Structural.Bar bar = new BHoM.Structural.Bar(str_nodes[start_node_key], str_nodes[end_node_key], bar_num);
+                    BHoM.Structural.Bar bar = barFactory.Create(bar_num, str_nodes[start_node_key], str_nodes[end_node_key]);
+
                     str_bars.Add(bar);
                     bar_kounta++;
                 }
@@ -151,7 +157,6 @@ namespace Structural
             Dictionary<string, object> bars_out = new Dictionary<string, object>();
             foreach (BHoM.Structural.Bar bar in bars)
             {
-                bar.SectionProperty.Name = sectionName;
                 bar.SetDesignGroupName(typeName);
             }
   
