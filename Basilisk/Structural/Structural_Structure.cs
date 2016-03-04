@@ -2,14 +2,16 @@
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.DesignScript.Interfaces;
 
 namespace Structural
 {
     /// <summary>
     /// Structure class for constructing a structure object consisting of child structure objects and dictionaries
     /// </summary>
-    public static class Structure
+    public class Structure 
     {
+        internal Structure() { }
         /// <summary>
         /// BuroHappold
         /// </summary>

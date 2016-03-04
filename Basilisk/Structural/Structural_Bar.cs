@@ -7,27 +7,14 @@ using Autodesk.DesignScript.Interfaces;
 
 namespace Structural
 {
+
     /// <summary>
     /// Structural tools
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public class Bar : IGraphicItem
-    {        
-        internal Bar(){}
-
-        BHoM.Structural.Bar[] Bars { get; set; }
-
-        /// <summary>
-        /// Bar section preview
-        /// </summary>
-        /// <returns></returns>
-        public static Bar Preview(BHoM.Structural.Bar[] bars)
-        {
-            Bar newbar = new Bar();
-            newbar.Bars = bars;
-            return newbar;
-        }
+    public class Bar
+    {
 
         /// <summary>
         /// Creates BHoM structural bar elements by inputing curves. When curves are not lines, they are split into lines
@@ -43,7 +30,7 @@ namespace Structural
         public static Dictionary<string, object> CreateByCurves(IEnumerable<Curve> curves,
         double facetLength = 0)     
         {
-
+            
             Dictionary<string, object> bars_out = new Dictionary<string, object>();
             List<BHoM.Structural.Bar> str_bars = new List<BHoM.Structural.Bar>();
             Dictionary<string, BHoM.Structural.Node> str_nodes = new Dictionary<string, BHoM.Structural.Node>();
@@ -54,7 +41,7 @@ namespace Structural
             BHoM.Structural.NodeFactory nodeFactory = new BHoM.Structural.NodeFactory(project);
 
             int tol = 12;
-            List<Line> lines = new List<Line>();
+            List<Autodesk.DesignScript.Geometry.Line> lines = new List<Autodesk.DesignScript.Geometry.Line>();
             int nod_kounta = 1;
             int bar_kounta = 1;
 
@@ -78,7 +65,7 @@ namespace Structural
 
                 foreach (Curve split_crv in split_crvs)
                 {
-                    Point start_pnt = split_crv.StartPoint;
+                    Autodesk.DesignScript.Geometry.Point start_pnt = split_crv.StartPoint;
                     string start_node_key = Convert.ToString(Math.Round(start_pnt.X, tol)) + ","
                     + Convert.ToString(Math.Round(start_pnt.Y, tol)) + "," + Convert.ToString(Math.Round(start_pnt.Z, tol));
                     if (!str_nodes.ContainsKey(start_node_key))
@@ -89,7 +76,7 @@ namespace Structural
                         nod_kounta++;
                     }
 
-                    Point end_pnt = split_crv.EndPoint;
+                    Autodesk.DesignScript.Geometry.Point end_pnt = split_crv.EndPoint;
                     string end_node_key = Convert.ToString(Math.Round(end_pnt.X, tol)) + ","
                     + Convert.ToString(Math.Round(end_pnt.Y, tol)) + "," + Convert.ToString(Math.Round(end_pnt.Z, tol));
                     if (!str_nodes.ContainsKey(end_node_key))
@@ -100,7 +87,7 @@ namespace Structural
                     }
                     int bar_num = Basilisk.Structural.BarManager.GetNextUnusedID();
                     BHoM.Structural.Bar bar = barFactory.Create(bar_num, str_nodes[start_node_key], str_nodes[end_node_key]);
-
+                    
                     str_bars.Add(bar);
                     bar_kounta++;
                 }
@@ -126,17 +113,18 @@ namespace Structural
             //Output dictionary definition
             Dictionary<string, object> gammaAngles_out = new Dictionary<string, object>();
             double[] gamma_angles = null;
-            List<Plane> plns = new List<Plane>();
+            List<Autodesk.DesignScript.Geometry.Plane> plns = new List<Autodesk.DesignScript.Geometry.Plane>();
         
             for (int i = 0; i < barCentrelines.Length; i++)
             {
-            Plane pln = barCentrelines[i].PlaneAtParameter(0.5);
+            Autodesk.DesignScript.Geometry.Plane pln = barCentrelines[i].PlaneAtParameter(0.5);
             plns.Add(pln);
             }
 
             if (barCentrelines != null) gammaAngles_out.Add("Orientation Angle", gamma_angles);
             if (barCentrelines != null) gammaAngles_out.Add("Local Axes", plns);
             return gammaAngles_out;
+            
         }
 
 
@@ -163,31 +151,9 @@ namespace Structural
             bars_out.Add("Nodes", bars);
             return bars_out;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="package"></param>
-        /// <param name="parameters"></param>
-        [IsVisibleInDynamoLibrary(false)]
-        public void Tessellate(IRenderPackage package, TessellationParameters parameters)
-        {
-            foreach (BHoM.Structural.Bar bar in Bars)
-            {
-                PushCentrelines(package, bar);
-            }
-        }
-
-        private void PushCentrelines(IRenderPackage package, BHoM.Structural.Bar bar)
-        {
-            package.AddLineStripVertex(bar.StartNode.Point.X, bar.StartNode.Y, bar.StartNode.Z);
-            package.AddLineStripVertexColor(255, 0, 0, 255);
-            package.AddLineStripVertex(bar.EndNode.Point.X, bar.EndNode.Y, bar.EndNode.Z);
-            package.AddLineStripVertexColor(255, 0, 0, 255);
-            package.AddPointVertex(bar.StartNode.Point.X, bar.StartNode.Y, bar.StartNode.Z);
-            package.AddPointVertexColor(0, 0, 255, 255);
-            package.AddPointVertex(bar.EndNode.Point.X, bar.EndNode.Y, bar.EndNode.Z);
-            package.AddPointVertexColor(0, 0, 255, 255);
-        }
+        
+       
     }
+
+    
 }

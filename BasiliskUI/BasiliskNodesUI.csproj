@@ -50,6 +50,9 @@
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.1\lib\net45\CoreNodeModelsWpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DSCoreNodes">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\DSCoreNodes.dll</HintPath>
+    </Reference>
     <Reference Include="DynamoCore, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\DynamoCore.dll</HintPath>
       <Private>True</Private>
@@ -134,6 +137,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DropDownNodes\BHoM_ObjectPropertySelector.cs" />
     <Compile Include="DropDownNodes\SectionPropertySelector.cs" />
     <Compile Include="DropDownNodes\DOFPropertySelector.cs" />
     <Compile Include="DropDownNodes\ConstraintPropertySelector.cs" />

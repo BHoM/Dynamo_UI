@@ -4,6 +4,8 @@ using Dynamo.Models;
 using ProtoCore.AST.AssociativeAST;
 using Dynamo.Graph.Nodes;
 using CoreNodeModels;
+using Autodesk.DesignScript.Runtime;
+using DynamoServices;
 
 namespace BasiliskNodesUI
 {
@@ -27,16 +29,28 @@ namespace BasiliskNodesUI
         /// </summary>
         public BarPropertySelector() : base("Property")
         {
+            //this.PropertyChanged += OnPropertyChanged;
+        }
+
+        void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+           PopulateItems();
            
         }
+
+        public override void Dispose()
+        {
+            PropertyChanged -= OnPropertyChanged;
+            base.Dispose();
+        }
+
         /// <summary>
         /// Set the dropdown list
         /// </summary>
         public override void PopulateItems()
         {
             Items.Clear();
-            
-            
+                       
             BHoM.Structural.BarFactory barFactory = new BHoM.Structural.BarFactory(new BHoM.Global.Project());
             BHoM.Structural.Bar dummyBar = barFactory.Create();
             List<string> propertyNames = dummyBar.GetPropertyNames();

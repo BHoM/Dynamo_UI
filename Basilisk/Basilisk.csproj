@@ -44,6 +44,9 @@
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.1\lib\net45\CoreNodeModelsWpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DSCoreNodes">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\DSCoreNodes.dll</HintPath>
+    </Reference>
     <Reference Include="DynamoCore, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\DynamoCore.dll</HintPath>
       <Private>True</Private>
@@ -111,6 +114,7 @@
     <Reference Include="System.Core">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <Private>False</Private>
@@ -159,6 +163,7 @@
     <Compile Include="Robot\Robot_Panel.cs" />
     <Compile Include="Robot\Robot_SAT.cs" />
     <Compile Include="Structural\Results\Structural_BarForce.cs" />
+    <Compile Include="Structural\Structural_Preview.cs" />
     <Compile Include="Structural\Structural_Bar.cs" />
     <Compile Include="Structural\Structural_BarManager.cs" />
     <Compile Include="Structural\Structural_Constraint.cs" />
