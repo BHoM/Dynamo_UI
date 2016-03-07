@@ -38,7 +38,7 @@ namespace BasiliskNodesUI
 
 
             BHoM.Structural.ConstraintFactory constraintFactory = new BHoM.Structural.ConstraintFactory(new BHoM.Global.Project());
-            BHoM.Structural.Constraint dummyConstraint = constraintFactory.Create();
+            BHoM.Structural.Constraint dummyConstraint = constraintFactory.Create("dummy");
             List<string> propertyNames = dummyConstraint.GetPropertyNames();
 
             for (int i = 0; i < propertyNames.Count; i++)

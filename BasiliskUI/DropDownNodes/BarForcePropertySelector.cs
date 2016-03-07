@@ -4,7 +4,8 @@ using Dynamo.Models;
 using ProtoCore.AST.AssociativeAST;
 using Dynamo.Graph.Nodes;
 using CoreNodeModels;
-using BHoM.Structural.Sections;
+using Autodesk.DesignScript.Runtime;
+using DynamoServices;
 
 namespace BasiliskNodesUI
 {
@@ -12,35 +13,47 @@ namespace BasiliskNodesUI
     /// Dropdown selector for a structural object
     /// </summary>
     [NodeName("GetProperty")]
-    [NodeDescription("Get the property of a structural sectionProperty object")]
-    [NodeCategory("Basilisk.Structural.SectionProperty")]
+    [NodeDescription("Get the property of a structural bar object")]
+    [NodeCategory("Basilisk.Structural.Bar")]
     [NodeSearchable(true)]
-    [NodeSearchTags("BH", "Buro", "SectionProperty", "Property", "Get")]
+    [NodeSearchTags("BH", "Buro", "Bar", "Property", "Get")]
     [IsDesignScriptCompatible]
-    [InPortNames("sectionProperty")]
-    [InPortDescriptions("sectionProperty")]
+    [InPortNames("bar")]
+    [InPortDescriptions("bar")]
     [InPortTypes("dynamic")]
-
-    public class SectionPropertyPropertySelector : DSDropDownBase
-    {
+    
+    public class BarPropertySelector : DSDropDownBase
+    {        
         /// <summary>
         /// Set the inputs (InPorts)
         /// </summary>
-        public SectionPropertyPropertySelector() : base("Property")
+        public BarPropertySelector() : base("Property")
         {
-
+            //this.PropertyChanged += OnPropertyChanged;
         }
+
+        void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+           PopulateItems();
+           
+        }
+
+        public override void Dispose()
+        {
+            PropertyChanged -= OnPropertyChanged;
+            base.Dispose();
+        }
+
         /// <summary>
         /// Set the dropdown list
         /// </summary>
         public override void PopulateItems()
         {
             Items.Clear();
-
-
-            BHoM.Structural.SectionFactory sectionPropertyFactory = new BHoM.Structural.SectionFactory(new BHoM.Global.Project());
-            BHoM.Structural.Sections.SectionProperty dummySectionProperty = sectionPropertyFactory.Create(ShapeType.SteelI, "dummy");
-            List<string> propertyNames = dummySectionProperty.GetPropertyNames();
+                       
+            BHoM.Structural.BarFactory barFactory = new BHoM.Structural.BarFactory(new BHoM.Global.Project());
+            BHoM.Structural.Bar dummyBar = barFactory.Create();
+            List<string> propertyNames = dummyBar.GetPropertyNames();
 
             for (int i = 0; i < propertyNames.Count; i++)
             {
@@ -57,14 +70,14 @@ namespace BasiliskNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             var nodeFunction = AstFactory.BuildFunctionCall(
-
-                new System.Func<BHoM.Structural.Sections.SectionProperty, string, object>(Structural.Structure.GetPropertyByName),
-
+                
+                new System.Func<BHoM.Structural.Bar, string, object>(Structural.Structure.GetPropertyByName),
+                
                 new List<AssociativeNode>() { inputAstNodes[0], AstFactory.BuildStringNode(Items[SelectedIndex].Name) });
 
             var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), nodeFunction);
-
-            return new List<AssociativeNode> { assign };
+            
+            return new List<AssociativeNode> { assign }; 
         }
     }
 }

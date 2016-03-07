@@ -154,6 +154,7 @@
     <Compile Include="Project\Structural_ProjectManager.cs" />
     <Compile Include="Robot\Loads\Robot_Loads.cs" />
     <Compile Include="Robot\Loads\Robot_NodalLoad.cs" />
+    <Compile Include="Robot\Results\Robot_BarForce.cs" />
     <Compile Include="Robot\Robot_App.cs" />
     <Compile Include="Robot\Loads\Robot_Loadcase.cs" />
     <Compile Include="Robot\Robot_Bar.cs" />

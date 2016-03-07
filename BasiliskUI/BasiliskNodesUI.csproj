@@ -137,6 +137,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DropDownNodes\BarForcePropertySelector.cs" />
     <Compile Include="DropDownNodes\BHoM_ObjectPropertySelector.cs" />
     <Compile Include="DropDownNodes\SectionPropertySelector.cs" />
     <Compile Include="DropDownNodes\DOFPropertySelector.cs" />

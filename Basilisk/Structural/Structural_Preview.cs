@@ -60,7 +60,7 @@ namespace Structural
 
             if (this.Meshes == true)
             {
-                if (bar.SectionProperty.Type == BHoM.Structural.SectionProperties.ShapeType.SteelI)
+                if (bar.SectionProperty.ShapeType == BHoM.Structural.Sections.ShapeType.SteelI)
                 {
                   
                 }

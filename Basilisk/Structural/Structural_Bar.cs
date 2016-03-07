@@ -86,7 +86,9 @@ namespace Structural
                         nod_kounta++;
                     }
                     int bar_num = Basilisk.Structural.BarManager.GetNextUnusedID();
-                    BHoM.Structural.Bar bar = barFactory.Create(bar_num, str_nodes[start_node_key], str_nodes[end_node_key]);
+                    BHoM.Structural.Bar bar = barFactory.Create(bar_num);
+                    bar.SetStartNode(str_nodes[start_node_key]);
+                    bar.SetEndNode(str_nodes[end_node_key]);
                     
                     str_bars.Add(bar);
                     bar_kounta++;
