@@ -38,7 +38,13 @@ namespace Structural
         [DefaultArgument("{-1,-1,-1,0,0,0}")] object[] dof)
         {
             Dictionary<string, object> constraints_out = new Dictionary<string, object>();
-                 BHoM.Structural.Constraint constraint = new BHoM.Structural.Constraint(
+
+            BHoM.Global.Project project = new BHoM.Global.Project();
+
+            BHoM.Structural.ConstraintFactory constraintFactory = new BHoM.Structural.ConstraintFactory(project);
+
+                 BHoM.Structural.Constraint constraint = constraintFactory.Create(
+                    name,
                     Convert.ToDouble(dof[0]),
                     Convert.ToDouble(dof[1]),
                     Convert.ToDouble(dof[2]),

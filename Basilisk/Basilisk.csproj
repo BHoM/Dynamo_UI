@@ -36,8 +36,35 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
-    <Reference Include="DynamoServices, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\DynamoServices.dll</HintPath>
+    <Reference Include="CoreNodeModels, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.1\lib\net45\CoreNodeModels.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CoreNodeModelsWpf, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.1\lib\net45\CoreNodeModelsWpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DSCoreNodes">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\DSCoreNodes.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamoCore, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\DynamoCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamoCoreWpf, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.1\lib\net45\DynamoCoreWpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamoServices, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.1\lib\net45\DynamoServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamoShapeManager, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\DynamoShapeManager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\DynamoUtilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="KinectToolkit">
@@ -66,12 +93,16 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="ProtoCore, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.1\lib\net45\ProtoCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\ProtoGeometry.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.1\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ProtoInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.0\lib\net45\ProtoInterface.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.0.9.1\lib\net45\ProtoInterface.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RobotToolkit">
@@ -83,6 +114,7 @@
     <Reference Include="System.Core">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <Private>False</Private>
@@ -99,12 +131,12 @@
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
-    <Reference Include="SystemTestServices, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Tests.0.9.0\lib\net45\SystemTestServices.dll</HintPath>
+    <Reference Include="SystemTestServices, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Tests.0.9.1\lib\net45\SystemTestServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TestServices, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Tests.0.9.0\lib\net45\TestServices.dll</HintPath>
+    <Reference Include="TestServices, Version=1.0.0.536, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Tests.0.9.1\lib\net45\TestServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -118,7 +150,11 @@
     <Compile Include="Geometry\BHoM_Line.cs" />
     <Compile Include="Kinect\Kinect_BodyTracking.cs" />
     <Compile Include="Kinect\Kinect_App.cs" />
+    <Compile Include="Project\Project.cs" />
+    <Compile Include="Project\Structural_ProjectManager.cs" />
+    <Compile Include="Robot\Loads\Robot_Loads.cs" />
     <Compile Include="Robot\Loads\Robot_NodalLoad.cs" />
+    <Compile Include="Robot\Results\Robot_BarForce.cs" />
     <Compile Include="Robot\Robot_App.cs" />
     <Compile Include="Robot\Loads\Robot_Loadcase.cs" />
     <Compile Include="Robot\Robot_Bar.cs" />
@@ -128,10 +164,12 @@
     <Compile Include="Robot\Robot_Panel.cs" />
     <Compile Include="Robot\Robot_SAT.cs" />
     <Compile Include="Structural\Results\Structural_BarForce.cs" />
+    <Compile Include="Structural\Structural_Preview.cs" />
     <Compile Include="Structural\Structural_Bar.cs" />
     <Compile Include="Structural\Structural_BarManager.cs" />
     <Compile Include="Structural\Structural_Constraint.cs" />
     <Compile Include="Structural\Structural_ConstraintManager.cs" />
+    <Compile Include="Structural\Loads\Structural_Load.cs" />
     <Compile Include="Structural\Structural_SectionPropertyManager.cs" />
     <Compile Include="Structural\Structural_SectionProperty.cs" />
     <Compile Include="Structural\Structural_Loadcase.cs" />
@@ -157,8 +195,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\rmay\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).xml"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
+copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools\bin\$(ProjectName).xml"</PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo 0.9\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>

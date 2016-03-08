@@ -1,29 +1,33 @@
 ﻿using System.Collections.Generic;
-using DSCoreNodesUI;
 using Dynamo.Nodes;
 using Dynamo.Models;
 using ProtoCore.AST.AssociativeAST;
+using Dynamo.Graph.Nodes;
+using CoreNodeModels;
 
-namespace BasiliskNodesUI
+namespace BasiliskBarForcesUI
 {
     /// <summary>
     /// Dropdown selector for a structural object
     /// </summary>
     [NodeName("GetProperty")]
-    [NodeDescription("Get the property of a structural bar object")]
-    [NodeCategory("Basilisk.Structural.Bar")]
+    [NodeDescription("Get the property of a structural barForce object")]
+    [NodeCategory("Basilisk.Structural.BarForce")]
     [NodeSearchable(true)]
-    [NodeSearchTags("BH", "Buro", "Bar", "Property", "Get")]
+    [NodeSearchTags("BH", "Buro", "BarForce", "Property", "Get")]
     [IsDesignScriptCompatible]
-    public class BarPropertySelector : DSDropDownBase
+    [InPortNames("barForce")]
+    [InPortDescriptions("barForce")]
+    [InPortTypes("dynamic")]
+
+    public class BarForcePropertySelector : DSDropDownBase
     {
         /// <summary>
         /// Set the inputs (InPorts)
         /// </summary>
-        public BarPropertySelector() : base("Property")
+        public BarForcePropertySelector() : base("Property")
         {
-            InPortData.Add(new PortData("bar", "Input BHoM bar object"));
-            RegisterInputPorts();
+
         }
         /// <summary>
         /// Set the dropdown list
@@ -32,9 +36,12 @@ namespace BasiliskNodesUI
         {
             Items.Clear();
 
-            BHoM.Structural.Bar dummyBar = new BHoM.Structural.Bar();
-            BHoM.Collections.Dictionary<string, object> properties = dummyBar.GetProperties();
-            List<string> propertyNames = properties.KeyList();
+            List<string> propertyNames = new List<string>();
+            foreach (var prop in typeof(BHoM.Structural.Results.Bars.BarForce).GetProperties())
+            {
+                propertyNames.Add(prop.Name);
+            }
+            propertyNames.Sort();
 
             for (int i = 0; i < propertyNames.Count; i++)
             {
@@ -44,18 +51,20 @@ namespace BasiliskNodesUI
         }
 
         /// <summary>
-        /// Set the node function and outputs through associated nodes and AST
+        /// Set the barForce function and outputs through associated barForces and AST
         /// </summary>
         /// <param name="inputAstNodes"></param>
         /// <returns></returns>
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            var nodeFunction = AstFactory.BuildFunctionCall(
-                new System.Func<BHoM.Structural.Bar, string, object>(Structural.Structure.GetPropertyByName),
+            var barForceFunction = AstFactory.BuildFunctionCall(
+
+                new System.Func<BHoM.Structural.Results.Bars.BarForce, string, object>(Structural.Structure.GetPropertyByName),
+
                 new List<AssociativeNode>() { inputAstNodes[0], AstFactory.BuildStringNode(Items[SelectedIndex].Name) });
 
-            var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), nodeFunction);
-            
+            var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), barForceFunction);
+
             return new List<AssociativeNode> { assign };
         }
     }

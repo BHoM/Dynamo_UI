@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.IO;
-using System.Drawing;
-using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
-using RobotToolkit;
-using BHoM.Structural;
 
 namespace Robot
 {
-    
+
     /// <summary>
     /// Robot finite element tools
     /// BuroHappold
@@ -43,7 +35,9 @@ namespace Robot
             Dictionary<int, BHoM.Structural.Node> str_nodes = new Dictionary<int, BHoM.Structural.Node>();
             if (activate == true)
             {
-                RobotToolkit.FiniteElement.GetFEMeshQuery(out panel_ids, out nodeCoords, out vertex_indices, out str_nodes);
+                BHoM.Global.Project project = new BHoM.Global.Project();
+
+                RobotToolkit.FiniteElement.GetFEMeshQuery(project, out panel_ids, out nodeCoords, out vertex_indices, out str_nodes);
                 List<IndexGroup> _ig_list = new List<IndexGroup>();
                 IEnumerable<IndexGroup> ig_list = null;
                 for (int i = 0; i < str_nodes.Count; i++)

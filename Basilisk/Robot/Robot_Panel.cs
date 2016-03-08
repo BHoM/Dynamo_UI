@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.IO;
-using System.Drawing;
-using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
-using RobotToolkit;
-using BHoM.Structural;
 
 namespace Robot
 {
@@ -21,25 +14,17 @@ namespace Robot
     public class RobotPanel
     {
         internal RobotPanel() {}
-        /// <summary>
-        /// Gets panel and contour geometry as surfaces from Robot. Note: edge curves are simplifed to polylines.
-        /// BuroHappold
-        /// </summary>
-        /// <param name="surfaces">Input surfaces to convert to panels</param>
-        /// <param name="thicknessNames">Name of thickness property</param>
-        /// <param name="panelType">"Floor Diaphragm","Shell", "Cladding" or "Contour"</param>
-        /// <param name="isOpening">True if object is an opening</param>
-        /// <param name="deletePanels">If set to true, will delete existing panels in the model</param>
-        /// <param name="activate">Set true to activate the node</param>
-        /// <returns name="Panel Surfaces">Patch surface based on polycurves with straight segments</returns>
-        /// <returns name="Panel Numbers">Robot panel numbers in same sequential order as panel surfaces</returns>
-        /// <returns name="ContourPolyCurves">Polycurves for countours</returns>
-        /// <returns name="ContourNumbers">Robot contour numbers in same sequential order as panel surfaces</returns>
-        /// <search>
-        /// BH, robot, structure, panels
-        /// </search>
-        [MultiReturn(new[] { "PanelNumbers" })]
-         public static Dictionary<string, object> CreateBySurfaces(
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="surfaces"></param>
+       /// <param name="thicknessNames"></param>
+       /// <param name="panelType"></param>
+       /// <param name="isOpening"></param>
+       /// <param name="deletePanels"></param>
+       /// <param name="activate"></param>
+       /// <returns></returns>
+        public static List<int> CreateBySurfaces(
             Surface[] surfaces,
             [DefaultArgument("{\"0\"}")] string[] thicknessNames,
             [DefaultArgument("{\"0\"}")] string[] panelType,
@@ -98,10 +83,11 @@ namespace Robot
                     RobotToolkit.Panel.CreateOpenings(panel_nums, defpnt_coords);
                 }
                 RobotToolkit.General.RefreshView();
-                createpanels_out.Add("Panel Numbers", panel_nums);
+                createpanels_out.Add("PanelNumbers", panel_nums);
+               
                                
             }
-            return createpanels_out;
+            return panel_nums;
         }
 
         /// <summary>

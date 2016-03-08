@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Drawing;
-using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
-using RobotToolkit;
-using BHoM.Structural;
 
 namespace Robot
 {
@@ -66,10 +58,12 @@ namespace Robot
         [MultiReturn(new[] { "Lines", "Numbers", "Bars" })]
         public static Dictionary<string, object> Import(bool activate = false, bool allBarData = false, string filepath = "")
         {
+
+            BHoM.Global.Project project = new BHoM.Global.Project();
+
             //Output dictionary definition
             Dictionary<string, object> getbars_out = new Dictionary<string, object>();
-
-           
+                       
             //Bar parameters
             Dictionary<string, object> lines = new Dictionary<string, Object>();
             Dictionary<string, BHoM.Structural.Bar> bars = new Dictionary<String, BHoM.Structural.Bar>();
@@ -80,8 +74,8 @@ namespace Robot
             {                                
                 if (allBarData != true)
                 {
-                    try { RobotToolkit.Bar.GetBarsQuery(out str_bars, filepath); } catch { RobotToolkit.Bar.GetBars(out str_bars, filepath); }
-                    foreach (BHoM.Structural.Bar str_bar in str_bars.Values)
+                    try { RobotToolkit.Bar.GetBarsQuery(project, "all", filepath); } catch { RobotToolkit.Bar.GetBars(project, "all", filepath); }
+                    foreach (BHoM.Structural.Bar str_bar in project.Structure.Bars)
                     {
                         Line ln = Line.ByStartPointEndPoint(Point.ByCoordinates(str_bar.StartNode.X, str_bar.StartNode.Y,str_bar.StartNode.Z),
                                                             Point.ByCoordinates(str_bar.EndNode.X, str_bar.EndNode.Y, str_bar.EndNode.Z));
@@ -91,8 +85,8 @@ namespace Robot
                 }
                 else
                 {
-                    RobotToolkit.Bar.GetBars(out str_bars, filepath);
-                    foreach (BHoM.Structural.Bar str_bar in str_bars.Values)
+                    RobotToolkit.Bar.GetBars(project, "all", filepath);
+                    foreach (BHoM.Structural.Bar str_bar in project.Structure.Bars)
                     {
                         Line ln = Line.ByStartPointEndPoint(Point.ByCoordinates(str_bar.StartNode.X, str_bar.StartNode.Y, str_bar.StartNode.Z),
                                                            Point.ByCoordinates(str_bar.EndNode.X, str_bar.EndNode.Y, str_bar.EndNode.Z));
@@ -103,7 +97,7 @@ namespace Robot
 
                 getbars_out.Add("Lines", lines.Values);
                 getbars_out.Add("Numbers", bar_numbers);
-                getbars_out.Add("Bars", str_bars.Values);
+                getbars_out.Add("Bars", project.Structure.Bars);
                 }
             return getbars_out;
         }

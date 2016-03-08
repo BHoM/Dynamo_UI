@@ -2,55 +2,16 @@
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.DesignScript.Interfaces;
 
 namespace Structural
 {
     /// <summary>
     /// Structure class for constructing a structure object consisting of child structure objects and dictionaries
     /// </summary>
-    public static class Structure
+    public class Structure 
     {
-
-        /// <summary>
-        ///Calculate gamma angles for rotation of beam/column/bar objects
-        /// BuroHappold
-        /// </summary>
-        /// <param name="CLs"></param>
-        /// <param name="tol"></param>
-        /// <returns></returns>
-        /// <search>BH</search>
-        public static BHoM.Structural.Structure FromLines(List<Line> CLs, 
-            [DefaultArgument("{0.001}")] double tol)
-        {
-            BHoM.Structural.Structure str = new BHoM.Structural.Structure();
-            str.SetTolerance(tol);
-
-            foreach (Line CL in CLs)
-            {
-                BHoM.Structural.Node n0 = new BHoM.Structural.Node(CL.StartPoint.X, CL.StartPoint.Y, CL.StartPoint.Z);
-                BHoM.Structural.Node n1 = new BHoM.Structural.Node(CL.EndPoint.X, CL.EndPoint.Y, CL.EndPoint.Z);
-                n0 = str.AddOrGetNode(n0);
-                n1 = str.AddOrGetNode(n1);
-
-                str.AddBar(n0, n1);
-            }
-            return str;
-        }
-
-
-        /// <summary>
-        /// TEST FUNCTION
-        /// BuroHappold
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        /// <search>BH</search>
-        public static BHoM.Structural.Structure AutoCreateFaces(BHoM.Structural.Structure str)
-        {
-            str.CreateFacesFromBars();
-            return str;
-        }
-
+        internal Structure() { }
         /// <summary>
         /// BuroHappold
         /// </summary>
@@ -87,11 +48,10 @@ namespace Structural
         [IsVisibleInDynamoLibrary(false)]
         public static object GetPropertyByName(dynamic structuralObject, string name)
         {
-            BHoM.Collections.Dictionary<string, object> properties = new BHoM.Collections.Dictionary<string, object>();
             object obj = new object();
             try
             {
-                obj = structuralObject.GetProperties()[name];
+                obj = structuralObject.GetType().GetProperty(name).GetValue(structuralObject);
             }
             catch
             {

@@ -2,7 +2,7 @@
 using BHoM.Structural.Loads;
 using BHoM.Structural.Results.Bars;
 using Autodesk.DesignScript.Interfaces;
-using Autodesk.DesignScript.Geometry;
+using System;
 
 namespace Structural.Results.Bars
 {
@@ -19,7 +19,15 @@ namespace Structural.Results.Bars
 
         /// <summary></summary>
         [IsVisibleInDynamoLibrary(false)]
-        public double ForcePosition { get; set; }
+        public int Position { get; set; }
+
+        /// <summary></summary>
+        [IsVisibleInDynamoLibrary(false)]
+        public double RelativePosition { get; set; }
+
+        /// <summary></summary>
+        [IsVisibleInDynamoLibrary(false)]
+        public int Divisions { get; set; }
 
         /// <summary></summary>
         [IsVisibleInDynamoLibrary(false)]
@@ -83,13 +91,21 @@ namespace Structural.Results.Bars
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="activate"></param>
-        /// <param name="filepath"></param>
+        /// <param name="barForces"></param>
+        /// <param name="barNumber"></param>
+        /// <param name="loadcaseNumber"></param>
+        /// <param name="position"></param>
         /// <returns></returns>
-        public static BarForce FromRobot(bool activate = false, string filepath = "")
+        public static BHoM.Structural.Results.Bars.BarForce FromCollection(
+            BHoM.Structural.Results.Bars.BarForceCollection barForces, int loadcaseNumber, int barNumber, int position)
         {
-            return new BarForce();
+            return barForces.TryGetBarForce(loadcaseNumber, barNumber, position);
         }
+        
+
+        ////////////////////
+        //// Methods    ////
+        ////////////////////
 
 
         /// <summary>
