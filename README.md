@@ -6,7 +6,7 @@ There have been some fairly major updates to the Basilisk project recently, to m
 ### Build Basilisk from Source ###
 You will need the following to build Basilisk:
 
-- Microsoft Visual Studio 2013
+- Microsoft Visual Studio 2013 or higher
 - [GitHub for Windows](https://windows.github.com/)
 - Microsoft .NET Framework 4.0 and above (included with Visual Studio 2013)
 - BHoM version 0.0.1
