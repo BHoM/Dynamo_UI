@@ -34,4 +34,4 @@ New features
 
 ## License ##
 
-Dynamo is licensed under the Apache License. Dynamo also uses a number of third party libraries, some with different licenses.
+Basilisk is licensed under the Apache License. Basilisk also uses a number of third party libraries, some with different licenses.
