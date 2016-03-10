@@ -17,7 +17,7 @@ You will need the following to build Basilisk:
 
 ## Contribute ##
 
-Basilisk is a BuroHappold open-source project and would be nothing without its community.  You can submit your own code to the Dynamo project via a Github [pull request](https://help.github.com/articles/using-pull-requests).
+Basilisk is a BuroHappold open-source project and would be nothing without its community.  You can submit your own code to the Basilisk project via a Github [pull request](https://help.github.com/articles/using-pull-requests).
 
 ## Releases ##
 ###0.0.1 ###
