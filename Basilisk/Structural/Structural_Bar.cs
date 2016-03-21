@@ -15,6 +15,8 @@ namespace Structural
     /// </summary>
     public class Bar
     {
+        /// <summary></summary>
+        internal Bar() { }
 
         /// <summary>
         /// Creates BHoM structural bar elements by inputing curves. When curves are not lines, they are split into lines
