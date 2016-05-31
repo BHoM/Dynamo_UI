@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Runtime;
 using BHoM.Geometry;
 
 namespace Geometry
@@ -10,25 +8,30 @@ namespace Geometry
     /// <summary>
     /// BHoM Point object
     /// </summary>
-    public class Point : IPoint
+    public class Point
     {
-        /// <summary>X coordinate</summary>
-        [IsVisibleInDynamoLibrary(false)]
-        public double X { get; set; }
-
-        /// <summary>Y coordinate</summary>
-        [IsVisibleInDynamoLibrary(false)]
-        public double Y { get; set; }
-
-        /// <summary>Z coordinate</summary>
-        [IsVisibleInDynamoLibrary(false)]
-        public double Z { get; set; }
+        /// <summary></summary>
+        public static BHoM.Geometry.Point FromDSPoint(Autodesk.DesignScript.Geometry.Point point)
+        {
+            return new BHoM.Geometry.Point(point.X, point.Y, point.Z);
+        }
 
         /// <summary></summary>
-        [IsVisibleInDynamoLibrary(false)]
-        public void ToDSPoint()
+        public static Autodesk.DesignScript.Geometry.Point ToDSPoint(BHoM.Geometry.Point point)
         {
-            Autodesk.DesignScript.Geometry.Point.ByCoordinates(this.X, this.Y, this.Z);
+            return Autodesk.DesignScript.Geometry.Point.ByCoordinates(point.X, point.Y, point.Z);
+        }
+
+        /// <summary></summary>
+        public static string ToJSON(BHoM.Geometry.Point point)
+        {
+            return point.ToJSON();
+        }
+
+        /// <summary></summary>
+        public static BHoM.Geometry.Point FromJSON(string json)
+        {
+            return BHoM.Geometry.Point.FromJSON(json) as BHoM.Geometry.Point;
         }
     }
 }
