@@ -1,6 +1,6 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using Autodesk.DesignScript.Interfaces;
-
+using DSCore;
 
 namespace Structural
 {
@@ -16,6 +16,7 @@ namespace Structural
         internal bool Analytical;
         internal bool Meshes;
         internal DSCore.Color Color = DSCore.Color.ByARGB(255,0,0,0);
+        
 
         /// <summary>
         /// 

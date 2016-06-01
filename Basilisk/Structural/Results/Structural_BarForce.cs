@@ -27,7 +27,7 @@ namespace Structural.Results.Bars
 
         /// <summary></summary>
         [IsVisibleInDynamoLibrary(false)]
-        public int Divisions { get; set; }
+        public int BarDivisions { get; set; }
 
         /// <summary></summary>
         [IsVisibleInDynamoLibrary(false)]

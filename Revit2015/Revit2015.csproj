@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B9890E8-4935-4BD4-B7A1-09E2BF725798}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Revit2015</RootNamespace>
+    <AssemblyName>Revit2015</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugEngines>{351668CC-8477-4fbf-BFE3-5F1006E4DB1F}</DebugEngines>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\Autodesk\Revit 2015\Revit.exe</StartProgram>
+    <DocumentationFile>bin\Debug\Revit2015.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BHoM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM\BHoM\bin\Debug\BHoM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DSCoreNodes">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\DSCoreNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\..\Users\jziolkow\Documents\Visual Studio 2015\Libraries\HtmlAgilityPack.1.4.6\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ProtoCore">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\ProtoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ProtoGeometry">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\ProtoGeometry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ProtoInterface">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\ProtoInterface.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\Program Files\Autodesk\Revit 2015\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\..\Program Files\Autodesk\Revit 2015\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitNodes">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\Revit_2015\RevitNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitServices">
+      <HintPath>..\..\..\Program Files\Dynamo 0.9\Revit_2015\RevitServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClashReport\ClashReport.cs" />
+    <Compile Include="InterferenceReport\InterferenceReport.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Revit\Annotation.cs" />
+    <Compile Include="Revit\Definition.cs" />
+    <Compile Include="Revit\DetailCurve.cs" />
+    <Compile Include="Revit\Document.cs" />
+    <Compile Include="Revit\Duct.cs" />
+    <Compile Include="Revit\ElectricalSystem.cs" />
+    <Compile Include="Revit\Element.cs" />
+    <Compile Include="Revit\Face.cs" />
+    <Compile Include="Revit\FamilyInstance.cs" />
+    <Compile Include="Revit\FamilySymbol.cs" />
+    <Compile Include="Revit\Floor.cs" />
+    <Compile Include="Revit\FootPrintRoof.cs" />
+    <Compile Include="Revit\IndependentTag.cs" />
+    <Compile Include="Revit\Level.cs" />
+    <Compile Include="Revit\MEPSystem.cs" />
+    <Compile Include="Revit\ModelCurve.cs" />
+    <Compile Include="Revit\Opening.cs" />
+    <Compile Include="Revit\PanelScheduleView.cs" />
+    <Compile Include="Revit\Pipe.cs" />
+    <Compile Include="Revit\PrintManager.cs" />
+    <Compile Include="Revit\Resources.cs" />
+    <Compile Include="Revit\RevitLinkInstance.cs" />
+    <Compile Include="Revit\Room.cs" />
+    <Compile Include="Revit\SchedulableField.cs" />
+    <Compile Include="Revit\ScheduleField.cs" />
+    <Compile Include="Revit\SharedParameterFile.cs" />
+    <Compile Include="Revit\Sheet.cs" />
+    <Compile Include="Revit\Space.cs" />
+    <Compile Include="Revit\SpaceTag.cs" />
+    <Compile Include="Revit\Structural.cs" />
+    <Compile Include="Revit\Transform.cs" />
+    <Compile Include="Revit\View.cs" />
+    <Compile Include="Revit\View3D.cs" />
+    <Compile Include="Revit\ViewSchedule.cs" />
+    <Compile Include="Revit\Wall.cs" />
+    <Compile Include="Revit\WallType.cs" />
+    <Compile Include="Revit\Workset.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

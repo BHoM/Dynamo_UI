@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Revit2016</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Elements">
+      <category>Basilisk.Revit2016</category>
+    </namespace>
+   </namespaces>
+</doc>

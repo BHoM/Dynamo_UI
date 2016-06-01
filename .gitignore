@@ -18,6 +18,7 @@
 *.rar
 *.tar
 *.zip
+packages/
 
 # Logs and databases #
 ######################
@@ -46,4 +47,4 @@ Thumbs.db
 # Visual Studio User File #
 ###########################
 *.suo
-ComputationalEngineering.sln
+*.user

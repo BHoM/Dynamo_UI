@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BasiliskNodesUI</name>
+    </assembly>
+    <members>
+        <member name="T:BasiliskNodesUI.DOFPropertySelector">
+            <summary>
+            Dropdown selector for a structural object
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.DOFPropertySelector.#ctor">
+            <summary>
+            Set the inputs (InPorts)
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.DOFPropertySelector.PopulateItems">
+            <summary>
+            Set the dropdown list
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.DOFPropertySelector.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+            Set the node function and outputs through associated nodes and AST
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BasiliskNodesUI.ConstraintPropertySelector">
+            <summary>
+            Dropdown selector for a structural object
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.ConstraintPropertySelector.#ctor">
+            <summary>
+            Set the inputs (InPorts)
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.ConstraintPropertySelector.PopulateItems">
+            <summary>
+            Set the dropdown list
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.ConstraintPropertySelector.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+            Set the node function and outputs through associated nodes and AST
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BasiliskNodesUI.NodePropertySet">
+            <summary>
+            Dropdown selector for a structural object
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.NodePropertySet.#ctor">
+            <summary>
+            Set the inputs (InPorts)
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.NodePropertySet.PopulateItems">
+            <summary>
+            Set the dropdown list
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.NodePropertySet.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+            Set the node function and outputs through associated nodes and AST
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BasiliskNodesUI.NodePropertySelector">
+            <summary>
+            Dropdown selector for a structural object
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.NodePropertySelector.#ctor">
+            <summary>
+            Set the inputs (InPorts)
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.NodePropertySelector.PopulateItems">
+            <summary>
+            Set the dropdown list
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.NodePropertySelector.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+            Set the node function and outputs through associated nodes and AST
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BasiliskNodesUI.BarPropertySelector">
+            <summary>
+            Dropdown selector for a structural object
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.BarPropertySelector.#ctor">
+            <summary>
+            Set the inputs (InPorts)
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.BarPropertySelector.PopulateItems">
+            <summary>
+            Set the dropdown list
+            </summary>
+        </member>
+        <member name="M:BasiliskNodesUI.BarPropertySelector.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+            Set the node function and outputs through associated nodes and AST
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
