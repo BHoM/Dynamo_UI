@@ -49,7 +49,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
-      <HintPath>..\..\..\Program Files\Dynamo 0.9\DSCoreNodes.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore, Version=1.0.0.1431, Culture=neutral, processorArchitecture=MSIL">
@@ -115,22 +115,22 @@
     </Reference>
     <Reference Include="RevitAPI, Version=16.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Autodesk\Revit 2016\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2016\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitNodes, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Dynamo\Dynamo Revit\1.0\Revit_2016\RevitNodes.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Revit\1.0\Revit_2016\RevitNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitServices, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Dynamo\Dynamo Revit\1.0\Revit_2016\RevitServices.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Revit\1.0\Revit_2016\RevitServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitUIAPI, Version=16.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Autodesk\Revit 2016\RevitUIAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2016\RevitUIAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
