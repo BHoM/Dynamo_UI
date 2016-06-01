@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DynamicRelaxationToolkit</name>
+    </assembly>
+    <members>
+        <member name="P:DynamicRelaxationToolkit.BarForce.BarNumber">
+            <summary>Associated bar number</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.ForcePosition">
+            <summary>Position along the bar of the force. Set 0 for 1 for end</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.Loadcase">
+            <summary>Loadcase</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.LoadcaseNumber">
+            <summary>Associated loadcase number</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.LoadcaseName">
+            <summary>Associated loadcase name</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.FX">
+            <summary>Axial force, tension negative</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.FY">
+            <summary>Shear force, minor axis</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.FZ">
+            <summary>Shear force, major axis</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.MX">
+            <summary>Torsion</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.MY">
+            <summary>Bending moment, minor axis</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.MZ">
+            <summary>Bending moment, major axis</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.SMax">
+            <summary>Maximum principle stress</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.SMin">
+            <summary>Minimum principle stress</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.OrientationPlane">
+            <summary>Orientation of bar forces inherited from bar</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForce.UserData">
+            <summary>User text field for any user data</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.BarForce.#ctor(System.Int32)">
+            <summary>Construct a bar force with loadcases</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.BarForceCollection.barForceDictionary">
+            <summary>Bar force dictionary which forms the collection</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.BarForceCollection.#ctor">
+            <summary>Constructs and empty bar force collection</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.BarForceCollection.GenerateKey(DynamicRelaxationToolkit.BarForce,System.Double)">
+            <summary>Generates a key from a bar force object</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.BarForceCollection.GenerateKey(System.Double,System.Int32,System.Double)">
+            <summary>Generates a key from a bar force object</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.BarForceCollection.Add(DynamicRelaxationToolkit.BarForce,System.Double)">
+            <summary>Add a bar force to a collection</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.Loadcase.Name">
+            <summary>Loadcase name</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.Loadcase.Number">
+            <summary>Loadcase number</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.Loadcase.#ctor">
+            <summary>
+            Constructs an empty loadcase
+            </summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.Loadcase.#ctor(System.String)">
+            <summary>
+            Constructs a loadcase by name
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.Loadcase.#ctor(System.Int32)">
+            <summary>
+            Constructs a loadcase by number
+            </summary>
+            <param name="number"></param>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.Loadcase.#ctor(System.Int32,System.String)">
+            <summary>
+            Constructrs a loadcase by name and number
+            </summary>
+            <param name="number"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.Loadcase.SetName(System.String)">
+            <summary>
+            Set the loadcase name
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.Loadcase.SetNumber(System.Int32)">
+            <summary>
+            Set the loadcase number
+            </summary>
+            <param name="number"></param>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.NodeNumber">
+            <summary>Associated bar number</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.Loadcase">
+            <summary>Loadcase</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.LoadcaseNumber">
+            <summary>Associated loadcase number</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.LoadcaseName">
+            <summary>Associated loadcase name</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.Translation">
+            <summary>Translation vector</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.Rotation">
+            <summary>Rotation vector</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.Acceleration">
+            <summary>Acceleration vector</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.AngularAcceleration">
+            <summary>Angular acceleration vector</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.Velocity">
+            <summary>Velocity vector</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.AngularVelocity">
+            <summary>Angular velocity vector</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.Force">
+            <summary>Force vector</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.Moment">
+            <summary>Moment vector</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.OrientationPlane">
+            <summary>Orientation of node results</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResult.UserData">
+            <summary>User text field for any user data</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.NodalResult.#ctor(System.Int32)">
+            <summary>Construct a nodal result</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.NodalResult.#ctor(System.Int32,BHoM.Geometry.Plane)">
+            <summary>Construct a nodal result with orientation plane</summary>
+        </member>
+        <member name="P:DynamicRelaxationToolkit.NodalResultCollection.nodalResultDictionary">
+            <summary>Nodal result dictionary which forms the collection</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.NodalResultCollection.#ctor">
+            <summary>Constructs and empty nodal result collection</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.NodalResultCollection.GenerateKey(DynamicRelaxationToolkit.NodalResult,System.Double)">
+            <summary>Generates a key from a nodal result object</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.NodalResultCollection.GenerateKey(System.Int32,System.Int32,System.Double)">
+            <summary>Generates a key from a nodal result object</summary>
+        </member>
+        <member name="M:DynamicRelaxationToolkit.NodalResultCollection.Add(DynamicRelaxationToolkit.NodalResult,System.Double)">
+            <summary>Add a nodal result to a collection</summary>
+        </member>
+    </members>
+</doc>

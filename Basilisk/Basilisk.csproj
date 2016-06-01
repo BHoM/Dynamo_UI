@@ -37,6 +37,16 @@
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DynamicRelaxationToolkit">
+      <HintPath>..\External dlls\DynamicRelaxationToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamoCore">
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoCore.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamoServices, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoServices.dll</HintPath>
+    </Reference>
     <Reference Include="KinectToolkit">
       <HintPath>..\External dlls\KinectToolkit.dll</HintPath>
       <Private>False</Private>
@@ -116,6 +126,8 @@
     <Compile Include="Structural\BHoM_Bar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structural\BHoM_Node.cs" />
+    <Compile Include="Structural\FormFinding\CustomRenderExample.cs" />
+    <Compile Include="Structural\FormFinding\DynamicRelaxation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fastrak\" />
