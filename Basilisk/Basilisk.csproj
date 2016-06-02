@@ -118,10 +118,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Geometry\BHoM_Vector.cs" />
-    <Compile Include="Geometry\BHoM_Plane.cs" />
-    <Compile Include="Geometry\BHoM_Point.cs" />
-    <Compile Include="Geometry\BHoM_Line.cs" />
     <Compile Include="Global\BHoM_Object.cs" />
     <Compile Include="Structural\BHoM_Bar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,6 +128,7 @@
   <ItemGroup>
     <Folder Include="Fastrak\" />
     <Folder Include="File\" />
+    <Folder Include="Geometry\" />
     <Folder Include="Kinect\" />
     <Folder Include="List Tools\" />
     <Folder Include="MEP\" />
