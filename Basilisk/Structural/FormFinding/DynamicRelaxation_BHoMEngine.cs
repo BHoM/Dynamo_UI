@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
-using DynamicRelaxationToolkit;
+using BHoM_Engine.FormFinding;
 using Dynamo.Visualization;
+using Dynamo.Graph;
 
 namespace Structural.FormFinding
 {
@@ -17,16 +18,16 @@ namespace Structural.FormFinding
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public class DynamicRelaxation : IGraphicItem
+    public class DynamicRelaxation_BHoMEngine : IGraphicItem
     {
-        private DynamicRelaxation() { }
+        private DynamicRelaxation_BHoMEngine() { }
 
         //This part is for trying to update dynamo preview each iteration, not working yet
         private List<Line> drawLines = new List<Line>();
         [IsVisibleInDynamoLibrary(false)]
-        public static DynamicRelaxation Draw(List<Line>relaxedLines)
+        public static DynamicRelaxation_BHoMEngine Draw(List<Line>relaxedLines)
         {
-            DynamicRelaxation drawModel = new DynamicRelaxation();
+            DynamicRelaxation_BHoMEngine drawModel = new DynamicRelaxation_BHoMEngine();
             drawModel.drawLines = relaxedLines;           
             return drawModel;
         }
@@ -46,7 +47,7 @@ namespace Structural.FormFinding
         /// <returns></returns>
         /// <search>BH, dynamic relaxation, formfind, relax</search>
         /// 
-        [MultiReturn(new[] { "Lines", "Counter" })]
+        [MultiReturn(new[] {"test", "drawmodel", "Lines", "Counter" })]
         [CanUpdatePeriodically(true)]
         public static Dictionary<string, object> RelaxLines(List<Line> lines, List<Point> lockedPoints, List<double> gravity, List<double> barStiffnesses, List<double> lengthMultiplier, double treshold, int maxNoIt, bool run)
         {
@@ -66,25 +67,34 @@ namespace Structural.FormFinding
                 foreach (Point pt in lockedPoints)
                     BHoMPoints.Add(new BHoM.Geometry.Point(pt.X, pt.Y, pt.Z));
 
-                Structure structure = DynamicRelaxationToolkit.DynamicRelaxation.SetStructure(BHoMLines, BHoMPoints, barStiffnesses, lengthMultiplier, treshold);
+                Structure structure = BHoM_Engine.FormFinding.DynamicRelaxation.SetStructure(BHoMLines, BHoMPoints, barStiffnesses, lengthMultiplier, treshold);
+                DefaultRenderPackageFactory packageFactory = new DefaultRenderPackageFactory();
+                IRenderPackage package = packageFactory.CreateRenderPackage();
 
-                int counter = 0; 
+                int counter = 0;
+                DynamicRelaxation_BHoMEngine drawModel = Draw(lines);
+                CustomRenderExample test = CustomRenderExample.Create(Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(5, 5, 5));
+                DR_out.Add("drawmodel", drawModel);
+                DR_out.Add("test", test);
 
                 for (int i = 0; i < maxNoIt; i++)
                 {
                     counter += 1;
 
-                    DynamicRelaxationToolkit.DynamicRelaxation.RelaxStructure(structure, gravity);
+                    BHoM_Engine.FormFinding.DynamicRelaxation.RelaxStructure(structure, gravity);
 
                     for (int j = 0; j < structure.Bars.Count; j++)
-                        lines[j] = Line.ByStartPointEndPoint(Point.ByCoordinates(structure.Bars[j].StartNode.NodePt.X, structure.Bars[j].StartNode.NodePt.Y, structure.Bars[j].StartNode.NodePt.Z), Point.ByCoordinates(structure.Bars[j].EndNode.NodePt.X, structure.Bars[j].EndNode.NodePt.Y, structure.Bars[j].EndNode.NodePt.Z));
+                        lines[j] = Line.ByStartPointEndPoint(Point.ByCoordinates(structure.Bars[j].StartNode.Point.X, structure.Bars[j].StartNode.Point.Y, structure.Bars[j].StartNode.Point.Z), Point.ByCoordinates(structure.Bars[j].EndNode.Point.X, structure.Bars[j].EndNode.Point.Y, structure.Bars[j].EndNode.Point.Z));
 
                     //This part is for trying to update dynamo preview each iteration, not working yet
-                    IGraphicItem drawModel = Draw(lines);
-                    DefaultRenderPackageFactory packageFactory = new DefaultRenderPackageFactory(); 
-                    IRenderPackage package = packageFactory.CreateRenderPackage();                  
+                    drawModel = Draw(lines);
+                    test = CustomRenderExample.Create(Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(i, i, i));
+
+                    test.Tessellate(package, packageFactory.TessellationParameters);
                     drawModel.Tessellate(package, packageFactory.TessellationParameters);
 
+                    DR_out["drawmodel"] = drawModel;
+                    DR_out["test"] = test;
 
                     if (structure.HasConverged())
                         break;
@@ -104,13 +114,22 @@ namespace Structural.FormFinding
         {
             package.RequiresPerVertexColoration = true;
             foreach (Line ln in drawLines)
-            {
-                package.AddLineStripVertex(ln.StartPoint.X, ln.StartPoint.Y, ln.StartPoint.Z);
-                package.AddLineStripVertex(ln.EndPoint.X, ln.EndPoint.Y, ln.EndPoint.Z);
-                package.AddLineStripVertexColor(255, 0, 0, 0);
-                package.AddLineStripVertexCount(2);
-            }
+                AddColoredLineToPackage(package, ln.StartPoint, ln.EndPoint);
+        }
 
+        private static void AddColoredLineToPackage(IRenderPackage package, Point pt1, Point pt2)
+        {
+            package.AddLineStripVertex(pt1.X, pt1.Y, pt1.Z);
+            package.AddLineStripVertex(pt2.X, pt2.Y, pt2.Z);
+
+            package.AddLineStripVertexColor(255, 0, 0, 255);
+            package.AddLineStripVertexColor(255, 0, 0, 255);
+
+            // Specify line segments by adding a line vertex count.
+            // Ex. The above line has two vertices, so we add a line
+            // vertex count of 2. If we had tessellated a curve with n
+            // vertices, we would add a line vertex count of n.
+            package.AddLineStripVertexCount(2);
         }
 
         #endregion

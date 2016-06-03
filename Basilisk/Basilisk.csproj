@@ -32,13 +32,14 @@
     <DocumentationFile>..\Build\Basilisk.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BHoM Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM_Engine\BHoM Engine\bin\Debug\BHoM Engine.dll</HintPath>
+    </Reference>
     <Reference Include="BHoM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamicRelaxationToolkit">
-      <HintPath>..\External dlls\DynamicRelaxationToolkit.dll</HintPath>
     </Reference>
     <Reference Include="DynamoCore">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoCore.dll</HintPath>
@@ -123,7 +124,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structural\BHoM_Node.cs" />
     <Compile Include="Structural\FormFinding\CustomRenderExample.cs" />
-    <Compile Include="Structural\FormFinding\DynamicRelaxation.cs" />
+    <Compile Include="Structural\FormFinding\DynamicRelaxation_BHoMEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fastrak\" />
