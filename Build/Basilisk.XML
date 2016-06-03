@@ -4,77 +4,6 @@
         <name>Basilisk</name>
     </assembly>
     <members>
-        <member name="T:Geometry.Vector">
-            <summary>
-            BHoM Vector object
-            </summary>
-        </member>
-        <member name="M:Geometry.Vector.FromDSVector(Autodesk.DesignScript.Geometry.Vector)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Vector.ToDSVector(BHoM.Geometry.Vector)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Vector.ToJSON(BHoM.Geometry.Vector)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Vector.FromJSON(System.String)">
-            <summary></summary>
-        </member>
-        <member name="T:Geometry.Plane">
-            <summary>
-            BHoM Plane object
-            </summary>
-        </member>
-        <member name="M:Geometry.Plane.FromDSPlane(Autodesk.DesignScript.Geometry.Plane)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Plane.ToDSPlane(BHoM.Geometry.Plane)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Plane.ToJSON(BHoM.Geometry.Plane)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Plane.FromJSON(System.String)">
-            <summary></summary>
-        </member>
-        <member name="T:Geometry.Point">
-            <summary>
-            BHoM Point object
-            </summary>
-        </member>
-        <member name="M:Geometry.Point.FromDSPoint(Autodesk.DesignScript.Geometry.Point)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Point.ToDSPoint(BHoM.Geometry.Point)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Point.ToJSON(BHoM.Geometry.Point)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Point.FromJSON(System.String)">
-            <summary></summary>
-        </member>
-        <member name="T:Geometry.Line">
-            <summary>
-            BHoM Line object
-            </summary>
-        </member>
-        <member name="M:Geometry.Line.FromDSLine(Autodesk.DesignScript.Geometry.Line)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Line.FromDSPoints(Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Line.ToDSLine(BHoM.Geometry.Line)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Line.ToJSON(BHoM.Geometry.Line)">
-            <summary></summary>
-        </member>
-        <member name="M:Geometry.Line.FromJSON(System.String)">
-            <summary></summary>
-        </member>
         <member name="T:Global.BHoM_Object">
             <summary>
             BHoM Object
@@ -116,14 +45,14 @@
             Create an object which renders custom geometry.
             </summary>
         </member>
-        <member name="T:Structural.FormFinding.DynamicRelaxation">
+        <member name="T:Structural.FormFinding.DynamicRelaxation_BHoMEngine">
             <summary>
             Structural tools
             BuroHappold
             <class name="BHGeometryTools">Geometry tools for Dynamo</class>
             </summary>
         </member>
-        <member name="M:Structural.FormFinding.DynamicRelaxation.RelaxLines(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Line},System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Double,System.Int32,System.Boolean)">
+        <member name="M:Structural.FormFinding.DynamicRelaxation_BHoMEngine.RelaxLines(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Line},System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Double,System.Int32,System.Boolean)">
             <summary>
             Performs dynamic relaxation on a structure of lines
             BuroHappold

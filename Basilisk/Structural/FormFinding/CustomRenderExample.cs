@@ -30,7 +30,7 @@ namespace Structural.FormFinding
             return ex;
         }
 
-        public static CustomRenderExample CustomRenderTest()
+        public static void CustomRenderTest()
         {
             Point pt1 = Point.ByCoordinates(0, 0, 0);
             Point pt2 = Point.ByCoordinates(5, 5, 5);
@@ -41,8 +41,9 @@ namespace Structural.FormFinding
             IRenderPackage package = packageFactory.CreateRenderPackage();
 
             test.Tessellate(package, packageFactory.TessellationParameters);
+            //CustomRenderTest.Tessellate(package, packageFactory.TessellationParameters);
 
-            return test;
+            //return test;
         }
 
         [IsVisibleInDynamoLibrary(false)]
