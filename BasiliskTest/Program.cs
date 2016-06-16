@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
+using BHoM.Geometry;
+using BHoM.Global;
+using BHoM.Structural;
 
 namespace BasiliskTest
 {
@@ -11,18 +14,39 @@ namespace BasiliskTest
     {
         static void Main(string[] args)
         {
-            /*BHoM.Geometry.Point startPoint = new BHoM.Geometry.Point(0, 0, 0);
-            BHoM.Geometry.Point endPoint = new BHoM.Geometry.Point(1, 1, 1);
-            BHoM.Geometry.Line line = new BHoM.Geometry.Line(startPoint, endPoint);
+            TestMongo();
 
-            BHoM.Global.Project project = new BHoM.Global.Project();
-            BHoM.Structural.GridFactory gridFactory = new BHoM.Structural.GridFactory(project);
-            BHoM.Structural.Grid grid = gridFactory.Create(line, "testGrid");
-
-            string json = grid.JSON();
-            BHoM.Structural.Grid newGrid = gridFactory.Create(json);*/
+            Console.Read();
         }
 
+        static void TestMongo()
+        {
+            // Create a fake project
+            List<Node> nodes = new List<Node>();
+            for (int i = 0; i < 10; i++)
+                nodes.Add(new Node(i, 2, 3));
 
+            List<Bar> bars = new List<Bar>();
+            for (int i = 1; i < 10; i++)
+                bars.Add(new Bar(nodes[i - 1], nodes[i]));
+
+            var project = Project.ActiveProject;
+            foreach (Node node in nodes)
+                project.AddObject(node);
+            foreach (Bar bar in bars)
+                project.AddObject(bar);
+
+            // Create database
+            var mongo = new BHoM_Engine.Databases.Mongo.MongoLink();
+            Console.WriteLine("Database link created");
+
+            // Add Objects to the dtabase
+            //mongo.SaveObjects(project.Objects); 
+            //Console.WriteLine("Objects added to the database");
+
+            // Get all object from database
+            IEnumerable<BHoM.Global.BHoMObject> objects = mongo.GetObjects("{}");
+            Console.WriteLine("Objects obtained from the database: {0}", objects.Count());
+        }
     }
 }

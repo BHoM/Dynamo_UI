@@ -36,6 +36,10 @@
     <Reference Include="BHoM">
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
+    <Reference Include="BHoM Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Build\BHoM Engine.dll</HintPath>
+    </Reference>
     <Reference Include="ProtoCore">
       <HintPath>..\External dlls\ProtoCore.dll</HintPath>
     </Reference>

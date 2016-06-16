@@ -119,6 +119,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Databases\Mongo\MongoLink.cs" />
     <Compile Include="Global\BHoM_Object.cs" />
     <Compile Include="Structural\BHoM_Bar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,10 +151,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.0\packages\BH Dynamo Tools\bin\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.0\packages\BH DynamoRevit2016 Tools\bin\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.0\packages\BH Dynamo Tools\bin\$(ProjectName).xml"
-copy /Y "$(TargetDir)$(ProjectName).xml" "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.0\packages\BH DynamoRevit2016 Tools\bin\$(ProjectName).xml"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo 0.9\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>
