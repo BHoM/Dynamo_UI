@@ -43,6 +43,7 @@ Thumbs.db
 /obj/
 */bin/
 */obj/
+[Bb]uild/
 
 # Visual Studio User File #
 ###########################
