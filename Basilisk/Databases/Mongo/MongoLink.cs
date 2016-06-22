@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Basilisk.Databases.Mongo
+namespace Databases.Mongo
 {
     public static class MongoLink
     {

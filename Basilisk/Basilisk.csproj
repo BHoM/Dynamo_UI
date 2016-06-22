@@ -121,9 +121,12 @@
   <ItemGroup>
     <Compile Include="Databases\Mongo\MongoLink.cs" />
     <Compile Include="Global\BHoM_Object.cs" />
+    <Compile Include="Global\BHoM_Project.cs" />
+    <Compile Include="Material\Material.cs" />
     <Compile Include="Structural\BHoM_Bar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structural\BHoM_Node.cs" />
+    <Compile Include="Structural\BHoM_Panel.cs" />
     <Compile Include="Structural\FormFinding\CustomRenderExample.cs" />
     <Compile Include="Structural\FormFinding\DynamicRelaxation_BHoMEngine.cs" />
   </ItemGroup>

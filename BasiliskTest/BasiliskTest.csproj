@@ -50,6 +50,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\External dlls\ProtoInterface.dll</HintPath>
     </Reference>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2016\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitNodes">
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Revit\1.0\Revit_2016\RevitNodes.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitServices">
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Revit\1.0\Revit_2016\RevitServices.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -70,6 +79,10 @@
     <ProjectReference Include="..\Basilisk\Basilisk.csproj">
       <Project>{814ccb48-c68a-4d65-a4b4-958ea6ab0bb6}</Project>
       <Name>Basilisk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Revit2016\Revit2016.csproj">
+      <Project>{348e19a4-a3fc-4558-93c6-2646820412a1}</Project>
+      <Name>Revit2016</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

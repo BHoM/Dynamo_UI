@@ -8,14 +8,14 @@ namespace Revit2016.Elements
 {
     /// <summary>
     /// </summary>
-    public static class Floor
+    public static class Column
     {
         /// <summary>
         /// </summary>
-        public static object ToBHomPanel(object floor)
+        public static object ToBHomBar(object column)
         {
-            if (floor is Revit.Elements.Floor)
-                return RevitToolkit.Elements.Floor.ToBHomPanel((floor as Revit.Elements.Floor).InternalElement as Autodesk.Revit.DB.Floor);
+            if (column is Revit.Elements.StructuralFraming)
+                return RevitToolkit.Elements.Column.ToBHomBar((column as Revit.Elements.StructuralFraming).InternalElement as Autodesk.Revit.DB.FamilyInstance);
             else
                 return null;
         }

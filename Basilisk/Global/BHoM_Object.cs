@@ -9,7 +9,7 @@ namespace Global
     /// <summary>
     /// BHoM Object
     /// </summary>
-    public static class BHoM_Object
+    public static class BHoMObject
     {
         /// <summary></summary>
         public static object SetPropertyValueByName(object bhomObject, string propName, object value)

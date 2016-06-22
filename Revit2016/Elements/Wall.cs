@@ -8,14 +8,14 @@ namespace Revit2016.Elements
 {
     /// <summary>
     /// </summary>
-    public static class Floor
+    public static class Wall
     {
         /// <summary>
         /// </summary>
-        public static object ToBHomPanel(object floor)
+        public static object ToBHomPanel(object wall)
         {
-            if (floor is Revit.Elements.Floor)
-                return RevitToolkit.Elements.Floor.ToBHomPanel((floor as Revit.Elements.Floor).InternalElement as Autodesk.Revit.DB.Floor);
+            if (wall is Revit.Elements.Wall)
+                return RevitToolkit.Elements.Wall.ToBHomPanel((wall as Revit.Elements.Wall).InternalElement as Autodesk.Revit.DB.Wall);
             else
                 return null;
         }
