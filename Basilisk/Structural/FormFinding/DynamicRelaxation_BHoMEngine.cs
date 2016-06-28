@@ -51,23 +51,23 @@ namespace Structural.FormFinding
         [CanUpdatePeriodically(true)]
         public static Dictionary<string, object> RelaxLines(List<Line> lines, List<Point> lockedPoints, List<double> gravity, List<double> barStiffnesses, List<double> lengthMultiplier, double treshold, int maxNoIt, bool run)
         {
-            List<BHoM.Geometry.Line> BHoMLines = new List<BHoM.Geometry.Line>();
-            List<BHoM.Geometry.Point> BHoMPoints = new List<BHoM.Geometry.Point>();
+            List<BHoM.Structural.Bar> BHoMBars = new List<BHoM.Structural.Bar>();
+            List<BHoM.Structural.Node> BHoMNodes = new List<BHoM.Structural.Node>();
 
             Dictionary<string, object> DR_out = new Dictionary<string, object>();
             Dictionary<string, object> DR_loop = new Dictionary<string, object>();
 
             List<Line> drawLines = new List<Line>();
 
-            if (run)
+            /*if (run)   // TODO - Code does not compile -- please fix
             {
                 foreach (Line ln in lines)
-                    BHoMLines.Add(new BHoM.Geometry.Line(new BHoM.Geometry.Point(ln.StartPoint.X, ln.StartPoint.Y, ln.StartPoint.Z), new BHoM.Geometry.Point(ln.EndPoint.X, ln.EndPoint.Y, ln.EndPoint.Z)));
+                    BHoMBars.Add(new BHoM.Structural.Bar(new BHoM.Geometry.Point(ln.StartPoint.X, ln.StartPoint.Y, ln.StartPoint.Z), new BHoM.Geometry.Point(ln.EndPoint.X, ln.EndPoint.Y, ln.EndPoint.Z)));
 
                 foreach (Point pt in lockedPoints)
-                    BHoMPoints.Add(new BHoM.Geometry.Point(pt.X, pt.Y, pt.Z));
+                    BHoMNodes.Add(new BHoM.Structural.Node(pt.X, pt.Y, pt.Z));
 
-                Structure structure = BHoM_Engine.FormFinding.DynamicRelaxation.SetStructure(BHoMLines, BHoMPoints, barStiffnesses, lengthMultiplier, treshold);
+                Structure structure = BHoM_Engine.FormFinding.DynamicRelaxation.SetStructure(BHoMBars, BHoMNodes, barStiffnesses, lengthMultiplier, treshold);
                 DefaultRenderPackageFactory packageFactory = new DefaultRenderPackageFactory();
                 IRenderPackage package = packageFactory.CreateRenderPackage();
 
@@ -101,7 +101,7 @@ namespace Structural.FormFinding
                 }
                 DR_out.Add("Lines", lines);
                 DR_out.Add("Counter", counter);
-            }
+            }*/
             return DR_out;
         }
 
