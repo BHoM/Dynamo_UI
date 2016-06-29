@@ -60,7 +60,7 @@ namespace Revit
             List<Autodesk.Revit.DB.Element> aElementList = null;
             List<List<Autodesk.Revit.DB.Element>> aBranches = null;
             aMechanicalElementList.OrderedElements(FirstElement.InternalElement, ByLongest, out aElementList, out aBranches);
-            List<List<Elements.Element>> aResultBranches = new List<List<Revit.Elements.Element>>();
+            List<List<Elements.Element>> aResultBranches = new List<List<Elements.Element>>();
             foreach (List<Autodesk.Revit.DB.Element> aBranch in aBranches)
                 aResultBranches.Add(aBranch.ConvertAll(x => x.ToDSType(true)));
 
@@ -69,6 +69,25 @@ namespace Revit
                     { "Elements", aElementList.ConvertAll(x => x.ToDSType(true))},
                     { "Branches", aResultBranches}
                 };
+        }
+
+        /// <summary>
+        /// Returns ordered elements between to elements in the specified system
+        /// </summary>
+        /// <param name="System">MEP System</param>
+        /// <param name="FirstElement">First Element</param>
+        /// <param name="LastElement">Last Element</param>
+        /// <returns name="Elements">MEP System Elements</returns>
+        /// <search>
+        /// MEPSystem, MEP System, Elements, Shortest Path, ShortestPath, shortestpath, shortest path
+        /// </search>
+        public static List<Elements.Element> ShortestPath(Elements.Element System, Elements.Element FirstElement, Elements.Element LastElement)
+        {
+            Autodesk.Revit.DB.MEPSystem aMEPSystem = System.InternalElement as Autodesk.Revit.DB.MEPSystem;
+            MechanicalElementList aMechanicalElementList = new MechanicalElementList(aMEPSystem);
+            List<Autodesk.Revit.DB.Element> aElementList = null;
+            aMechanicalElementList.ShortestPath(FirstElement.InternalElement, LastElement.InternalElement, out aElementList);
+            return aElementList.ConvertAll(x => x.ToDSType(true));
         }
 
         /// <summary>

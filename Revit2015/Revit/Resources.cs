@@ -540,6 +540,66 @@ namespace Revit
             }
         }
 
+        internal void ShortestPath(Autodesk.Revit.DB.Element FirstElement, Autodesk.Revit.DB.Element LastElement, out List<Autodesk.Revit.DB.Element> Elements)
+        {
+            Elements = null;
+            if (pObjectGraph != null)
+            {
+                int aFirstIndex = pMechanicalElementList.FindIndex(x => x.Element.Id == FirstElement.Id);
+                int aLastIndex = pMechanicalElementList.FindIndex(x => x.Element.Id == LastElement.Id);
+                if (aFirstIndex >= 0 && aLastIndex >= 0)
+                {
+                    List<List<int>> aBranches = pObjectGraph.GetBranches(aFirstIndex);
+                    if (aBranches != null)
+                    {
+                        aBranches.RemoveAll(x => x == null || x.Count == 0 || !x.Contains(aLastIndex));
+
+                        List<List<double>> aLengthsBranches = new List<List<double>>();
+
+                        for (int i = 0; i < aBranches.Count; i++)
+                        {
+                            int aIndex = aBranches[i].IndexOf(aLastIndex);
+                            List<int> aBranch = aBranches[i].GetRange(0, aIndex + 1);
+                            aBranches[i] = aBranch;
+
+                            List <double> aLengths = new List<double>();
+                            MEPCurve aMEPCurve = pMechanicalElementList[aBranch.First()].Element as MEPCurve;
+                            double aLength = 0;
+                            if (aMEPCurve != null)
+                                aLength = GetLength(aMEPCurve);
+                            aLengths.Add(aLength);
+
+                            for (int j = 1; j < aBranch.Count - 1; j++)
+                                aLengths.Add(GetLength(pMechanicalElementList[aBranch[j - 1]].Element, pMechanicalElementList[aBranch[j]].Element, pMechanicalElementList[aBranch[j + 1]].Element));
+
+                            if (aBranch.Count > 2)
+                            {
+                                aMEPCurve = pMechanicalElementList[aBranch.Last()].Element as MEPCurve;
+                                aLength = 0;
+                                if (aMEPCurve != null)
+                                    aLength = GetLength(aMEPCurve);
+                                aLengths.Add(aLength);
+                            }
+
+                            aLengthsBranches.Add(aLengths);
+                        }
+
+                        if (aLengthsBranches != null)
+                        {
+                            List<double> aLengthList = aLengthsBranches.ConvertAll(x => x.Sum());
+                            int aIndex = aLengthList.IndexOf(aLengthList.Min());
+                            List<int> aSelectedBranch = aBranches[aIndex];
+
+                            Elements = new List<Autodesk.Revit.DB.Element>();
+                            Elements = aBranches[aIndex].ConvertAll(x => pMechanicalElementList[x].Element);
+                        }
+                    }
+                }
+
+
+            }
+        }
+
         private double GetLength(MEPCurve MEPCurve)
         {
             Autodesk.Revit.DB.Parameter aParameter = MEPCurve.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH);
