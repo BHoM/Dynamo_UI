@@ -42,15 +42,15 @@ namespace Global
         }
 
         /// <summary></summary>
-        public static string ToJSON(object bhomObject)
+        public static string ToJSON(List<object> bhomObjects)
         {
-            return (bhomObject as BHoM.Global.BHoMObject).ToJSON();
+            return BHoM.Global.BHoMJSON.WritePackage(bhomObjects.Cast<BHoM.Global.BHoMObject>().ToList());
         }
 
         /// <summary></summary>
         public static object FromJSON(string json)
         {
-            return BHoM.Global.BHoMObject.FromJSON(json);
+            return BHoM.Global.BHoMJSON.ReadPackage(json);
         }
     }
 }
