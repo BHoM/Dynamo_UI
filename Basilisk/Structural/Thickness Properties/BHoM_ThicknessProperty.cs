@@ -15,5 +15,5 @@ namespace Structural
         {
             return new BHS.ConstantThickness(name);
         }
-    }
+    }  
 }

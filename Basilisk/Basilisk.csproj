@@ -34,7 +34,7 @@
   <ItemGroup>
     <Reference Include="BHoM Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\BHoM_Engine\BHoM Engine\bin\Debug\BHoM Engine.dll</HintPath>
+      <HintPath>..\..\BHoM_Engine\Build\BHoM Engine.dll</HintPath>
     </Reference>
     <Reference Include="BHoM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -128,6 +128,8 @@
     <Compile Include="Global\BHoM_Object.cs" />
     <Compile Include="Global\BHoM_Project.cs" />
     <Compile Include="Material\Material.cs" />
+    <Compile Include="ModelLaundry\Snapping.cs" />
+    <Compile Include="ModelLaundry\Utils.cs" />
     <Compile Include="Structural\Elements\BHoM_Bar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structural\Elements\BHoM_Node.cs" />
