@@ -120,20 +120,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Databases\Mongo\MongoLink.cs" />
+    <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
+    <Compile Include="Geometry\Curve\BHoM_Line.cs" />
+    <Compile Include="Geometry\Curve\BHoM_Polyline.cs" />
+    <Compile Include="Geometry\Vector\BHoM_Point.cs" />
+    <Compile Include="Geometry\Vector\BHoM_Vector.cs" />
     <Compile Include="Global\BHoM_Object.cs" />
     <Compile Include="Global\BHoM_Project.cs" />
     <Compile Include="Material\Material.cs" />
-    <Compile Include="Structural\BHoM_Bar.cs" />
+    <Compile Include="Structural\Elements\BHoM_Bar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Structural\BHoM_Node.cs" />
-    <Compile Include="Structural\BHoM_Panel.cs" />
+    <Compile Include="Structural\Elements\BHoM_Node.cs" />
+    <Compile Include="Structural\Elements\BHoM_Panel.cs" />
     <Compile Include="Structural\FormFinding\CustomRenderExample.cs" />
     <Compile Include="Structural\FormFinding\DynamicRelaxation_BHoMEngine.cs" />
+    <Compile Include="Structural\Loads\BHoM_BarLoad.cs" />
+    <Compile Include="Structural\Loads\BHoM_GeometricalLoad.cs" />
+    <Compile Include="Structural\Loads\BHoM_PanelLoad.cs" />
+    <Compile Include="Structural\Thickness Properties\BHoM_ThicknessProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fastrak\" />
     <Folder Include="File\" />
-    <Folder Include="Geometry\" />
+    <Folder Include="Geometry\Mesh\" />
+    <Folder Include="Geometry\Surface\" />
     <Folder Include="Kinect\" />
     <Folder Include="List Tools\" />
     <Folder Include="MEP\" />
@@ -141,7 +151,6 @@
     <Folder Include="Project\" />
     <Folder Include="Robot\Loads\" />
     <Folder Include="Robot\Results\" />
-    <Folder Include="Structural\Loads\" />
     <Folder Include="Structural\Results\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
