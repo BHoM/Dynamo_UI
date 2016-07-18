@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BHoM.Geometry;
-using BHoM_Engine.ModelLaundry;
+using ModelLaundry_Engine;
 using Autodesk.DesignScript.Runtime;
 
 namespace ModelLaundry
 {
-    public class Utils
+    public static class Utils
     {
         public static object HorizontalExtend(object element, double dist)
         {

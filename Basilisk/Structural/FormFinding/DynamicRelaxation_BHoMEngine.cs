@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
-using BHoM_Engine.FormFinding;
 using Dynamo.Visualization;
 using Dynamo.Graph;
 
