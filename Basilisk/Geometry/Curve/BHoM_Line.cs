@@ -29,7 +29,7 @@ namespace Geometry
         /// <summary></summary>
         public static DSG.Line ToDSLine(BHG.Line line)
         {
-            return DSG.Line.ByStartPointEndPoint(Point.ToDSPoint(line.StartPoint), Point.ToDSPoint(line.StartPoint));
+            return DSG.Line.ByStartPointEndPoint(Point.ToDSPoint(line.StartPoint), Point.ToDSPoint(line.EndPoint));
         }
     }
 

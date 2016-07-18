@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.DesignScript.Geometry;
+using DSG = Autodesk.DesignScript.Geometry;
+using BHG = BHoM.Geometry;
 
 namespace Structural
 {
@@ -20,10 +21,16 @@ namespace Structural
         }
 
         /// <summary></summary>
-        public static BHoM.Structural.Bar FromDSPoints(Point startPoint, Point endPoint)
+        public static BHoM.Structural.Bar FromDSPoints(DSG.Point startPoint, DSG.Point endPoint)
         {
             return new BHoM.Structural.Bar(new BHoM.Structural.Node(startPoint.X, startPoint.Y, startPoint.Z)
                                             , new BHoM.Structural.Node(endPoint.X, endPoint.Y, endPoint.Z));
+        }
+
+        /// <summary></summary>
+        public static DSG.Line ToDSLine(BHoM.Structural.Bar bar)
+        {
+            return DSG.Line.ByStartPointEndPoint(Geometry.Point.ToDSPoint(bar.StartPoint), Geometry.Point.ToDSPoint(bar.EndPoint));
         }
     }
 

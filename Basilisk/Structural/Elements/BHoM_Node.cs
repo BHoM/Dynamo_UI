@@ -16,5 +16,11 @@ namespace Structural
             return new BHoM.Structural.Node(point.X, point.Y, point.Z);
         }
 
+        /// <summary></summary>
+        public static Point ToDSPoint(BHoM.Structural.Node node)
+        {
+            BHoM.Geometry.Point nodePoint = node.Point;
+            return Point.ByCoordinates(nodePoint.X, nodePoint.Y, nodePoint.Z);
+        }
     }
 }
