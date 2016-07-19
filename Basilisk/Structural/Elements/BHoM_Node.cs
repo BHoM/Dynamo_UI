@@ -8,7 +8,7 @@ using Autodesk.DesignScript.Geometry;
 namespace Structural
 {
     /// <summary></summary>
-    public static class Node
+    public static class BHNode
     {
         /// <summary></summary>
         public static BHoM.Structural.Node FromDSPoint(Point point)

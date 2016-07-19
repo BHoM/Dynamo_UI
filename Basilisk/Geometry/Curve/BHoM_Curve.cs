@@ -12,7 +12,7 @@ namespace Geometry
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public static class Curve
+    public static class BHCurve
     {
         /// <summary></summary>
         public static List<DSG.Point> ToDSPoints(BHG.Curve Curve)

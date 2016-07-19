@@ -9,7 +9,7 @@ using BHS = BHoM.Structural;
 
 namespace Structural
 {
-    public static class PanelLoad
+    public static class BHPanelLoad
     {
         public static BHS.Loads.AreaUniformalyDistributedLoad CreateUniformLoad(BHS.Panel panel, DSG.Vector force)
         {

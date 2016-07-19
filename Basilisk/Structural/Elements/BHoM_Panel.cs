@@ -8,7 +8,7 @@ using BHG = BHoM.Geometry;
 
 namespace Structural
 {
-    public static class Panel
+    public static class BHPanel
     {
         /// <summary></summary>
         public static BHoM.Structural.Panel FromDSCurve(DSG.Curve curve)
@@ -25,7 +25,7 @@ namespace Structural
         /// <summary></summary>
         public static DSG.NurbsCurve ToDSPolyline(BHoM.Structural.Panel panel)
         {
-            List<DSG.Point> points =  Geometry.Curve.ToDSPoints(panel.External_Contour);
+            List<DSG.Point> points =  Geometry.BHCurve.ToDSPoints(panel.External_Contour);
             return DSG.NurbsCurve.ByControlPoints(points, 1);
         }
     }

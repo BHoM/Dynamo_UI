@@ -12,7 +12,7 @@ namespace Geometry
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public static class Polyline
+    public static class BHPolyline
     {
         /// <summary></summary>
         public static BHG.Polyline FromDSPolyline(DSG.NurbsCurve polyline)

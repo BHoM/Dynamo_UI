@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Global
 {
-    public static class Project
+    public static class BHProject
     {
         /// <summary></summary>
         public static object FillProject(object[] objects, string name = "")

@@ -9,11 +9,11 @@ using BHS = BHoM.Structural;
 
 namespace Structural
 {
-    public static class GeometricalLoad
+    public static class BHGeometricalLoad
     {
         public static BHS.Loads.GeometricalLoad CreateLoad(DSG.NurbsCurve contour, DSG.Vector force)
         {
-            BHG.Polyline polyline = Geometry.Polyline.FromDSPolyline(contour);
+            BHG.Polyline polyline = Geometry.BHPolyline.FromDSPolyline(contour);
             return new BHS.Loads.GeometricalLoad(polyline, new BHG.Vector(force.X, force.Y, force.Z));
         }
     }

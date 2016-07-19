@@ -9,7 +9,7 @@ using BHS = BHoM.Structural;
 
 namespace Structural
 {
-    public static class ThicknessProperty
+    public static class BHThicknessProperty
     {
         public static BHS.ConstantThickness CreateConstantThickness(string name = "")
         {

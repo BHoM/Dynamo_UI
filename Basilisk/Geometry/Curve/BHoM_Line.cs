@@ -12,7 +12,7 @@ namespace Geometry
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public static class Line
+    public static class BHLine
     {
         /// <summary></summary>
         public static BHoM.Geometry.Line FromDSLine(DSG.Line line)
@@ -29,7 +29,7 @@ namespace Geometry
         /// <summary></summary>
         public static DSG.Line ToDSLine(BHG.Line line)
         {
-            return DSG.Line.ByStartPointEndPoint(Point.ToDSPoint(line.StartPoint), Point.ToDSPoint(line.EndPoint));
+            return DSG.Line.ByStartPointEndPoint(BHPoint.ToDSPoint(line.StartPoint), BHPoint.ToDSPoint(line.EndPoint));
         }
     }
 

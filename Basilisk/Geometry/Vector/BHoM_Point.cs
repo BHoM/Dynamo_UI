@@ -14,7 +14,7 @@ namespace Geometry
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public static class Point
+    public static class BHPoint
     {
         /// <summary></summary>
         public static BHG.Point FromXYZ(double x = 0, double y = 0, double z = 0)

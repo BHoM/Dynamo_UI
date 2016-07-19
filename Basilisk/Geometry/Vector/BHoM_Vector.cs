@@ -12,7 +12,7 @@ namespace Geometry
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public static class Vector
+    public static class BHVector
     {
         /// <summary></summary>
         public static BHG.Vector FromDSVector(DSG.Vector Vector)

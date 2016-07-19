@@ -9,20 +9,20 @@ using Autodesk.DesignScript.Runtime;
 
 namespace ModelLaundry
 {
-    public static class Utils
+    public static class LaundryUtils
     {
-        public static object HorizontalExtend(object element, double dist)
+        public static object HorizontalExtend(object bhElement, double dist)
         {
-            return Util.HorizontalExtend(element, dist);
+            return Util.HorizontalExtend(bhElement, dist);
         }
 
         /*************************************/
 
         [MultiReturn(new[] { "insiders", "outsiders" })]
-        public static Dictionary<string, object> FilterByBoundingBox(List<object> elements, List<BoundingBox> boxes)
+        public static Dictionary<string, object> FilterByBoundingBox(List<object> bhElement, List<BoundingBox> bhBoxes)
         {
             List<object> outsiders = new List<object>();
-            List<object> insiders = Util.FilterByBoundingBox(elements, boxes, out outsiders);
+            List<object> insiders = Util.FilterByBoundingBox(bhElement, bhBoxes, out outsiders);
 
             Dictionary<string, object> result = new Dictionary<string, object>();
             result["insiders"] = insiders;
@@ -33,10 +33,10 @@ namespace ModelLaundry
         /*************************************/
 
         [MultiReturn(new[] { "result", "removed" })]
-        public static Dictionary<string, object> RemoveSmallContours(object element, double maxLength)
+        public static Dictionary<string, object> RemoveSmallContours(object bhElement, double maxLength)
         {
             Group<Curve> removed = new Group<Curve>();
-            object remaining = Util.RemoveSmallContours(element, maxLength, out removed);
+            object remaining = Util.RemoveSmallContours(bhElement, maxLength, out removed);
 
             Dictionary<string, object> result = new Dictionary<string, object>();
             result["result"] = remaining;

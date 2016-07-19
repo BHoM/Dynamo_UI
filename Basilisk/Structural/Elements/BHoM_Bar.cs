@@ -12,10 +12,10 @@ namespace Structural
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public static class Bar
+    public static class BHBar
     {
         /// <summary></summary>
-        public static BHoM.Structural.Bar FromNodes(BHoM.Structural.Node startNode, BHoM.Structural.Node endNode)
+        public static BHoM.Structural.Bar FromBHNodes(BHoM.Structural.Node startNode, BHoM.Structural.Node endNode)
         {
             return new BHoM.Structural.Bar(startNode, endNode);
         }
@@ -30,7 +30,7 @@ namespace Structural
         /// <summary></summary>
         public static DSG.Line ToDSLine(BHoM.Structural.Bar bar)
         {
-            return DSG.Line.ByStartPointEndPoint(Geometry.Point.ToDSPoint(bar.StartPoint), Geometry.Point.ToDSPoint(bar.EndPoint));
+            return DSG.Line.ByStartPointEndPoint(Geometry.BHPoint.ToDSPoint(bar.StartPoint), Geometry.BHPoint.ToDSPoint(bar.EndPoint));
         }
     }
 

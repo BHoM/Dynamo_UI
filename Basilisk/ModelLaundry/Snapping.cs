@@ -9,32 +9,32 @@ using Autodesk.DesignScript.Runtime;
 
 namespace ModelLaundry
 {
-    public static class Snapping
+    public static class BHSnapping
     {
-        public static object VerticalSnapToHeight(object element, List<double> refHeights, double tolerance)
+        public static object VerticalSnapToHeight(object bhElement, List<double> refHeights, double tolerance)
         {
-            return MLE.Snapping.VerticalPointSnap(element, refHeights, tolerance);
+            return MLE.Snapping.VerticalPointSnap(bhElement, refHeights, tolerance);
         }
 
         /******************************************/
 
-        public static object VerticalSnapToObjects(object element, List<object> refElements, double tolerance)
+        public static object VerticalSnapToObjects(object bhElement, List<object> refBHElements, double tolerance)
         {
-            return MLE.Snapping.VerticalPointSnap(element, refElements, tolerance);
+            return MLE.Snapping.VerticalPointSnap(bhElement, refBHElements, tolerance);
         }
 
         /******************************************/
 
-        public static object HorizontalPointSnap(object element, List<object> refElements, double tolerance)
+        public static object HorizontalPointSnap(object bhElement, List<object> refBHElements, double tolerance)
         {
-            return MLE.Snapping.HorizontalPointSnap(element, refElements, tolerance);
+            return MLE.Snapping.HorizontalPointSnap(bhElement, refBHElements, tolerance);
         }
 
         /******************************************/
 
-        public static object HorizontalParallelSnap(object element, List<object> refElements, double tolerance)
+        public static object HorizontalParallelSnap(object bhElement, List<object> refBHElements, double tolerance)
         {
-            return MLE.Snapping.HorizontalParallelSnap(element, refElements, tolerance);
+            return MLE.Snapping.HorizontalParallelSnap(bhElement, refBHElements, tolerance);
         }
     }
 }

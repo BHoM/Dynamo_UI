@@ -9,7 +9,7 @@ using BHS = BHoM.Structural;
 
 namespace Structural
 {
-    public static class BarLoad
+    public static class BHBarLoad
     {
         public static BHS.Loads.BarUniformlyDistributedLoad CreateUniformLoad(BHS.Bar bar, DSG.Vector force)
         {
