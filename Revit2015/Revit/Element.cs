@@ -612,6 +612,32 @@ namespace Revit
             return null;
         }
 
+        /// <summary>
+        /// Gets Analytical Model element
+        /// </summary>
+        /// <param name="Element">Element</param>
+        /// <returns name="AnalyticalModel">Analytical Model Element</returns>
+        /// <search>
+        /// Element, Analytical Model, AnalyticalModel, analyticalmodel, analytical model
+        /// </search>
+        public static Elements.Element AnalyticalModel(Elements.Element Element)
+        {
+            return Element.InternalElement.GetAnalyticalModel().ToDSType(true);
+        }
+
+        /// <summary>
+        /// Gets Analytical Model Id
+        /// </summary>
+        /// <param name="Element">Element</param>
+        /// <returns name="AnalyticalModel">Analytical Model Id</returns>
+        /// <search>
+        /// Element, Analytical Model Id, AnalyticalModelId, analyticalmodelid, analytical model id
+        /// </search>
+        public static int AnalyticalModelId(Elements.Element Element)
+        {
+            return Element.InternalElement.GetAnalyticalModelId().IntegerValue;
+        }
+
         private static List<Autodesk.Revit.DB.Face> Faces(GeometryElement GeometryElement)
         {
             List<Autodesk.Revit.DB.Face> aFaceList = new List<Autodesk.Revit.DB.Face>();
