@@ -13,21 +13,21 @@ namespace ModelLaundry
     {
         public static object VerticalSnapToHeight(object bhElement, List<double> refHeights, double tolerance)
         {
-            return MLE.Snapping.VerticalPointSnap(bhElement, refHeights, tolerance);
+            return MLE.Snapping.VerticalSnapToHeight(bhElement, refHeights, tolerance);
         }
 
         /******************************************/
 
-        public static object VerticalSnapToObjects(object bhElement, List<object> refBHElements, double tolerance)
+        public static object VerticalSnapToShape(object bhElement, List<object> refBHElements, double tolerance)
         {
-            return MLE.Snapping.VerticalPointSnap(bhElement, refBHElements, tolerance);
+            return MLE.Snapping.VerticalSnapToShape(bhElement, refBHElements, tolerance);
         }
 
         /******************************************/
 
         public static object HorizontalPointSnap(object bhElement, List<object> refBHElements, double tolerance)
         {
-            return MLE.Snapping.HorizontalPointSnap(bhElement, refBHElements, tolerance);
+            return MLE.Snapping.HorizontalSnapToShape(bhElement, refBHElements, tolerance);
         }
 
         /******************************************/
@@ -35,6 +35,13 @@ namespace ModelLaundry
         public static object HorizontalParallelSnap(object bhElement, List<object> refBHElements, double tolerance)
         {
             return MLE.Snapping.HorizontalParallelSnap(bhElement, refBHElements, tolerance);
+        }
+
+        /******************************************/
+
+        public static object PointToPointSnap(object bhElement, List<object> refBHElements, double tolerance)
+        {
+            return MLE.Snapping.PointToPointSnap(bhElement, refBHElements, tolerance);
         }
     }
 }
