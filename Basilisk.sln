@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revit2016", "Revit2016\Revi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revit2015", "Revit2015\Revit2015.csproj", "{2B9890E8-4935-4BD4-B7A1-09E2BF725798}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Basilisk", "Robot_Basilisk\Robot_Basilisk.csproj", "{75FD6313-8EF6-4A57-892C-5CCFEE804AAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{348E19A4-A3FC-4558-93C6-2646820412A1}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{2B9890E8-4935-4BD4-B7A1-09E2BF725798}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{2B9890E8-4935-4BD4-B7A1-09E2BF725798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75FD6313-8EF6-4A57-892C-5CCFEE804AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75FD6313-8EF6-4A57-892C-5CCFEE804AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75FD6313-8EF6-4A57-892C-5CCFEE804AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75FD6313-8EF6-4A57-892C-5CCFEE804AAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

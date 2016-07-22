@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Basilisk.XML</DocumentationFile>
+    <DocumentationFile>..\Build\Basilisk.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -122,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Databases\Mongo\MongoLink.cs" />
+    <Compile Include="ExternalApp\Structural\External_Bar.cs" />
+    <Compile Include="ExternalApp\Structural\External_Node.cs" />
+    <Compile Include="ExternalApp\Structural\External_Panel.cs" />
     <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
     <Compile Include="Geometry\Curve\BHoM_Line.cs" />
     <Compile Include="Geometry\Curve\BHoM_Polyline.cs" />
@@ -144,6 +147,7 @@
     <Compile Include="Structural\Thickness Properties\BHoM_ThicknessProperty.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ExternalApp\Results\" />
     <Folder Include="Fastrak\" />
     <Folder Include="File\" />
     <Folder Include="Geometry\Mesh\" />
@@ -153,8 +157,6 @@
     <Folder Include="MEP\" />
     <Folder Include="ProjectSpecific\" />
     <Folder Include="Project\" />
-    <Folder Include="Robot\Loads\" />
-    <Folder Include="Robot\Results\" />
     <Folder Include="Structural\Results\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
