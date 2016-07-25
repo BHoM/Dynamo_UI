@@ -9,7 +9,9 @@ namespace ModelLaundry
 {
     public static class Diagnostic
     {
+        public static List<Point> CheckSnappedPoints(List<object> bhElements, double tolerance)
         {
+            return ModelLaundry_Engine.Diagnostic.CheckSnappedPoints(bhElements, tolerance);
         }
     }
 }
