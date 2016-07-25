@@ -10,10 +10,11 @@ namespace External
 {
     public static class ExtNode
     {
-        public static List<string> SetNodes(BH.IStructuralAdapter app, List<BH.Node> nodes)
+        public static List<string> SetNodes(object app, List<BH.Node> nodes, bool active = true)
         {
-            List<string> ids = null;
-            app.SetNodes(nodes, out ids);
+            List<string> ids = new List<string>();
+            if (active)
+                ((BH.IStructuralAdapter)app).SetNodes(nodes, out ids);
             return ids;
         }
     }

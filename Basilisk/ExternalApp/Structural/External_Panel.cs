@@ -10,10 +10,11 @@ namespace External
 {
     public static class ExtPanel
     {
-        public static List<string> SetPanels(BH.IStructuralAdapter app, List<BH.Panel> panels)
+        public static List<string> SetPanels(object app, List<BH.Panel> panels, bool active = true)
         {
-            List<string> ids = null;
-            app.SetPanels(panels, out ids);
+            List<string> ids = new List<string>();
+            if (active)
+                ((BH.IStructuralAdapter)app).SetPanels(panels, out ids);
             return ids;
         }
     }

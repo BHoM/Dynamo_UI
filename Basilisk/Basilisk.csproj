@@ -125,6 +125,7 @@
     <Compile Include="ExternalApp\Structural\External_Bar.cs" />
     <Compile Include="ExternalApp\Structural\External_Node.cs" />
     <Compile Include="ExternalApp\Structural\External_Panel.cs" />
+    <Compile Include="Geometry\BHBoundingBox.cs" />
     <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
     <Compile Include="Geometry\Curve\BHoM_Line.cs" />
     <Compile Include="Geometry\Curve\BHoM_Polyline.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Global\BHoM_Object.cs" />
     <Compile Include="Global\BHoM_Project.cs" />
     <Compile Include="Material\Material.cs" />
+    <Compile Include="ModelLaundry\Diagnostic.cs" />
     <Compile Include="ModelLaundry\Snapping.cs" />
     <Compile Include="ModelLaundry\Utils.cs" />
     <Compile Include="Structural\Elements\BHoM_Bar.cs" />
