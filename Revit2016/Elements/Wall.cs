@@ -14,12 +14,12 @@ namespace Revit2016.Elements
         /// <summary>
         /// </summary>
         [NodeCategory("Basilisk.Revit2016")]
-        public static object ToBHomPanel(object wall)
+        public static object ToBHomPanel(List<Revit.Elements.Wall> walls)
         {
-            if (wall is Revit.Elements.Wall)
-                return RevitToolkit.Elements.Wall.ToBHomPanel((wall as Revit.Elements.Wall).InternalElement as Autodesk.Revit.DB.Wall);
-            else
-                return null;
+            List<Autodesk.Revit.DB.Wall> converted = new List<Autodesk.Revit.DB.Wall>();
+            foreach (Revit.Elements.Wall wall in walls)
+                converted.Add(wall.InternalElement as Autodesk.Revit.DB.Wall);
+            return Revit2016IO.PanelIO.RevitWallsToBHoMPanels(converted);
         }
     }
 }
