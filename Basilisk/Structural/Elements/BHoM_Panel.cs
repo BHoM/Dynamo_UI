@@ -25,7 +25,7 @@ namespace Structural
         /// <summary></summary>
         public static DSG.NurbsCurve ToDSPolyline(BHoM.Structural.Panel panel)
         {
-            List<DSG.Point> points =  Geometry.BHCurve.ToDSPoints(panel.External_Contour[0]);
+            List<DSG.Point> points =  Geometry.BHCurve.ToDSPoints(panel.External_Contours[0]);
             return DSG.NurbsCurve.ByControlPoints(points, 1);
         }
     }
