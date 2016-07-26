@@ -11,10 +11,10 @@ namespace Structural
 {
     public static class BHGeometricalLoad
     {
-        public static BHS.Loads.GeometricalLoad CreateLoad(DSG.NurbsCurve contour, DSG.Vector force)
+        public static BHS.Loads.GeometricalAreaLoad CreateAreaLoad(DSG.NurbsCurve contour, DSG.Vector force)
         {
             BHG.Polyline polyline = Geometry.BHPolyline.FromDSPolyline(contour);
-            return new BHS.Loads.GeometricalLoad(polyline, new BHG.Vector(force.X, force.Y, force.Z));
+            return new BHS.Loads.GeometricalAreaLoad(polyline, new BHG.Vector(force.X, force.Y, force.Z));
         }
     }
 }
