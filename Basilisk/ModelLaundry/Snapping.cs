@@ -25,7 +25,7 @@ namespace ModelLaundry
 
         /******************************************/
 
-        public static object HorizontalPointSnap(object bhElement, List<object> refBHElements, double tolerance)
+        public static object HorizontalSnapToShape(object bhElement, List<object> refBHElements, double tolerance)
         {
             return MLE.Snapping.HorizontalSnapToShape(bhElement, refBHElements, tolerance);
         }

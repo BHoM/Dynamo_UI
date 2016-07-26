@@ -21,9 +21,9 @@ namespace Geometry
         }
 
         /// <summary></summary>
-        public static BHG.BoundingBox FromDSPoints(DSG.Point startPoint, DSG.Point endPoint)
+        public static BHG.BoundingBox FromDSPoints(DSG.Point minPoint, DSG.Point maxPoint)
         {
-            return new BHG.BoundingBox(new BHG.Point(startPoint.X, startPoint.Y, startPoint.Z), new BHG.Point(endPoint.X, endPoint.Y, endPoint.Z));
+            return new BHG.BoundingBox(new BHG.Point(minPoint.X, minPoint.Y, minPoint.Z), new BHG.Point(maxPoint.X, maxPoint.Y, maxPoint.Z));
         }
 
         /// <summary></summary>

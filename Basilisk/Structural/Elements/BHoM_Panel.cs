@@ -23,10 +23,15 @@ namespace Structural
         }
 
         /// <summary></summary>
-        public static DSG.NurbsCurve ToDSPolyline(BHoM.Structural.Panel panel)
+        public static DSG.PolyCurve ToDSPolyCurve(BHoM.Structural.Panel panel)
         {
-            List<DSG.Point> points =  Geometry.BHCurve.ToDSPoints(panel.External_Contours[0]);
-            return DSG.NurbsCurve.ByControlPoints(points, 1);
+            List<DSG.NurbsCurve> contours = new List<DSG.NurbsCurve>();
+            foreach (BHG.Curve curve in panel.External_Contours)
+            {
+                List<DSG.Point> points = Geometry.BHCurve.ToDSPoints(curve);
+                contours.Add(DSG.NurbsCurve.ByControlPoints(points, 1));
+            }
+            return DSG.PolyCurve.ByJoinedCurves(contours);
         }
     }
 }
