@@ -23,15 +23,28 @@ namespace Structural
         }
 
         /// <summary></summary>
-        public static DSG.PolyCurve ToDSPolyCurve(BHoM.Structural.Panel panel)
+        public static BHoM.Structural.Panel FromDSSurface(DSG.Surface surface)
         {
-            List<DSG.NurbsCurve> contours = new List<DSG.NurbsCurve>();
-            foreach (BHG.Curve curve in panel.External_Contours)
+            BHoM.Geometry.Group<BHoM.Geometry.Curve> group = new BHoM.Geometry.Group<BHoM.Geometry.Curve>();
+            foreach (DSG.Curve curve in surface.PerimeterCurves())
             {
-                List<DSG.Point> points = Geometry.BHCurve.ToDSPoints(curve);
-                contours.Add(DSG.NurbsCurve.ByControlPoints(points, 1));
+                List<BHoM.Geometry.Point> bhomPoints = new List<BHoM.Geometry.Point>();
+                foreach (DSG.Point pt in curve.ToNurbsCurve().ControlPoints())
+                    bhomPoints.Add(new BHoM.Geometry.Point(pt.X, pt.Y, pt.Z));
+                group.Add(new BHoM.Geometry.Polyline(bhomPoints));
             }
-            return DSG.PolyCurve.ByJoinedCurves(contours);
+            return new BHoM.Structural.Panel(group);
+        }
+
+        /// <summary></summary>
+        public static List<DSG.Polygon> ToDSPolygon(BHoM.Structural.Panel panel)
+        {
+            List<DSG.Polygon> contours = new List<DSG.Polygon>();
+            foreach (BHG.Curve curve in panel.External_Contours)
+                contours.Add(DSG.Polygon.ByPoints(Geometry.BHCurve.ToDSPoints(curve)));
+            foreach (BHG.Curve curve in panel.Internal_Contours)
+                contours.Add(DSG.Polygon.ByPoints(Geometry.BHCurve.ToDSPoints(curve)));
+            return contours;
         }
     }
 }

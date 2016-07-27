@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="Databases\Mongo\MongoLink.cs" />
     <Compile Include="ExternalApp\Structural\External_Bar.cs" />
+    <Compile Include="ExternalApp\Structural\External_Load.cs" />
     <Compile Include="ExternalApp\Structural\External_Node.cs" />
     <Compile Include="ExternalApp\Structural\External_Panel.cs" />
     <Compile Include="Geometry\BHBoundingBox.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Structural\FormFinding\DynamicRelaxation_BHoMEngine.cs" />
     <Compile Include="Structural\Loads\BHoM_BarLoad.cs" />
     <Compile Include="Structural\Loads\BHoM_GeometricalLoad.cs" />
+    <Compile Include="Structural\Loads\BHoM_LoadCase.cs" />
     <Compile Include="Structural\Loads\BHoM_PanelLoad.cs" />
     <Compile Include="Structural\Thickness Properties\BHoM_ThicknessProperty.cs" />
   </ItemGroup>

@@ -31,13 +31,13 @@ namespace Geometry
         }
 
         /// <summary></summary>
-        public static DSG.NurbsCurve ToDSPolyline(BHG.Polyline polyline)
+        public static DSG.PolyCurve ToDSPolycurve(BHG.Polyline polyline)
         {
             List<DSG.Point> points = new List<DSG.Point>();
             foreach (BHG.Point point in polyline.ControlPoints)
                 points.Add(DSG.Point.ByCoordinates(point.X, point.Y, point.Z));
 
-            return DSG.NurbsCurve.ByControlPoints(points, 1);
+            return DSG.PolyCurve.ByPoints(points);
         }
     }
 
