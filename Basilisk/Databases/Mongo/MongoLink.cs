@@ -16,25 +16,27 @@ namespace Databases.Mongo
         }
 
         /// <summary></summary>
-        public static void SaveObjects(DE.Mongo.MongoLink mongoLink, object[] objects)
+        public static void ToMongo(DE.Mongo.MongoLink mongoLink, object[] objects, string key, bool active = false)
         {
+            if (!active) return;
+
             List<BHoM.Global.BHoMObject> bhomObjects = new List<BHoM.Global.BHoMObject>();
             foreach (object o in objects)
                 bhomObjects.Add((BHoM.Global.BHoMObject)o);
-            mongoLink.SaveObjects(bhomObjects);
-        }
-
-
-        /// <summary></summary>
-        public static void SaveObject(DE.Mongo.MongoLink mongoLink, object obj)
-        {
-            mongoLink.SaveObject((BHoM.Global.BHoMObject)obj);
+            mongoLink.SaveObjects(bhomObjects, key);
         }
 
         /// <summary></summary>
-        public static IEnumerable<object> GetObjects(DE.Mongo.MongoLink mongoLink, string filter)
+        public static IEnumerable<object> FromMongo(DE.Mongo.MongoLink mongoLink, string filter)
         {
             return mongoLink.GetObjects(filter);
+        }
+
+        /// <summary></summary>
+        public static void DeleteObjects(string filter = "{}", bool active = false)
+        {
+            if (active)
+                MongoLink.DeleteObjects(filter);
         }
     }
 }
