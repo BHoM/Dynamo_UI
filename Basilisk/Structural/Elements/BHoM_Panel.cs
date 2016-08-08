@@ -13,12 +13,15 @@ namespace Structural
         /// <summary></summary>
         public static BHoM.Structural.Panel FromDSCurve(DSG.Curve curve)
         {
-            List<BHoM.Geometry.Point> bhomPoints = new List<BHoM.Geometry.Point>();
-            foreach (DSG.Point pt in curve.ToNurbsCurve().ControlPoints())
-                bhomPoints.Add(new BHoM.Geometry.Point(pt.X, pt.Y, pt.Z));
+            BHG.Group<BHoM.Geometry.Curve> group = new BHG.Group<BHoM.Geometry.Curve>();
+            foreach (DSG.Geometry geometry in curve.Explode())
+            {
+                DSG.Curve c = geometry as DSG.Curve;
+                DSG.Point start = c.StartPoint;
+                DSG.Point end = c.EndPoint;
+                group.Add(new BHG.Line(new BHoM.Geometry.Point(start.X, start.Y, start.Z), new BHG.Point(end.X, end.Y, end.Z)));
 
-            BHoM.Geometry.Group<BHoM.Geometry.Curve> group = new BHoM.Geometry.Group<BHoM.Geometry.Curve>();
-            group.Add(new BHoM.Geometry.Polyline(bhomPoints));
+            }
             return new BHoM.Structural.Panel(group);
         }
 
@@ -26,12 +29,11 @@ namespace Structural
         public static BHoM.Structural.Panel FromDSSurface(DSG.Surface surface)
         {
             BHoM.Geometry.Group<BHoM.Geometry.Curve> group = new BHoM.Geometry.Group<BHoM.Geometry.Curve>();
-            foreach (DSG.Curve curve in surface.PerimeterCurves())
+            foreach (DSG.Edge edge in surface.Edges)
             {
-                List<BHoM.Geometry.Point> bhomPoints = new List<BHoM.Geometry.Point>();
-                foreach (DSG.Point pt in curve.ToNurbsCurve().ControlPoints())
-                    bhomPoints.Add(new BHoM.Geometry.Point(pt.X, pt.Y, pt.Z));
-                group.Add(new BHoM.Geometry.Polyline(bhomPoints));
+                DSG.Point start = edge.StartVertex.PointGeometry;
+                DSG.Point end = edge.EndVertex.PointGeometry;
+                group.Add(new BHoM.Geometry.Line(new BHoM.Geometry.Point(start.X, start.Y, start.Z), new BHoM.Geometry.Point(end.X, end.Y, end.Z)));
             }
             return new BHoM.Structural.Panel(group);
         }
