@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
+using BHE = BHoM.Structural.Elements;
 
-namespace Structural
+namespace Structural.Elements
 {
     /// <summary></summary>
     public static class BHNode
     {
         /// <summary></summary>
-        public static BHoM.Structural.Node FromDSPoint(Point point)
+        public static BHE.Node FromDSPoint(Point point)
         {
-            return new BHoM.Structural.Node(point.X, point.Y, point.Z);
+            return new BHE.Node(point.X, point.Y, point.Z);
         }
 
         /// <summary></summary>
-        public static Point ToDSPoint(BHoM.Structural.Node node)
+        public static Point ToDSPoint(BHE.Node node)
         {
             BHoM.Geometry.Point nodePoint = node.Point;
             return Point.ByCoordinates(nodePoint.X, nodePoint.Y, nodePoint.Z);

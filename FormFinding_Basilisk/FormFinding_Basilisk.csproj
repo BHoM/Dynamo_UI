@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{75FD6313-8EF6-4A57-892C-5CCFEE804AAE}</ProjectGuid>
+    <ProjectGuid>{67811B20-B662-47EE-B969-446FE424F5B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Robot_Basilisk</RootNamespace>
-    <AssemblyName>Robot_Basilisk</AssemblyName>
+    <RootNamespace>FormFinding_Basilisk</RootNamespace>
+    <AssemblyName>FormFinding_Basilisk</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\Build\Robot_Basilisk.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,8 +33,14 @@
     <Reference Include="BHoM">
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
-    <Reference Include="Robot_Adapter">
-      <HintPath>..\..\Robot_Toolkit\Build\Robot_Adapter.dll</HintPath>
+    <Reference Include="DynamoCore">
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoCore.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamoServices">
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoServices.dll</HintPath>
+    </Reference>
+    <Reference Include="ProtoGeometry">
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\ProtoGeometry.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,11 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\Robot_Application.cs" />
+    <Compile Include="CustomRenderExample.cs" />
+    <Compile Include="DynamicRelaxation_BHoMEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

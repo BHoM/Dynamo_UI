@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RobotToolkit;
+using RSI = Robot_Adapter.Structural.Interface;
 
 namespace Robot
 {
@@ -11,7 +11,7 @@ namespace Robot
     {
         public static object RobotApp()
         {
-            return new RobotAdapter();
+            return new RSI.RobotAdapter();
         }
     }
 }

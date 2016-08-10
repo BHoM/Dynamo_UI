@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BHB = BHoM.Base;
 
 namespace Global
 {
@@ -13,7 +14,7 @@ namespace Global
         {
             BHoM.Global.Project project = BHoM.Global.Project.ActiveProject; // We need to have a proper project collection in the BHoM
             project.Clear();
-            foreach (BHoM.Global.BHoMObject obj in objects)
+            foreach (BHB.BHoMObject obj in objects)
                 project.AddObject(obj);
             return project;
         }

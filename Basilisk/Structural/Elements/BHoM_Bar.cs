@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using DSG = Autodesk.DesignScript.Geometry;
 using BHG = BHoM.Geometry;
+using BHE = BHoM.Structural.Elements;
 
-namespace Structural
+namespace Structural.Elements
 {
 
     /// <summary>
@@ -15,20 +16,20 @@ namespace Structural
     public static class BHBar
     {
         /// <summary></summary>
-        public static BHoM.Structural.Bar FromBHNodes(BHoM.Structural.Node startNode, BHoM.Structural.Node endNode)
+        public static BHE.Bar FromBHNodes(BHE.Node startNode, BHE.Node endNode)
         {
-            return new BHoM.Structural.Bar(startNode, endNode);
+            return new BHE.Bar(startNode, endNode);
         }
 
         /// <summary></summary>
-        public static BHoM.Structural.Bar FromDSPoints(DSG.Point startPoint, DSG.Point endPoint)
+        public static BHE.Bar FromDSPoints(DSG.Point startPoint, DSG.Point endPoint)
         {
-            return new BHoM.Structural.Bar(new BHoM.Structural.Node(startPoint.X, startPoint.Y, startPoint.Z)
-                                            , new BHoM.Structural.Node(endPoint.X, endPoint.Y, endPoint.Z));
+            return new BHE.Bar(new BHE.Node(startPoint.X, startPoint.Y, startPoint.Z)
+                                            , new BHE.Node(endPoint.X, endPoint.Y, endPoint.Z));
         }
 
         /// <summary></summary>
-        public static DSG.Line ToDSLine(BHoM.Structural.Bar bar)
+        public static DSG.Line ToDSLine(BHE.Bar bar)
         {
             return DSG.Line.ByStartPointEndPoint(Geometry.BHPoint.ToDSPoint(bar.StartPoint), Geometry.BHPoint.ToDSPoint(bar.EndPoint));
         }

@@ -7,7 +7,7 @@ using DSG = Autodesk.DesignScript.Geometry;
 using BHG = BHoM.Geometry;
 using BHS = BHoM.Structural;
 
-namespace Structural
+namespace Structural.Loads
 {
     public static class BHGeometricalLoad
     {

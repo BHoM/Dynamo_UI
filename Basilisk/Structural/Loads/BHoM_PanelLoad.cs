@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using DSG = Autodesk.DesignScript.Geometry;
 using BHG = BHoM.Geometry;
-using BHS = BHoM.Structural;
+using BHE = BHoM.Structural.Elements;
+using BHL = BHoM.Structural.Loads;
 
-namespace Structural
+namespace Structural.Loads
 {
     public static class BHPanelLoad
     {
-        public static BHS.Loads.AreaUniformalyDistributedLoad CreateUniformLoad(BHS.Panel panel, DSG.Vector force)
+        public static BHL.AreaUniformalyDistributedLoad CreateUniformLoad(BHE.Panel panel, DSG.Vector force)
         {
-            return new BHS.Loads.AreaUniformalyDistributedLoad(force.X, force.Y, force.Z);
+            return new BHL.AreaUniformalyDistributedLoad(force.X, force.Y, force.Z);
         }
     }
 }
