@@ -38,15 +38,12 @@ namespace Structural.Interface
             }
         }
 
-        public static class ExtNode
+        public static List<string> SetNodes(object app, List<BHE.Node> nodes, bool active = true)
         {
-            public static List<string> SetNodes(object app, List<BHE.Node> nodes, bool active = true)
-            {
-                List<string> ids = new List<string>();
-                if (active)
-                    ((BHI.IElementAdapter)app).SetNodes(nodes, out ids);
-                return ids;
-            }
+            List<string> ids = new List<string>();
+            if (active)
+                ((BHI.IElementAdapter)app).SetNodes(nodes, out ids);
+            return ids;
         }
 
         public static List<string> SetPanels(object app, List<BHE.Panel> panels, bool active = true)
