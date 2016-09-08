@@ -11,7 +11,7 @@ namespace Mongo
     public static class MongoLink
     {
         /// <summary></summary>
-        public static MA.MongoLink CreateMongoLink(string serverLink = "mongodb://host:27017", string databaseName = "project", string collectionName = "bhomObjects")
+        public static MA.MongoLink CreateMongoLink(string serverLink = "mongodb://localhost:27017", string databaseName = "project", string collectionName = "bhomObjects")
         {
             return new MA.MongoLink(serverLink, databaseName, collectionName);
         }
