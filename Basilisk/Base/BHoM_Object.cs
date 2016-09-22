@@ -43,15 +43,15 @@ namespace Base
         }
 
         /// <summary></summary>
-        public static string ToJSON(List<object> bhomObjects)
+        public static string ToJSON(List<object> bhomObjects, string password = "")
         {
-            return BHB.BHoMJSON.WritePackage(bhomObjects.Cast<BHB.BHoMObject>().ToList());
+            return BHB.BHoMJSON.WritePackage(bhomObjects.Cast<BHB.BHoMObject>().ToList(), password);
         }
 
         /// <summary></summary>
-        public static object FromJSON(string json)
+        public static object FromJSON(string json, string password = "")
         {
-            return BHB.BHoMJSON.ReadPackage(json);
+            return BHB.BHoMJSON.ReadPackage(json, password);
         }
     }
 }

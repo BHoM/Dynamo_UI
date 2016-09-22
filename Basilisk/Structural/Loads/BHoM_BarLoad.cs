@@ -15,7 +15,7 @@ namespace Structural.Loads
         public static BHL.BarUniformlyDistributedLoad CreateUniformLoad(BHE.Bar bar, DSG.Vector force)
         {
             BHL.BarUniformlyDistributedLoad load = new BHL.BarUniformlyDistributedLoad();
-            load.Objects.Add(bar);
+            load.Objects.Data.Add(bar);
             load.ForceVector = new BHG.Vector(force.X, force.Y, force.Z);
             return load;
         }
