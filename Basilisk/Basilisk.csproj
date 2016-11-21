@@ -39,13 +39,16 @@
     </Reference>
     <Reference Include="DynamoCore">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoCore.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\ProtoGeometry.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -70,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Filter.cs" />
     <Compile Include="Geometry\BHBoundingBox.cs" />
     <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
     <Compile Include="Geometry\Curve\BHoM_Line.cs" />
@@ -84,6 +88,7 @@
     <Compile Include="Structural\Elements\BHoM_Node.cs" />
     <Compile Include="Structural\Elements\BHoM_Panel.cs" />
     <Compile Include="Structural\Interface\ElementAdapter.cs" />
+    <Compile Include="Structural\Interface\ResultAdapter.cs" />
     <Compile Include="Structural\Loads\BHoM_BarLoad.cs" />
     <Compile Include="Structural\Loads\BHoM_GeometricalLoad.cs" />
     <Compile Include="Structural\Loads\BHoM_LoadCase.cs" />

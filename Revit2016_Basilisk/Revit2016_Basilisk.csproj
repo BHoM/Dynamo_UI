@@ -43,16 +43,19 @@
     <Reference Include="DynamoCore, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoCore.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Revit2016_Adapter">
       <HintPath>..\..\Revit_Toolkit\Build\Revit2016_Adapter.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPI">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2016\RevitAPI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="RevitNodes, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Revit\1.0\Revit_2016\RevitNodes.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,6 +67,8 @@
     <Compile Include="Elements\Beam.cs" />
     <Compile Include="Elements\Column.cs" />
     <Compile Include="Elements\Floor.cs" />
+    <Compile Include="Elements\Foundation.cs" />
+    <Compile Include="Elements\Piles.cs" />
     <Compile Include="Elements\Wall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

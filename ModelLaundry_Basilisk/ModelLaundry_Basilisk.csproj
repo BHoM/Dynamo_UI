@@ -36,15 +36,18 @@
     </Reference>
     <Reference Include="DynamoCore">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoCore.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ModelLaundry_Engine">
       <HintPath>..\..\BHoM_Engine\Build\ModelLaundry_Engine.dll</HintPath>
     </Reference>
     <Reference Include="ProtoGeometry">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\ProtoGeometry.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
