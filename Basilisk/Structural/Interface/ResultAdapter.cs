@@ -29,12 +29,12 @@ namespace Structural.Interface
         [MultiReturn(new[] { "Id", "Name", "Loadcase", "TimeStep", "FX", "FY", "FZ", "MX", "MY", "MZ" })]
         public static Dictionary<string, List<List<object>>> GetNodeReactions(object ResultServer, List<string> Nodes = null, List<string> Loadcases = null, int OrderBy = 0, bool active = true)
         {
-            NodeReaction nodeReaction = new NodeReaction();          
-
+            NodeReaction nodeReaction = new NodeReaction();
+            Dictionary<string, IResultSet> results = null;
             if (active)
             {
                 BHI.IResultAdapter adapter = ResultServer as BHI.IResultAdapter;
-                Dictionary<string, IResultSet> results = null;
+                
                 if (adapter.GetNodeReactions(Nodes, Loadcases, (ResultOrder)OrderBy, out results))
                 {
                     return GetResults(results, nodeReaction.ColumnHeaders);
@@ -64,9 +64,14 @@ namespace Structural.Interface
         private static Dictionary<string, List<List<object>>> GetResults(Dictionary<string, IResultSet> results, string[] columnHeaders)
         {
             Dictionary<string, List<List<object>>> output = new Dictionary<string, List<List<object>>>();
+
+            foreach (string header in columnHeaders)
+                output[header] = new List<List<object>>();
+
             List<object> currentList = null;
             foreach (IResultSet set in results.Values)
             {
+                
                 List<object[]> data = set.ToListData();
                 for (int i = 0; i < data.Count; i++)
                 {

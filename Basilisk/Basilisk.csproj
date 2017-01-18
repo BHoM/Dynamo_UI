@@ -94,11 +94,11 @@
     <Compile Include="Structural\Loads\BHoM_LoadCase.cs" />
     <Compile Include="Structural\Loads\BHoM_PanelLoad.cs" />
     <Compile Include="Structural\Properties\BHoM_PanelProperty.cs" />
+    <Compile Include="Structural\Results\BHoM_SlabrReinforcementResults.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Geometry\Mesh\" />
     <Folder Include="Geometry\Surface\" />
-    <Folder Include="Structural\Results\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
