@@ -42,7 +42,7 @@
     </Reference>
     <Reference Include="DynamoCore, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.0\DynamoCore.dll</HintPath>
+      <HintPath>..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Revit2016_Adapter">
@@ -54,7 +54,7 @@
     </Reference>
     <Reference Include="RevitNodes, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Revit\1.0\Revit_2016\RevitNodes.dll</HintPath>
+      <HintPath>..\..\..\Program Files\Dynamo\Dynamo Revit\1.2\Revit_2017\RevitNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
