@@ -10,9 +10,9 @@ using Geometry;
 
 namespace Elements
 {
-    public static class CreateTRNodes
+    public static class TensionRingNode
     {
-        public static Revit.Elements.FamilyInstance CreateTRNodeElement(TensionRingNode BHoMTRNode, Revit.Elements.FamilyType type, object Phase, string filtercomment)
+        public static Revit.Elements.FamilyInstance CreateTRNodeElement(BHE.TensionRingNode BHoMTRNode, Revit.Elements.FamilyType type, object Phase, string filtercomment)
         {
             Node BHoMNode = BHoMTRNode.CentreNode;
 

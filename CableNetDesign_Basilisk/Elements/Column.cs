@@ -10,32 +10,29 @@ using Geometry;
 
 namespace Elements
 {
-    public static class CreateColumn
+    public static class Column
     {
-        public static Revit.Elements.StructuralFraming CreateColumnElement(Bar BHoMBar, Revit.Elements.Level level, Revit.Elements.FamilyType type, object Phase, string filtercomment)
+        public static double tomills = 1000;
+
+        public static Revit.Elements.StructuralFraming CreateColumnElement(Bar BHoMBar, Revit.Elements.Level level,/* Revit.Elements.FamilyType type,*/ object Phase, string filtercomment)
         {
             BHP.SteelSection secProp = (BHP.SteelSection)BHoMBar.SectionProperty;
 
+            string typeName = "CHS " + secProp.TotalDepth * tomills + "x" + secProp.Tw * tomills;
+
+            Revit.Elements.FamilyType type = Revit.Elements.FamilyType.ByName(typeName);
+
             DSG.Line mline = BHLine.ToDSLine(BHoMBar.Line);
-            DSG.Line mmline = (DSG.Line)mline.Scale(1000);
+            DSG.Line mmline = (DSG.Line)mline.Scale(tomills);
 
 
             if (mmline.EndPoint.Z < mmline.StartPoint.Z)
             {
                 mmline = DSG.Line.ByStartPointEndPoint(mmline.EndPoint, mmline.StartPoint);
             }
-            //string typestr = (string)BHoMBar.CustomData["family type"];
-
-            //Revit.Elements.FamilyType type = Revit.Elements.FamilyType.ByName(typestr);
-            
+          
             Revit.Elements.StructuralFraming revcolumn = Revit.Elements.StructuralFraming.ColumnByCurve(mmline, level, type);
-
-            double od = secProp.TotalDepth*1000;
-            revcolumn.SetParameterByName("OD", od);
-
-            double t = secProp.Tw*1000;
-            revcolumn.SetParameterByName("t", t);
-
+            
             revcolumn.SetParameterByName("Phase Created", Phase);
 
             revcolumn.SetParameterByName("_Filter Comments 05", filtercomment);
