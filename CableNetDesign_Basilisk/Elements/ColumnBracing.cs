@@ -22,11 +22,11 @@ namespace Elements
 
             Revit.Elements.StructuralFraming revColBrac = Revit.Elements.StructuralFraming.BeamByCurve(mmline, level, type);
 
-            double diam = secprop.TotalDepth*1000;
-            revColBrac.SetParameterByName("OD", diam);
+            //double diam = secprop.TotalDepth*1000;
+            //revColBrac.SetParameterByName("OD", diam);
 
-            double t = secprop.Tw * 1000;
-            revColBrac.SetParameterByName("t", t);
+            //double t = secprop.Tw * 1000;
+            //revColBrac.SetParameterByName("t", t);
             
             revColBrac.SetParameterByName("z Justification", 1);
 
