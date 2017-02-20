@@ -15,12 +15,26 @@ namespace Environmental.Elements
     /// </summary>
     public static class BHSpace
     {
-        /// <summary></summary>
-        public static BHE.Space FromPolyline(List<BHG.Line> Lines, string Name = null)
+        /// <summary>Environmental.Elements.BHSpace.FromLines
+        /// Creates a BHoM space from boundary lines.
+        /// Optional to input list of Walls and Name</summary>
+        public static BHE.Space FromBoundaryLines(List<BHG.Line> Lines, List<BHE.Wall> Walls = null, string Name = null)
         {
             BHE.Space space = new BHE.Space();
             space.Lines = Lines;
-            space.Name = Name;
+            if (Name !=null)
+            {
+                space.Name = Name;
+            }
+            if (Walls != null)
+            {
+                space.Walls = Walls;
+            }
+            else
+            {
+                space.Walls = new List<BHE.Wall>();
+            }
+
             return space;
         }
     }

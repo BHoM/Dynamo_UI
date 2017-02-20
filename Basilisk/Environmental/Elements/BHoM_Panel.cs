@@ -15,13 +15,17 @@ namespace Environmental.Elements
     /// </summary>
     public static class BHPanel
     {
-        /// <summary></summary>
-        public static BHE.Panel FromPolyline(List<BHG.Line> Lines, Dictionary<string, object> CustomData = null, string Name = null)
+        /// <summary>Environmental.Elements.BHPanel.FromLines
+        /// Creates a BHoM Panel from panel boundary lines.
+        /// Optional to input list of Name.</summary>
+        public static BHE.Panel FromPolyline(List<BHG.Line> Lines, string Name = null)
         {
             BHE.Panel panel= new BHE.Panel();
             panel.Lines = Lines;
-            panel.CustomData = CustomData;
-            panel.Name = Name;
+            if (Name != null)
+            {
+                panel.Name = Name;
+            }
             return panel;
         }
     }
