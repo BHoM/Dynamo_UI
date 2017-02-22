@@ -16,13 +16,22 @@ namespace Environmental.Elements
     /// </summary>
     public static class BHWall
     {
-        /// <summary></summary>
-        public static BHE.Wall FromPolyline(BHG.Line Line, List<BHE.Panel> Panels = null, Dictionary<string, object> CustomData = null, string Name = null)
+        /// <summary>Environmental.Elements.BHWall.FromLines
+        /// Creates a BHoM Wall from lines.
+        /// Optional to input list of Panels and Name.</summary>
+        public static BHE.Wall FromPolyline(BHG.Line Line, List<BHE.Panel> Panels = null, string Name = null)
         {
             BHE.Wall wall = new BHE.Wall();
             wall.Line = Line;
-            wall.CustomData = CustomData;
-            wall.Name = Name;
+            if (Panels != null)
+            {
+                wall.Panels = Panels;
+            }
+            if (Name != null)
+            {
+                wall.Name = Name;
+            }
+            
             return wall;
         }
     }

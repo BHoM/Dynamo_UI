@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{348E19A4-A3FC-4558-93C6-2646820412A1}</ProjectGuid>
+    <ProjectGuid>{7F45E26E-AAB2-4128-8F7B-57F76E763339}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Revit2016_Basilisk</RootNamespace>
-    <AssemblyName>Revit2016_Basilisk</AssemblyName>
+    <RootNamespace>Revit2017_Basilisk</RootNamespace>
+    <AssemblyName>Revit2017_Basilisk</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Autodesk\Revit 2015\Revit.exe</StartProgram>
-    <DocumentationFile>..\Build\Revit2016_Basilisk.xml</DocumentationFile>
+    <DocumentationFile>..\Build\Revit2017_Basilisk.xml</DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -40,20 +40,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
-    <Reference Include="DynamoCore, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DynamoCore">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Revit2016_Adapter">
-      <HintPath>..\..\Revit_Toolkit\Build\Revit2016_Adapter.dll</HintPath>
+    <Reference Include="Revit2017_Adapter">
+      <HintPath>..\..\Revit_Toolkit\Build\Revit2017_Adapter.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPI">
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2016\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2017\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitNodes, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="RevitNodes">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Revit\1.2\Revit_2017\RevitNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>

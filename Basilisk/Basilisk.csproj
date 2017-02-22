@@ -189,13 +189,5 @@
     <Copy SourceFiles="@(json)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\" />
     <MakeDir Directories="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\dyf" />
     <MakeDir Directories="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\extra" />
-    <!-- Copy to 0.* Dynamo -->
-    <Copy SourceFiles="@(Dlls)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\Basilisk\bin\" />
-    <Copy SourceFiles="@(Pdbs)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\Basilisk\bin\" />
-    <Copy SourceFiles="@(Xmls)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\Basilisk\bin\" />
-    <Copy SourceFiles="@(Configs)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\Basilisk\bin\" />
-    <Copy SourceFiles="@(json)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\Basilisk\" />
-    <MakeDir Directories="C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\Basilisk\dyf" />
-    <MakeDir Directories="C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\Basilisk\extra" />
   </Target>
 </Project>
