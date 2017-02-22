@@ -12,6 +12,7 @@ namespace MachineLearning
         {
             if (trigger)
             {
+
                 MachineLearning_Engine.MotionLevelAnalyser analyser = new MachineLearning_Engine.MotionLevelAnalyser();
 
                 MachineLearning_Engine.MotionLevelAnalyser.Config config = new MachineLearning_Engine.MotionLevelAnalyser.Config();

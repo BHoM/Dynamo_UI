@@ -17,20 +17,21 @@ namespace Mongo
         }
 
         /// <summary></summary>
-        public static void ToMongo(MA.MongoLink mongoLink, object[] objects, string key, bool active = false)
+        public static void ToMongo(MA.MongoLink mongoLink, object[] objects, string key, List<string> tags, bool active = false)
         {
             if (!active) return;
 
             List<BHB.BHoMObject> bhomObjects = new List<BHB.BHoMObject>();
-            foreach (object o in objects)
-                bhomObjects.Add((BHB.BHoMObject)o);
-            mongoLink.SaveObjects(bhomObjects, key);
+            //foreach (object o in objects)
+            //    bhomObjects.Add((BHB.BHoMObject)o);
+            //mongoLink.Push(bhomObjects, key, tags);
+            mongoLink.Push(objects, key, tags);
         }
 
         /// <summary></summary>
-        public static IEnumerable<object> FromMongo(MA.MongoLink mongoLink, string filter)
+        public static IEnumerable<object> FromMongo(MA.MongoLink mongoLink, List<string> query, bool toJson = false, bool active = false)
         {
-            return mongoLink.GetObjects(filter);
+            return mongoLink.Query(query, toJson);
         }
 
         /// <summary></summary>

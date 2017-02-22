@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Basilisk.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,18 @@ namespace Base
         public static object SetPropertyValueByName(object bhomObject, string propName, object value)
         {
             System.Reflection.PropertyInfo prop = bhomObject.GetType().GetProperty(propName);
+            
             if (prop != null)
-                prop.SetValue(bhomObject, value);
+            {
+                if (propName == "CustomData")
+                {
+                    prop.SetValue(bhomObject, (value as DictionaryWrapper).Dictionary);
+                }
+                else
+                {
+                    prop.SetValue(bhomObject, value);
+                }
+            }
 
             return bhomObject;
         }

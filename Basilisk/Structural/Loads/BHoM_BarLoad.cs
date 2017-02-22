@@ -12,10 +12,11 @@ namespace Structural.Loads
 {
     public static class BHBarLoad
     {
-        public static BHL.BarUniformlyDistributedLoad CreateUniformLoad(BHE.Bar bar, DSG.Vector force)
+        public static BHL.BarUniformlyDistributedLoad CreateUniformLoad(BHE.Bar bar, DSG.Vector force, BHL.Loadcase loadcase)
         {
             BHL.BarUniformlyDistributedLoad load = new BHL.BarUniformlyDistributedLoad();
             load.Objects.Data.Add(bar);
+            load.Loadcase = loadcase;
             load.ForceVector = new BHG.Vector(force.X, force.Y, force.Z);
             return load;
         }

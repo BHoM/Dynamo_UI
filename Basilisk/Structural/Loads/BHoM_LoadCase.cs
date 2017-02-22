@@ -11,10 +11,11 @@ namespace Structural.Loads
 {
     public static class BHLoadCase
     {
-        public static BHS.Loads.Loadcase CreateLoadCase(string name)
+        public static BHS.Loads.Loadcase CreateLoadCase(string name, int nature)
         {
             BHoM.Structural.Loads.Loadcase loadcase = new BHoM.Structural.Loads.Loadcase();
             loadcase.Name = name;
+            loadcase.Nature = (BHS.Loads.LoadNature)nature;
             return loadcase;
         }
     }

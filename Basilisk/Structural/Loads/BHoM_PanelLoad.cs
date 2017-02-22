@@ -12,9 +12,9 @@ namespace Structural.Loads
 {
     public static class BHPanelLoad
     {
-        public static BHL.AreaUniformalyDistributedLoad CreateUniformLoad(BHE.Panel panel, DSG.Vector force)
+        public static BHL.AreaUniformalyDistributedLoad CreateUniformLoad(BHE.Panel panel, BHL.Loadcase loadcase, DSG.Vector force)
         {
-            return new BHL.AreaUniformalyDistributedLoad(force.X, force.Y, force.Z);
+            return new BHL.AreaUniformalyDistributedLoad(loadcase, force.X, force.Y, force.Z);
         }
     }
 }
