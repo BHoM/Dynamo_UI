@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autodesk.DesignScript.Runtime;
 
-namespace Basilisk.Base
+namespace Base
 {
     public class DictionaryWrapper
     {

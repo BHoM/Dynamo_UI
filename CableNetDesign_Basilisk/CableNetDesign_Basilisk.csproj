@@ -37,8 +37,8 @@
     <Reference Include="CableNetDesign_Engine">
       <HintPath>..\..\CableNetDesign_Toolkit\Build\CableNetDesign_Engine.dll</HintPath>
     </Reference>
-    <Reference Include="CableNetDesign_OM">
-      <HintPath>..\..\CableNetDesign_Toolkit\Build\CableNetDesign_OM.dll</HintPath>
+    <Reference Include="CableNetDesign_oM">
+      <HintPath>..\..\CableNetDesign_Toolkit\Build\CableNetDesign_oM.dll</HintPath>
     </Reference>
     <Reference Include="CableNetDesign_Revit">
       <HintPath>..\..\Revit_Toolkit\Build\CableNetDesign_Revit.dll</HintPath>

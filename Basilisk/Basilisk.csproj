@@ -38,16 +38,16 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
-      <HintPath>..\..\..\Program Files\Dynamo\Dynamo Core\1.2\ProtoGeometry.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -56,6 +56,7 @@
     <Reference Include="System.Core">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq">
       <Private>False</Private>
     </Reference>
@@ -76,6 +77,9 @@
     <Compile Include="Base\Filter.cs" />
     <Compile Include="Base\CustomData.cs" />
     <Compile Include="Base\ViewCustomData.cs" />
+    <Compile Include="Environmental\Elements\BHoM_Space.cs" />
+    <Compile Include="Environmental\Elements\BHoM_Wall.cs" />
+    <Compile Include="Environmental\Elements\BHoM_Panel.cs" />
     <Compile Include="Geometry\BHBoundingBox.cs" />
     <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
     <Compile Include="Geometry\Curve\BHoM_Line.cs" />
@@ -107,6 +111,39 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\BasiliskImages.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Structural.Elements.BHBar.FromBHNodes.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Structural.Elements.BHBar.FromBHNodes.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Structural.Elements.BHNode.FromDSPoint.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Structural.Elements.BHNode.FromDSPoint.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Structural.Elements.BHPanel.FromDSCurve.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Structural.Elements.BHPanel.FromDSCurve.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Structural.Elements.BHBar.FromDSPoints.Large.png" />
+    <Content Include="Resources\Structural.Elements.BHBar.FromDSPoints.Small.png" />
+    <Content Include="Resources\Structural.Elements.BHBar.ToDSLine.Large.png" />
+    <Content Include="Resources\Structural.Elements.BHBar.ToDSLine.Small.png" />
+    <Content Include="Resources\Structural.Elements.BHNode.ToDSPoints.Large.png" />
+    <Content Include="Resources\Structural.Elements.BHNode.ToDSPoints.Small.png" />
+    <Content Include="Resources\Structural.Elements.BHPanel.FromDSSurface.Large.png" />
+    <Content Include="Resources\Structural.Elements.BHPanel.FromDSSurface.Small.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
@@ -117,8 +154,41 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
-  </Target>
+  </Target-->
   <Target Name="AfterBuild">
+    <!-- Get System.Drawing.dll -->
+    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
+      <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
+    </GetReferenceAssemblyPaths>
+    <!-- Get assembly -->
+    <GetAssemblyIdentity AssemblyFiles="$(OutDir)$(TargetName).dll">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyInfo" />
+    </GetAssemblyIdentity>
+    <!-- Generate customization dll -->
+    <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)\Properties\BasiliskImages.resx" OutputResources="$(ProjectDir)\Properties\BasiliskImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)\Properties\BasiliskImages.resources" OutputAssembly="$(OutDir)Basilisk.customization.dll" Version="%(AssemblyInfo.Version)" />
+    <ItemGroup>
+      <Dlls Include="$(OutDir)..\Build\*.dll" />
+      <Pdbs Include="$(OutDir)..\Build\*.pdb" />
+      <Xmls Include="$(OutDir)..\Build\*.xml" />
+      <Configs Include="$(OutDir)..\Build\*.config" />
+      <json Include="$(SolutionDir)..\Dynamo_Toolkit\pkg.json" />
+    </ItemGroup>
+    <!-- Copy to Build -->
+    <Copy SourceFiles="@(Dlls)" DestinationFolder="$(OutDir)..\Build\packages\Basilisk\bin\" />
+    <Copy SourceFiles="@(Pdbs)" DestinationFolder="$(OutDir)..\Build\packages\Basilisk\bin\" />
+    <Copy SourceFiles="@(Xmls)" DestinationFolder="$(OutDir)..\Build\packages\Basilisk\bin\" />
+    <Copy SourceFiles="@(Configs)" DestinationFolder="$(OutDir)..\Build\packages\Basilisk\bin\" />
+    <Copy SourceFiles="@(json)" DestinationFolder="$(OutDir)..\Build\packages\Basilisk\" />
+    <MakeDir Directories="$(OutDir)..\Build\packages\Basilisk\dyf" />
+    <MakeDir Directories="$(OutDir)..\Build\packages\Basilisk\extra" />
+    <!-- Copy to *.* Dynamo -->
+    <Copy SourceFiles="@(Dlls)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\bin\" />
+    <Copy SourceFiles="@(Pdbs)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\bin\" />
+    <Copy SourceFiles="@(Xmls)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\bin\" />
+    <Copy SourceFiles="@(Configs)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\bin\" />
+    <Copy SourceFiles="@(json)" DestinationFolder="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\" />
+    <MakeDir Directories="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\dyf" />
+    <MakeDir Directories="C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Basilisk\extra" />
   </Target>
-  -->
 </Project>

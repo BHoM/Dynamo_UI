@@ -21,7 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineLearning_Basilisk", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableNetDesign_Basilisk", "CableNetDesign_Basilisk\CableNetDesign_Basilisk.csproj", "{09ADF50A-4D4A-4238-8A8E-F32FCE369CE8}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Socket_Basilisk", "Socket_Basilisk\Socket_Basilisk.csproj", "{44533CDD-465C-4046-88C9-5197E1F14EF1}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revit2017_Basilisk", "Revit2017_Basilisk\Revit2017_Basilisk.csproj", "{7F45E26E-AAB2-4128-8F7B-57F76E763339}"
+>>>>>>> b59abe08e765ac94801f76a5d64ed35b4dedb633
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +69,17 @@ Global
 		{09ADF50A-4D4A-4238-8A8E-F32FCE369CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09ADF50A-4D4A-4238-8A8E-F32FCE369CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09ADF50A-4D4A-4238-8A8E-F32FCE369CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{44533CDD-465C-4046-88C9-5197E1F14EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44533CDD-465C-4046-88C9-5197E1F14EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44533CDD-465C-4046-88C9-5197E1F14EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44533CDD-465C-4046-88C9-5197E1F14EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{7F45E26E-AAB2-4128-8F7B-57F76E763339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F45E26E-AAB2-4128-8F7B-57F76E763339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F45E26E-AAB2-4128-8F7B-57F76E763339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F45E26E-AAB2-4128-8F7B-57F76E763339}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> b59abe08e765ac94801f76a5d64ed35b4dedb633
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
