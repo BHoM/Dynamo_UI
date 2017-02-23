@@ -58,12 +58,79 @@ namespace Structural.Interface
         }
 
         /// <param name="selection">All = 0, Selected = 1, FromInput = 2</param>
+        [MultiReturn(new[] { "Bars", "ids" })]
+        public static Dictionary<string, List<object>> GetNodes(object app, List<string> objectIds = null, int selection = 0, bool activate = true)
+        {
+            string[] columnheaders = { "Bars", "ids" };
+            List<BHE.Node> nodes = null;
+            List<DSG.PolyCurve> geometry = null;
+            List<string> outIds = new List<string>();
+
+            Dictionary<string, List<object>> output = new Dictionary<string, List<object>>();
+
+            if (activate)
+            {
+                ((BHI.IElementAdapter)app).Selection = (BHI.ObjectSelection)selection;
+                outIds = ((BHI.IElementAdapter)app).GetNodes(out nodes, objectIds);
+            }
+
+            List<object> o1 = new List<object>();
+            List<object> o2 = new List<object>();
+
+            for (int j = 0; j < nodes.Count; j++)
+            {
+                o1.Add(nodes[j]);
+                o2.Add(outIds[j]);
+            }
+
+            output[columnheaders[0]] = o1;
+            output[columnheaders[1]] = o2;
+
+
+            return output;
+            //return panels;
+        }
+
+
+        /// <param name="selection">All = 0, Selected = 1, FromInput = 2</param>
+        [MultiReturn(new[] { "Bars", "ids" })]
+        public static Dictionary<string, List<object>> GetBars(object app, List<string> objectIds = null, int selection = 0, bool activate = true)
+        {
+            string[] columnheaders = { "Bars", "ids" };
+            List<BHE.Bar> bars = null;
+            List<string> outIds = new List<string>();
+
+            Dictionary<string, List<object>> output = new Dictionary<string, List<object>>();
+
+            if (activate)
+            {
+                ((BHI.IElementAdapter)app).Selection = (BHI.ObjectSelection)selection;
+                outIds = ((BHI.IElementAdapter)app).GetBars(out bars, objectIds);
+            }
+
+            List<object> o1 = new List<object>();
+            List<object> o2 = new List<object>();
+
+            for (int j = 0; j < bars.Count; j++)
+            {
+                o1.Add(bars[j]);
+                o2.Add(outIds[j]);
+            }
+
+            output[columnheaders[0]] = o1;
+            output[columnheaders[1]] = o2;
+
+
+            return output;
+            //return panels;
+        }
+
+        /// <param name="selection">All = 0, Selected = 1, FromInput = 2</param>
         [MultiReturn(new[] { "Panels", "ids" })]
         public static Dictionary<string, List<object>> GetPanels(object app, List<string> objectIds = null, int selection =0, bool activate = true)
         {
             string[] columnheaders = { "Panels", "ids" };
             List<BHE.Panel> panels = null;
-            List < DSG.PolyCurve > geometry = null;
             List<string> outIds = new List<string>();
 
             Dictionary<string,List<object>> output = new Dictionary<string, List<object>>();

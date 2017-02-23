@@ -94,6 +94,7 @@
     <Compile Include="Structural\Loads\BHoM_BarLoad.cs" />
     <Compile Include="Structural\Loads\BHoM_GeometricalLoad.cs" />
     <Compile Include="Structural\Loads\BHoM_LoadCase.cs" />
+    <Compile Include="Structural\Loads\BHoM_NodalLoad.cs" />
     <Compile Include="Structural\Loads\BHoM_PanelLoad.cs" />
     <Compile Include="Structural\Properties\BHoM_PanelProperty.cs" />
     <Compile Include="Structural\Results\BHoM_SlabrReinforcementResults.cs" />
