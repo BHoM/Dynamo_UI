@@ -77,9 +77,6 @@
     <Compile Include="Base\Filter.cs" />
     <Compile Include="Base\CustomData.cs" />
     <Compile Include="Base\ViewCustomData.cs" />
-    <Compile Include="Environmental\Elements\BHoM_Space.cs" />
-    <Compile Include="Environmental\Elements\BHoM_Wall.cs" />
-    <Compile Include="Environmental\Elements\BHoM_Panel.cs" />
     <Compile Include="Geometry\BHBoundingBox.cs" />
     <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
     <Compile Include="Geometry\Curve\BHoM_Line.cs" />
@@ -104,6 +101,7 @@
     <Compile Include="Structural\Results\BHoM_SlabrReinforcementResults.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Environmental\Elements\" />
     <Folder Include="Geometry\Mesh\" />
     <Folder Include="Geometry\Surface\" />
   </ItemGroup>
