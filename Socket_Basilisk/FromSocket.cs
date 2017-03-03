@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Socket_Engine;
 
 namespace Socket_Basilisk
 {
@@ -17,29 +18,24 @@ namespace Socket_Basilisk
 
     public class FromSocket
     {
-        public FromSocket()
+        public FromSockets()
         {
             m_Socket = new Socket_Engine.SocketServer();
-            m_Socket.MessageReceived += MessageRecieved;
+            m_Socket.MessageReceived += MessageRecieved();
         }
 
-        //private int _port;
-//private bool _active; 
+        private int _port;
+        //private bool _active; 
 
-        public static string FromSocketByPort(int port = 8800, bool active = false)
-        {
-            FromSocket s = new FromSocket();
-
-            
+        public static string FromSocket ByPort(int port = 8800, bool active = false)
+        {            
             if (active)
-            {               
-                s.m_Socket.Listen(port);
-                s.m_Socket.MessageReceived += s.MessageRecieved;
-                return s.m_Message;
-            }
-            else
             {
-                return null;
+                _port = port;
+
+                //FromSocket s = new FromSocket();
+                //s.m_Socket.Listen(port);
+                //s.m_Socket.MessageReceived += s.MessageRecieved;
             }
         }         
 
@@ -49,6 +45,7 @@ namespace Socket_Basilisk
         private void MessageRecieved(string message)
         {
             m_Message = message;
+            //return m_Message;
             //ExpireSolution(true);
         }
 

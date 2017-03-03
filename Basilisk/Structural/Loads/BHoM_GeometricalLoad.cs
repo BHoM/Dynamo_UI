@@ -16,5 +16,13 @@ namespace Structural.Loads
             BHG.Polyline polyline = Geometry.BHPolyline.FromDSPolyline(contour);
             return new BHS.Loads.GeometricalAreaLoad(polyline, new BHG.Vector(force.X, force.Y, force.Z));
         }
+
+        public static BHS.Loads.GeometricalLineLoad CreateGeometricalLineLoad(DSG.Line line, BHS.Loads.Loadcase loadcase, DSG.Vector force, DSG.Vector moment = null)
+        {
+            BHG.Line bhLine = Geometry.BHLine.FromDSLine(line);
+            BHS.Loads.GeometricalLineLoad load = new BHS.Loads.GeometricalLineLoad(bhLine, new BHG.Vector(force.X, force.Y, force.Z), new BHG.Vector(moment.X, moment.Y, moment.Z));
+            load.Loadcase = loadcase;
+            return load;    
+        }
     }
 }
