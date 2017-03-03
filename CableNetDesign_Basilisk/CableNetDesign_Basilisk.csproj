@@ -116,12 +116,6 @@
     <Compile Include="RafterFamilyType.cs" />
     <Compile Include="RevitNodes.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Basilisk\Basilisk.csproj">
-      <Project>{814ccb48-c68a-4d65-a4b4-958ea6ab0bb6}</Project>
-      <Name>Basilisk</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
