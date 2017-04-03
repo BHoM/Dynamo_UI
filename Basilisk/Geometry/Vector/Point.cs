@@ -14,17 +14,17 @@ namespace Geometry
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public static class BHPoint
+    public static class Point
     {
-        /// <summary></summary>
-        public static BHG.Point FromXYZ(double x = 0, double y = 0, double z = 0)
+        /// <summary>Creates BHoMPoint from XYZ.</summary>
+        public static BHG.Point PointFromXYZ(double x = 0, double y = 0, double z = 0)
         {
             return new BHG.Point(x, y, z);
         }
 
-        /// <summary></summary>
+        /// <summary>Reads XYZ values from BHoMPoint.</summary>
         [MultiReturn(new[] {"x", "y", "z"})]
-        public static Dictionary<string, double> ToXYZ(BHG.Point point)
+        public static Dictionary<string, double> PointToXYZ(BHG.Point point)
         {
             Dictionary<string, double> xyz = new Dictionary<string, double>();
             xyz["x"] = point.X;
@@ -33,19 +33,16 @@ namespace Geometry
             return xyz;
         }
 
-        /// <summary></summary>
-        public static BHG.Point FromDSPoint(DSG.Point point)
+        /// <summary>Converts DynamoPoint to BHoMPoint.</summary>
+        public static BHG.Point ReadDSPoint(DSG.Point point)
         {
-            return new BHG.Point(point.X, point.Y, point.Z);
+            return Engine.Convert.DSGeometry.Read(point);
         }
 
-        /// <summary></summary>
-        public static DSG.Point ToDSPoint(BHG.Point point)
+        /// <summary>Converts BHoMPoint to DynamoPoint.</summary>
+        public static DSG.Point WriteDSPoint(BHG.Point point)
         {
-            return DSG.Point.ByCoordinates(point.X, point.Y, point.Z);
+            return Engine.Convert.DSGeometry.Write(point);
         }
-
     }
-
-
 }

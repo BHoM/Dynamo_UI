@@ -5,6 +5,7 @@ using DSG = Autodesk.DesignScript.Geometry;
 using BHG = BHoM.Geometry;
 using BHE = BHoM.Structural.Elements;
 
+
 namespace Structural.Elements
 {
 
@@ -31,7 +32,7 @@ namespace Structural.Elements
         /// <summary></summary>
         public static DSG.Line ToDSLine(BHE.Bar bar)
         {
-            return DSG.Line.ByStartPointEndPoint(Geometry.BHPoint.ToDSPoint(bar.StartPoint), Geometry.BHPoint.ToDSPoint(bar.EndPoint));
+            return DSG.Line.ByStartPointEndPoint(Engine.Convert.DSGeometry.Write(bar.StartPoint), Engine.Convert.DSGeometry.Write(bar.EndPoint));
         }
     }
 

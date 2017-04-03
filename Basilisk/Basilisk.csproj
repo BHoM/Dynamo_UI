@@ -46,6 +46,11 @@
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Dynamo_Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Build\Dynamo_Engine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ProtoGeometry">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
@@ -77,12 +82,12 @@
     <Compile Include="Base\Filter.cs" />
     <Compile Include="Base\CustomData.cs" />
     <Compile Include="Base\ViewCustomData.cs" />
-    <Compile Include="Geometry\BHBoundingBox.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Line.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Polyline.cs" />
-    <Compile Include="Geometry\Vector\BHoM_Point.cs" />
-    <Compile Include="Geometry\Vector\BHoM_Vector.cs" />
+    <Compile Include="Geometry\BoundingBox\BoundingBox.cs" />
+    <Compile Include="Geometry\Curve\Curve.cs" />
+    <Compile Include="Geometry\Curve\Line.cs" />
+    <Compile Include="Geometry\Curve\Polyline.cs" />
+    <Compile Include="Geometry\Vector\Point.cs" />
+    <Compile Include="Geometry\Vector\Vector.cs" />
     <Compile Include="Base\BHoM_Object.cs" />
     <Compile Include="Global\BHoM_Project.cs" />
     <Compile Include="Material\Material.cs" />
@@ -106,7 +111,9 @@
     <Folder Include="Geometry\Surface\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -12,18 +12,18 @@ namespace Geometry
     /// BuroHappold
     /// <class name="BHGeometryTools">Geometry tools for Dynamo</class>
     /// </summary>
-    public static class BHVector
+    public static class Vector
     {
-        /// <summary></summary>
+        /// <summary>Converts DynamoVector to BHoMVector.</summary>
         public static BHG.Vector FromDSVector(DSG.Vector Vector)
         {
-            return new BHG.Vector(Vector.X, Vector.Y, Vector.Z);
+            return Engine.Convert.DSGeometry.Read(Vector);
         }
 
-        /// <summary></summary>
+        /// <summary>Converts BHoMVector to DynamoVector.</summary>
         public static DSG.Vector ToDSVector(BHG.Vector Vector)
         {
-            return DSG.Vector.ByCoordinates(Vector.X, Vector.Y, Vector.Z);
+            return Engine.Convert.DSGeometry.Write(Vector);
         }
 
     }
