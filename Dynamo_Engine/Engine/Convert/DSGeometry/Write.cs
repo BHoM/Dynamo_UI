@@ -15,8 +15,9 @@ namespace Engine.Convert
         /****  Generic                             ****/
         /**********************************************/
 
-        public static DSG.Geometry Write(BHG.GeometryBase geo)
+        public static object Write(object geo)
         {
+
             if (geo is BHG.Line)
             {
                 return Write(geo as BHG.Line);
@@ -29,6 +30,15 @@ namespace Engine.Convert
             {
                 return Write(geo as BHG.Point);
             }
+            else if (geo is BHG.Vector)
+            {
+                return Write(geo as BHG.Vector);
+            }
+            else if (geo is BHG.BoundingBox)
+            {
+                return Write(geo as BHG.BoundingBox);
+            }
+
 
             return null;
         }

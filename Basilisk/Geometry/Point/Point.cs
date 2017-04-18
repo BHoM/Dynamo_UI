@@ -32,17 +32,5 @@ namespace Geometry
             xyz["z"] = point.Z;
             return xyz;
         }
-
-        /// <summary>Converts DynamoPoint to BHoMPoint.</summary>
-        public static BHG.Point ReadDSPoint(DSG.Point point)
-        {
-            return Engine.Convert.DSGeometry.Read(point);
-        }
-
-        /// <summary>Converts BHoMPoint to DynamoPoint.</summary>
-        public static DSG.Point WriteDSPoint(BHG.Point point)
-        {
-            return Engine.Convert.DSGeometry.Write(point);
-        }
     }
 }

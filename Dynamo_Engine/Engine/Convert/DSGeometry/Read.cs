@@ -16,8 +16,9 @@ namespace Engine.Convert
         /****  Generic                             ****/
         /**********************************************/
 
-        public static BHG.GeometryBase Read(DSG.Geometry geo)
+        public static object Read(object geo)
         {
+
             if (geo is DSG.Line)
             {
                 return Read((DSG.Line)geo);
@@ -29,6 +30,14 @@ namespace Engine.Convert
             else if (geo is DSG.Point)
             {
                 return Read((DSG.Point)geo);
+            }
+            else if (geo is DSG.Vector)
+            {
+                return Read((DSG.Vector)geo);
+            }
+            else if (geo is DSG.BoundingBox)
+            {
+                return Read((DSG.BoundingBox)geo);
             }
 
             return null;
@@ -77,7 +86,7 @@ namespace Engine.Convert
 
         public static BHG.BoundingBox Read(DSG.BoundingBox box)
         {
-            return new BHG.BoundingBox(new BHG.Point(box.MinPoint.X, box.MinPoint.Y, box.MinPoint.Z), new BHG.Point(box.MaxPoint.X, box.MaxPoint.Y, box.MaxPoint.Z));
+            return new BHG.BoundingBox(Read(box.MinPoint), Read(box.MaxPoint));
         }
 
         /**********************************************/
