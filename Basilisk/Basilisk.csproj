@@ -35,7 +35,7 @@
     <Reference Include="BHoM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DynamoCore">
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
@@ -44,6 +44,11 @@
     <Reference Include="DynamoServices, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Dynamo_Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Build\Dynamo_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
@@ -77,12 +82,9 @@
     <Compile Include="Base\Filter.cs" />
     <Compile Include="Base\CustomData.cs" />
     <Compile Include="Base\ViewCustomData.cs" />
-    <Compile Include="Geometry\BHBoundingBox.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Line.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Polyline.cs" />
-    <Compile Include="Geometry\Vector\BHoM_Point.cs" />
-    <Compile Include="Geometry\Vector\BHoM_Vector.cs" />
+    <Compile Include="Geometry\Curve\Curve.cs" />
+    <Compile Include="Geometry\Convert\Convert.cs" />
+    <Compile Include="Geometry\Point\Point.cs" />
     <Compile Include="Base\BHoM_Object.cs" />
     <Compile Include="Global\BHoM_Project.cs" />
     <Compile Include="Material\Material.cs" />
@@ -102,11 +104,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Environmental\Elements\" />
-    <Folder Include="Geometry\Mesh\" />
-    <Folder Include="Geometry\Surface\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

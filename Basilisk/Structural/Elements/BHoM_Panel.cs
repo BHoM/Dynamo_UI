@@ -44,9 +44,9 @@ namespace Structural.Elements
         {
             List<DSG.Polygon> contours = new List<DSG.Polygon>();
             foreach (BHG.Curve curve in panel.External_Contours)
-                contours.Add(DSG.Polygon.ByPoints(Geometry.BHCurve.ToDSPoints(curve)));
+                contours.Add(DSG.Polygon.ByPoints(Geometry.Curve.ToDSPoints(curve)));
             foreach (BHG.Curve curve in panel.Internal_Contours)
-                contours.Add(DSG.Polygon.ByPoints(Geometry.BHCurve.ToDSPoints(curve)));
+                contours.Add(DSG.Polygon.ByPoints(Geometry.Curve.ToDSPoints(curve)));
             return contours;
         }
     }
