@@ -81,6 +81,7 @@
     <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
     <Compile Include="Geometry\Curve\BHoM_Line.cs" />
     <Compile Include="Geometry\Curve\BHoM_Polyline.cs" />
+    <Compile Include="Geometry\Mesh\BHoM_Mesh.cs" />
     <Compile Include="Geometry\Vector\BHoM_Point.cs" />
     <Compile Include="Geometry\Vector\BHoM_Vector.cs" />
     <Compile Include="Base\BHoM_Object.cs" />
@@ -102,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Environmental\Elements\" />
-    <Folder Include="Geometry\Mesh\" />
     <Folder Include="Geometry\Surface\" />
   </ItemGroup>
   <ItemGroup>
