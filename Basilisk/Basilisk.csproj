@@ -81,6 +81,7 @@
     <Compile Include="Base\CustomData.cs" />
     <Compile Include="Base\ViewCustomData.cs" />
     <Compile Include="Geometry\BHBoundingBox.cs" />
+    <Compile Include="Geometry\GeometryUtils.cs" />
     <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
     <Compile Include="Geometry\Curve\BHoM_Line.cs" />
     <Compile Include="Geometry\Curve\BHoM_Polyline.cs" />
