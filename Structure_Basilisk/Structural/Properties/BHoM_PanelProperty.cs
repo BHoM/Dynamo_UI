@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DSG = Autodesk.DesignScript.Geometry;
-using BHG = BHoM.Geometry;
-using BHP = BHoM.Structural.Properties;
+using BHG = BH.oM.Geometry;
+using BHP = BH.oM.Structural.Properties;
 
 namespace Structural.Properties
 {

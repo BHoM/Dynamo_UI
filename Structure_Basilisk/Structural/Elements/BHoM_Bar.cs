@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DSG = Autodesk.DesignScript.Geometry;
-using BHG = BHoM.Geometry;
-using BHE = BHoM.Structural.Elements;
+using BHG = BH.oM.Geometry;
+using BHE = BH.oM.Structural.Elements;
 
 namespace Structural.Elements
 {

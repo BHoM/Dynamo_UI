@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DSG = Autodesk.DesignScript.Geometry;
-using BHG = BHoM.Geometry;
-using BHE = BHoM.Structural.Elements;
-using BHL = BHoM.Structural.Loads;
+using BHG = BH.oM.Geometry;
+using BHE = BH.oM.Structural.Elements;
+using BHL = BH.oM.Structural.Loads;
 
 namespace Structural.Loads
 {

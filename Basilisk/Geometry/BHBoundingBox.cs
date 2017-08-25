@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DSG = Autodesk.DesignScript.Geometry;
-using BHG = BHoM.Geometry;
+using BHG = BH.oM.Geometry;
 
 namespace Geometry
 {

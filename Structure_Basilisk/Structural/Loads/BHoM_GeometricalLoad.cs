@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DSG = Autodesk.DesignScript.Geometry;
-using BHG = BHoM.Geometry;
-using BHS = BHoM.Structural;
+using BHG = BH.oM.Geometry;
+using BHS = BH.oM.Structural;
 
 namespace Structural.Loads
 {

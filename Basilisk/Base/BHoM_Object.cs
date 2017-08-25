@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Autodesk.DesignScript.Runtime;
+using BH.Adapter;
+using BH.Engine.Base;
+using BH.Engine.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BHB = BHoM.Base;
+using BHB = BH.oM.Base;
 
 namespace Base
 {
@@ -12,56 +16,82 @@ namespace Base
     /// </summary>
     public static class BHoMObject
     {
-        /// <summary></summary>
-        public static object SetPropertyValueByName(object bhomObject, string propName, object value)
-        {
-            System.Reflection.PropertyInfo prop = bhomObject.GetType().GetProperty(propName);
-            
-            if (prop != null)
-            {
-                if (propName == "CustomData")
-                {
-                    prop.SetValue(bhomObject, (value as DictionaryWrapper).Dictionary);
-                }
-                else
-                {
-                    prop.SetValue(bhomObject, value);
-                }
-            }
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
 
-            return bhomObject;
+        public static BHB.BHoMObject SetPropertyValue(BHB.BHoMObject bhomObject, string propName, object value)
+        {
+            BHB.BHoMObject clone = bhomObject.GetShallowClone();
+            clone.SetPropertyValue(propName, value);
+            return clone;
         }
 
-        /// <summary></summary>
-        public static object GetPropertyValueByName(object bhomObject, string propName)
-        {
-            System.Reflection.PropertyInfo prop = bhomObject.GetType().GetProperty(propName);
-            if (prop == null) return null;
+        /***************************************************/
 
-            return prop.GetValue(bhomObject);
+        public static object GetPropertyValue(BHB.BHoMObject bhomObject, string propName)
+        {
+            return bhomObject.GetPropertyValue(propName);
         }
 
-        /// <summary></summary>
+        /***************************************************/
+
+        public static BHB.BHoMObject SetCustomData(BHB.BHoMObject bhomObject, string propName, object value)
+        {
+            BHB.BHoMObject clone = bhomObject.GetShallowClone();
+            clone.CustomData[propName] = value;
+            return clone;
+        }
+
+        /***************************************************/
+
+        public static object GetCustomData(BHB.BHoMObject bhomObject, string propName)
+        {
+            object value = null;
+            bhomObject.CustomData.TryGetValue(propName, out value);
+            return value;
+        }
+
+        /***************************************************/
+
         public static List<string> GetPropertyNames(object bhomObject)
         {
-            List<string> properties = new List<string>();
-            foreach (System.Reflection.PropertyInfo prop in bhomObject.GetType().GetProperties())
+            return bhomObject.GetPropertyNames();
+        }
+
+        /***************************************************/
+        
+        public static BH.oM.Geometry.IBHoMGeometry GetGeometry(BHB.BHoMObject bhomObject)
+        {
+            return bhomObject.GetGeometry();
+        }
+
+        /***************************************************/
+
+        public static string ToString(object bhomObject)
+        {
+            return bhomObject.ToJson();
+        }
+
+        /***************************************************/
+
+        public static BHB.CustomObject CreateObject(List<string> propertyNames, List<object> propertyValues)
+        {
+            return new BHB.CustomObject(propertyNames, propertyValues);
+        }
+
+        /***************************************************/
+
+        [MultiReturn(new[] { "propertyNames", "propertyValues" })]
+        public static Dictionary<string, object> ExplodeObject(object obj)
+        {
+            List<string> names = obj.GetPropertyNames();
+
+            return new Dictionary<string, object>
             {
-                properties.Add(prop.Name);
-            }
-            return properties;
-        }
-
-        /// <summary></summary>
-        public static string ToJSON(List<object> bhomObjects, string password = "")
-        {
-            return BHB.BHoMJSON.WritePackage(bhomObjects.Cast<BHB.BHoMObject>().ToList(), password);
-        }
-
-        /// <summary></summary>
-        public static object FromJSON(string json, string password = "")
-        {
-            return BHB.BHoMJSON.ReadPackage(json, password);
+                { "propertyNames", names },
+                { "propertyValues", names.Select(x => obj.GetPropertyValue(x)).ToList() }
+            };
         }
     }
 }

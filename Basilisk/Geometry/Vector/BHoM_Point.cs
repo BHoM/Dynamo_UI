@@ -4,7 +4,7 @@ using System.Linq;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using DSG = Autodesk.DesignScript.Geometry;
-using BHG = BHoM.Geometry;
+using BHG = BH.oM.Geometry;
 
 namespace Geometry
 {
