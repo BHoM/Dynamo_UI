@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DSG = Autodesk.DesignScript.Geometry;
-using BHG = BHoM.Geometry;
+using BHG = BH.oM.Geometry;
 
 namespace Geometry
 {
@@ -15,7 +15,7 @@ namespace Geometry
     public static class BHLine
     {
         /// <summary></summary>
-        public static BHoM.Geometry.Line FromDSLine(DSG.Line line)
+        public static BH.oM.Geometry.Line FromDSLine(DSG.Line line)
         {
             return FromDSPoints(line.StartPoint, line.EndPoint);
         }
@@ -29,7 +29,7 @@ namespace Geometry
         /// <summary></summary>
         public static DSG.Line ToDSLine(BHG.Line line)
         {
-            return DSG.Line.ByStartPointEndPoint(BHPoint.ToDSPoint(line.StartPoint), BHPoint.ToDSPoint(line.EndPoint));
+            return DSG.Line.ByStartPointEndPoint(BHPoint.ToDSPoint(line.Start), BHPoint.ToDSPoint(line.End));
         }
     }
 

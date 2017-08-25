@@ -8,9 +8,9 @@ namespace Material
 {
     public static class Material
     {
-        public static BHoM.Materials.Material CreateMaterial(string name)
+        public static BH.oM.Materials.Material CreateMaterial(string name)
         {
-            return new BHoM.Materials.Material(name);
+            return new BH.oM.Materials.Material(name);
         }
     }
 }
