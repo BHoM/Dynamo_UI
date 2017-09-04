@@ -45,21 +45,12 @@
     <Reference Include="BHoM_Engine">
       <HintPath>..\..\BHoM_Engine\Build\BHoM_Engine.dll</HintPath>
     </Reference>
-    <Reference Include="DynamoCore">
-      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoServices, Version=1.0.0.1180, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DynamoServices, Version=1.0.1.1115, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Dynamo Studio 2017\DynamoServices.dll</HintPath>
     </Reference>
     <Reference Include="Geometry_Engine">
       <HintPath>..\..\BHoM_Engine\Build\Geometry_Engine.dll</HintPath>
-    </Reference>
-    <Reference Include="ProtoGeometry">
-      <HintPath>..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\ProtoGeometry.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Reflection_Engine">
       <HintPath>..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
@@ -89,13 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Filter.cs" />
-    <Compile Include="Geometry\BHBoundingBox.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Curve.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Line.cs" />
-    <Compile Include="Geometry\Curve\BHoM_Polyline.cs" />
-    <Compile Include="Geometry\Mesh\BHoM_Mesh.cs" />
-    <Compile Include="Geometry\Vector\BHoM_Point.cs" />
-    <Compile Include="Geometry\Vector\BHoM_Vector.cs" />
     <Compile Include="Base\BHoM_Object.cs" />
     <Compile Include="Global\BHoM_Project.cs" />
     <Compile Include="Material\Material.cs" />
@@ -103,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Environmental\Elements\" />
-    <Folder Include="Geometry\Surface\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
