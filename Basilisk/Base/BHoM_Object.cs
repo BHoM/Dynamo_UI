@@ -45,11 +45,16 @@ namespace Base
 
         /***************************************************/
 
-        public static object GetCustomData(BHB.BHoMObject bhomObject, string propName)
+        public static object GetCustomData(BHB.BHoMObject bhomObject, string propName = "")
         {
-            object value = null;
-            bhomObject.CustomData.TryGetValue(propName, out value);
-            return value;
+            if (propName.Length == 0)
+                return bhomObject.CustomData;
+            else
+            {
+                object value = null;
+                bhomObject.CustomData.TryGetValue(propName, out value);
+                return value;
+            }
         }
 
         /***************************************************/
@@ -83,14 +88,14 @@ namespace Base
         /***************************************************/
 
         [MultiReturn(new[] { "propertyNames", "propertyValues" })]
-        public static Dictionary<string, object> ExplodeObject(object obj)
+        public static Dictionary<string, object> ExplodeObject(BHB.BHoMObject obj)
         {
-            List<string> names = obj.GetPropertyNames();
+            Dictionary<string, object> properties = obj.GetPropertyDictionary();
 
             return new Dictionary<string, object>
             {
-                { "propertyNames", names },
-                { "propertyValues", names.Select(x => obj.GetPropertyValue(x)).ToList() }
+                { "propertyNames", properties.Keys },
+                { "propertyValues", properties.Values }
             };
         }
     }
