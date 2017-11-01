@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Basilisk")]
+[assembly: AssemblyTitle("Structure_Basilisk")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Basilisk")]
+[assembly: AssemblyProduct("Structure_Basilisk")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a45664ff-e8c5-41e0-a360-c4b6f99c2263")]
+[assembly: Guid("bcfd4840-f06c-403f-a3bc-384e27859a92")]
 
 // Version information for an assembly consists of the following four values:
 //

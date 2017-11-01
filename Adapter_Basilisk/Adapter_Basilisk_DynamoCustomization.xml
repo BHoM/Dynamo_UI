@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Adapter_Basilisk</name>
+  </assembly>
+  <namespaces>
+    <namespace name="BH.UI.Basilisk.Adapter">
+      <category>Basilisk.Adapter</category>
+    </namespace>
+  </namespaces>
+</doc>

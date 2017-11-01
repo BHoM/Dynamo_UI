@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>GSA_Basilisk</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Basilisk.GSA">
+      <category>Basilisk</category>
+    </namespace>
+  </namespaces>
+</doc>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Robot_Basilisk</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Basilisk.Robot">
+      <category>Basilisk</category>
+    </namespace>
+  </namespaces>
+</doc>

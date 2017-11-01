@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Basilisk</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Basilisk.Base">
+      <category>Basilisk.Base</category>
+    </namespace>
+  </namespaces>
+</doc>
