@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using BHA = BH.Adapter;
 using BH.oM.Base;
 using ADR = Autodesk.DesignScript.Runtime;
-using RSI = BH.Adapter.Robot;
 
 namespace BH.UI.Basilisk.Adapter
 {
