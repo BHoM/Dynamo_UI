@@ -18,6 +18,7 @@
 *.rar
 *.tar
 *.zip
+packages/
 
 # Logs and databases #
 ######################
@@ -38,22 +39,15 @@ Thumbs.db
 
 # build folders #
 ###############
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
+/bin/
+/obj/
+*/bin/
+*/obj/
 [Bb]uild/
-[Pp]ackages/
 
 # Visual Studio User File #
 ###########################
 *.suo
 *.user
-.vs/
+*.dll
 *.dll
