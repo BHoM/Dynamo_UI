@@ -5,6 +5,7 @@
 *.exe
 *.o
 *.so
+*.dll
 
 # Packages #
 ############
@@ -57,3 +58,4 @@ bld/
 *.user
 .vs/
 
+*.dll
