@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BHoM">
-      <HintPath>..\..\..\..\OneDrive\Documents\GitHub\BurohappoldEngineering\BHoM\Build\BHoM.dll</HintPath>
+      <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
     <Reference Include="CoreNodeModels, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.1.3.0\lib\net45\CoreNodeModels.dll</HintPath>
@@ -44,9 +44,6 @@
     </Reference>
     <Reference Include="DynamoApplications, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.1.3.0\lib\net45\DynamoApplications.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoBIM_Adapter">
-      <HintPath>..\..\DynamoBIM_Adapter\DynamoBIM_Adapter\bin\Debug\DynamoBIM_Adapter.dll</HintPath>
     </Reference>
     <Reference Include="DynamoCore, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.1.3.0\lib\net45\DynamoCore.dll</HintPath>
@@ -96,7 +93,7 @@
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.3.0\lib\net45\ProtoGeometry.dll</HintPath>
     </Reference>
     <Reference Include="Structure_Engine">
-      <HintPath>..\..\..\..\OneDrive\Documents\GitHub\BurohappoldEngineering\BHoM_Engine\Build\Structure_Engine.dll</HintPath>
+      <HintPath>..\..\BHoM_Engine\Build\Structure_Engine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -127,6 +124,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Structure_Basilisk_DynamoCustomization.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\source\repos\DynamoBIM_Adapter\DynamoBIM_Adapter\DynamoBIM_Adapter.csproj">
+      <Project>{63313714-eeb7-48cf-8e72-2fcdfa8b598a}</Project>
+      <Name>DynamoBIM_Adapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

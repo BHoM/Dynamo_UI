@@ -53,9 +53,6 @@
     <Reference Include="DynamoApplications, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.1.3.0\lib\net45\DynamoApplications.dll</HintPath>
     </Reference>
-    <Reference Include="DynamoBIM_Adapter">
-      <HintPath>..\..\DynamoBIM_Adapter\DynamoBIM_Adapter\bin\Debug\DynamoBIM_Adapter.dll</HintPath>
-    </Reference>
     <Reference Include="DynamoCore, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.1.3.0\lib\net45\DynamoCore.dll</HintPath>
     </Reference>
@@ -135,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Basilisk_DynamoCustomization.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\source\repos\DynamoBIM_Adapter\DynamoBIM_Adapter\DynamoBIM_Adapter.csproj">
+      <Project>{63313714-eeb7-48cf-8e72-2fcdfa8b598a}</Project>
+      <Name>DynamoBIM_Adapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
