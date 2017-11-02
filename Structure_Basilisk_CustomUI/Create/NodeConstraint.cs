@@ -22,15 +22,17 @@ namespace Basilisk.Structure
     [NodeDescription("Example Node Model, multiplies AxB")]
     [NodeCategory("Basilisk.Structure.Create.")]
     [InPortTypes("double", "double")]
-    [InPortDescriptions("Number A", "Numnber B")]
+    [InPortDescriptions("")]
     [OutPortNames("C")]
     [OutPortTypes("double")]
     [OutPortDescriptions("Product of AxB")]
     [IsDesignScriptCompatible]
-    public partial class NodeConstraint : NodeModel
+    public partial class NodeConstraint : NodeModel, I
     {
+
+
         public NodeConstraint()
-        {
+        {           
             RegisterAllPorts();
         }
 
@@ -42,14 +44,16 @@ namespace Basilisk.Structure
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (!HasConnectedInput(0) || !HasConnectedInput(1))
+            bool check = true;
+            //if (!HasConnectedInput(0) || !HasConnectedInput(1))
+            if (check)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             }
 
             var functionCall =
               AstFactory.BuildFunctionCall(
-                new Func<double, double, double>(MultiplyTwoNumbers),
+                new Func<ADG.Geometry, object>(Basilisk.Base.BHoMObject.BHoMGeometry),
                 new List<AssociativeNode> { inputAstNodes[0], inputAstNodes[1] });
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };

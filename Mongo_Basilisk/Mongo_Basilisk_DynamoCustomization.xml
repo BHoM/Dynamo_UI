@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Mongo_Basilisk</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Basilisk.Mongo">
+      <category>Basilisk</category>
+    </namespace>
+  </namespaces>
+</doc>

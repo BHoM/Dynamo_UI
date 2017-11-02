@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Create\NodeConstraint.cs" />
+    <Compile Include="Non-Component\CreateTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,8 +132,12 @@
   <ItemGroup>
     <Content Include="Structure_Basilisk_CustomUI_DynamoCustomization.xml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Non-Component\" />
+    <ProjectReference Include="..\Basilisk\Basilisk.csproj">
+      <Project>{a45664ff-e8c5-41e0-a360-c4b6f99c2263}</Project>
+      <Name>Basilisk</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -22,8 +22,10 @@
   "node_libraries": [
     "Basilisk, Version=2.0.0, Culture=neutral, PublicKeyToken=null",
     "Structure_Basilisk, Version=2.0.0, Culture=neutral, PublicKeyToken=null",
+    "Structure_Basilisk_CustomUI", "Version=2.0.0", "Culture=neutral","PublicKeyToken=null",
     "Adapter_Basilisk, Version=2.0.0, Culture=neutral, PublicKeyToken=null",
     "Robot_Basilisk, Version=2.0.0, Culture=neutral, PublicKeyToken=null",
-    "GSA_Basilisk, Version=2.0.0, Culture=neutral, PublicKeyToken=null"
+    "GSA_Basilisk, Version=2.0.0, Culture=neutral, PublicKeyToken=null",
+    "Mongo_Basilisk, Version=2.0.0, Culture=neutral, PublicKeyToken=null"
   ]
 }

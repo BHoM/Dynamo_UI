@@ -22,7 +22,7 @@ namespace BH.UI.Basilisk.Adapter
 
             List<BHoMObject> BHoM_objects = new List<BHoMObject>();
             BHA.BHoMAdapter BHAdapter = (BHA.BHoMAdapter)adapter;
-
+            
             foreach(object o in objects)
                 BHoM_objects.Add(o as BHoMObject);
 
