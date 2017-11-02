@@ -135,9 +135,9 @@
     <Content Include="Basilisk_DynamoCustomization.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\source\repos\DynamoBIM_Adapter\DynamoBIM_Adapter\DynamoBIM_Adapter.csproj">
-      <Project>{63313714-eeb7-48cf-8e72-2fcdfa8b598a}</Project>
-      <Name>DynamoBIM_Adapter</Name>
+    <ProjectReference Include="..\Dynamo_Adapter\Dynamo_Adapter.csproj">
+      <Project>{2ed34b1a-8e4d-4f9b-8748-79facb7714da}</Project>
+      <Name>Dynamo_Adapter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
