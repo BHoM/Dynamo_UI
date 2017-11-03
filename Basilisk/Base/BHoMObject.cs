@@ -29,10 +29,25 @@ namespace Basilisk.Base
             customObj.Name = Name;
             customObj.Tags = new HashSet<string>(Tags);
 
-            foreach (object o in customData)
-                customObj.CustomData.Add("A", o);
+            foreach (Dictionary<string, object> o in customData)
+                foreach (KeyValuePair<string, object> pair in o)
+                    customObj.CustomData.Add(pair.Key, pair.Value);
 
             return customObj;
+        }
+
+        public static Dictionary<string, object> CreateDictionary(List<string> key, List<object> value)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            if (key.Count != value.Count)
+                throw new Exception("Lists must have the same length");
+
+            for (int i = 0; i < key.Count; i++)
+            {
+                dic.Add(key[i], value[i]);
+            }
+
+            return dic;
         }
     }
 }
