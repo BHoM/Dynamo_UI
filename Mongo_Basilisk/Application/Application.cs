@@ -10,7 +10,7 @@ namespace Basilisk.Mongo
 {
     public static class Mongo
     {
-        public static BHAM.MongoAdapter GSAApplication(string serverName, string dataBaseName, string collectionName)
+        public static BHAM.MongoAdapter MongoApplication(string serverName, string dataBaseName, string collectionName)
         {
             BHAM.MongoAdapter app = new BHAM.MongoAdapter(serverName, dataBaseName, collectionName);
             return app;

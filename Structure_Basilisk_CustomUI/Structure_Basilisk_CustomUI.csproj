@@ -20,7 +20,7 @@
     <OutputPath>..\Build\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -122,8 +122,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Create\NodeConstraint.cs" />
-    <Compile Include="Non-Component\CreateTemplate.cs" />
+    <Compile Include="listBoxMe.cs" />
+    <Compile Include="listBoxNodeView.cs" />
+    <Compile Include="listBoxTest.xaml.cs">
+      <DependentUpon>listBoxTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -132,12 +135,17 @@
   <ItemGroup>
     <Content Include="Structure_Basilisk_CustomUI_DynamoCustomization.xml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Basilisk\Basilisk.csproj">
       <Project>{a45664ff-e8c5-41e0-a360-c4b6f99c2263}</Project>
       <Name>Basilisk</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="listBoxTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
