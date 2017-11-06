@@ -2,38 +2,48 @@
 using System.Collections.Generic;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
+using Dynamo.Controls;
+using Dynamo.Wpf;
 
 namespace Structure_Basilisk_CustomUI
 {
-    [NodeName("HelloGui")]
+    [NodeName("Create BHoM Object")]
     [NodeDescription("Example Node Model, multiplies A x the value of the slider")]
-    [NodeCategory("HelloDynamo")]
-    [InPortNames("A")]
-    [InPortTypes("double")]
-    [InPortDescriptions("Number A")]
-    [OutPortNames("C")]
-    [OutPortTypes("double")]
-    [OutPortDescriptions("Product of AxSlider")]
+    [NodeCategory("Basilisk.Base.BHoMObject")]
     [IsDesignScriptCompatible]
 
-    public class listBoxMe : NodeModel
+    public class listBoxMe : VariableInputNode
     {
         private double _sliderValue;
 
-
-        public double SliderValue
+        protected override string GetInputName(int index)
         {
-            get { return _sliderValue; }
-            set
-            {
-                _sliderValue = value;
-                RaisePropertyChanged("SliderValue");
-                OnNodeModified(false);
-            }
+            return "";
+        }
+
+        protected override string GetInputTooltip(int index)
+        {
+            return "Add your custom data";
+        }
+
+        protected override void RemoveInput()
+        {
+            if (InPorts.Count > 3)
+                base.RemoveInput();
+        }
+
+        protected override void AddInput()
+        {
+            base.AddInput();
+            
         }
 
         public listBoxMe()
         {
+            InPortData.Add(new PortData("Name", "Input the name of your custom object"));
+            InPortData.Add(new PortData("Tags", "Input the tags of your custom object"));
+            InPortData.Add(new PortData("", "Input the tags of your custom object"));
+            OutPortData.Add(new PortData("BHoM Object", "Your custom created BHoM object"));
             RegisterAllPorts();
         }
 
@@ -42,5 +52,24 @@ namespace Structure_Basilisk_CustomUI
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
         }
        
+    }
+
+    public class listBoxNodeView : VariableInputNodeViewCustomization, INodeViewCustomization<listBoxMe>
+    {
+        public void CustomizeView(listBoxMe model, NodeView nodeView)
+        {
+            UserControl1 listbox = new UserControl1()
+            {
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                VerticalAlignment = System.Windows.VerticalAlignment.Center
+            };
+            nodeView.inputGrid.Children.Add(listbox);
+            listbox.DataContext = model;
+            base.CustomizeView(model, nodeView);
+        }
+
+        public void Dispose()
+        {
+        }
     }
 }

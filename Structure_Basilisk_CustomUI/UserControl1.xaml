@@ -1,13 +1,12 @@
-﻿<UserControl x:Class="Structure_Basilisk_CustomUI.listBoxTest"
+﻿<UserControl x:Class="Structure_Basilisk_CustomUI.UserControl1"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Structure_Basilisk_CustomUI"
-             mc:Ignorable="d" 
-             Height="300" Width="300">
+             mc:Ignorable="d" Height="75.701" Width="124.739">
     <Grid>
-        <ListBox HorizontalAlignment="Left" Height="300" Margin="10,0,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="ListBox_SelectionChanged"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="21" Margin="2,54,0,0" TextWrapping="Wrap" Text="Property Name" VerticalAlignment="Top" Width="121"/>
 
     </Grid>
 </UserControl>

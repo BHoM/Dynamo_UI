@@ -5,7 +5,7 @@
   </assembly>
   <namespaces>
     <namespace name="Structure_Basilisk_CustomUI">
-      <category>Basilisk.Structure</category>
+      <category>Basilisk.Base</category>
     </namespace>
   </namespaces>
 </doc>

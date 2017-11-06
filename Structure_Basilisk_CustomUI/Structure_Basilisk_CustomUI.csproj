@@ -124,10 +124,10 @@
   <ItemGroup>
     <Compile Include="listBoxMe.cs" />
     <Compile Include="listBoxNodeView.cs" />
-    <Compile Include="listBoxTest.xaml.cs">
-      <DependentUpon>listBoxTest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -142,7 +142,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="listBoxTest.xaml">
+    <Page Include="UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

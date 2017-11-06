@@ -11,7 +11,7 @@ namespace BH.UI.Basilisk.Adapter
     public static partial class Adapter
     {
         public static IEnumerable<object> Pull(object app,
-            BHA.Queries.IQuery query,
+            object query,
             [ADR.DefaultArgument("null")]Dictionary<string, string> config,
             bool active = false)
         {
@@ -21,7 +21,7 @@ namespace BH.UI.Basilisk.Adapter
             if (config == null)
                 config = new Dictionary<string, string>();
 
-            IEnumerable<object> objects = adapter.Pull(query, config);
+            IEnumerable<object> objects = adapter.Pull((BHA.Queries.IQuery)query, config);
             return objects;
         }
     }

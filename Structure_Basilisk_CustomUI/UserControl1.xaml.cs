@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Structure_Basilisk_CustomUI
 {
     /// <summary>
-    /// Interaction logic for listBoxTest.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class listBoxTest : UserControl
+    public partial class UserControl1 : UserControl
     {
-        public listBoxTest()
+        public UserControl1()
         {
             InitializeComponent();
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
