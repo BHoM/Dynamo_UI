@@ -4,18 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BHA = BH.Adapter;
+using ADR = Autodesk.DesignScript.Runtime;
 
 namespace BH.UI.Basilisk.Adapter
 {
     public static partial class Adapter
     {
-        public static IEnumerable<object> Pull(BHA.BHoMAdapter adapter = null,
-            BHA.Queries.IQuery query = null,
-            Dictionary<string, string> config = null,
+        public static IEnumerable<object> Pull(object app,
+            BHA.Queries.IQuery query,
+            [ADR.DefaultArgument("null")]Dictionary<string, string> config,
             bool active = false)
         {
+            BHA.BHoMAdapter adapter = (BHA.BHoMAdapter)app;
             if (!active)
                 return null;
+            if (config == null)
+                config = new Dictionary<string, string>();
 
             IEnumerable<object> objects = adapter.Pull(query, config);
             return objects;
