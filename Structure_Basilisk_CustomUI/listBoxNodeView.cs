@@ -5,14 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dynamo.Controls;
+using Dynamo.Graph.Nodes;
 using Dynamo.Wpf;
 using Dynamo.ViewModels;
 using BH.oM.Base;
 using BHER = BH.Engine.Reflection;
+using System.Reflection;
 
 namespace Structure_Basilisk_CustomUI
 {
-    public class listBoxNodeView : VariableInputNodeViewCustomization, INodeViewCustomization<listBoxMe>
+    public class listBoxNodeView :  INodeViewCustomization<listBoxMe>
     {
         private DynamoViewModel dynamoViewModel;
         private listBoxMe model;
@@ -21,20 +23,44 @@ namespace Structure_Basilisk_CustomUI
 
         public void CustomizeView(listBoxMe nodeModel, NodeView nodeView)
         {
-            base.CustomizeView(nodeModel, nodeView);
-
+            view = nodeView;
+            model = nodeModel;
             MenuItem types = new MenuItem { Header = "TYPES", IsCheckable = false };
             types = GetTypes(types);
             nodeView.MainContextMenu.Items.Add(types);
             types.Click += Types_Click;
+            nodeModel.InPorts.Clear();
         }
 
         private void Types_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //MenuItem item = (MenuItem)sender;
-            object myObj = ((MenuItem)sender).Tag;
-            
+            MenuItem test1 = e.OriginalSource as MenuItem;
+            Type test = (Type)test1.Tag;
+            GetInputInfo(test);
+
         }
+
+        public void GetInputInfo(Type type)
+        {
+            ConstructorInfo[] constructors = type.GetConstructors();
+            ConstructorInfo Constructor = constructors[0];
+            foreach (ConstructorInfo info in constructors)
+            {
+                ParameterInfo[] param = info.GetParameters();
+                if (info.GetParameters().Length > Constructor.GetParameters().Length)
+                    Constructor = info;
+            }
+            List<ParameterInfo> inputs = Constructor.GetParameters().ToList();
+            UpdateInputs(inputs);
+            view.UpdateLayout();
+        }
+
+        public void UpdateInputs(List<ParameterInfo> inputs)
+        {
+            foreach (ParameterInfo info in inputs)
+                model.InPortData.Add(new PortData(info.Name, "test"));
+        }
+
 
         public MenuItem GetTypes(MenuItem menuItem)
         {

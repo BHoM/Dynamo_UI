@@ -13,37 +13,12 @@ namespace Structure_Basilisk_CustomUI
     [NodeCategory("Basilisk.Base.BHoMObject")]
     [IsDesignScriptCompatible]
 
-    public class listBoxMe : VariableInputNode
+    public class listBoxMe : NodeModel
     {
         private double _sliderValue;
 
-        protected override string GetInputName(int index)
-        {
-            return "";
-        }
-
-        protected override string GetInputTooltip(int index)
-        {
-            return "Add your custom data";
-        }
-
-        protected override void RemoveInput()
-        {
-            if (InPorts.Count > 3)
-                base.RemoveInput();
-        }
-
-        protected override void AddInput()
-        {
-            base.AddInput();
-            
-        }
-
         public listBoxMe()
         {
-            InPortData.Add(new PortData("Name", "Input the name of your custom object"));
-            InPortData.Add(new PortData("Tags", "Input the tags of your custom object"));
-            InPortData.Add(new PortData("", "Input the tags of your custom object"));
             OutPortData.Add(new PortData("BHoM Object", "Your custom created BHoM object"));
             RegisterAllPorts();
         }
