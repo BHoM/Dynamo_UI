@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using Dynamo.Controls;
@@ -52,24 +53,5 @@ namespace Structure_Basilisk_CustomUI
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
         }
        
-    }
-
-    public class listBoxNodeView : VariableInputNodeViewCustomization, INodeViewCustomization<listBoxMe>
-    {
-        public void CustomizeView(listBoxMe model, NodeView nodeView)
-        {
-            UserControl1 listbox = new UserControl1()
-            {
-                HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
-                VerticalAlignment = System.Windows.VerticalAlignment.Center
-            };
-            nodeView.inputGrid.Children.Add(listbox);
-            listbox.DataContext = model;
-            base.CustomizeView(model, nodeView);
-        }
-
-        public void Dispose()
-        {
-        }
     }
 }
