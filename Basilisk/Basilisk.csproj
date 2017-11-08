@@ -142,8 +142,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(TargetDir)*.*" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\$(ProjectName)\bin\"
-xcopy /Y "$(ProjectDir)pkg.json" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\$(ProjectName)"
-xcopy/Y "$(ProjectDir)Basilisk_DynamoCustomization.xml" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\$(ProjectName)\bin"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)*.*" "$(AppData)\Dynamo\Dynamo Core\1.2\packages\$(ProjectName)\bin\"
+xcopy /Y "$(ProjectDir)pkg.json" "$(AppData)\Dynamo\Dynamo Core\1.2\packages\$(ProjectName)"
+xcopy/Y "$(ProjectDir)Basilisk_DynamoCustomization.xml" "$(AppData)\Dynamo\Dynamo Core\1.2\packages\$(ProjectName)\bin"</PostBuildEvent>
   </PropertyGroup>
 </Project>
