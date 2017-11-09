@@ -12,6 +12,8 @@ using BH.oM.Base;
 using BHER = BH.Engine.Reflection;
 using System.Reflection;
 using ProtoCore.AST.AssociativeAST;
+using Dynamo.Graph;
+using System.Xml;
 
 namespace Structure_Basilisk_CustomUI
 {
@@ -41,7 +43,7 @@ namespace Structure_Basilisk_CustomUI
         private listBoxMe model;
         private NodeView view;
         protected Type test = null;
-        protected ConstructorInfo Constructor = null;
+        protected ConstructorInfo m_Constructor = null;
         protected List<MethodInfo> m_DaGets = new List<MethodInfo>();
 
 
@@ -66,18 +68,18 @@ namespace Structure_Basilisk_CustomUI
         public void GetInputInfo(Type type)
         {
             ConstructorInfo[] constructors = type.GetConstructors();
-            Constructor = constructors[0];
+            m_Constructor = constructors[0];
             foreach (ConstructorInfo info in constructors)
             {
                 ParameterInfo[] param = info.GetParameters();
-                if (info.GetParameters().Length > Constructor.GetParameters().Length)
-                    Constructor = info;
+                if (info.GetParameters().Length > m_Constructor.GetParameters().Length)
+                    m_Constructor = info;
             }
-            List<ParameterInfo> inputs = Constructor.GetParameters().ToList();
+            List<ParameterInfo> inputs = m_Constructor.GetParameters().ToList();
             UpdateInputs(inputs);
             int items = view.MainContextMenu.Items.Count;
             view.MainContextMenu.Items.RemoveAt(items - 1);
-            view.UpdateLayout();
+            //view.UpdateLayout();
 
         }
 
@@ -109,9 +111,33 @@ namespace Structure_Basilisk_CustomUI
         {
         }
 
-        protected void ComputeInputs(List<ParameterInfo> inputs)
+        protected override void SerializeCore(XmlElement element, SaveContext context)
         {
+            base.SerializeCore(element, context);
 
+            if (test != null && m_Constructor != null)
+            {
+                var serNode = element.OwnerDocument.CreateElement("TypeName");
+                serNode.InnerText = test.AssemblyQualifiedName;
+                element.AppendChild(serNode);
+            }           
+        }
+
+        protected override void DeserializeCore(XmlElement nodeElement, SaveContext context)
+        {
+            base.DeserializeCore(nodeElement, context);
+            var deSer = nodeElement.ChildNodes.Cast<XmlNode>().FirstOrDefault(x => x.Name == "TypeName");
+            test = Type.GetType(deSer.InnerText);
+
+            ConstructorInfo[] constructors = test.GetConstructors();
+            m_Constructor = constructors[0];
+            foreach (ConstructorInfo info in constructors)
+            {
+                ParameterInfo[] param = info.GetParameters();
+                if (info.GetParameters().Length > m_Constructor.GetParameters().Length)
+                    m_Constructor = info;
+            }
+            List<ParameterInfo> inputs = m_Constructor.GetParameters().ToList();
         }
 
         public AssociativeNode SetOutput(List<AssociativeNode> inputAstNodes)
@@ -122,7 +148,7 @@ namespace Structure_Basilisk_CustomUI
 
             try
             {
-                var function = AstFactory.BuildPrimitiveNodeFromObject(Constructor.Invoke(inputAstNodes.ToArray()));
+                var function = AstFactory.BuildPrimitiveNodeFromObject(m_Constructor.Invoke(inputAstNodes.ToArray()));
                 return function;
             }
             catch (Exception)
