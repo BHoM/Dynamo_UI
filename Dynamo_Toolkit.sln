@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basilisk", "Basilisk\Basilisk.csproj", "{A45664FF-E8C5-41E0-A360-C4B6F99C2263}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mongo_Basilisk", "Mongo_Basilisk\Mongo_Basilisk.csproj", "{5E826FB9-D43A-4DDE-A979-94188C2B609C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo_Adapter", "Dynamo_Adapter\Dynamo_Adapter.csproj", "{2ED34B1A-8E4D-4F9B-8748-79FACB7714DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Environmental_Basilisk", "Environmental_Basilisk\Environmental_Basilisk.csproj", "{697E4209-DF84-42FD-BB36-14611BB33DA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{2ED34B1A-8E4D-4F9B-8748-79FACB7714DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ED34B1A-8E4D-4F9B-8748-79FACB7714DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ED34B1A-8E4D-4F9B-8748-79FACB7714DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{697E4209-DF84-42FD-BB36-14611BB33DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{697E4209-DF84-42FD-BB36-14611BB33DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{697E4209-DF84-42FD-BB36-14611BB33DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{697E4209-DF84-42FD-BB36-14611BB33DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

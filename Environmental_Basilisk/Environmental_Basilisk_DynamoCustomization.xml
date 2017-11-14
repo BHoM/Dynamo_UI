@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Environmental_Basilisk</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Basilisk.Environmental">
+      <category>Basilisk.Environmental</category>
+    </namespace>
+  </namespaces>
+</doc>

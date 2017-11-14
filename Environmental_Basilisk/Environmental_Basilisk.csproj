@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0076D41B-AD8D-43FB-ADA0-5A82A3C61E52}</ProjectGuid>
+    <ProjectGuid>{697E4209-DF84-42FD-BB36-14611BB33DA5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Adapter_Basilisk</RootNamespace>
-    <AssemblyName>Adapter_Basilisk</AssemblyName>
+    <RootNamespace>Environmental_Basilisk</RootNamespace>
+    <AssemblyName>Environmental_Basilisk</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,17 +33,21 @@
     <Reference Include="BHoM">
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
     </Reference>
-    <Reference Include="BHoM_Adapter">
-      <HintPath>..\..\BHoM_Adapter\Build\BHoM_Adapter.dll</HintPath>
-    </Reference>
     <Reference Include="DynamoServices, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.1.3.0\lib\net45\DynamoServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamoUnits, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.3.0\lib\net45\DynamoUnits.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NodeServices2, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.1.3.0\lib\net45\NodeServices2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Robot_Adapter">
-      <HintPath>..\..\..\..\OneDrive\Documents\GitHub\BurohappoldEngineering\Robot_Toolkit\Build\Robot_Adapter.dll</HintPath>
+    <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.3.0\lib\net45\ProtoGeometry.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,25 +59,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUD\Delete.cs" />
-    <Compile Include="CRUD\Execute.cs" />
-    <Compile Include="CRUD\Pull.cs" />
-    <Compile Include="CRUD\Push.cs" />
-    <Compile Include="CRUD\UpdateProperty.cs" />
+    <Compile Include="Create\Location.cs" />
+    <Compile Include="Convert\ToBHoM.cs" />
+    <Compile Include="Convert\ToDesignScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Adapter_Basilisk_DynamoCustomization.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Environmental_Basilisk_DynamoCustomization.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y "$(TargetDir)*.*" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin\"
-xcopy/Y "$(ProjectDir)Adapter_Basilisk_DynamoCustomization.xml" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin"
-
-
-</PostBuildEvent>
+xcopy/Y "$(ProjectDir)Environmental_Basilisk_DynamoCustomization.xml" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin"</PostBuildEvent>
   </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
