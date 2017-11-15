@@ -72,8 +72,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(TargetDir)*.*" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin\"
-xcopy/Y "$(ProjectDir)Environmental_Basilisk_DynamoCustomization.xml" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)*.*" "$(AppData)\Dynamo\Dynamo Core\1.2\packages\Basilisk\bin\"
+xcopy/Y "$(ProjectDir)Environmental_Basilisk_DynamoCustomization.xml" "$(AppData)\Dynamo\Dynamo Core\1.2\packages\Basilisk\bin"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
