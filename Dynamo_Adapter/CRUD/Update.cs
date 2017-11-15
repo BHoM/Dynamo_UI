@@ -9,7 +9,7 @@ namespace BH.Adapter.DynamoBIM
 {
     public partial class DynamoBIMAdapter
     {
-        public override int UpdateProperty(FilterQuery filter, string property, object newValue, Dictionary<string, string> config = null)
+        public override int UpdateProperty(FilterQuery filter, string property, object newValue, Dictionary<string, object> config = null)
         {
             throw new NotImplementedException();
         }

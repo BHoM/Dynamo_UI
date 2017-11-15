@@ -47,7 +47,7 @@ namespace Structure_Basilisk_CustomUI
         public MenuItem GetTypes(MenuItem menuItem)
         {
             Type bhomType = typeof(BHoMObject);
-            IEnumerable<Type> types = types = BHER.Create.TypeList().Where(x => x.IsSubclassOf(bhomType) && !x.ContainsGenericParameters).OrderBy(x => x.Name);
+            IEnumerable<Type> types = types = BHER.Query.GetBHoMTypeList().Where(x => x.IsSubclassOf(bhomType) && !x.ContainsGenericParameters).OrderBy(x => x.Name);
 
             foreach (Type type in types)
             {
@@ -82,6 +82,8 @@ namespace Structure_Basilisk_CustomUI
                     model.ConstructorInfo = info;
             }
             model.inputs = model.ConstructorInfo.GetParameters().ToList();
+            model.inputs2 = new List<Type>(model.ConstructorInfo.GetParameters().Select(p => p.ParameterType));
+            model.inputs2.Add(model.test);
             UpdateInputs(model.inputs);
             int items = view.MainContextMenu.Items.Count;
             view.MainContextMenu.Items.RemoveAt(items - 1);

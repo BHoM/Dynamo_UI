@@ -12,14 +12,14 @@ namespace BH.UI.Basilisk.Adapter
     {
         public static IEnumerable<object> Pull(object app,
             object query,
-            [ADR.DefaultArgument("null")]Dictionary<string, string> config,
+            [ADR.DefaultArgument("null")]Dictionary<string, object> config,
             bool active = false)
         {
             BHA.BHoMAdapter adapter = (BHA.BHoMAdapter)app;
             if (!active)
                 return null;
             if (config == null)
-                config = new Dictionary<string, string>();
+                config = new Dictionary<string, object>();
 
             IEnumerable<object> objects = adapter.Pull((BHA.Queries.IQuery)query, config);
             return objects;

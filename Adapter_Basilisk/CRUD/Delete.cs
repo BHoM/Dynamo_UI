@@ -11,7 +11,7 @@ namespace BH.UI.Basilisk.Adapter
     {
         public static int? Delete(BHA.BHoMAdapter adapter = null, 
             BHA.Queries.FilterQuery query = null, 
-            Dictionary<string, string> config = null,
+            Dictionary<string, object> config = null,
             bool active = false)
         {
             if (!active)

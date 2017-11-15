@@ -26,7 +26,7 @@ namespace BH.UI.Basilisk.Adapter
             foreach(object o in objects)
                 BHoM_objects.Add(o as BHoMObject);
 
-            Dictionary<string, string> config = new Dictionary<string, string>();
+            Dictionary<string, object> config = new Dictionary<string, object>();
 
             bool success = BHAdapter.Push(BHoM_objects, tag, config);
             return success;

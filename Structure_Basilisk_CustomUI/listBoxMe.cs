@@ -15,6 +15,7 @@ using ProtoCore.AST.AssociativeAST;
 using Dynamo.Graph;
 using System.Xml;
 using DynamoUnits;
+using System.Linq.Expressions;
 
 namespace Structure_Basilisk_CustomUI
 {
@@ -29,7 +30,8 @@ namespace Structure_Basilisk_CustomUI
     {
         private listBoxMeView _thisView;
         public List<ParameterInfo> inputs { get; set; }
-        public ConstructorInfo ConstructorInfo { get; set; } = null;
+        public List<Type> inputs2 { get; set; }
+        public MethodBase ConstructorInfo { get; set; } = null;
         public Type test = null;
         public bool runView = true;
 
@@ -49,14 +51,19 @@ namespace Structure_Basilisk_CustomUI
             //if (!check)
             //    return AstFactory.BuildNullNode();
 
+            //Action a = (Action)Activator.CreateInstance(test);
             try
             {
-                var function = AstFactory.BuildPrimitiveNodeFromObject(ConstructorInfo.Invoke(inputAstNodes.ToArray()));
-                return function;
+                //var function = AstFactory.BuildPrimitiveNodeFromObject(ConstructorInfo.Invoke(inputAstNodes.ToArray()));
+                //return function;
+                //AssociativeNode result = AstFactory.BuildFunctionCall(ConstructorInfo.DeclaringType.FullName, inputAstNodes);
+                //var functionCall = typeof(Func<,>).MakeGenericType(test);
+                var buildOutput = AstFactory.BuildFunctionCall((Action)Activator.CreateInstance(test), inputAstNodes);
+                return buildOutput;
             }
             catch (Exception)
             {
-
+                return AstFactory.BuildNullNode();
             }
 
             return AstFactory.BuildNullNode();
@@ -92,8 +99,8 @@ namespace Structure_Basilisk_CustomUI
                     ConstructorInfo = info;
             }
             inputs = ConstructorInfo.GetParameters().ToList();
-            
         }
+
 
         //public void UpdateInputs(List<ParameterInfo> inputs)
         //{

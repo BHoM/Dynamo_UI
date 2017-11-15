@@ -14,7 +14,7 @@ namespace BH.UI.Basilisk.Adapter
             BHA.Queries.FilterQuery filter = null,
             string property = "",
             object newValue = null,
-            Dictionary<string, string> config = null,
+            Dictionary<string, object> config = null,
             bool active = false)
         {
             if (!active)

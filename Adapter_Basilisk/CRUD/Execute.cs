@@ -12,7 +12,7 @@ namespace BH.UI.Basilisk.Adapter
         public static bool? Execute(BHA.BHoMAdapter adapter = null,
             string command = "",
             Dictionary<string, object> parameters = null,
-            Dictionary<string, string> config = null,
+            Dictionary<string, object> config = null,
             bool active = false)
         {
             if (!active)
