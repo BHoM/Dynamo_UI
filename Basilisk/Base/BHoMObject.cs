@@ -50,36 +50,9 @@ namespace Basilisk.Base
             return dic;
         }
 
-        //public static BHB.CustomObject CreateCustomObject(string Name, List<string> Tags, params List<Tuple<string, object>>[] customData)
-        //{
-
-        //    BHB.CustomObject customObj = new BHB.CustomObject();
-
-        //    customObj.Name = Name;
-        //    customObj.Tags = new HashSet<string>(Tags);
-
-
-        //    foreach (List<Tuple<string, object>> o in customData)
-        //        foreach (Tuple<string, object> pair in o)
-        //            customObj.CustomData.Add(pair.Item1, pair.Item2);
-
-        //    return customObj;
-        //}
-
-        //public static List<Tuple<string, object>> CreateDictionary(List<string> key, List<object> value)
-        //{
-        //    List<Tuple<string, object>> dic = new List<Tuple<string, object>>();
-
-        //    if (key.Count != value.Count)
-        //        throw new Exception("Lists must have the same length");
-
-        //    for (int i = 0; i < key.Count; i++)
-        //    {
-        //        Tuple<string, object> tempTup = new Tuple<string, object>(key[i], value[i]);
-        //        dic.Add(tempTup);
-        //    }
-
-        //    return dic;
-        //}
+        public static object GetProperty(object BHoMObject, string key)
+        {
+            return BH.Engine.Reflection.Query.GetPropertyValue(BHoMObject, key);
+        }
     }
 }
