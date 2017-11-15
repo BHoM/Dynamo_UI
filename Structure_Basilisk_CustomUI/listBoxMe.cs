@@ -35,40 +35,46 @@ namespace Structure_Basilisk_CustomUI
         public Type test = null;
         public bool runView = true;
 
+
+
         public listBoxMe()
         {
             OutPortData.Add(new PortData("BHoM Object", "Your custom created BHoM object"));
         }
+
+
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), SetOutput(inputAstNodes)) };
         }
 
+
+        //public static Func<T,T,T> GetCtor<T>()
+        //{
+        //    Type type = typeof(T);
+        //    Expression body = Expression.New(type);
+        //    return Expression.Lambda<Func<T,T,T>>(body).Compile();
+        //}
+
+        //public Type create_type(Type[] types)
+        //{
+        //    return typeof(Func<>).MakeGenericType(types);
+        //    return typeof(Func<,>).MakeGenericType(types); 
+        //    return typeof(Func<,,>).MakeGenericType(types); 
+        //    return typeof(Func<,,,>).MakeGenericType(types);                                                            
+        //}
+
+
+
         public AssociativeNode SetOutput(List<AssociativeNode> inputAstNodes)
         {
-
-            //if (!check)
-            //    return AstFactory.BuildNullNode();
-
-            //Action a = (Action)Activator.CreateInstance(test);
-            try
-            {
-                //var function = AstFactory.BuildPrimitiveNodeFromObject(ConstructorInfo.Invoke(inputAstNodes.ToArray()));
-                //return function;
-                //AssociativeNode result = AstFactory.BuildFunctionCall(ConstructorInfo.DeclaringType.FullName, inputAstNodes);
-                //var functionCall = typeof(Func<,>).MakeGenericType(test);
-                var buildOutput = AstFactory.BuildFunctionCall((Action)Activator.CreateInstance(test), inputAstNodes);
-                return buildOutput;
-            }
-            catch (Exception)
-            {
-                return AstFactory.BuildNullNode();
-            }
-
+            var delegateType = typeof(Func<,>).MakeGenericType(test);
             return AstFactory.BuildNullNode();
-
         }
+
+
+
         protected override void SerializeCore(XmlElement element, SaveContext context)
         {
             base.SerializeCore(element, context);
@@ -80,6 +86,8 @@ namespace Structure_Basilisk_CustomUI
                 element.AppendChild(serNode);
             }
         }
+
+
 
         protected override void DeserializeCore(XmlElement nodeElement, SaveContext context)
         {
@@ -100,19 +108,5 @@ namespace Structure_Basilisk_CustomUI
             }
             inputs = ConstructorInfo.GetParameters().ToList();
         }
-
-
-        //public void UpdateInputs(List<ParameterInfo> inputs)
-        //{
-        //    foreach (ParameterInfo info in inputs)
-        //        InPortData.Add(new PortData(info.Name, "test"));
-
-        //    RegisterAllPorts();
-        //    NickName = "BHoM " + test.Name;
-        //    OverrideNameWithNickName = true;
-        //}
-
-
-
     }
 }

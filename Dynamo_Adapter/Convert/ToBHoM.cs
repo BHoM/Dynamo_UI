@@ -66,7 +66,7 @@ namespace BH.Adapter.DesignScript
 
         /***************************************************/
 
-        public static BHG.NurbCurve ToBHoM(this ADG.Curve nurbCurve)
+        public static BHG.NurbCurve ToBHoM(this ADG.Curve Curve)
         {
             throw new NotImplementedException();
         }
@@ -75,7 +75,10 @@ namespace BH.Adapter.DesignScript
 
         public static BHG.NurbCurve ToBHoM(this ADG.NurbsCurve nurbCurve)
         {
-            throw new NotImplementedException();
+            IEnumerable<ADG.Point> dPoints = nurbCurve.ControlPoints().ToList();
+            IEnumerable<double> dWeights= nurbCurve.Weights().ToList();
+            IEnumerable<double> dKnots = nurbCurve.Knots().ToList();
+            return new BHG.NurbCurve(dPoints.Select(x => x.ToBHoM()), dWeights, dKnots);
         }
 
         /***************************************************/
