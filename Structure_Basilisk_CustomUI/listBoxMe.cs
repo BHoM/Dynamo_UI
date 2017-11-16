@@ -69,7 +69,19 @@ namespace Structure_Basilisk_CustomUI
 
         public AssociativeNode SetOutput(List<AssociativeNode> inputAstNodes)
         {
-            var delegateType = typeof(Func<,>).MakeGenericType(test);
+
+            try
+            {
+                var asm = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.ManifestModule.Name == "mscorlib.dll").First();
+                var names = asm.GetTypes().Where(x => x.Name.Contains("Func"));
+                var delegateType = Type.GetType("System.Func`1").MakeGenericType(test);
+            }
+            catch (Exception)
+            {
+
+                return AstFactory.BuildNullNode();
+            }
+
             return AstFactory.BuildNullNode();
         }
 

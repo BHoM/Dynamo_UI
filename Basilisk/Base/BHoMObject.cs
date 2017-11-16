@@ -54,5 +54,17 @@ namespace Basilisk.Base
         {
             return BH.Engine.Reflection.Query.GetPropertyValue(BHoMObject, key);
         }
+
+        [MultiReturn(new[] { "propertyNames", "propertyValues" })]
+        public static Dictionary<string, object> GetObjectCustomData(BHB.BHoMObject obj)
+        {
+            Dictionary<string, object> properties = obj.CustomData;
+
+            return new Dictionary<string, object>
+            {
+                { "propertyNames", properties.Keys },
+                { "propertyValues", properties.Values }
+            };
+        }
     }
 }
