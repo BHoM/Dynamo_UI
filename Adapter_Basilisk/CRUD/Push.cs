@@ -14,7 +14,6 @@ namespace BH.UI.Basilisk.Adapter
         public static bool? Push(object adapter,
             List<object> objects,
             string tag = "",
-            bool a = true,
             bool active = false)
         {
             if (!active)
