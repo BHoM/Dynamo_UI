@@ -49,40 +49,25 @@ namespace Structure_Basilisk_CustomUI
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), SetOutput(inputAstNodes)) };
         }
 
-
-        //public static Func<T,T,T> GetCtor<T>()
-        //{
-        //    Type type = typeof(T);
-        //    Expression body = Expression.New(type);
-        //    return Expression.Lambda<Func<T,T,T>>(body).Compile();
-        //}
-
-        //public Type create_type(Type[] types)
-        //{
-        //    return typeof(Func<>).MakeGenericType(types);
-        //    return typeof(Func<,>).MakeGenericType(types); 
-        //    return typeof(Func<,,>).MakeGenericType(types); 
-        //    return typeof(Func<,,,>).MakeGenericType(types);                                                            
-        //}
-
-
-
         public AssociativeNode SetOutput(List<AssociativeNode> inputAstNodes)
         {
 
+            ConstructorInfo constructor = null;
+            Type delegateType = null;
             try
             {
-                var asm = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.ManifestModule.Name == "mscorlib.dll").First();
-                var names = asm.GetTypes().Where(x => x.Name.Contains("Func"));
-                var delegateType = Type.GetType("System.Func`1").MakeGenericType(test);
+                delegateType = Type.GetType("System.Func`3").MakeGenericType(inputs2[0], inputs2[1], test);
+                constructor = delegateType.GetConstructors().First();
             }
             catch (Exception)
             {
-
                 return AstFactory.BuildNullNode();
             }
 
-            return AstFactory.BuildNullNode();
+            //return AstFactory.BuildFunctionCall(Delegate.CreateDelegate(delegateType, ConstructorInfo) ,inputAstNodes);
+            return AstFactory.BuildFunctionCall(ConstructorInfo.DeclaringType.FullName, "ctor", new List<AssociativeNode>());
+
+
         }
 
 

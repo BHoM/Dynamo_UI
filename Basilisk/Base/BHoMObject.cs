@@ -61,5 +61,17 @@ namespace Basilisk.Base
             Dictionary<string, object> properties = obj.CustomData;
             return properties[key];
         }
+
+        [MultiReturn(new[] { "propertyNames", "propertyValues" })]
+        public static Dictionary<string, object> ExplodeObject(BHB.BHoMObject obj)
+        {
+            Dictionary<string, object> properties = obj.GetPropertyDictionary();
+
+            return new Dictionary<string, object>
+            {
+                { "propertyNames", properties.Keys },
+                { "propertyValues", properties.Values }
+            };
+        }
     }
 }
