@@ -33,7 +33,8 @@
     <Reference Include="DynamoServices, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.1.3.0\lib\net45\DynamoServices.dll</HintPath>
     </Reference>
-    <Reference Include="Mongo_Adapter">
+    <Reference Include="Mongo_Adapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Mongo_Toolkit\Build\Mongo_Adapter.dll</HintPath>
     </Reference>
     <Reference Include="NodeServices2, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
@@ -60,7 +61,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(TargetDir)*.*" "$(AppData)\Dynamo\Dynamo Core\1.2\packages\Basilisk\bin\"
-xcopy/Y "$(ProjectDir)Mongo_Basilisk_DynamoCustomization.xml" "$(AppData)\Dynamo\Dynamo Core\1.2\packages\Basilisk\bin"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)*.*" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin\"
+xcopy/Y "$(ProjectDir)Mongo_Basilisk_DynamoCustomization.xml" "$(AppData)\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin"</PostBuildEvent>
   </PropertyGroup>
 </Project>
