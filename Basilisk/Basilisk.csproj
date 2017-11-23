@@ -102,10 +102,10 @@
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.3.0\lib\net45\ProtoGeometry.dll</HintPath>
     </Reference>
     <Reference Include="Reflection_Engine">
-      <HintPath>..\..\..\..\OneDrive\Documents\GitHub\BurohappoldEngineering\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
+      <HintPath>..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
     </Reference>
     <Reference Include="Structure_Engine">
-      <HintPath>..\..\..\..\OneDrive\Documents\GitHub\BurohappoldEngineering\BHoM_Engine\Build\Structure_Engine.dll</HintPath>
+      <HintPath>..\..\BHoM_Engine\Build\Structure_Engine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

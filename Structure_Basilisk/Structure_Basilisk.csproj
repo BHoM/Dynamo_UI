@@ -114,7 +114,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Create\Bar.cs" />
     <Compile Include="Create\BarRelease.cs" />
     <Compile Include="Create\Node.cs" />
     <Compile Include="Create\NodeConstraint.cs" />

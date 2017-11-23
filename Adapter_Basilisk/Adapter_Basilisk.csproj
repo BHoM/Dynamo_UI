@@ -44,7 +44,7 @@
       <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.1.3.0\lib\net45\NodeServices2.dll</HintPath>
     </Reference>
     <Reference Include="Robot_Adapter">
-      <HintPath>..\..\..\..\OneDrive\Documents\GitHub\BurohappoldEngineering\Robot_Toolkit\Build\Robot_Adapter.dll</HintPath>
+      <HintPath>..\..\Robot_Toolkit\Build\Robot_Adapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
