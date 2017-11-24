@@ -31,7 +31,7 @@ namespace Structure_Basilisk_CustomUI
         private listBoxMeView _thisView;
         public List<ParameterInfo> inputs { get; set; }
         public List<Type> inputs2 { get; set; }
-        public MethodBase ConstructorInfo { get; set; } = null;
+        public ConstructorInfo ConstructorInfo { get; set; } = null;
         public Type test = null;
         public bool runView = true;
 
@@ -46,28 +46,57 @@ namespace Structure_Basilisk_CustomUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), SetOutput(inputAstNodes)) };
+            if (ConstructorInfo != null)
+            {
+                if (!HasConnectedInput(0) || !HasConnectedInput(1))
+                {
+                    return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+                }
+
+                object a = SetOutput(inputAstNodes);
+                var functionCall =
+                AstFactory.BuildFunctionCall(
+                new Func<List<AssociativeNode>, object>(this.SetOutput),
+                inputAstNodes);
+
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+            }
+
+            else
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+
         }
 
-        public AssociativeNode SetOutput(List<AssociativeNode> inputAstNodes)
+        //public AssociativeNode SetOutput(List<AssociativeNode> inputAstNodes)
+        //{
+
+        //    ConstructorInfo constructor = null;
+        //    Type delegateType = null;
+        //    try
+        //    {
+        //        delegateType = Type.GetType("System.Func`3").MakeGenericType(inputs2[0], inputs2[1], test);
+        //        constructor = delegateType.GetConstructors().First();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return AstFactory.BuildNullNode();
+        //    }
+
+        //    //return AstFactory.BuildFunctionCall(Delegate.CreateDelegate(delegateType, ConstructorInfo) ,inputAstNodes);
+        //    return AstFactory.BuildFunctionCall(ConstructorInfo.DeclaringType.FullName, "ctor", new List<AssociativeNode>());
+        //}
+
+        public List<object> SetOutput(List<AssociativeNode> inputAstNodes)
         {
-
-            ConstructorInfo constructor = null;
-            Type delegateType = null;
-            try
+            List<object> inputs3 = new List<object>();
+            for (int i = 0; i < inputAstNodes.Count; i++)
             {
-                delegateType = Type.GetType("System.Func`3").MakeGenericType(inputs2[0], inputs2[1], test);
-                constructor = delegateType.GetConstructors().First();
-            }
-            catch (Exception)
-            {
-                return AstFactory.BuildNullNode();
+                Tuple<int, NodeModel> data;
+                TryGetInput(i, out data);
+                inputs3.Add(data.Item2.CachedValue.Data);
             }
 
-            //return AstFactory.BuildFunctionCall(Delegate.CreateDelegate(delegateType, ConstructorInfo) ,inputAstNodes);
-            return AstFactory.BuildFunctionCall(ConstructorInfo.DeclaringType.FullName, "ctor", new List<AssociativeNode>());
-
-
+            return inputs3;
         }
 
 

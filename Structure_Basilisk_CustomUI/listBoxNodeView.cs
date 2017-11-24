@@ -32,7 +32,7 @@ namespace Structure_Basilisk_CustomUI
             if (model.runView)
             {
                 MenuItem types = new MenuItem { Header = "BHoM Types", IsCheckable = false };
-                types = GetTypes(types);
+                types = this.GetTypes(types);
                 nodeView.MainContextMenu.Items.Add(types);
                 types.Click += Types_Click;
                 model.RegisterAllPorts();
