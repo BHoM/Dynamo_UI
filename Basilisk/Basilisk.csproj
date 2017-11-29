@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BHoMObject.cs" />
+    <Compile Include="Base\DesignScriptObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
