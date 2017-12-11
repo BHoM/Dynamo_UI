@@ -19,7 +19,7 @@ namespace Revit2017.Elements
             List<Autodesk.Revit.DB.FamilyInstance> converted = new List<Autodesk.Revit.DB.FamilyInstance>();
             foreach (Revit.Elements.StructuralFraming beam in beams)
                 converted.Add(beam.InternalElement as Autodesk.Revit.DB.FamilyInstance);
-            return RSE.BarIO.RevitColumnsToBHomBars(converted);
+            return RSE.BarIO.RevitBeamsToBHomBars(converted);
         }
     }
 }
