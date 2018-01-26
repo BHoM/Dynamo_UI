@@ -5,6 +5,7 @@
 *.exe
 *.o
 *.so
+*.dll
 
 # Packages #
 ############
@@ -18,7 +19,6 @@
 *.rar
 *.tar
 *.zip
-packages/
 
 # Logs and databases #
 ######################
@@ -39,15 +39,22 @@ Thumbs.db
 
 # build folders #
 ###############
-/bin/
-/obj/
-*/bin/
-*/obj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 [Bb]uild/
+[Pp]ackages/
 
 # Visual Studio User File #
 ###########################
 *.suo
 *.user
-*.dll
-*.dll
+.vs/
+/BHoM/Acoustic/Database
