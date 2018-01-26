@@ -39,9 +39,6 @@
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="BHoM_Adapter">
-      <HintPath>..\..\BHoM_Adapter\Build\BHoM_Adapter.dll</HintPath>
-    </Reference>
     <Reference Include="BHoM_Engine">
       <HintPath>..\..\BHoM_Engine\Build\BHoM_Engine.dll</HintPath>
     </Reference>
@@ -54,6 +51,9 @@
     </Reference>
     <Reference Include="Reflection_Engine">
       <HintPath>..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="Serialiser_Engine">
+      <HintPath>..\..\BHoM_Engine\Build\Serialiser_Engine.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -79,15 +79,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\Filter.cs" />
-    <Compile Include="Base\BHoM_Object.cs" />
-    <Compile Include="Global\BHoM_Project.cs" />
-    <Compile Include="Material\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Environmental\Elements\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -96,34 +90,6 @@
     <EmbeddedResource Include="Properties\BasiliskImages.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Structural.Elements.BHBar.FromBHNodes.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Structural.Elements.BHBar.FromBHNodes.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Structural.Elements.BHNode.FromDSPoint.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Structural.Elements.BHNode.FromDSPoint.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Structural.Elements.BHPanel.FromDSCurve.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Structural.Elements.BHPanel.FromDSCurve.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Structural.Elements.BHBar.FromDSPoints.Large.png" />
-    <Content Include="Resources\Structural.Elements.BHBar.FromDSPoints.Small.png" />
-    <Content Include="Resources\Structural.Elements.BHBar.ToDSLine.Large.png" />
-    <Content Include="Resources\Structural.Elements.BHBar.ToDSLine.Small.png" />
-    <Content Include="Resources\Structural.Elements.BHNode.ToDSPoints.Large.png" />
-    <Content Include="Resources\Structural.Elements.BHNode.ToDSPoints.Small.png" />
-    <Content Include="Resources\Structural.Elements.BHPanel.FromDSSurface.Large.png" />
-    <Content Include="Resources\Structural.Elements.BHPanel.FromDSSurface.Small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
