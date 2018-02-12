@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basilisk", "Basilisk\Basilisk.csproj", "{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Methods_Basilisk", "Methods_Basilisk\Methods_Basilisk.csproj", "{B49B782C-3EE2-4C58-A2C5-D489DD31BD7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B49B782C-3EE2-4C58-A2C5-D489DD31BD7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49B782C-3EE2-4C58-A2C5-D489DD31BD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49B782C-3EE2-4C58-A2C5-D489DD31BD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49B782C-3EE2-4C58-A2C5-D489DD31BD7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
