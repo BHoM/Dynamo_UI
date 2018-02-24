@@ -12,7 +12,7 @@ namespace BH.UI.Basilisk.Methods
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static List<IObject> Push(BHoMAdapter adapter, IEnumerable<IObject> objects, string tag = "", Dictionary<string, object> config = null)
+        public static List<IBHoMObject> Push(BHoMAdapter adapter, IEnumerable<IBHoMObject> objects, string tag = "", Dictionary<string, object> config = null)
         {
             return adapter.Push(objects, tag, config);
         }
