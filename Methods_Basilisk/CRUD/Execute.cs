@@ -1,6 +1,6 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using BH.Adapter;
-using BH.oM.Queries;
+using BH.oM.DataManipulation.Queries;
 using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Methods
