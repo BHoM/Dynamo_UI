@@ -1,5 +1,5 @@
 ﻿using BH.oM.Base;
-using BH.oM.Queries;
+using BH.oM.DataManipulation.Queries;
 using BH.UI.Basilisk.Components;
 using System;
 using System.Collections.Generic;
