@@ -8,6 +8,9 @@ using System;
 using System.Linq.Expressions;
 using System.Xml;
 using Dynamo.Graph;
+using ADG = Autodesk.DesignScript.Geometry;
+using BHG = BH.oM.Geometry;
+using System.Diagnostics;
 
 namespace BH.UI.Basilisk.Templates
 {
@@ -33,7 +36,7 @@ namespace BH.UI.Basilisk.Templates
             OutPortData.Add(new PortData("result", "result"));
             RegisterAllPorts();
 
-            ArgumentLacing = LacingStrategy.Disabled;
+            ArgumentLacing = LacingStrategy.Longest;
         }
 
 
@@ -79,27 +82,13 @@ namespace BH.UI.Basilisk.Templates
                 // Get the Full name of the method
                 string name = Method.DeclaringType.FullName + Method.Name;
 
-                // If method doesn't have a delegate yet, create one and store it in the globalb dictionary (not ideal but works for now)
-                if (m_Method is MethodInfo && !Methods.Compute.MethodsToExecute.ContainsKey(name))
-                {
-                    MethodInfo info = m_Method as MethodInfo;
-                    Methods.Compute.MethodsToExecute[name] = info.CreateDelegate(Expression.GetDelegateType(
-                        (from parameter in Method.GetParameters() select parameter.ParameterType)
-                        .Concat(new[] { info.ReturnType })
-                        .ToArray()));
-                }
-                else if (m_Method is ConstructorInfo && !Constructors.Compute.ConstructorsToExecute.ContainsKey(name))
-                    Constructors.Compute.ConstructorsToExecute[name] = m_Method as ConstructorInfo;
+                // If method doesn't exist in the global dictionary yet, create one and store it there (not ideal but works for now)
+                if (!Methods.Compute.MethodsToExecute.ContainsKey(name))
+                    Methods.Compute.MethodsToExecute[name] = m_Method;
 
-                // Create the function call for this node
-                var method = (m_Method is MethodInfo) 
-                    ? new Func<string, List<object>, object>(Methods.Compute.ExecuteMethod)
-                    : new Func<string, List<object>, object>(Constructors.Compute.ExecuteConstructor);
-                var functionCall = AstFactory.BuildFunctionCall(method, new List<AssociativeNode> {
-                    AstFactory.BuildStringNode(name),
-                    AstFactory.BuildExprList(inputAstNodes)
-                });
-
+                // Create the Build assignment for outpout 0
+                List<AssociativeNode> arguments = new List<AssociativeNode> { AstFactory.BuildStringNode(name) }.Concat(inputAstNodes).ToList();
+                AssociativeNode functionCall = AstFactory.BuildFunctionCall("BH.UI.Basilisk.Methods.Compute", "ExecuteMethod", arguments);
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
             };
         }
@@ -252,6 +241,6 @@ namespace BH.UI.Basilisk.Templates
         private List<string> m_Descriptions = new List<string>();
 
 
-        /*******************************************/
+        /***************************************************/
     }
 }

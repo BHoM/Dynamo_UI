@@ -3,6 +3,7 @@ using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 namespace BH.UI.Basilisk.Components
@@ -79,13 +80,18 @@ namespace BH.UI.Basilisk.Components
                 for (int i = 0; i < inputAstNodes.Count; i++)
                     names.Add(AstFactory.BuildStringNode(GetInputName(i)));
 
-                var method = new Func<List<string>, List<object>, BH.oM.Base.CustomObject>(Methods.Create.CustomObject);
+                //var method = new Func<List<string>, List<object>, BH.oM.Base.CustomObject>(Methods.Create.CustomObject);
 
-                var functionCall = AstFactory.BuildFunctionCall(method, new List<AssociativeNode> {
-                    AstFactory.BuildExprList(names),
-                    AstFactory.BuildExprList(inputAstNodes)
-                });
+                //var functionCall = AstFactory.BuildFunctionCall(method, new List<AssociativeNode> {
+                //    AstFactory.BuildExprList(names),
+                //    AstFactory.BuildExprList(inputAstNodes)
+                //});
 
+                //return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+
+                // Create the Build assignment for outpout 0
+                List<AssociativeNode> arguments = new List<AssociativeNode> { AstFactory.BuildExprList(names) }.Concat(inputAstNodes).ToList();
+                AssociativeNode functionCall = AstFactory.BuildFunctionCall("BH.UI.Basilisk.Methods.Create", "CustomObject", arguments);
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
             };
         }
