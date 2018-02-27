@@ -66,9 +66,9 @@ namespace BH.UI.Basilisk.Components
             if (DynamoEngine != null)
                 dlls = DynamoEngine.LibraryServices.ImportedLibraries.ToList();
 
-            if (IsPartiallyApplied)
+            if (IsPartiallyApplied || OutPortData.Count != m_OutputNames.Count || OutPorts.Count != m_OutputNames.Count)
             {
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+                return new List<AssociativeNode>();
             }
             else
             {
@@ -219,13 +219,25 @@ namespace BH.UI.Basilisk.Components
         private void SetOutputs(List<string> names)
         {
             m_NeedChange = false;
-            VariableOutputController.SetNumOutputs(names.Count);
+            if (OutPortData.Count == names.Count)
+            {
+                for (int i = 0; i < names.Count; i++)
+                {
+                    OutPortData[i].NickName = names[i];
+                }
+                this.RaisePropertyChanged();
+            }
+            else
+            {
+                VariableOutputController.SetNumOutputs(names.Count);
+                if (names.Count != OutPortData.Count)
+                    Console.WriteLine("ouch");
 
+                for (int i = 0; i < names.Count; i++)
+                    OutPortData[i].NickName = names[i];
 
-            for (int i = 0; i < names.Count; i++)
-                OutPortData[i].NickName = names[i];
-
-            RegisterAllPorts();
+                RegisterAllPorts();
+            }
         }
 
 
