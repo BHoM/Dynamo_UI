@@ -3,6 +3,7 @@ using BH.Adapter;
 using BH.oM.Base;
 using BH.oM.DataManipulation.Queries;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BH.UI.Basilisk.Methods
 {
@@ -12,9 +13,14 @@ namespace BH.UI.Basilisk.Methods
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static List<IObject> Push(BHoMAdapter adapter, IEnumerable<IObject> objects, string tag = "", Dictionary<string, object> config = null)
+        public static List<IObject> Push(BHoMAdapter adapter, IEnumerable<object> objects, string tag = "", CustomObject config = null, bool active = false)
         {
-            return adapter.Push(objects, tag, config);
+            Dictionary<string, object> conf = (config != null) ? config.CustomData : null;
+
+            if (active)
+                return adapter.Push(objects.Cast<IObject>(), tag, conf);
+            else
+                return new List<IObject>();
         }
 
         /***************************************************/
