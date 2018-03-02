@@ -9,7 +9,7 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Adapter", "Objects", "Tag", "Config", "Active")]
     [InPortTypes("object", "object[]", "string", "object", "bool")]
-    [InPortDescriptions("Adapter", "Objects to push", "Tag to apply to the objects being pushed", "Push config", "Execute the push")]
+    [InPortDescriptions("Adapter", "Objects to push", "Tag to apply to the objects being pushed", "Push config (custom object)", "Execute the push")]
     [OutPortNames("Success", "Objects")]
     [OutPortTypes("object[]")]
     [OutPortDescriptions("Pushed objects")]
@@ -32,7 +32,7 @@ namespace BH.UI.Basilisk.Components
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (IsPartiallyApplied)
+            if (inputAstNodes[0].Kind == AstKind.Null || inputAstNodes[0].Kind == AstKind.Null)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             }
