@@ -112,7 +112,11 @@ namespace BH.UI.Basilisk.Methods
             if (MethodsToExecute.ContainsKey(methodKey))  // Very Hacky by will get us on the road
             {
                 object[] translations = arguments.Select(x => Engine.Dynamo.Convert.IToBHoM(x)).ToArray();
-                return MethodsToExecute[methodKey].Invoke(null, translations);
+                MethodBase method = MethodsToExecute[methodKey];
+                if (method is ConstructorInfo)
+                    return ((ConstructorInfo)method).Invoke(translations);
+                else
+                    return method.Invoke(null, translations);
             }
             else
                 return null;
