@@ -73,24 +73,35 @@ namespace BH.UI.Basilisk.Templates
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (IsPartiallyApplied || Method == null)
-            {
+            // Make sure the method has been assigned
+            if (m_Method == null)
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-            else
+
+            // Check if the component has all the inputs it needs
+            bool IsReady = true;
+            ParameterInfo[] parameters = m_Method.GetParameters();
+            for (int i = 0; i < parameters.Length; i++)
             {
-                // Get the Full name of the method
-                string name = Method.DeclaringType.FullName + Method.Name;
+                if (inputAstNodes == null && !parameters[i].HasDefaultValue)
+                {
+                    IsReady = false;
+                    break;
+                }
+            }
+            if (!IsReady)
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
 
-                // If method doesn't exist in the global dictionary yet, create one and store it there (not ideal but works for now)
-                if (!Methods.Compute.MethodsToExecute.ContainsKey(name))
-                    Methods.Compute.MethodsToExecute[name] = m_Method;
+            // Get the Full name of the method
+            string name = Method.DeclaringType.FullName + Method.Name;
 
-                // Create the Build assignment for outpout 0
-                List<AssociativeNode> arguments = new List<AssociativeNode> { AstFactory.BuildStringNode(name) }.Concat(inputAstNodes).ToList();
-                AssociativeNode functionCall = AstFactory.BuildFunctionCall("BH.UI.Basilisk.Methods.Compute", "ExecuteMethod", arguments);
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
-            };
+            // If method doesn't exist in the global dictionary yet, create one and store it there (not ideal but works for now)
+            if (!Methods.Compute.MethodsToExecute.ContainsKey(name))
+                Methods.Compute.MethodsToExecute[name] = m_Method;
+
+            // Create the Build assignment for outpout 0
+            List<AssociativeNode> arguments = new List<AssociativeNode> { AstFactory.BuildStringNode(name) }.Concat(inputAstNodes).ToList();
+            AssociativeNode functionCall = AstFactory.BuildFunctionCall("BH.UI.Basilisk.Methods.Compute", "ExecuteMethod", arguments);
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }
 
         /*******************************************/
