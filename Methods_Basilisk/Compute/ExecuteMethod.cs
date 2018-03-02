@@ -113,6 +113,19 @@ namespace BH.UI.Basilisk.Methods
             {
                 object[] translations = arguments.Select(x => Engine.Dynamo.Convert.IToBHoM(x)).ToArray();
                 MethodBase method = MethodsToExecute[methodKey];
+
+                // Make sure default values are assigned when the inputs are null
+                ParameterInfo[] parameters = method.GetParameters();
+                if (parameters.Length != translations.Length)
+                    return null;
+
+                for(int i = 0; i < parameters.Length; i++)
+                {
+                    if (translations[i] == null && parameters[i].HasDefaultValue)
+                        translations[i] = parameters[i].DefaultValue;
+                }
+
+                // Invoke the method
                 if (method is ConstructorInfo)
                     return ((ConstructorInfo)method).Invoke(translations);
                 else
