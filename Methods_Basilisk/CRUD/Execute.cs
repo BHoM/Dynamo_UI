@@ -1,5 +1,6 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using BH.Adapter;
+using BH.oM.Base;
 using BH.oM.DataManipulation.Queries;
 using System.Collections.Generic;
 
@@ -11,9 +12,16 @@ namespace BH.UI.Basilisk.Methods
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static bool Execute(BHoMAdapter adapter, string command, Dictionary<string, object> parameters = null, Dictionary<string, object> config = null)
+        public static bool Execute(BHoMAdapter adapter, string command, CustomObject parameters = null, CustomObject config = null, bool active = false)
         {
-            return adapter.Execute(command, parameters, config);
+            if (active)
+            {
+                Dictionary<string, object> conf = (config != null) ? config.CustomData : null;
+                Dictionary<string, object> para = (config != null) ? parameters.CustomData : null;
+                return adapter.Execute(command, para, conf);
+            }
+            else
+                return false;
         }
 
         /***************************************************/

@@ -1,4 +1,5 @@
-﻿using Dynamo.Graph.Nodes;
+﻿using BH.UI.Basilisk.Templates;
+using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
 
@@ -9,12 +10,12 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Adapter", "Query", "Config", "Active")]
     [InPortTypes("object", "object", "object", "bool")]
-    [InPortDescriptions("Adapter", "BHoM Query", "Pull config", "Execute the pull")]
+    [InPortDescriptions("Adapter", "BHoM Query\nDefault: new FilterQuery()", "Pull config\nDefault: null", "Execute the pull\nDefault: false")]
     [OutPortNames("Objects")]
     [OutPortTypes("object[]")]
     [OutPortDescriptions("Objects obtained from the query")]
     [IsDesignScriptCompatible]
-    public class PullNode : NodeModel
+    public class PullNode : ZeroTouchNode
     {
         /*******************************************/
         /**** Constructors                      ****/
@@ -22,25 +23,16 @@ namespace BH.UI.Basilisk.Components
 
         public PullNode()
         {
-            RegisterAllPorts();
-        }
+            ClassName = "Methods.CRUD";
+            MethodName = "Pull";
 
-
-        /*******************************************/
-        /**** Override Methods                  ****/
-        /*******************************************/
-
-        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
-        {
-            if (IsPartiallyApplied)
-            {
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-            else
-            {
-                var functionCall = AstFactory.BuildFunctionCall("Methods.CRUD", "Pull", inputAstNodes);
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+            DefaultValues = new Dictionary<int, AssociativeNode> {
+                { 1, AstFactory.BuildNullNode() },
+                { 2, AstFactory.BuildNullNode() },
+                { 3, AstFactory.BuildBooleanNode(false) }
             };
+
+            RegisterAllPorts();
         }
 
 

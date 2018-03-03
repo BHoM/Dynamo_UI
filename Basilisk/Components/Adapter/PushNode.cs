@@ -1,4 +1,5 @@
-﻿using Dynamo.Graph.Nodes;
+﻿using BH.UI.Basilisk.Templates;
+using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
 
@@ -9,12 +10,12 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Adapter", "Objects", "Tag", "Config", "Active")]
     [InPortTypes("object", "object[]", "string", "object", "bool")]
-    [InPortDescriptions("Adapter", "Objects to push", "Tag to apply to the objects being pushed", "Push config (custom object)", "Execute the push")]
-    [OutPortNames("Success", "Objects")]
+    [InPortDescriptions("Adapter", "Objects to push", "Tag to apply to the objects being pushed\nDefault: \"\"", "Push config (custom object)\nDefault: null", "Execute the push\nDefault: false")]
+    [OutPortNames("Objects")]
     [OutPortTypes("object[]")]
     [OutPortDescriptions("Pushed objects")]
     [IsDesignScriptCompatible]
-    public class PushNode : NodeModel
+    public class PushNode : ZeroTouchNode
     {
         /*******************************************/
         /**** Constructors                      ****/
@@ -22,25 +23,16 @@ namespace BH.UI.Basilisk.Components
 
         public PushNode()
         {
-            RegisterAllPorts();
-        }
+            ClassName = "Methods.CRUD";
+            MethodName = "Push";
 
-
-        /*******************************************/
-        /**** Override Methods                  ****/
-        /*******************************************/
-
-        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
-        {
-            if (inputAstNodes[0].Kind == AstKind.Null || inputAstNodes[0].Kind == AstKind.Null)
-            {
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-            else
-            {
-                var functionCall = AstFactory.BuildFunctionCall("Methods.CRUD", "Push", inputAstNodes);
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+            DefaultValues = new Dictionary<int, AssociativeNode> {
+                { 2, AstFactory.BuildStringNode("aaa") },
+                { 3, AstFactory.BuildNullNode() },
+                { 4, AstFactory.BuildBooleanNode(false) }
             };
+
+            RegisterAllPorts();
         }
 
 

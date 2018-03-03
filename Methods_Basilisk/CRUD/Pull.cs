@@ -12,9 +12,18 @@ namespace BH.UI.Basilisk.Methods
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static IEnumerable<object> Pull(BHoMAdapter adapter, IQuery query, Dictionary<string, object> config = null)
+        public static IEnumerable<object> Pull(BHoMAdapter adapter, IQuery query = null, CustomObject config = null, bool active = false)
         {
-            return adapter.Pull(query, config);
+            if (query == null)
+                query = new FilterQuery();
+
+            if (active)
+            {
+                Dictionary<string, object> conf = (config != null) ? config.CustomData : null;
+                return adapter.Pull(query, conf);
+            }
+            else
+                return new List<object>();
         }
 
         /***************************************************/

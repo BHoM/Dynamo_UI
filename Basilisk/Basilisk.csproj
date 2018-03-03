@@ -169,6 +169,7 @@
     <Compile Include="Templates\MethodNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dynamo_Extensions\VariableOutputNode.cs" />
+    <Compile Include="Templates\ZeroTouchNode.cs" />
     <Compile Include="Views\Adapter\QueryView.cs" />
     <Compile Include="Views\Adapter\AdapterView.cs" />
     <Compile Include="Views\Engine\ModifyObjectView.cs" />
