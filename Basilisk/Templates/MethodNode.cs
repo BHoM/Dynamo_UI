@@ -215,7 +215,11 @@ namespace BH.UI.Basilisk.Templates
         {
             m_Method = null;
 
-            List<MethodBase> methods = type.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly).ToList<MethodBase>();
+            List<MethodBase> methods;
+            if (methodName == ".ctor")
+                methods = type.GetConstructors().ToList<MethodBase>();
+            else
+                methods = type.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly).ToList<MethodBase>();
 
             foreach (MethodBase method in methods)
             {

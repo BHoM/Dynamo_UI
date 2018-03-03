@@ -13,14 +13,14 @@ namespace BH.UI.Basilisk.Methods
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static List<IObject> Push(BHoMAdapter adapter, IEnumerable<object> objects, string tag = "", CustomObject config = null, bool active = false)
+        public static List<object> Push(BHoMAdapter adapter, IEnumerable<object> objects, string tag = "", CustomObject config = null, bool active = false)
         {
             Dictionary<string, object> conf = (config != null) ? config.CustomData : null;
 
             if (active)
-                return adapter.Push(objects.Cast<IObject>(), tag, conf);
+                return adapter.Push(objects.Cast<IObject>(), tag, conf).ToList<object>();
             else
-                return new List<IObject>();
+                return new List<object>();
         }
 
         /***************************************************/
