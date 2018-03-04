@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace BH.UI.Basilisk.Methods
 {
-    [IsVisibleInDynamoLibrary(false)]
     public static partial class Create
     {
         /***************************************************/

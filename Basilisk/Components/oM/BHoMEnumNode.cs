@@ -3,17 +3,20 @@ using BH.UI.Basilisk.Templates;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("BHoMObj")]
-    [NodeDescription("Creates a BHoMObject to choose from the context menu")]
+    [NodeName("Enum")]
+    [NodeDescription("Creates an enum to choose from the context menu")]
     [NodeCategory("Basilisk.oM")]
     [IsDesignScriptCompatible]
-    public class BHoMObjectNode : MethodNode
+    public class BHoMEnumNode : EnumNode
     {
         /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public BHoMObjectNode() {}
+        public BHoMEnumNode()
+        {
+            RegisterAllPorts();
+        }
 
 
         /*******************************************/
