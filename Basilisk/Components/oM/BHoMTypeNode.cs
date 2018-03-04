@@ -3,17 +3,20 @@ using BH.UI.Basilisk.Templates;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("BHoMObj")]
-    [NodeDescription("Creates a BHoMObject to choose from the context menu")]
+    [NodeName("Type")]
+    [NodeDescription("Creates a type to choose from the context menu")]
     [NodeCategory("Basilisk.oM")]
     [IsDesignScriptCompatible]
-    public class BHoMObjectNode : MethodNode
+    public class BHoMTypeNode : TypeNode
     {
         /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public BHoMObjectNode() {}
+        public BHoMTypeNode()
+        {
+            RegisterAllPorts();
+        }
 
 
         /*******************************************/
