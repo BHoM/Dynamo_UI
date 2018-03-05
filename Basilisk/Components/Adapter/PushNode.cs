@@ -27,7 +27,7 @@ namespace BH.UI.Basilisk.Components
             MethodName = "Push";
 
             DefaultValues = new Dictionary<int, AssociativeNode> {
-                { 2, AstFactory.BuildStringNode("aaa") },
+                { 2, AstFactory.BuildStringNode("") },
                 { 3, AstFactory.BuildNullNode() },
                 { 4, AstFactory.BuildBooleanNode(false) }
             };

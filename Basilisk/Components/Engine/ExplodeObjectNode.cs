@@ -225,7 +225,7 @@ namespace BH.UI.Basilisk.Components
                 {
                     OutPortData[i].NickName = names[i];
                 }
-                this.RaisePropertyChanged();
+                this.OnNodeModified();
             }
             else
             {
