@@ -1,5 +1,7 @@
 ﻿using Autodesk.DesignScript.Runtime;
+using BH.Engine.Dynamo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -126,10 +128,18 @@ namespace BH.UI.Basilisk.Methods
                 }
 
                 // Invoke the method
+                object result = null;
                 if (method is ConstructorInfo)
-                    return ((ConstructorInfo)method).Invoke(translations);
+                    result = ((ConstructorInfo)method).Invoke(translations);
                 else
-                    return method.Invoke(null, translations);
+                    result = method.Invoke(null, translations);
+
+                if (result is IList)
+                    return ((IList)result).Cast<object>().Select(x => x.IToDesignScript());
+                else if (result != null)
+                    return result.IToDesignScript();
+                else
+                    return null;
             }
             else
                 return null;

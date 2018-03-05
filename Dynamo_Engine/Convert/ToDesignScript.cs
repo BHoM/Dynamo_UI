@@ -15,6 +15,16 @@ namespace BH.Engine.Dynamo
         /**** Public Methods  - Interfaces              ****/
         /***************************************************/
 
+        public static object IToDesignScript(this object obj)
+        {
+            if (obj is BHG.IGeometry)
+                return Convert.ToDesignScript(obj as dynamic);
+            else
+                return obj;
+        }
+
+        /***************************************************/
+
         public static ADG.Geometry IToDesignScript(this BHG.IGeometry geometry)
         {
             return Convert.ToDesignScript(geometry as dynamic);
@@ -62,7 +72,7 @@ namespace BH.Engine.Dynamo
 
         public static ADG.NurbsCurve ToDesignScript(this BHG.NurbCurve nurbsCurve)
         {
-            throw new NotImplementedException();
+            return ADG.NurbsCurve.ByControlPointsWeightsKnots(nurbsCurve.ControlPoints.Select(x => x.ToDesignScript()), nurbsCurve.Weights.ToArray(), nurbsCurve.Knots.ToArray());
         }
 
         /***************************************************/

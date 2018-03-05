@@ -1,6 +1,11 @@
 ﻿using Autodesk.DesignScript.Runtime;
+using BH.Engine.Dynamo;
 using BH.oM.Base;
+using BH.oM.Geometry;
 using System.Collections.Generic;
+using System;
+using System.Collections;
+using System.Linq;
 
 namespace BH.UI.Basilisk.Methods
 {
@@ -27,14 +32,29 @@ namespace BH.UI.Basilisk.Methods
                     default:
                         {
                             if (custom.CustomData.ContainsKey(name))
-                                return custom.CustomData[name];
+                            {
+                                object result = custom.CustomData[name];
+                                if (result is IGeometry)
+                                    result = BH.Engine.Dynamo.Convert.IToDesignScript(result as dynamic);
+                                return result;
+                            }
                             else
                                 return null;
                         }
                 }                
             }
             else
-                return Engine.Reflection.Query.PropertyValue(obj, name);
+            {
+                object result = Engine.Reflection.Query.PropertyValue(obj, name);
+                if (result is IGeometry)
+                    result = BH.Engine.Dynamo.Convert.IToDesignScript(result as dynamic);
+                else if (result is IEnumerable)
+                {
+                    result = ((IEnumerable)result).Cast<object>().Select(x => BH.Engine.Dynamo.Convert.IToDesignScript(x as dynamic));
+                }
+                return result;
+            }
+                
         }
 
         /***************************************************/
