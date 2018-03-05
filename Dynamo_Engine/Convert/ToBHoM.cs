@@ -79,7 +79,12 @@ namespace BH.Engine.Dynamo
 
         public static BHG.NurbCurve ToBHoM(this ADG.NurbsCurve nurbCurve)
         {
-            throw new NotImplementedException();
+            return new BHG.NurbCurve
+            {
+                ControlPoints = nurbCurve.ControlPoints().Select(x => x.ToBHoM()).ToList(),
+                Knots = nurbCurve.Knots().ToList(),
+                Weights = nurbCurve.Weights().ToList()
+            };
         }
 
         /***************************************************/
