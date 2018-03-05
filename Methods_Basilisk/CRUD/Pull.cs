@@ -20,7 +20,8 @@ namespace BH.UI.Basilisk.Methods
             if (active)
             {
                 Dictionary<string, object> conf = (config != null) ? config.CustomData : null;
-                return adapter.Pull(query, conf);
+                IEnumerable<object> result = adapter.Pull(query, conf);
+                return result;
             }
             else
                 return new List<object>();
