@@ -53,6 +53,10 @@
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.1.2.0\lib\net45\CoreNodeModelsWpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DataStructure_Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM_Engine\Build\DataStructure_Engine.dll</HintPath>
+    </Reference>
     <Reference Include="DynamoCore, Version=1.2.0.2690, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.1.2.0\lib\net45\DynamoCore.dll</HintPath>
       <Private>True</Private>
@@ -171,13 +175,10 @@
     <Compile Include="Components\oM\BHoMObjectNode.cs" />
     <Compile Include="Components\oM\CustomObjectNode.cs" />
     <Compile Include="Components\Engine\ToJsonNode.cs" />
-    <Compile Include="Templates\TypeView.cs" />
-    <Compile Include="Templates\TypeNode.cs" />
-    <Compile Include="Templates\EnumNode.cs" />
+    <Compile Include="Templates\SelectorMenu.cs" />
     <Compile Include="Templates\MethodNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dynamo_Extensions\VariableOutputNode.cs" />
-    <Compile Include="Templates\EnumView.cs" />
     <Compile Include="Templates\ZeroTouchNode.cs" />
     <Compile Include="Views\Adapter\PullView.cs" />
     <Compile Include="Views\Adapter\QueryView.cs" />
@@ -212,7 +213,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>call "$(TargetDir)UI_PostBuild.exe" ..\..\ "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin"
-Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.3\packages\Basilisk\pkg.json"</PostBuildEvent>
+Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.3\packages\Basilisk\pkg.json"
+
+call "$(TargetDir)UI_PostBuild.exe" ..\..\ "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Basilisk\bin"
+Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Basilisk\pkg.json"</PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo 0.9\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>

@@ -10,22 +10,18 @@ namespace BH.UI.Basilisk.Views
     public class ConvertObjectView : MethodView<ConvertObjectNode> 
     {
         /*******************************************/
+        /**** Properties                        ****/
+        /*******************************************/
+
+        public override string MethodGroup { get; set; } = "Convert";
+
+
+        /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public ConvertObjectView()
-        {
-        }
+        public ConvertObjectView() {}
 
-
-        /*******************************************/
-        /**** Template Methods                  ****/
-        /*******************************************/
-
-        public override IEnumerable<MethodBase> GetRelevantMethods()
-        {
-            return BH.Engine.Reflection.Query.BHoMMethodList().Where(x => x.DeclaringType.Name == "Convert"); 
-        }
 
         /*******************************************/
     }

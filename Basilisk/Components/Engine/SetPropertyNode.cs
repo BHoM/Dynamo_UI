@@ -10,8 +10,8 @@ namespace BH.UI.Basilisk.Components
     [InPortNames("object", "property", "value")]
     [InPortTypes("object", "string", "object")]
     [InPortDescriptions("object to modify", "property name", "new value")]
-    [OutPortNames("result")]      
-    [OutPortTypes("object")]
+    [OutPortNames("  ")]      
+    [OutPortTypes("modified object")]
     [OutPortDescriptions("modified object")]
     [IsDesignScriptCompatible]
     public class SetPropertyNode : NodeModel
