@@ -219,25 +219,15 @@ namespace BH.UI.Basilisk.Components
         private void SetOutputs(List<string> names)
         {
             m_NeedChange = false;
-            if (OutPortData.Count == names.Count)
-            {
-                for (int i = 0; i < names.Count; i++)
-                {
-                    OutPortData[i].NickName = names[i];
-                }
-                this.OnNodeModified();
-            }
-            else
-            {
-                VariableOutputController.SetNumOutputs(names.Count);
-                if (names.Count != OutPortData.Count)
-                    Console.WriteLine("ouch");
 
-                for (int i = 0; i < names.Count; i++)
-                    OutPortData[i].NickName = names[i];
+            VariableOutputController.SetNumOutputs(names.Count);
+            if (names.Count != OutPortData.Count)
+                Console.WriteLine("ouch");
 
-                RegisterAllPorts();
-            }
+            for (int i = 0; i < names.Count; i++)
+                OutPortData[i].NickName = names[i];
+
+            RegisterAllPorts();
         }
 
 
