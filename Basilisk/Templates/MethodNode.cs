@@ -11,6 +11,7 @@ using Dynamo.Graph;
 using ADG = Autodesk.DesignScript.Geometry;
 using BHG = BH.oM.Geometry;
 using System.Diagnostics;
+using BH.Engine.Reflection.Convert;
 
 namespace BH.UI.Basilisk.Templates
 {
@@ -142,8 +143,6 @@ namespace BH.UI.Basilisk.Templates
 
         protected override void DeserializeCore(XmlElement element, SaveContext context)
         {
-            base.DeserializeCore(element, context);
-
             Type type = null;
             string methodName = "";
             List<Type> paramTypes = new List<Type>();
@@ -174,6 +173,8 @@ namespace BH.UI.Basilisk.Templates
 
             if (type != null)
                 RegisterMethod(type, methodName, paramTypes);
+
+            base.DeserializeCore(element, context);
         }
 
 
@@ -197,7 +198,7 @@ namespace BH.UI.Basilisk.Templates
             else
             {
                 m_Inputs = method.GetParameters().Select(x => x.Name).ToList();
-                m_Descriptions = method.GetParameters().Select(x => x.ParameterType.FullName + (x.HasDefaultValue ? ("\nDefault value: " + (x.DefaultValue != null ? x.DefaultValue.ToString() : "null")) : "")).ToList();
+                m_Descriptions = method.GetParameters().Select(x => x.ParameterType.ToText() + (x.HasDefaultValue ? ("\nDefault value: " + (x.DefaultValue != null ? x.DefaultValue.ToString() : "null")) : "")).ToList();
             }
 
             for (int i = InPortData.Count; i < m_Inputs.Count; i++)
