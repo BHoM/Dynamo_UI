@@ -7,38 +7,38 @@ using Dynamo.Controls;
 using BH.UI.Basilisk.Templates;
 using System.Windows.Controls;
 using System.Linq;
+using BH.Engine.Reflection.Convert;
+using BH.Engine.DataStructure;
 
 namespace BH.UI.Basilisk.Views
 {
     public abstract class MethodView<T> : INodeViewCustomization<T> where T : MethodNode
     {
-        /*******************************************/
-        /**** Properties                        ****/
-        /*******************************************/
+        /*************************************/
+        /**** 1. Helper Properties        ****/
+        /*************************************/
 
-        public int MenuMaxDepth {get; set; } = 10;
-
-        public int MenuStartingDepth { get; set; } = 2;
-
-        public string MenuLabel { get; set; } = "Select method";
+        public virtual string MethodGroup { get; set; } = "";
 
 
+        /*************************************/
+        /**** 2 . Helper Methods          ****/
+        /*************************************/
 
-        /*******************************************/
-        /**** Template Methods                  ****/
-        /*******************************************/
-
-        public abstract IEnumerable<MethodBase> GetRelevantMethods();
+        public virtual IEnumerable<MethodBase> GetRelevantMethods()
+        {
+            if (MethodGroup != "")
+                return Engine.Reflection.Query.BHoMMethodList().Where(x => x.DeclaringType.Name == MethodGroup);
+            else
+                return Engine.Reflection.Query.BHoMMethodList();
+        }
 
 
         /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public MethodView()
-        {
-            CreateMethodTree();
-        }
+        public MethodView() {}
 
 
         /*******************************************/
@@ -48,10 +48,15 @@ namespace BH.UI.Basilisk.Views
         public void CustomizeView(T model, NodeView nodeView)
         {
             m_Node = model;
+            CreateMethodMenu(m_Node.NickName);
 
             // Set up the menu for the user to choose the component type
             if (model.Method == null)
-                AppendAdditionalComponentMenuItems(nodeView.MainContextMenu);
+            {
+                SelectorMenu<MethodBase> selector = new SelectorMenu<MethodBase>(nodeView.MainContextMenu, Item_Click);
+                selector.AppendTree(m_MethodTree);
+                selector.AppendSearchBox(m_MethodList);
+            }
         }
 
         /*******************************************/
@@ -66,224 +71,67 @@ namespace BH.UI.Basilisk.Views
         /**** Protected Methods                 ****/
         /*******************************************/
 
-        protected virtual void AppendAdditionalComponentMenuItems(ContextMenu menu)
+        protected virtual void CreateMethodMenu(string nickname)
         {
-            if (m_Node.Method == null)
+            //Create the method tree and method list
+            if (m_MethodTreeStore.ContainsKey(nickname) && m_MethodListStore.ContainsKey(nickname))
             {
-                AppendMethodTreeToMenu(m_MethodTree, menu);
-                AppendSearchMenu(m_MethodTree, menu);
+                m_MethodTree = m_MethodTreeStore[nickname];
+                m_MethodList = m_MethodListStore[nickname];
+            }
+            else
+            {
+                List<string> ignore = new List<string> { "BH", "oM", "Engine" };
+                if (MethodGroup != "")
+                    ignore.Add(MethodGroup);
+
+                IEnumerable<MethodBase> methods = GetRelevantMethods();
+                IEnumerable<string> paths = methods.Select(x => x.ToText(true));
+
+                m_MethodTree = GroupMethodsByName(Create.Tree(methods, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y))), "Select " + MethodGroup + " methods").ShortenBranches());
+                m_MethodList = paths.Zip(methods, (k, v) => new Tuple<string, MethodBase>(k, v)).ToList();
+
+                m_MethodTreeStore[nickname] = m_MethodTree;
+                m_MethodListStore[nickname] = m_MethodList;
             }
         }
 
         /*******************************************/
 
-        protected virtual void CreateMethodTree()
+        protected Tree<MethodBase> GroupMethodsByName(Tree<MethodBase> tree)
         {
-            m_MethodTree = new Tree<MethodBase> { Name = MenuLabel };
 
-            foreach (IGrouping<Type, MethodBase> group in GetRelevantMethods().GroupBy(GetPathType))
+            if (tree.Children.Count > 0)
             {
-                Type type = group.Key;
-                List<MethodBase> methods = group.ToList();
-
-                try
+                if (tree.Children.Values.First().Value != null)
                 {
-                    // Make sure the part of the tree corresponding to the namespace exists
-                    Tree<MethodBase> tree = m_MethodTree;
-                    foreach (string part in type.Namespace.Split('.').Skip(MenuStartingDepth).Take(MenuMaxDepth))
+                    var groups = tree.Children.Where(x => x.Key.IndexOf('(') > 0).GroupBy(x => x.Key.Substring(0, x.Key.IndexOf('(')));
+
+                    Dictionary<string, Tree<MethodBase>> children = new Dictionary<string, Tree<MethodBase>>();
+                    foreach (var group in groups)
                     {
-                        if (!tree.Children.ContainsKey(part))
-                            tree.Children.Add(part, new Tree<MethodBase> { Name = part });
-                        tree = tree.Children[part];
+                        if (group.Count() == 1)
+                            children.Add(group.Key, new Tree<MethodBase> { Name = group.Key, Value = group.First().Value.Value });
+                        else
+                            children.Add(group.Key, new Tree<MethodBase> { Name = group.Key, Children = group.ToDictionary(x => x.Key, x => x.Value) });
                     }
-
-                    // Add the methods to the tree
-                    foreach (MethodBase method in methods)
-                        AddMethodToTree(tree, GetMethodPath(method), method);
+                    tree.Children = children;
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.ToString());
-                }
-            }
-        }
-
-        /*******************************************/
-
-        protected virtual Type GetPathType(MethodBase method)
-        {
-            return method.DeclaringType;
-        }
-
-
-        /*******************************************/
-
-        protected virtual IEnumerable<string> GetMethodPath(MethodBase method)
-        {
-            ParameterInfo[] parameters = method.GetParameters();
-            string typeName = "Global";
-            if (parameters.Length > 0)
-            {
-                Type type = parameters[0].ParameterType;
-                if (type.IsGenericType)
-                    type = type.GenericTypeArguments.First();
-                typeName = type.Name;
-            }
-
-            return new List<string> { typeName, method.Name };
-        }
-
-
-        /*******************************************/
-
-        protected virtual string GetMethodString(MethodBase method)
-        {
-            ParameterInfo[] parameters = method.GetParameters();
-
-            string name = method.Name + "(";
-            if (parameters.Length > 0)
-                name += parameters.Select(x => x.Name).Aggregate((x, y) => x + ", " + y);
-            name += ")";
-
-            return name;
-        }
-
-
-        /*************************************/
-
-        protected virtual void AddMethodToTree(Tree<MethodBase> tree, IEnumerable<string> path, MethodBase method)
-        {
-            Dictionary<string, Tree<MethodBase>> children = tree.Children;
-
-            if (path.Count() == 0)
-            {
-                string name = method.Name;
-                bool isIMethod = (name.Length > 1 && Char.IsUpper(name[1]));
-
-                if (isIMethod)
-                    name = name.Substring(1);
-
-                name = GetMethodString(method);
-
-                if (isIMethod || !children.ContainsKey(name))
-                    children[name] = new Tree<MethodBase> { Value = method, Name = name };
-            }
-            else
-            {
-                string name = path.First();
-                if (!children.ContainsKey(name))
-                    children.Add(name, new Tree<MethodBase> { Name = name });
-                AddMethodToTree(children[name], path.Skip(1), method);
-            }
-        }
-
-
-        /*******************************************/
-
-        protected virtual void AppendMethodTreeToMenu(Tree<MethodBase> tree, ContextMenu menu)
-        {
-            MenuItem treeMenu = new MenuItem { Header = tree.Name };
-            menu.Items.Add(treeMenu);
-            foreach (Tree<MethodBase> childTree in tree.Children.Values.OrderBy(x => x.Name))
-                AppendMethodTreeToMenu(childTree, treeMenu);
-        }
-
-        /*******************************************/
-
-        protected virtual void AppendMethodTreeToMenu(Tree<MethodBase> tree, MenuItem menu)
-        {
-            if (tree.Children.Count == 0 || (tree.Children.Count == 1 && tree.Children.Values.First().Children.Count == 0))
-            {
-                MenuItem methodItem = new MenuItem { Header = tree.Name };
-                methodItem.Click += Item_Click;
-                menu.Items.Add(methodItem);
-                if (tree.Children.Count == 0)
-                    m_MethodLinks[methodItem] = tree.Value;
                 else
-                    m_MethodLinks[methodItem] = tree.Children.Values.First().Value;
+                {
+                    foreach (var child in tree.Children.Values)
+                        GroupMethodsByName(child);
+                }
             }
-            else
-            {
-                MenuItem treeMenu = new MenuItem { Header = tree.Name };
-                menu.Items.Add(treeMenu);
-                foreach (Tree<MethodBase> childTree in tree.Children.Values.OrderBy(x => x.Name))
-                    AppendMethodTreeToMenu(childTree, treeMenu);
-            }
+
+            return tree;
         }
 
         /*******************************************/
 
-        protected virtual void Item_Click(object sender, EventArgs e)
+        protected virtual void Item_Click(object sender, MethodBase method)
         {
-            MenuItem item = (MenuItem)sender;
-            if (!m_MethodLinks.ContainsKey(item))
-                return;
-
-            m_Node.Method = m_MethodLinks[item];
-            if (m_Node.Method == null)
-                return;
-        }
-
-        /*******************************************/
-
-        protected virtual void AppendSearchMenu(Tree<MethodBase> methods, ContextMenu menu)
-        {
-            m_Menu = menu;
-            m_MethodList = GetMethodList(methods);
-
-            MenuItem label = new MenuItem { Header = "Search", IsCheckable = false };
-            menu.Items.Add(label);
-
-            TextBox textBox = new TextBox { Text = "" };
-            textBox.TextChanged += Search_TextChanged;
-            menu.Items.Add(textBox);
-
-            m_Menu.Items.Add(new Separator());
-        }
-
-        /*******************************************/
-
-        protected virtual void Search_TextChanged(object sender, EventArgs e)
-        {
-            TextBox box = sender as TextBox;
-            if (box == null) return; 
-
-            // Clear the old items
-            foreach (MenuItem item in m_SearchResultItems)
-                m_Menu.Items.Remove(item);
-            m_SearchResultItems.Clear();
-
-            // Add the new ones
-            string text = box.Text.ToLower();
-            string[] parts = text.Split(' ');
-            foreach (Tree<MethodBase> tree in m_MethodList.Where(x => parts.All(y => x.Name.ToLower().Contains(y))).Take(12).OrderBy(x => x.Name))
-            {
-                MenuItem methodItem = new MenuItem { Header = tree.Name };
-                methodItem.Click += Item_Click;
-                m_Menu.Items.Add(methodItem);
-                m_SearchResultItems.Add(methodItem);
-                m_MethodLinks[methodItem] = tree.Value;
-            }
-        }
-
-        /*******************************************/
-
-        protected virtual IEnumerable<Tree<MethodBase>> GetMethodList(Tree<MethodBase> tree)
-        {
-            return tree.Children.Values.SelectMany(x => GetMethodList(x, ""));
-        }
-
-        /*******************************************/
-
-        protected virtual IEnumerable<Tree<MethodBase>> GetMethodList(Tree<MethodBase> tree, string path)
-        {
-            if (path.Length > 0 && !tree.Name.StartsWith("("))
-                path = path + '.';
-
-            if (tree.Children.Count == 0)
-                return new Tree<MethodBase>[] { new Tree<MethodBase> { Value = tree.Value, Name = path + tree.Name } };
-            else
-                return tree.Children.Values.SelectMany(x => GetMethodList(x, path + tree.Name));
+            m_Node.Method = method;
         }
 
 
@@ -291,12 +139,19 @@ namespace BH.UI.Basilisk.Views
         /**** Private Fields                    ****/
         /*******************************************/
 
-        protected Tree<MethodBase> m_MethodTree;
         protected T m_Node = null;
-        protected Dictionary<MenuItem, MethodBase> m_MethodLinks = new Dictionary<MenuItem, MethodBase>();
-        private IEnumerable<Tree<MethodBase>> m_MethodList = new List<Tree<MethodBase>>();
-        protected List<MenuItem> m_SearchResultItems = new List<MenuItem>();
-        private ContextMenu m_Menu;
+
+        protected Tree<MethodBase> m_MethodTree = new Tree<MethodBase>();
+        protected List<Tuple<string, MethodBase>> m_MethodList = new List<Tuple<string, MethodBase>>();
+
+
+        /*************************************/
+        /**** Static Fields               ****/
+        /*************************************/
+
+        private static bool m_AssemblyLoaded = false;
+        private static Dictionary<string, Tree<MethodBase>> m_MethodTreeStore = new Dictionary<string, Tree<MethodBase>>();
+        private static Dictionary<string, List<Tuple<string, MethodBase>>> m_MethodListStore = new Dictionary<string, List<Tuple<string, MethodBase>>>();
 
 
         /*******************************************/

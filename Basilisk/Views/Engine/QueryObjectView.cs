@@ -10,22 +10,18 @@ namespace BH.UI.Basilisk.Views
     public class QueryObjectView : MethodView<QueryObjectNode> 
     {
         /*******************************************/
+        /**** Properties                        ****/
+        /*******************************************/
+
+        public override string MethodGroup { get; set; } = "Query";
+
+
+        /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public QueryObjectView()
-        {
-        }
+        public QueryObjectView() {}
 
-
-        /*******************************************/
-        /**** Template Methods                  ****/
-        /*******************************************/
-
-        public override IEnumerable<MethodBase> GetRelevantMethods()
-        {
-            return BH.Engine.Reflection.Query.BHoMMethodList().Where(x => x.DeclaringType.Name == "Query"); 
-        }
 
         /*******************************************/
     }

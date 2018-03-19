@@ -14,10 +14,7 @@ namespace BH.UI.Basilisk.Views
         /**** Constructors                      ****/
         /*******************************************/
 
-        public QueryView()
-        {
-            MenuLabel = "Select query";
-        }
+        public QueryView() {}
 
 
         /*******************************************/
@@ -27,27 +24,7 @@ namespace BH.UI.Basilisk.Views
         public override IEnumerable<MethodBase> GetRelevantMethods()
         {
             Type queryType = typeof(IQuery);
-            return BH.Engine.Reflection.Query.BHoMTypeList().Where(x => queryType.IsAssignableFrom(x)).SelectMany(x => x.GetConstructors());
-        }
-
-        /*******************************************/
-
-        protected override IEnumerable<string> GetMethodPath(MethodBase method)
-        {
-
-            if (method is MethodInfo)
-                return new List<string> { ((MethodInfo)method).ReturnType.Name };
-            else if (method is ConstructorInfo)
-                return new List<string> { ((ConstructorInfo)method).DeclaringType.Name };
-            else
-                return new List<string>();
-        }
-
-        /*******************************************/
-
-        protected virtual Type GetPathType(MethodInfo method)
-        {
-            return method.ReturnType;
+            return BH.Engine.Reflection.Query.BHoMMethodList().Where(x => queryType.IsAssignableFrom(x.ReturnType)).OrderBy(x => x.Name);
         }
 
         /*******************************************/

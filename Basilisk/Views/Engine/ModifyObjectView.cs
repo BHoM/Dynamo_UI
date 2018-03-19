@@ -10,22 +10,18 @@ namespace BH.UI.Basilisk.Views
     public class ModifyObjectView : MethodView<ModifyObjectNode> 
     {
         /*******************************************/
+        /**** Properties                        ****/
+        /*******************************************/
+
+        public override string MethodGroup { get; set; } = "Modify";
+
+
+        /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public ModifyObjectView()
-        {
-        }
+        public ModifyObjectView() {}
 
-
-        /*******************************************/
-        /**** Template Methods                  ****/
-        /*******************************************/
-
-        public override IEnumerable<MethodBase> GetRelevantMethods()
-        {
-            return BH.Engine.Reflection.Query.BHoMMethodList().Where(x => x.DeclaringType.Name == "Modify"); 
-        }
 
         /*******************************************/
     }

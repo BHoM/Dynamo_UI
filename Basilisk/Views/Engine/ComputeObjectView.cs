@@ -10,22 +10,17 @@ namespace BH.UI.Basilisk.Views
     public class ComputeObjectView : MethodView<ComputeObjectNode> 
     {
         /*******************************************/
+        /**** Properties                        ****/
+        /*******************************************/
+
+        public override string MethodGroup { get; set; } = "Compute";
+
+
+        /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public ComputeObjectView()
-        {
-        }
-
-
-        /*******************************************/
-        /**** Template Methods                  ****/
-        /*******************************************/
-
-        public override IEnumerable<MethodBase> GetRelevantMethods()
-        {
-            return BH.Engine.Reflection.Query.BHoMMethodList().Where(x => x.DeclaringType.Name == "Compute"); 
-        }
+        public ComputeObjectView() {}
 
         /*******************************************/
     }

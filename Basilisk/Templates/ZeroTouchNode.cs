@@ -21,7 +21,6 @@ namespace BH.UI.Basilisk.Templates
         public Dictionary<int, AssociativeNode> DefaultValues { get; set; } = new Dictionary<int, AssociativeNode>();
 
 
-
         /*******************************************/
         /**** Override Methods                  ****/
         /*******************************************/
@@ -44,7 +43,6 @@ namespace BH.UI.Basilisk.Templates
                 }
             }
 
-
             // Handle the production of the output
             if (!canRun)
             {
@@ -57,5 +55,7 @@ namespace BH.UI.Basilisk.Templates
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
             };
         }
+
+        /*******************************************/
     }
 }

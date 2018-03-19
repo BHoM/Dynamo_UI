@@ -33,7 +33,7 @@ namespace BH.UI.Basilisk.Templates
 
         public MethodNode()
         {
-            OutPortData.Add(new PortData("result", "result"));
+            OutPortData.Add(new PortData("  ", "result obtained from the method"));
             RegisterAllPorts();
 
             ArgumentLacing = LacingStrategy.Longest;
@@ -78,14 +78,17 @@ namespace BH.UI.Basilisk.Templates
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
 
             // Check if the component has all the inputs it needs
-            bool IsReady = true;
             ParameterInfo[] parameters = m_Method.GetParameters();
-            for (int i = 0; i < parameters.Length; i++)
+            bool IsReady = inputAstNodes != null && inputAstNodes.Count == parameters.Count();
+            if (IsReady)
             {
-                if (inputAstNodes == null && !parameters[i].HasDefaultValue)
+                for (int i = 0; i < parameters.Length; i++)
                 {
-                    IsReady = false;
-                    break;
+                    if (inputAstNodes[i].Kind == AstKind.Null && !parameters[i].HasDefaultValue)
+                    {
+                        IsReady = false;
+                        break;
+                    }
                 }
             }
             if (!IsReady)
@@ -178,7 +181,7 @@ namespace BH.UI.Basilisk.Templates
         /**** Private Methods                   ****/
         /*******************************************/
 
-        protected void RegisterMethod(MethodBase method)
+        protected void RegisterMethod(MethodBase method) 
         {
             if (method == null) return;
 
