@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace BH.Engine.Dynamo
 
         public static object IToBHoM(this object obj)
         {
-            if (obj is ADG.Geometry || obj is ADG.Vector)
+            if (obj is IEnumerable || obj is ADG.Geometry || obj is ADG.Vector)
                 return Convert.ToBHoM(obj as dynamic);
             else
                 return obj;
@@ -30,6 +31,30 @@ namespace BH.Engine.Dynamo
             return Convert.ToBHoM(geometry as dynamic);
         }
 
+
+        /***************************************************/
+        /**** Public Methods  - Collections             ****/
+        /***************************************************/
+
+        public static IEnumerable ToBHoM(this IEnumerable list)
+        {
+            if (list is string)
+                return list;
+            else
+            {
+                List<object> newList = new List<object>();
+                foreach (object item in list)
+                    newList.Add(item.IToBHoM());
+                return newList;
+            }
+        }
+
+        /***************************************************/
+
+        public static IEnumerable<object> ToBHoM(this ArrayList list)
+        {
+            return list.ToArray().Select(x => x.IToBHoM()).ToList();
+        }
 
         /***************************************************/
         /**** Public Methods  - Geometry                ****/
