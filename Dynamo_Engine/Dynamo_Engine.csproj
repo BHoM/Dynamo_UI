@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="Convert\ToDesignScript.cs" />
     <Compile Include="Convert\ToBHoM.cs" />
+    <Compile Include="Convert\ToTargetType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
