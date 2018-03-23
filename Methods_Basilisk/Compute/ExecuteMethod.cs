@@ -124,14 +124,14 @@ namespace BH.UI.Basilisk.Methods
                 Type enumerableType = typeof(IEnumerable);
                 for (int i = 0; i < arguments.Length; i++)
                 {
-                    if (arguments[i] is IEnumerable)
+                    if (arguments[i] is IEnumerable && !(arguments[i] is string))
                     {
-                        if (!enumerableType.IsAssignableFrom(parameters[i].ParameterType))
+                        if (!enumerableType.IsAssignableFrom(parameters[i].ParameterType) || parameters[i].ParameterType == typeof(string))
                             replicationSet[i] = ((IEnumerable)arguments[i]).Cast<object>().ToList();
                     }   
                     else
                     {
-                        if (enumerableType.IsAssignableFrom(parameters[i].ParameterType))
+                        if (enumerableType.IsAssignableFrom(parameters[i].ParameterType) && parameters[i].ParameterType != typeof(string))
                             arguments[i] = new ArrayList { arguments[i] };
                     }
                 }
