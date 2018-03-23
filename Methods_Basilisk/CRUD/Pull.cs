@@ -17,7 +17,7 @@ namespace BH.UI.Basilisk.Methods
             if (query == null)
                 query = new FilterQuery();
             else if (!(query is IQuery))
-                throw new System.Exception("This component only accespt object of type IQuery");
+                throw new System.Exception("This component only accepts objects of type IQuery");
 
             if (active)
             {

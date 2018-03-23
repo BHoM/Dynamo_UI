@@ -17,6 +17,9 @@ namespace BH.Engine.Dynamo
 
         public static object ToTargetType(this object item, Type type)
         {
+            if (item == null)
+                return null; 
+
             if (item.GetType() == type)
                 return item;
             else
