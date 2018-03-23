@@ -84,6 +84,10 @@
     <Reference Include="Geometry_Engine">
       <HintPath>..\..\BHoM_Engine\Build\Geometry_Engine.dll</HintPath>
     </Reference>
+    <Reference Include="Library_Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM_Engine\Build\Library_Engine.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>True</Private>
@@ -153,6 +157,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Adapter\MoveNode.cs" />
     <Compile Include="Components\Adapter\UpdatePropertyNode.cs" />
     <Compile Include="Components\Adapter\PullNode.cs" />
     <Compile Include="Components\Adapter\PushNode.cs" />
@@ -167,6 +172,7 @@
     <Compile Include="Components\Engine\QueryObjectNode.cs" />
     <Compile Include="Components\Engine\FromJsonNode.cs" />
     <Compile Include="Components\Engine\GetPropertyNode.cs" />
+    <Compile Include="Components\oM\BHoMDataNode.cs" />
     <Compile Include="Components\oM\BHoMTypeNode.cs" />
     <Compile Include="Components\oM\BHoMEnumNode.cs" />
     <Compile Include="Dynamo_Extensions\BasicVariableOutputNodeController.cs" />
@@ -187,6 +193,7 @@
     <Compile Include="Views\Engine\ConvertObjectView.cs" />
     <Compile Include="Views\Engine\ComputeObjectView.cs" />
     <Compile Include="Views\Engine\QueryObjectView.cs" />
+    <Compile Include="Views\oM\BHoMDataView.cs" />
     <Compile Include="Views\oM\BHoMTypeView.cs" />
     <Compile Include="Views\oM\BHoMEnumView.cs" />
     <Compile Include="Views\oM\CustomObjectView.cs" />

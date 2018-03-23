@@ -63,6 +63,9 @@
     <Reference Include="Geometry_Engine">
       <HintPath>..\..\BHoM_Engine\Build\Geometry_Engine.dll</HintPath>
     </Reference>
+    <Reference Include="Library_Engine">
+      <HintPath>..\..\BHoM_Engine\Build\Library_Engine.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>True</Private>
@@ -115,9 +118,11 @@
   <ItemGroup>
     <Compile Include="Compute\ExecuteMethod.cs" />
     <Compile Include="Convert\FromJson.cs" />
+    <Compile Include="Create\BHoMData.cs" />
     <Compile Include="Create\BHoMType.cs" />
     <Compile Include="Create\BHoMEnum.cs" />
     <Compile Include="Create\CustomObject.cs" />
+    <Compile Include="CRUD\Move.cs" />
     <Compile Include="CRUD\UpdateProperty.cs" />
     <Compile Include="CRUD\Execute.cs" />
     <Compile Include="CRUD\Pull.cs" />
