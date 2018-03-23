@@ -15,25 +15,23 @@ using System.Windows.Controls;
 
 namespace BH.UI.Basilisk.Views
 {
-    public class BHoMEnumView : INodeViewCustomization<BHoMEnumNode> 
+    public class BHoMDataView : INodeViewCustomization<BHoMDataNode> 
     {
         /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public BHoMEnumView()
+        public BHoMDataView()
         {
             m_Dropdown = new ComboBox();
             m_Dropdown.SelectionChanged += M_Dropdown_SelectionChanged;
 
-            if (m_TypeTree == null || m_TypeList == null)
+            if (m_FileTree == null || m_FileList == null)
             {
-                IEnumerable<Type> types = Engine.Reflection.Query.BHoMEnumList();
-                IEnumerable<string> paths = types.Select(x => x.ToText(true));
+                IEnumerable<string> names = Engine.Library.Query.LibraryNames();
 
-                List<string> ignore = new List<string> { "BH", "oM", "Engine" };
-                m_TypeTree = Create.Tree(types, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y))), "select a type").ShortenBranches();
-                m_TypeList = paths.Zip(types, (k, v) => new Tuple<string, Type>(k, v)).ToList();
+                m_FileTree = Create.Tree(names, names.Select(x => x.Split('\\')), "select a dataset").ShortenBranches();
+                m_FileList = names.Select(x => new Tuple<string, string>(x, x)).ToList();
             }
         }
 
@@ -42,7 +40,7 @@ namespace BH.UI.Basilisk.Views
         /**** Interface Methods                 ****/
         /*******************************************/
 
-        public void CustomizeView(BHoMEnumNode model, NodeView nodeView)
+        public void CustomizeView(BHoMDataNode model, NodeView nodeView)
         {
             m_Node = model;
 
@@ -50,29 +48,28 @@ namespace BH.UI.Basilisk.Views
             nodeView.inputGrid.Children.Add(m_Dropdown);
 
             // Set up the menu for the user to choose the component type
-            if (model.EnumType == null)
+            if (model.FileName == "")
             {
-                SelectorMenu<Type> selector = new SelectorMenu<Type>(nodeView.MainContextMenu, Item_Click);
-                selector.AppendTree(m_TypeTree);
-                selector.AppendSearchBox(m_TypeList);
+                SelectorMenu<string> selector = new SelectorMenu<string>(nodeView.MainContextMenu, Item_Click);
+                selector.AppendTree(m_FileTree);
+                selector.AppendSearchBox(m_FileList);
             }
             else
             {
                 m_Dropdown.Items.Clear();
-                Array values = Enum.GetValues(m_Node.EnumType);
-                IEnumerator enumerator = values.GetEnumerator();
-                while (enumerator.MoveNext())
-                    m_Dropdown.Items.Add(new ComboBoxItem { Content = enumerator.Current.ToString() });
+                List<IBHoMObject> objects = Engine.Library.Query.Library(model.FileName);
+                foreach (IBHoMObject obj in objects)
+                    m_Dropdown.Items.Add(new ComboBoxItem { Content = obj.Name });
 
-                if (model.EnumValue != "")
+                if (model.ItemName != "")
                 {
-                    foreach (ComboBoxItem item in m_Dropdown.Items)
+                    foreach(ComboBoxItem item in m_Dropdown.Items)
                     {
-                        if (item.Content.ToString() == model.EnumValue)
+                        if (item.Content.ToString() == model.ItemName)
                         {
                             m_Dropdown.SelectedItem = item;
                             break;
-                        } 
+                        }
                     }
                 }
             }
@@ -87,21 +84,20 @@ namespace BH.UI.Basilisk.Views
         /**** Protected Methods                 ****/
         /*******************************************/
 
-        protected virtual void Item_Click(object sender, Type type)
+        protected virtual void Item_Click(object sender, string fileName)
         {
-            m_Node.EnumType = type;
-            if (m_Node.EnumType == null)
+            m_Node.FileName = fileName;
+            if (m_Node.FileName == null)
                 return;
             else
             {
                 m_Dropdown.Items.Clear();
-                Array values = Enum.GetValues(m_Node.EnumType);
-                IEnumerator enumerator = values.GetEnumerator();
-                while (enumerator.MoveNext())
-                    m_Dropdown.Items.Add(new ComboBoxItem { Content = enumerator.Current.ToString() });
+                List<IBHoMObject> objects = Engine.Library.Query.Library(fileName);
+                foreach (IBHoMObject obj in objects)
+                    m_Dropdown.Items.Add(new ComboBoxItem { Content = obj.Name });
                 m_Dropdown.SelectedIndex = 0;
 
-                m_Node.EnumValue = Enum.GetValues(m_Node.EnumType).GetValue(0).ToString();
+                m_Node.ItemName = (objects.Count > 0) ? objects[0].Name : "";
                 m_Node.MarkNodeAsModified();
             }
         }
@@ -110,7 +106,7 @@ namespace BH.UI.Basilisk.Views
 
         private void M_Dropdown_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            m_Node.EnumValue = ((ComboBoxItem)m_Dropdown.SelectedItem).Content.ToString();
+            m_Node.ItemName = ((ComboBoxItem)m_Dropdown.SelectedItem).Content.ToString();
             m_Node.RegisterAllPorts();
         }
 
@@ -119,11 +115,11 @@ namespace BH.UI.Basilisk.Views
         /**** Private Fields                    ****/
         /*******************************************/
 
-        protected BHoMEnumNode m_Node = null;
+        protected BHoMDataNode m_Node = null;
         protected ComboBox m_Dropdown = new ComboBox();
 
-        protected static Tree<Type> m_TypeTree = null;
-        protected static List<Tuple<string, Type>> m_TypeList = null;
+        protected static Tree<string> m_FileTree = null;
+        protected static List<Tuple<string, string>> m_FileList = null;
 
 
         /*******************************************/
