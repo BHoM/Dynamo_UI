@@ -12,6 +12,7 @@ using ADG = Autodesk.DesignScript.Geometry;
 using BHG = BH.oM.Geometry;
 using System.Diagnostics;
 using BH.Engine.Reflection.Convert;
+using System.Collections;
 
 namespace BH.UI.Basilisk.Templates
 {
@@ -102,10 +103,33 @@ namespace BH.UI.Basilisk.Templates
             if (!Methods.Compute.MethodsToExecute.ContainsKey(name))
                 Methods.Compute.MethodsToExecute[name] = m_Method;
 
+            Type enumerableType = typeof(IEnumerable);
+            string prefix = Guid.NewGuid().ToString() + "_";
+            List<AssociativeNode> toDo = new List<AssociativeNode>();
+            List<AssociativeNode> arguments = new List<AssociativeNode>() { AstFactory.BuildStringNode(name) };
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                Type paramType = parameters[i].ParameterType;
+                if (enumerableType.IsAssignableFrom(paramType) && paramType != typeof(string))
+                {
+                    AssociativeNode localCall;
+                    Type[] argTypes = paramType.GetGenericArguments();
+                    if (argTypes.Length > 0 && enumerableType.IsAssignableFrom(argTypes[0]) && argTypes[0] != typeof(string))
+                        localCall = AstFactory.BuildFunctionCall("BH.UI.Basilisk.Methods.Create", "TreeWrapper", new List<AssociativeNode> { inputAstNodes[i] });
+                    else
+                        localCall = AstFactory.BuildFunctionCall("BH.UI.Basilisk.Methods.Create", "ListWrapper", new List<AssociativeNode> { inputAstNodes[i] });
+                    AssociativeNode newVar = AstFactory.BuildIdentifier(prefix + i.ToString());
+                    toDo.Add(AstFactory.BuildAssignment(newVar, localCall));
+                    arguments.Add(newVar);
+                }
+                else
+                    arguments.Add(inputAstNodes[i]);
+            }
+
             // Create the Build assignment for outpout 0
-            List<AssociativeNode> arguments = new List<AssociativeNode> { AstFactory.BuildStringNode(name) }.Concat(inputAstNodes).ToList();
             AssociativeNode functionCall = AstFactory.BuildFunctionCall("BH.UI.Basilisk.Methods.Compute", "ExecuteMethod", arguments);
-            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+            toDo.Add(AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall));
+            return toDo;
         }
 
         /*******************************************/

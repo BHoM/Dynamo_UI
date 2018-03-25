@@ -122,6 +122,8 @@
     <Compile Include="Create\BHoMType.cs" />
     <Compile Include="Create\BHoMEnum.cs" />
     <Compile Include="Create\CustomObject.cs" />
+    <Compile Include="Create\ListWrapper.cs" />
+    <Compile Include="Create\TreeWrapper.cs" />
     <Compile Include="CRUD\Move.cs" />
     <Compile Include="CRUD\UpdateProperty.cs" />
     <Compile Include="CRUD\Execute.cs" />
