@@ -48,7 +48,7 @@ namespace BH.UI.Basilisk.Methods
                 object result = Engine.Reflection.Query.PropertyValue(obj, name);
                 if (result is IGeometry)
                     result = BH.Engine.Dynamo.Convert.IToDesignScript(result as dynamic);
-                else if (result is IEnumerable)
+                else if (result is IEnumerable && !(result is string))
                 {
                     result = ((IEnumerable)result).Cast<object>().Select(x => BH.Engine.Dynamo.Convert.IToDesignScript(x as dynamic));
                 }
