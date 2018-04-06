@@ -107,7 +107,7 @@ namespace BH.Engine.Dynamo
             return new BHG.NurbCurve
             {
                 ControlPoints = nurbCurve.ControlPoints().Select(x => x.ToBHoM()).ToList(),
-                Knots = nurbCurve.Knots().ToList(),
+                Knots = nurbCurve.Knots().ToList().GetRange(1, nurbCurve.Knots().Count()),
                 Weights = nurbCurve.Weights().ToList()
             };
         }
