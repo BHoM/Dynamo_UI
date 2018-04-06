@@ -72,7 +72,11 @@ namespace BH.Engine.Dynamo
 
         public static ADG.NurbsCurve ToDesignScript(this BHG.NurbCurve nurbsCurve)
         {
-            return ADG.NurbsCurve.ByControlPointsWeightsKnots(nurbsCurve.ControlPoints.Select(x => x.ToDesignScript()), nurbsCurve.Weights.ToArray(), nurbsCurve.Knots.ToArray());
+
+            List<double> knots = new List<double> { 0, nurbsCurve.Knots.Last() };
+            knots.InsertRange(1, nurbsCurve.Knots.ToList());          
+          
+            return ADG.NurbsCurve.ByControlPointsWeightsKnots(nurbsCurve.ControlPoints.Select(x => x.ToDesignScript()), nurbsCurve.Weights.ToArray(), knots.ToArray(), nurbsCurve.Degree());
         }
 
         /***************************************************/
