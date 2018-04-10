@@ -51,7 +51,7 @@ namespace BH.Engine.Dynamo
 
         public static ADG.Arc ToDesignScript(this BHG.Arc arc)
         {
-            return ADG.Arc.ByCenterPointStartPointEndPoint(arc.Middle.ToDesignScript(), arc.Start.ToDesignScript(), arc.End.ToDesignScript());
+            return ADG.Arc.ByThreePoints(arc.Start.ToDesignScript(), arc.Middle.ToDesignScript(), arc.End.ToDesignScript());
         }
 
         /***************************************************/
