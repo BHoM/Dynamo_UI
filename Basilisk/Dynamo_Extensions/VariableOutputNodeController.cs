@@ -47,8 +47,6 @@ namespace Dynamo.Graph.Nodes
             var count = model.OutPortData.Count;
             if (count > 0)
                 model.OutPortData.RemoveAt(count - 1);
-
-            MarkNodeDirty();
         }
 
         /*******************************************/
@@ -57,8 +55,6 @@ namespace Dynamo.Graph.Nodes
         {
             var idx = GetOutputIndexFromModel();
             model.OutPortData.Add(new PortData(GetOutputName(idx), GetOutputTooltip(idx)));
-
-            MarkNodeDirty();
         }
 
         /*******************************************/
@@ -90,6 +86,8 @@ namespace Dynamo.Graph.Nodes
                     --current;
                 }
             }
+
+            MarkNodeDirty();
         }
 
         /*******************************************/
