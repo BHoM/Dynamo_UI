@@ -42,7 +42,7 @@ namespace Dynamo.Graph.Nodes
 
         /*******************************************/
 
-        public virtual void RemoveOutputFromModel()
+        protected virtual void RemoveOutputFromModel()
         {
             var count = model.OutPortData.Count;
             if (count > 0)
@@ -51,7 +51,7 @@ namespace Dynamo.Graph.Nodes
 
         /*******************************************/
 
-        public virtual void AddOutputToModel()
+        protected virtual void AddOutputToModel()
         {
             var idx = GetOutputIndexFromModel();
             model.OutPortData.Add(new PortData(GetOutputName(idx), GetOutputTooltip(idx)));
