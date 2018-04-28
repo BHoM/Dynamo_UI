@@ -66,6 +66,9 @@ namespace BH.UI.Basilisk.Components
             if (DynamoEngine != null)
                 dlls = DynamoEngine.LibraryServices.ImportedLibraries.ToList();
 
+            if (OutPortData.Count != OutPorts.Count)
+                CreateMissingPorts();
+
             if (IsPartiallyApplied || OutPortData.Count != m_OutputNames.Count || OutPorts.Count != m_OutputNames.Count)
             {
                 return new List<AssociativeNode>();
@@ -228,6 +231,14 @@ namespace BH.UI.Basilisk.Components
                 OutPortData[i].NickName = names[i];
 
             RegisterAllPorts();
+        }
+
+        /*******************************************/
+
+        private void CreateMissingPorts()
+        {
+            for (int i = OutPorts.Count; i < OutPortData.Count; i++)
+                AddPort(PortType.Output, OutPortData[i], i);
         }
 
 
