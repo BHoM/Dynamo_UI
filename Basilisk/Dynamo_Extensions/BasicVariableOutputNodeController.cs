@@ -60,14 +60,14 @@ namespace Dynamo.Graph.Nodes
 
         /*******************************************/
 
-        public override void AddOutputToModel()
+        protected override void AddOutputToModel()
         {
             model.AddOutput();
         }
 
         /*******************************************/
 
-        public override void RemoveOutputFromModel()
+        protected override void RemoveOutputFromModel()
         {
             model.RemoveOutput();
         }
