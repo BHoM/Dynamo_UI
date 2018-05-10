@@ -38,6 +38,6 @@ namespace Geometry
             }
             
             return new BHG.Mesh(vertices,faces);
-        }+
+        }
     }
 }
