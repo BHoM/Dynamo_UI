@@ -121,6 +121,19 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
+        public static BHG.CoordinateSystem ToBHoM(this ADG.CoordinateSystem coordinateSystem)
+        {
+            return new BHG.CoordinateSystem
+            {
+                X = coordinateSystem.XAxis.Normalized().ToBHoM(),
+                Y = coordinateSystem.YAxis.Normalized().ToBHoM(),
+                Z = coordinateSystem.ZAxis.Normalized().ToBHoM(),
+                Origin = coordinateSystem.Origin.ToBHoM()
+            };
+        }
+
+        /***************************************************/
+
         public static BHG.PolyCurve ToBHoM(this ADG.PolyCurve polyCurve)
         {
             return Geometry.Create.PolyCurve(polyCurve.Curves().Select(x => x.ToBHoM()));
