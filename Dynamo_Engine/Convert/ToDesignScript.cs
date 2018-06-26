@@ -51,7 +51,7 @@ namespace BH.Engine.Dynamo
 
         public static ADG.Arc ToDesignScript(this BHG.Arc arc)
         {
-            return ADG.Arc.ByThreePoints(arc.Start.ToDesignScript(), arc.Middle.ToDesignScript(), arc.End.ToDesignScript());
+            return ADG.Arc.ByThreePoints(arc.StartPoint().ToDesignScript(), arc.PointAtParameter(0.5).ToDesignScript(), arc.EndPoint().ToDesignScript());
         }
 
         /***************************************************/
@@ -84,6 +84,13 @@ namespace BH.Engine.Dynamo
         public static ADG.Plane ToRhino(this BHG.Plane plane)
         {
             return ADG.Plane.ByOriginNormal(plane.Origin.ToDesignScript(), plane.Normal.ToDesignScript());
+        }
+
+        /***************************************************/
+
+        public static ADG.CoordinateSystem ToRhino(this BHG.CoordinateSystem coordinateSystem)
+        {
+            return ADG.CoordinateSystem.ByOriginVectors(coordinateSystem.Origin.ToDesignScript(), coordinateSystem.X.ToDesignScript(), coordinateSystem.Y.ToDesignScript());
         }
 
         /***************************************************/
