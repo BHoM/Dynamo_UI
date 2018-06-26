@@ -123,13 +123,7 @@ namespace BH.Engine.Dynamo
 
         public static BHG.CoordinateSystem ToBHoM(this ADG.CoordinateSystem coordinateSystem)
         {
-            return new BHG.CoordinateSystem
-            {
-                X = coordinateSystem.XAxis.Normalized().ToBHoM(),
-                Y = coordinateSystem.YAxis.Normalized().ToBHoM(),
-                Z = coordinateSystem.ZAxis.Normalized().ToBHoM(),
-                Origin = coordinateSystem.Origin.ToBHoM()
-            };
+            return Geometry.Create.CoordinateSystem(coordinateSystem.Origin.ToBHoM(), coordinateSystem.XAxis.ToBHoM(), coordinateSystem.YAxis.ToBHoM());
         }
 
         /***************************************************/
