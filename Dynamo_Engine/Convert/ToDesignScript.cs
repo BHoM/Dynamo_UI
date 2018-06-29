@@ -81,14 +81,14 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.Plane ToRhino(this BHG.Plane plane)
+        public static ADG.Plane ToDesignScript(this BHG.Plane plane)
         {
             return ADG.Plane.ByOriginNormal(plane.Origin.ToDesignScript(), plane.Normal.ToDesignScript());
         }
 
         /***************************************************/
 
-        public static ADG.CoordinateSystem ToRhino(this BHG.CoordinateSystem coordinateSystem)
+        public static ADG.CoordinateSystem ToDesignScript(this BHG.CoordinateSystem coordinateSystem)
         {
             return ADG.CoordinateSystem.ByOriginVectors(coordinateSystem.Origin.ToDesignScript(), coordinateSystem.X.ToDesignScript(), coordinateSystem.Y.ToDesignScript());
         }
