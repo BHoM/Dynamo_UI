@@ -24,7 +24,7 @@ namespace BH.UI.Basilisk.Views
         public override IEnumerable<MethodBase> GetRelevantMethods()
         {
             Type adapterType = typeof(BHoMAdapter);
-            return BH.Engine.Reflection.Query.AdapterTypeList().Where(x => x.IsSubclassOf(adapterType)).OrderBy(x => x.Name).SelectMany(x => x.GetConstructors());
+            return BH.Engine.Reflection.Query.AdapterTypeList().Where(x => x != null && x.IsSubclassOf(adapterType)).OrderBy(x => x.Name).SelectMany(x => x.GetConstructors());
         }
 
         /*******************************************/
