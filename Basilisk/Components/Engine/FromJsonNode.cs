@@ -38,7 +38,7 @@ namespace BH.UI.Basilisk.Components
             }
             else
             {
-                var functionCall = AstFactory.BuildFunctionCall("Methods.Convert", "TFromJson", inputAstNodes);
+                var functionCall = AstFactory.BuildFunctionCall("Methods.Convert", "FromJson", inputAstNodes);
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
             };
         }
