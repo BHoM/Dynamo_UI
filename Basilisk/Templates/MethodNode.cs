@@ -97,7 +97,7 @@ namespace BH.UI.Basilisk.Templates
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
 
             // Get the Full name of the method
-            string name = Method.DeclaringType.FullName + Method.Name;
+            string name = Method.ToText(true, "(", ",", ")", false);
 
             // If method doesn't exist in the global dictionary yet, create one and store it there (not ideal but works for now)
             if (!Methods.Compute.MethodsToExecute.ContainsKey(name))
