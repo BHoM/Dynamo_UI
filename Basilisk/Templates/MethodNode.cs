@@ -38,7 +38,7 @@ namespace BH.UI.Basilisk.Templates
             OutPortData.Add(new PortData("  ", "result obtained from the method"));
             RegisterAllPorts();
 
-            ArgumentLacing = LacingStrategy.Longest;
+            ArgumentLacing = LacingStrategy.Shortest;
         }
 
 
@@ -95,6 +95,9 @@ namespace BH.UI.Basilisk.Templates
             }
             if (!IsReady)
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+
+            // Apppend replication guide to the input parameter based on lacing strategy
+            UseLevelAndReplicationGuide(inputAstNodes);
 
             // Get the Full name of the method
             string name = Method.ToText(true, "(", ",", ")", false);
