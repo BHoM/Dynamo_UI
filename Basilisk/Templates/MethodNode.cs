@@ -191,7 +191,17 @@ namespace BH.UI.Basilisk.Templates
                             foreach (XmlNode child in node.ChildNodes)
                             {
                                 if (child.Attributes != null && child.Attributes["value"] != null && child.Attributes["value"].Value != null)
-                                    paramTypes.Add(Type.GetType(child.Attributes["value"].Value));
+                                {
+                                    string paramTypeString = child.Attributes["value"].Value;
+
+                                    //Fix for namespace change in structure
+                                    if (paramTypeString.Contains("oM.Structural"))
+                                    {
+                                        paramTypeString = paramTypeString.Replace("oM.Structural", "oM.Structure");
+                                    }
+
+                                    paramTypes.Add(Type.GetType(paramTypeString));
+                                }
                             }
                             break;
                         }
