@@ -86,7 +86,16 @@ namespace BH.UI.Basilisk.Components
                 {
                     case "EnumType":
                         if (node.Attributes != null && node.Attributes["value"] != null && node.Attributes["value"].Value != null)
-                            EnumType = Type.GetType(node.Attributes["value"].Value);
+                        {
+                            string enumTypeString = node.Attributes["value"].Value;
+
+                            //Fix for namespace change in structure
+                            if (enumTypeString.Contains("oM.Structural"))
+                            {
+                                enumTypeString = enumTypeString.Replace("oM.Structural", "oM.Structure");
+                            }
+                            EnumType = Type.GetType(enumTypeString);
+                        }
                         break;
                     case "EnumValue":
                         if (node.Attributes != null && node.Attributes["value"] != null)

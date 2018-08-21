@@ -80,7 +80,16 @@ namespace BH.UI.Basilisk.Components
                 {
                     case "TypeName":
                         if (node.Attributes != null && node.Attributes["value"] != null && node.Attributes["value"].Value != null)
-                            Type = Type.GetType(node.Attributes["value"].Value);
+                        {
+                            string typeString = node.Attributes["value"].Value;
+
+                            //Fix for namespace change in structure
+                            if (typeString.Contains("oM.Structural"))
+                            {
+                                typeString = typeString.Replace("oM.Structural", "oM.Structure");
+                            }
+                            Type = Type.GetType(typeString);
+                        }
                         break;
                 }
             }
