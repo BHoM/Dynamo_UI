@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autodesk.DesignScript.Runtime;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using BHG = BH.oM.Geometry;
 
 namespace BH.Engine.Dynamo
 {
+    [IsVisibleInDynamoLibrary(false)]
     public static partial class Convert
     {
         /***************************************************/
@@ -38,7 +40,7 @@ namespace BH.Engine.Dynamo
 
         public static IEnumerable ToBHoM(this IEnumerable list)
         {
-            if (list is string)
+            if (list is string || list.GetType().Name.StartsWith("Dictionary"))
                 return list;
             else
             {

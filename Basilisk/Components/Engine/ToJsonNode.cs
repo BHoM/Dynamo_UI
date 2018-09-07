@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("ToJson")]
+    [NodeName("ToJson_old")]
     [NodeDescription("Convert a BHoMObject To a Json string")]
     [NodeCategory("Basilisk.Engine")]
     [InPortNames("obj")]
