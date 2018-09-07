@@ -1,21 +1,23 @@
 ﻿using Autodesk.DesignScript.Runtime;
-using System;
+using BH.Engine.Dynamo;
+using BH.Engine.Dynamo.Objects;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BH.Engine.Dynamo.Objects
+namespace BH.Engine.Dynamo
 {
     [IsVisibleInDynamoLibrary(false)]
-    public class ListWrapper
+    public static partial class Create
     {
         /***************************************************/
-        /**** Public Properties                         ****/
+        /**** Public Methods                            ****/
         /***************************************************/
 
-        public List<object> Items { get; set; } = null;
+        public static ListWrapper ListWrapper(List<object> list)
+        {
+            return new ListWrapper { Items = list };
+        }
 
 
         /***************************************************/

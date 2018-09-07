@@ -45,6 +45,9 @@
     <Reference Include="BHoM_Engine">
       <HintPath>..\..\BHoM_Engine\Build\BHoM_Engine.dll</HintPath>
     </Reference>
+    <Reference Include="BHoM_UI">
+      <HintPath>..\..\BHoM_UI\Build\BHoM_UI.dll</HintPath>
+    </Reference>
     <Reference Include="CoreNodeModels, Version=1.2.0.2690, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.1.2.0\lib\net45\CoreNodeModels.dll</HintPath>
       <Private>True</Private>
@@ -151,6 +154,12 @@
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
+    <Reference Include="UI_Engine">
+      <HintPath>..\..\BHoM_UI\Build\UI_Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="UI_oM">
+      <HintPath>..\..\BHoM_UI\Build\UI_oM.dll</HintPath>
+    </Reference>
     <Reference Include="UI_PostBuild">
       <HintPath>..\..\BHoM_UI\Build\UI_PostBuild.exe</HintPath>
     </Reference>
@@ -181,6 +190,17 @@
     <Compile Include="Components\oM\BHoMObjectNode.cs" />
     <Compile Include="Components\oM\CustomObjectNode.cs" />
     <Compile Include="Components\Engine\ToJsonNode.cs" />
+    <Compile Include="New\Components\Adapter\UpdateProperty.cs" />
+    <Compile Include="New\Components\Adapter\Push.cs" />
+    <Compile Include="New\Components\Adapter\Pull.cs" />
+    <Compile Include="New\Components\Adapter\Move.cs" />
+    <Compile Include="New\Components\Adapter\Execute.cs" />
+    <Compile Include="New\Components\Adapter\Delete.cs" />
+    <Compile Include="New\Components\Engine\SetProperty.cs" />
+    <Compile Include="New\Components\Engine\GetProperty.cs" />
+    <Compile Include="New\Components\Engine\FromJson.cs" />
+    <Compile Include="New\Components\Engine\ToJson.cs" />
+    <Compile Include="New\Templates\MethodCallComponent.cs" />
     <Compile Include="Templates\SelectorMenu.cs" />
     <Compile Include="Templates\MethodNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,6 +222,10 @@
     <Compile Include="Templates\MethodView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dynamo_Engine\Dynamo_Engine.csproj">
+      <Project>{01ca6b93-2723-4022-b3ff-0815af808621}</Project>
+      <Name>Dynamo_Engine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Methods_Basilisk\Methods_Basilisk.csproj">
       <Project>{b49b782c-3ee2-4c58-a2c5-d489dd31bd7f}</Project>
       <Name>Methods_Basilisk</Name>
@@ -216,7 +240,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="New\Components\oM\" />
+    <Folder Include="New\Components\UI\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>call "$(TargetDir)UI_PostBuild.exe" ..\..\ "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.3\packages\Basilisk\bin"

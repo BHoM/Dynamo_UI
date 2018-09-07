@@ -16,6 +16,7 @@
 	"contains_binaries":true,
 	"node_libraries":[
 		"Basilisk",
+		"Dynamo_Engine",
 		"Methods_Basilisk"
 	]
 }
