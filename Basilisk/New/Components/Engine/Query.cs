@@ -8,17 +8,17 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Move")]
-    [NodeCategory("Basilisk.Adapter")]
-    [NodeDescription("Copy objects from a source adapter to a target adapter")]
+    [NodeName("Query")]
+    [NodeCategory("Basilisk.Engine")]
+    [NodeDescription("Query information about a BHoM object")]
     [IsDesignScriptCompatible]
-    public class MoveComponent : MethodCallComponent
+    public class QueryComponent : MethodCallComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new MoveCaller();
+        public override MethodCaller MethodCaller { get; } = new QueryCaller();
 
 
         /*******************************************/

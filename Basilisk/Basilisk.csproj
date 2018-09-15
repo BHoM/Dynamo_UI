@@ -190,17 +190,32 @@
     <Compile Include="Components\oM\BHoMObjectNode.cs" />
     <Compile Include="Components\oM\CustomObjectNode.cs" />
     <Compile Include="Components\Engine\ToJsonNode.cs" />
+    <Compile Include="New\Components\Adapter\CreateQuery.cs" />
+    <Compile Include="New\Components\Adapter\CreateAdapter.cs" />
     <Compile Include="New\Components\Adapter\UpdateProperty.cs" />
     <Compile Include="New\Components\Adapter\Push.cs" />
     <Compile Include="New\Components\Adapter\Pull.cs" />
     <Compile Include="New\Components\Adapter\Move.cs" />
     <Compile Include="New\Components\Adapter\Execute.cs" />
     <Compile Include="New\Components\Adapter\Delete.cs" />
+    <Compile Include="New\Components\Engine\Query.cs" />
+    <Compile Include="New\Components\Engine\Modify.cs" />
+    <Compile Include="New\Components\Engine\Convert.cs" />
+    <Compile Include="New\Components\Engine\Compute.cs" />
     <Compile Include="New\Components\Engine\SetProperty.cs" />
     <Compile Include="New\Components\Engine\GetProperty.cs" />
     <Compile Include="New\Components\Engine\FromJson.cs" />
     <Compile Include="New\Components\Engine\ToJson.cs" />
+    <Compile Include="New\Components\oM\CreateObject.cs" />
     <Compile Include="New\Templates\MethodCallComponent.cs" />
+    <Compile Include="New\Templates\MethodCallView.cs" />
+    <Compile Include="New\Views\Adapter\CreateQuery.cs" />
+    <Compile Include="New\Views\Adapter\CreateAdapter.cs" />
+    <Compile Include="New\Views\oM\CreateObject.cs" />
+    <Compile Include="New\Views\Engine\Query.cs" />
+    <Compile Include="New\Views\Engine\Modify.cs" />
+    <Compile Include="New\Views\Engine\Convert.cs" />
+    <Compile Include="New\Views\Engine\Compute.cs" />
     <Compile Include="Templates\SelectorMenu.cs" />
     <Compile Include="Templates\MethodNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -241,7 +256,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="New\Components\oM\" />
     <Folder Include="New\Components\UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

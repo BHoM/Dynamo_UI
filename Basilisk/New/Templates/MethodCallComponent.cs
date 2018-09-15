@@ -12,7 +12,6 @@ using BH.Engine.Dynamo.Objects;
 using BH.Engine.UI;
 using System.Reflection;
 using System.Collections;
-using BH.Engine.Reflection.Convert;
 
 namespace BH.UI.Basilisk.Templates
 {
@@ -22,7 +21,7 @@ namespace BH.UI.Basilisk.Templates
         /**** Properties                        ****/
         /*******************************************/
 
-        protected abstract MethodCaller MethodCaller { get; }
+        public abstract MethodCaller MethodCaller { get; }
 
         protected Guid InstanceID { get; } = Guid.NewGuid();
 
@@ -33,18 +32,28 @@ namespace BH.UI.Basilisk.Templates
 
         public MethodCallComponent() : base()
         {
-            NickName = MethodCaller.Name();
-            Description = MethodCaller.Description();
-            Category = "Basilisk." + MethodCaller.Category();
+            Category = "Basilisk." + MethodCaller.Category;
+            ArgumentLacing = LacingStrategy.Shortest;
 
             MethodCaller.SetDataAccessor(new DataAccessor_Dynamo());
             BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = MethodCaller;
 
+            RefreshtMethod();
+        }
+
+
+        /*******************************************/
+        /**** Public Methods                    ****/
+        /*******************************************/
+
+        public void RefreshtMethod()
+        {
+            NickName = MethodCaller.Name;
+            Description = MethodCaller.Description;
+
             RegisterInputs();
             RegisterOutputs();
             ValidateConnections();
-
-            ArgumentLacing = LacingStrategy.Shortest;
         }
 
 
@@ -81,7 +90,7 @@ namespace BH.UI.Basilisk.Templates
 
         protected bool IsReady(List<AssociativeNode> inputAstNodes)
         {
-            List<bool> hasDefaultList = MethodCaller.InputParams().Select(x => x.HasDefaultValue).ToList();
+            List<bool> hasDefaultList = MethodCaller.InputParams.Select(x => x.HasDefaultValue).ToList();
             bool isReady = inputAstNodes != null && inputAstNodes.Count == hasDefaultList.Count();
             if (isReady)
             {
@@ -103,7 +112,7 @@ namespace BH.UI.Basilisk.Templates
         protected Tuple<List<AssociativeNode>, List<AssociativeNode>> GetProcessedInputs(List<AssociativeNode> inputAstNodes)
         {
             // Get the params from the method caller and make sure they are the correct length
-            List<ParamInfo> paramInfos = MethodCaller.InputParams();
+            List<ParamInfo> paramInfos = MethodCaller.InputParams;
             if (paramInfos.Count != inputAstNodes.Count)
                 return new Tuple<List<AssociativeNode>, List<AssociativeNode>>(inputAstNodes, new List<AssociativeNode>());
 
@@ -135,7 +144,7 @@ namespace BH.UI.Basilisk.Templates
 
         protected List<AssociativeNode> CreateOutputAssignments(AssociativeNode functionCall, AssociativeNode callerId)
         {
-            List<ParamInfo> outParams = MethodCaller.OutputParams();
+            List<ParamInfo> outParams = MethodCaller.OutputParams;
             List<AssociativeNode> assignments = new List<AssociativeNode>();
             
             if (outParams.Count == 0)
@@ -168,7 +177,7 @@ namespace BH.UI.Basilisk.Templates
             if (MethodCaller == null)
                 return;
 
-            List<PortData> inputs = MethodCaller.InputParams().Select(x => x.ToPortData()).ToList();
+            List<PortData> inputs = MethodCaller.InputParams.Select(x => x.ToPortData()).ToList();
 
             for (int i = 0; i < inputs.Count; i++)
                 AddPort(PortType.Input, inputs[i], i);
@@ -184,7 +193,7 @@ namespace BH.UI.Basilisk.Templates
             if (MethodCaller == null)
                 return;
 
-            List<PortData> outputs = MethodCaller.OutputParams().Select(x => x.ToPortData()).ToList();
+            List<PortData> outputs = MethodCaller.OutputParams.Select(x => x.ToPortData()).ToList();
 
             for (int i = 0; i < outputs.Count; i++)
                 AddPort(PortType.Output, outputs[i], i);
