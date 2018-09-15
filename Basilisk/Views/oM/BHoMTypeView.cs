@@ -1,5 +1,5 @@
 ﻿using BH.Engine.DataStructure;
-using BH.Engine.Reflection.Convert;
+using BH.Engine.Reflection;
 using BH.oM.Base;
 using BH.oM.DataStructure;
 using BH.UI.Basilisk.Components;
@@ -27,7 +27,7 @@ namespace BH.UI.Basilisk.Views
                 IEnumerable<string> paths = types.Select(x => x.ToText(true));
 
                 List<string> ignore = new List<string> { "BH", "oM", "Engine" };
-                m_TypeTree = Create.Tree(types, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y))), "select a type").ShortenBranches();
+                m_TypeTree = Engine.DataStructure.Create.Tree(types, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y))), "select a type").ShortenBranches();
                 m_TypeList = paths.Zip(types, (k, v) => new Tuple<string, Type>(k, v)).ToList();
             }
         }

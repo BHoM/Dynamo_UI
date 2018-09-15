@@ -7,7 +7,7 @@ using Dynamo.Controls;
 using BH.UI.Basilisk.Templates;
 using System.Windows.Controls;
 using System.Linq;
-using BH.Engine.Reflection.Convert;
+using BH.Engine.Reflection;
 using BH.Engine.DataStructure;
 
 namespace BH.UI.Basilisk.Views
@@ -88,7 +88,7 @@ namespace BH.UI.Basilisk.Views
                 IEnumerable<MethodBase> methods = GetRelevantMethods();
                 IEnumerable<string> paths = methods.Select(x => x.ToText(true));
 
-                m_MethodTree = GroupMethodsByName(Create.Tree(methods, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y))), "Select " + MethodGroup + " methods").ShortenBranches());
+                m_MethodTree = GroupMethodsByName(Engine.DataStructure.Create.Tree(methods, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y))), "Select " + MethodGroup + " methods").ShortenBranches());
                 m_MethodList = paths.Zip(methods, (k, v) => new Tuple<string, MethodBase>(k, v)).ToList();
 
                 m_MethodTreeStore[nickname] = m_MethodTree;

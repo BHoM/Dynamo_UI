@@ -18,7 +18,7 @@ namespace BH.UI.Basilisk.Components
         /**** Properties                        ****/
         /*******************************************/
 
-        protected override MethodCaller MethodCaller { get; } = new PushCaller();
+        public override MethodCaller MethodCaller { get; } = new PushCaller();
 
 
         /*******************************************/

@@ -19,7 +19,7 @@ namespace BH.UI.Basilisk.Components
         /**** Properties                        ****/
         /*******************************************/
 
-        protected override MethodCaller MethodCaller { get; } = new ToJsonCaller();
+        public override MethodCaller MethodCaller { get; } = new ToJsonCaller();
 
 
         /*******************************************/

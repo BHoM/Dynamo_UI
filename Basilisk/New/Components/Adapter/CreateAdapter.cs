@@ -8,17 +8,17 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Move")]
+    [NodeName("CreateAdapter")]
     [NodeCategory("Basilisk.Adapter")]
-    [NodeDescription("Copy objects from a source adapter to a target adapter")]
+    [NodeDescription("Creates an instance of a selected type of Adapter")]
     [IsDesignScriptCompatible]
-    public class MoveComponent : MethodCallComponent
+    public class CreateAdapterComponent : MethodCallComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new MoveCaller();
+        public override MethodCaller MethodCaller { get; } = new CreateAdapterCaller();
 
 
         /*******************************************/
