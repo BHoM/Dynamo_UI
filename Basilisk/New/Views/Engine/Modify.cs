@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace BH.UI.Basilisk.Views
 {
-    public class ModifyView : MethodCallView<ModifyComponent> 
+    public class ModifyView : CallerView<ModifyComponent> 
     {
     }
 }

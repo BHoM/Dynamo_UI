@@ -4,21 +4,29 @@ using BH.UI.Components;
 using BH.UI.Templates;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
+using ProtoCore.Mirror;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Convert")]
+    [NodeName("Explode")]
     [NodeCategory("Basilisk.Engine")]
-    [NodeDescription("Convert to and from a BHoM object")]
+    [NodeDescription("Explode an object into its properties")]
     [IsDesignScriptCompatible]
-    public class ConvertComponent : CallerComponent
+    public class ExplodeComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override Caller Caller { get; } = new ConvertCaller();
+        public override Caller Caller { get; } = new ExplodeCaller();
+
+
+        /*******************************************/
+        /**** Constructor                       ****/
+        /*******************************************/
 
 
         /*******************************************/

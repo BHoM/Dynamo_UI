@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace BH.UI.Basilisk.Views
 {
-    public class CreateQueryView : MethodCallView<CreateQueryComponent> 
+    public class CreateQueryView : CallerView<CreateQueryComponent> 
     {
     }
 }

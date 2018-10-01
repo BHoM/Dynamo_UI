@@ -115,7 +115,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compute\RunMethodCaller.cs" />
+    <Compile Include="Compute\RunCaller.cs" />
     <Compile Include="Convert\ToDesignScript.cs" />
     <Compile Include="Convert\ToBHoM.cs" />
     <Compile Include="Convert\ToPortData.cs" />

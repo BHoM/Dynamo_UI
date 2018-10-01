@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [NodeDescription("Creates an instance of a selected type of adapter query")]
     [IsDesignScriptCompatible]
-    public class CreateQueryComponent : MethodCallComponent
+    public class CreateQueryComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new CreateQueryCaller();
+        public override Caller Caller { get; } = new CreateQueryCaller();
 
 
         /*******************************************/

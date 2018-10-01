@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Engine")]
     [NodeDescription("Set the value of a property with a given name for an object")]
     [IsDesignScriptCompatible]
-    public class SetPropertyComponent : MethodCallComponent
+    public class SetPropertyComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new SetPropertyCaller();
+        public override Caller Caller { get; } = new SetPropertyCaller();
 
 
         /*******************************************/

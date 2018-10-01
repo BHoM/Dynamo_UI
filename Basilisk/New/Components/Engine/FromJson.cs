@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Engine")]
     [NodeDescription("Convert a Json string to a BHoMObject")]
     [IsDesignScriptCompatible]
-    public class FromJsonComponent : MethodCallComponent
+    public class FromJsonComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new FromJsonCaller();
+        public override Caller Caller { get; } = new FromJsonCaller();
 
 
         /*******************************************/

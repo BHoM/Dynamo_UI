@@ -8,17 +8,17 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Convert")]
-    [NodeCategory("Basilisk.Engine")]
-    [NodeDescription("Convert to and from a BHoM object")]
+    [NodeName("CreateData")]
+    [NodeCategory("Basilisk.oM")]
+    [NodeDescription("Creates a BhoM object from the reference datasets")]
     [IsDesignScriptCompatible]
-    public class ConvertComponent : CallerComponent
+    public class CreateDataComponent : CallerValueList
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override Caller Caller { get; } = new ConvertCaller();
+        public override MultiChoiceCaller Caller { get; } = new CreateDataCaller();
 
 
         /*******************************************/

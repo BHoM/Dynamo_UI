@@ -5,10 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Input;
 
 namespace BH.UI.Basilisk.Views
 {
-    public class CreateObjectView : CallerView<CreateObjectComponent> 
+    public class CreateDataView : ValueListView<CreateDataComponent> 
     {
     }
 }

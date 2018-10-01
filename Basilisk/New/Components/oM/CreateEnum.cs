@@ -2,23 +2,24 @@
 using BH.UI.Basilisk.Templates;
 using BH.UI.Components;
 using BH.UI.Templates;
+using CoreNodeModels;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Convert")]
-    [NodeCategory("Basilisk.Engine")]
-    [NodeDescription("Convert to and from a BHoM object")]
+    [NodeName("CreateEnum")]
+    [NodeCategory("Basilisk.oM")]
+    [NodeDescription("Creates a selected enum value")]
     [IsDesignScriptCompatible]
-    public class ConvertComponent : CallerComponent
+    public class CreateEnumComponent : CallerValueList
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override Caller Caller { get; } = new ConvertCaller();
+        public override MultiChoiceCaller Caller { get; } = new CreateEnumCaller();
 
 
         /*******************************************/

@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [NodeDescription("Copy objects from a source adapter to a target adapter")]
     [IsDesignScriptCompatible]
-    public class MoveComponent : MethodCallComponent
+    public class MoveComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new MoveCaller();
+        public override Caller Caller { get; } = new MoveCaller();
 
 
         /*******************************************/
