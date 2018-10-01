@@ -20,7 +20,7 @@
     <OutputPath>..\Build\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
   </PropertyGroup>
@@ -198,6 +198,7 @@
     <Compile Include="New\Components\Adapter\Move.cs" />
     <Compile Include="New\Components\Adapter\Execute.cs" />
     <Compile Include="New\Components\Adapter\Delete.cs" />
+    <Compile Include="New\Components\Engine\Explode.cs" />
     <Compile Include="New\Components\Engine\Query.cs" />
     <Compile Include="New\Components\Engine\Modify.cs" />
     <Compile Include="New\Components\Engine\Convert.cs" />
@@ -206,11 +207,25 @@
     <Compile Include="New\Components\Engine\GetProperty.cs" />
     <Compile Include="New\Components\Engine\FromJson.cs" />
     <Compile Include="New\Components\Engine\ToJson.cs" />
+    <Compile Include="New\Components\Global\AboutBHoM.cs" />
+    <Compile Include="New\Components\oM\CreateCustom.cs" />
+    <Compile Include="New\Components\oM\CreateEnum.cs" />
+    <Compile Include="New\Components\oM\CreateDictionary.cs" />
+    <Compile Include="New\Components\oM\CreateData.cs" />
+    <Compile Include="New\Components\oM\CreateType.cs" />
     <Compile Include="New\Components\oM\CreateObject.cs" />
-    <Compile Include="New\Templates\MethodCallComponent.cs" />
-    <Compile Include="New\Templates\MethodCallView.cs" />
+    <Compile Include="New\Global\GlobalSearch.cs" />
+    <Compile Include="New\Templates\CallerValueList.cs" />
+    <Compile Include="New\Templates\CallerComponent.cs" />
+    <Compile Include="New\Templates\ValueListView.cs" />
+    <Compile Include="New\Templates\CallerView.cs" />
     <Compile Include="New\Views\Adapter\CreateQuery.cs" />
     <Compile Include="New\Views\Adapter\CreateAdapter.cs" />
+    <Compile Include="New\Views\Engine\Explode.cs" />
+    <Compile Include="New\Views\oM\CreateCustom.cs" />
+    <Compile Include="New\Views\oM\CreateEnum.cs" />
+    <Compile Include="New\Views\oM\CreateData.cs" />
+    <Compile Include="New\Views\oM\CreateType.cs" />
     <Compile Include="New\Views\oM\CreateObject.cs" />
     <Compile Include="New\Views\Engine\Query.cs" />
     <Compile Include="New\Views\Engine\Modify.cs" />

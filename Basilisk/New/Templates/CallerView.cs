@@ -9,31 +9,35 @@ using System.Windows.Controls;
 using System.Linq;
 using BH.Engine.DataStructure;
 using BH.UI.Templates;
+using Dynamo.Engine;
 
 namespace BH.UI.Basilisk.Templates
 {
-    public abstract class MethodCallView<T> : INodeViewCustomization<T> where T : MethodCallComponent
+    public abstract class CallerView<T> : INodeViewCustomization<T> where T : CallerComponent
     {
         /*******************************************/
         /**** Constructors                      ****/
         /*******************************************/
 
-        public MethodCallView() {}
+        public CallerView() {}
 
 
         /*******************************************/
         /**** Interface Methods                 ****/
         /*******************************************/
 
-        public void CustomizeView(T component, NodeView nodeView)
+        public virtual void CustomizeView(T component, NodeView nodeView)
         {
-            m_Node = component;
-            Caller caller = component.MethodCaller;
+            Global.GlobalSearchMenu.DynamoModel = nodeView.ViewModel.DynamoViewModel.Model; //TODO: Find a better way to do this
 
-            if (caller != null)
+            m_Node = component;
+            m_DynamoEngine = nodeView.ViewModel.DynamoViewModel.Model.EngineController;
+            Caller caller = component.Caller;
+
+            if (caller != null && caller.Selector != null)
             {
                 caller.Selector.AddToMenu(nodeView.MainContextMenu);
-                caller.ItemSelected += Caller_MethodSelected;
+                caller.ItemSelected += Caller_ItemSelected;
             }
         }
 
@@ -46,9 +50,9 @@ namespace BH.UI.Basilisk.Templates
         /**** Protected Methods                 ****/
         /*******************************************/
 
-        protected void Caller_MethodSelected(object sender, object e)
+        protected virtual void Caller_ItemSelected(object sender, object e)
         {
-            m_Node.RefreshtMethod();
+            m_Node.RefreshComponent();
         }
 
 
@@ -56,8 +60,8 @@ namespace BH.UI.Basilisk.Templates
         /**** Private Fields                    ****/
         /*******************************************/
 
-        protected MethodCallComponent m_Node = null;
-
+        protected CallerComponent m_Node = null;
+        protected EngineController m_DynamoEngine = null;
 
         /*******************************************/
     }

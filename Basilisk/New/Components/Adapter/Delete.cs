@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [NodeDescription("Delete objects in the external software")]
     [IsDesignScriptCompatible]
-    public class DeleteComponent : MethodCallComponent
+    public class DeleteComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new DeleteCaller();
+        public override Caller Caller { get; } = new DeleteCaller();
 
 
         /*******************************************/

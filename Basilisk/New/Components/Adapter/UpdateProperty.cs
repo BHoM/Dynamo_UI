@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [NodeDescription("Update a specific property of objects from the external software")]
     [IsDesignScriptCompatible]
-    public class UpdatePropertyComponent : MethodCallComponent
+    public class UpdatePropertyComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new UpdatePropertyCaller();
+        public override Caller Caller { get; } = new UpdatePropertyCaller();
 
 
         /*******************************************/

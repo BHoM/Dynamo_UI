@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace BH.UI.Basilisk.Views
 {
-    public class CreateAdapterView : MethodCallView<CreateAdapterComponent> 
+    public class CreateAdapterView : CallerView<CreateAdapterComponent> 
     {
     }
 }

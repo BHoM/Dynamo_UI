@@ -1,4 +1,5 @@
 ﻿using Autodesk.DesignScript.Runtime;
+using BH.oM.Base;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,18 @@ namespace BH.Engine.Dynamo
                 else
                     return null;
             }
+            else
+                return null;
+        }
+
+        /***************************************************/
+
+        public static object ItemFromCustom(object container, int index)
+        {
+            CustomObject custom = container as CustomObject;
+            string key = index.ToString();
+            if (custom.CustomData.ContainsKey(key))
+                return custom.CustomData[key];
             else
                 return null;
         }

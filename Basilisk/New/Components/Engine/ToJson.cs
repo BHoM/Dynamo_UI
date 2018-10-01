@@ -13,13 +13,13 @@ namespace BH.UI.Basilisk.Components
     [NodeDescription("Convert a BHoMObject To a Json string")]
     [InPortTypes("object")]
     [IsDesignScriptCompatible]
-    public class ToJsonComponent : MethodCallComponent
+    public class ToJsonComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new ToJsonCaller();
+        public override Caller Caller { get; } = new ToJsonCaller();
 
 
         /*******************************************/

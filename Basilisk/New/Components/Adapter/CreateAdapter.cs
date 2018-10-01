@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [NodeDescription("Creates an instance of a selected type of Adapter")]
     [IsDesignScriptCompatible]
-    public class CreateAdapterComponent : MethodCallComponent
+    public class CreateAdapterComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new CreateAdapterCaller();
+        public override Caller Caller { get; } = new CreateAdapterCaller();
 
 
         /*******************************************/

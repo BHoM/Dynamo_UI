@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [NodeDescription("Push objects to the external software")]
     [IsDesignScriptCompatible]
-    public class PushComponent : MethodCallComponent
+    public class PushComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new PushCaller();
+        public override Caller Caller { get; } = new PushCaller();
 
 
         /*******************************************/

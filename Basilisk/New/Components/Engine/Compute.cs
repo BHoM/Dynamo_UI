@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Engine")]
     [NodeDescription("Run a computationally intensive calculations")]
     [IsDesignScriptCompatible]
-    public class ComputeComponent : MethodCallComponent
+    public class ComputeComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new ComputeCaller();
+        public override Caller Caller { get; } = new ComputeCaller();
 
 
         /*******************************************/

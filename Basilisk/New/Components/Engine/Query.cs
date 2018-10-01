@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Engine")]
     [NodeDescription("Query information about a BHoM object")]
     [IsDesignScriptCompatible]
-    public class QueryComponent : MethodCallComponent
+    public class QueryComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new QueryCaller();
+        public override Caller Caller { get; } = new QueryCaller();
 
 
         /*******************************************/

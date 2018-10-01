@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace BH.UI.Basilisk.Views
 {
-    public class CreateObjectView : CallerView<CreateObjectComponent> 
+    public class CreateEnumView : ValueListView<CreateEnumComponent> 
     {
     }
 }

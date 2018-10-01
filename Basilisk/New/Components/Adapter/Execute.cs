@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [NodeDescription("Execute command in the external software")]
     [IsDesignScriptCompatible]
-    public class ExecuteComponent : MethodCallComponent
+    public class ExecuteComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new ExecuteCaller();
+        public override Caller Caller { get; } = new ExecuteCaller();
 
 
         /*******************************************/

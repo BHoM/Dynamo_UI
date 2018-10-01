@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Engine")]
     [NodeDescription("Modify a BHoM object")]
     [IsDesignScriptCompatible]
-    public class ModifyComponent : MethodCallComponent
+    public class ModifyComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new ModifyCaller();
+        public override Caller Caller { get; } = new ModifyCaller();
 
 
         /*******************************************/

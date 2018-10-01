@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.Adapter")]
     [NodeDescription("Pull objects from the external software")]
     [IsDesignScriptCompatible]
-    public class PullComponent : MethodCallComponent
+    public class PullComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new PullCaller();
+        public override Caller Caller { get; } = new PullCaller();
 
 
         /*******************************************/

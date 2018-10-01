@@ -12,13 +12,13 @@ namespace BH.UI.Basilisk.Components
     [NodeCategory("Basilisk.oM")]
     [NodeDescription("Creates an instance of a selected type of BHoM object")]
     [IsDesignScriptCompatible]
-    public class CreateObjectComponent : MethodCallComponent
+    public class CreateObjectComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override MethodCaller MethodCaller { get; } = new CreateObjectCaller();
+        public override Caller Caller { get; } = new CreateObjectCaller();
 
 
         /*******************************************/
