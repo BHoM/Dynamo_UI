@@ -13,6 +13,8 @@ using BH.Engine.UI;
 using System.Reflection;
 using System.Collections;
 using BH.UI.Basilisk.Global;
+using System.Xml;
+using Dynamo.Graph;
 
 namespace BH.UI.Basilisk.Templates
 {
@@ -37,6 +39,7 @@ namespace BH.UI.Basilisk.Templates
             ArgumentLacing = LacingStrategy.Shortest;
 
             Caller.SetDataAccessor(new DataAccessor_Dynamo());
+            Caller.ItemSelected += (sender, e) => RefreshComponent();
             BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
 
             RefreshComponent();
@@ -89,6 +92,42 @@ namespace BH.UI.Basilisk.Templates
             List<AssociativeNode> transforms = processed.Item2;
             List<AssociativeNode> assignments = CreateOutputAssignments(functionCall, callerId);
             return transforms.Concat(assignments).ToList();
+        }
+
+        /*******************************************/
+
+        protected override void SerializeCore(XmlElement element, SaveContext context)
+        {
+            base.SerializeCore(element, context);
+            var xmlDoc = element.OwnerDocument;
+
+            if (Caller.Selector != null)
+            {
+                var componentString = xmlDoc.CreateElement("Component");
+                componentString.SetAttribute("value", Caller.Selector.Write());
+                element.AppendChild(componentString);
+            }
+        }
+
+        /*******************************************/
+
+        protected override void DeserializeCore(XmlElement element, SaveContext context)
+        {
+            base.DeserializeCore(element, context);
+
+            if (Caller.Selector != null)
+            {
+                foreach (XmlNode node in element.ChildNodes)
+                {
+                    switch (node.Name)
+                    {
+                        case "Component":
+                            if (node.Attributes != null && node.Attributes["value"] != null && node.Attributes["value"].Value != null)
+                                Caller.Selector.Read(node.Attributes["value"].Value);
+                            break;
+                    }
+                }
+            }
         }
 
 

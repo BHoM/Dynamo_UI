@@ -54,6 +54,11 @@ namespace BH.UI.Basilisk.Templates
             Grid.SetRow(m_Combo, 0);
             nodeView.inputGrid.Children.Add(m_Combo);
 
+            foreach (string name in m_Node.Caller.GetChoiceNames())
+                m_Combo.Items.Add(name);
+            if (m_Node.SelectedIndex > 0)
+                m_Combo.SelectedIndex = m_Node.SelectedIndex;
+
             m_Combo.SelectionChanged += M_Combo_SelectionChanged;
         }
 
