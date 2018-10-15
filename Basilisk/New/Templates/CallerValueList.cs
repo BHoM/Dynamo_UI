@@ -13,6 +13,8 @@ using BH.Engine.UI;
 using System.Reflection;
 using System.Collections;
 using CoreNodeModels;
+using System.Xml;
+using Dynamo.Graph;
 
 namespace BH.UI.Basilisk.Templates
 {
@@ -85,6 +87,50 @@ namespace BH.UI.Basilisk.Templates
             return new List<AssociativeNode> { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }
 
+        /*******************************************/
+
+        protected override void SerializeCore(XmlElement element, SaveContext context)
+        {
+            base.SerializeCore(element, context);
+            var xmlDoc = element.OwnerDocument;
+
+            if (Caller.Selector != null)
+            {
+                var componentString = xmlDoc.CreateElement("Component");
+                componentString.SetAttribute("value", Caller.Selector.Write());
+                element.AppendChild(componentString);
+
+                var selectionIndex = xmlDoc.CreateElement("SelectionIndex");
+                selectionIndex.SetAttribute("value", SelectedIndex.ToString());
+                element.AppendChild(selectionIndex);
+            }
+        }
+
+        /*******************************************/
+
+        protected override void DeserializeCore(XmlElement element, SaveContext context)
+        {
+            base.DeserializeCore(element, context);
+
+            if (Caller.Selector != null)
+            {
+                foreach (XmlNode node in element.ChildNodes)
+                {
+                    switch (node.Name)
+                    {
+                        case "Component":
+                            if (node.Attributes != null && node.Attributes["value"] != null && node.Attributes["value"].Value != null)
+                                Caller.Selector.Read(node.Attributes["value"].Value);
+                            break;
+
+                        case "SelectionIndex":
+                            if (node.Attributes != null && node.Attributes["value"] != null && node.Attributes["value"].Value != null)
+                                SelectedIndex = int.Parse(node.Attributes["value"].Value);
+                            break;
+                    }
+                }
+            }
+        }
 
         /*******************************************/
         /**** Private Methods                   ****/

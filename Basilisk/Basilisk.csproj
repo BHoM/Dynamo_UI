@@ -199,6 +199,7 @@
     <Compile Include="New\Components\Adapter\Execute.cs" />
     <Compile Include="New\Components\Adapter\Delete.cs" />
     <Compile Include="New\Components\Engine\Explode.cs" />
+    <Compile Include="New\Components\Engine\GetInfo.cs" />
     <Compile Include="New\Components\Engine\Query.cs" />
     <Compile Include="New\Components\Engine\Modify.cs" />
     <Compile Include="New\Components\Engine\Convert.cs" />
@@ -207,7 +208,6 @@
     <Compile Include="New\Components\Engine\GetProperty.cs" />
     <Compile Include="New\Components\Engine\FromJson.cs" />
     <Compile Include="New\Components\Engine\ToJson.cs" />
-    <Compile Include="New\Components\Global\AboutBHoM.cs" />
     <Compile Include="New\Components\oM\CreateCustom.cs" />
     <Compile Include="New\Components\oM\CreateEnum.cs" />
     <Compile Include="New\Components\oM\CreateDictionary.cs" />
