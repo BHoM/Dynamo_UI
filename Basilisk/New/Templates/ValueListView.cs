@@ -36,9 +36,9 @@ namespace BH.UI.Basilisk.Templates
             m_DynamoEngine = nodeView.ViewModel.DynamoViewModel.Model.EngineController;
             Caller caller = component.Caller;
 
-            if (caller != null && caller.Selector != null)
+            if (caller != null)
             {
-                caller.Selector.AddToMenu(nodeView.MainContextMenu);
+                caller.AddToMenu(nodeView.MainContextMenu);
                 caller.ItemSelected += Caller_ItemSelected;
             }
 
