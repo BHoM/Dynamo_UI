@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Pull")]
+    [NodeName("Pull (old)")]
     [NodeDescription("Pull objects from the external software")]
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Adapter", "Query", "Config", "Active")]

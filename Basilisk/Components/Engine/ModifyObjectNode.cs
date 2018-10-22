@@ -3,7 +3,7 @@ using BH.UI.Basilisk.Templates;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Modify Object")]
+    [NodeName("Modify Object (old)")]
     [NodeDescription("Modify a BHoM Object")]
     [NodeCategory("Basilisk.Engine")]
     [IsDesignScriptCompatible]

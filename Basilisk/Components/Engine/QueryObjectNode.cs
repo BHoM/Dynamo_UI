@@ -3,7 +3,7 @@ using BH.UI.Basilisk.Templates;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Query Object")]
+    [NodeName("Query Object (old)")]
     [NodeDescription("Query Information from a BHoM Object")]
     [NodeCategory("Basilisk.Engine")]
     [IsDesignScriptCompatible]

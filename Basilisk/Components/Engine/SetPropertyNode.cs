@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("SetProperty")]
+    [NodeName("SetProperty (old)")]
     [NodeDescription("Set a specific property of an object")]
     [NodeCategory("Basilisk.Engine")]
     [InPortNames("object", "property", "value")]

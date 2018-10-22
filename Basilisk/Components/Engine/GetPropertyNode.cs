@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("GetProperty")]
+    [NodeName("GetProperty (old)")]
     [NodeDescription("Get a property from an object")]
     [NodeCategory("Basilisk.Engine")]
     [InPortNames("object", "property")]

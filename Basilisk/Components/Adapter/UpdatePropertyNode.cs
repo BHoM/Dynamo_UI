@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("UpdateProperty")]
+    [NodeName("UpdateProperty (old)")]
     [NodeDescription("Update property of a selection of objectsin the external software")]
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Adapter", "Filter", "Property", "NewValue", "Config", "Active")]

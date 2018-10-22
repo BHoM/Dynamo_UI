@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Execute")]
+    [NodeName("Execute (old)")]
     [NodeDescription("Execute a command in the external software")]
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Adapter", "Command", "Params", "Config", "Active")]

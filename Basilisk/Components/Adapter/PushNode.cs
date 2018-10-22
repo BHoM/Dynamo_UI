@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Push")]
+    [NodeName("Push (old)")]
     [NodeDescription("Push objects to the external software")]
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Adapter", "Objects", "Tag", "Config", "Active")]

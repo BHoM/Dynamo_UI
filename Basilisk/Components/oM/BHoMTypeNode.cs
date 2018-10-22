@@ -8,7 +8,7 @@ using Dynamo.Graph;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Type")]
+    [NodeName("Type (old)")]
     [NodeDescription("Creates a type to choose from the context menu")]
     [NodeCategory("Basilisk.oM")]
     [IsDesignScriptCompatible]

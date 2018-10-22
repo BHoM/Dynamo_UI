@@ -3,7 +3,7 @@ using BH.UI.Basilisk.Templates;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("BHoMObj")]
+    [NodeName("BHoMObj (old)")]
     [NodeDescription("Creates a BHoMObject to choose from the context menu")]
     [NodeCategory("Basilisk.oM")]
     [IsDesignScriptCompatible]
