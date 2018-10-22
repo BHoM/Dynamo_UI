@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Delete")]
+    [NodeName("Delete (old)")]
     [NodeDescription("Delete objects from the external software")]
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Adapter", "Filter", "Config", "Active")]

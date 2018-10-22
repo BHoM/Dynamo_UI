@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Move")]
+    [NodeName("Move (old)")]
     [NodeDescription("Move objects from one external software to another")]
     [NodeCategory("Basilisk.Adapter")]
     [InPortNames("Source", "Target", "Query", "Config", "Active")]

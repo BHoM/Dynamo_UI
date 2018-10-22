@@ -8,7 +8,7 @@ using Dynamo.Graph;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("BHoMData")]
+    [NodeName("BHoMData (old)")]
     [NodeDescription("Create BHoM Reference Data")]
     [NodeCategory("Basilisk.oM")]
     [IsDesignScriptCompatible]

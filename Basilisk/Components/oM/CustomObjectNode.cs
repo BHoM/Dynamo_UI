@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("CustomObj")]
+    [NodeName("CustomObj (old)")]
     [NodeDescription("Creates a custom BHoMObject from custom inputs")]
     [NodeCategory("Basilisk.oM")]
     /*[OutPortNames("object")]      // Not good. Output disapear as soon as an input is added

@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("ExplodeObject")]
+    [NodeName("ExplodeObject (old)")]
     [NodeDescription("Explode a BHoMObject into its properties")]
     [NodeCategory("Basilisk.Engine")]
     [IsDesignScriptCompatible]

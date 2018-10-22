@@ -3,7 +3,7 @@ using BH.UI.Basilisk.Templates;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Convert Object")]
+    [NodeName("Convert Object (old)")]
     [NodeDescription("Convert a BHoM Object inot another type")]
     [NodeCategory("Basilisk.Engine")]
     [IsDesignScriptCompatible]

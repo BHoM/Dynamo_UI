@@ -3,7 +3,7 @@ using BH.UI.Basilisk.Templates;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Adapter")]
+    [NodeName("Adapter (old)")]
     [NodeDescription("Creates a BHoM Adapter to chose from the context menu")]
     [NodeCategory("Basilisk.Adapter")]
     [IsDesignScriptCompatible]

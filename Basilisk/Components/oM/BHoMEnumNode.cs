@@ -8,7 +8,7 @@ using Dynamo.Graph;
 
 namespace BH.UI.Basilisk.Components
 {
-    [NodeName("Enum")]
+    [NodeName("Enum (old)")]
     [NodeDescription("Creates an enum to choose from the context menu")]
     [NodeCategory("Basilisk.oM")]
     [IsDesignScriptCompatible]
