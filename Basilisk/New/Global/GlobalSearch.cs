@@ -27,9 +27,13 @@ namespace BH.UI.Basilisk.Global
 
         public static void Activate()
         {
-            Window window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
-            GlobalSearch.Activate(window);
-            GlobalSearch.ItemSelected += GlobalSearch_ItemSelected;
+            if (!m_Activated && Application.Current != null)
+            {
+                Window window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+                GlobalSearch.Activate(window);
+                GlobalSearch.ItemSelected += GlobalSearch_ItemSelected;
+                m_Activated = true;
+            }
         }
 
 
@@ -69,6 +73,12 @@ namespace BH.UI.Basilisk.Global
             }
             
         }
+
+        /*******************************************/
+        /**** Private Fields                    ****/
+        /*******************************************/
+
+        private static bool m_Activated = false;
 
         /*******************************************/
     }
