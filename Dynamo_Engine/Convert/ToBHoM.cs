@@ -53,10 +53,11 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static IEnumerable<object> ToBHoM(this ArrayList list)
-        {
-            return list.ToArray().Select(x => x.IToBHoM()).ToList();
-        }
+        // Issue with natvie Dynamo nodes to be confused (Issue 83)
+        //public static IEnumerable<object> ToBHoM(this ArrayList list)
+        //{
+        //    return list.ToArray().Select(x => x.IToBHoM()).ToList();
+        //}
 
         /***************************************************/
         /**** Public Methods  - Geometry                ****/
