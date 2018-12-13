@@ -29,7 +29,44 @@ namespace BH.Engine.Dynamo.Objects
 
         public override T GetDataItem<T>(int index)
         {
-            return (T)GetInputAt(index).IToBHoM();
+            object aObject = GetInputAt(index).IToBHoM();
+
+            if (aObject == null)
+                return default(T);
+
+            Type aType = aObject.GetType();
+
+            if (aType == typeof(T) || typeof(T).IsAssignableFrom(aType))
+                return (T)aObject;
+
+            if(typeof(T) == typeof(double))
+            {
+                if (aObject is string)
+                {
+                    double aValue;
+                    if (double.TryParse((string)aObject, out aValue))
+                        return (T)(object)aValue;
+                }
+                else if (aObject is sbyte || aObject is byte || aObject is short || aObject is ushort || aObject is int || aObject is uint || aObject is long || aObject is ulong || aObject is float || aObject is double || aObject is decimal)
+                {
+                    return (T)(object)System.Convert.ToDouble(aObject);
+                }
+            }
+            else if (typeof(T) == typeof(int))
+            {
+                if (aObject is string)
+                {
+                    int aValue;
+                    if (int.TryParse((string)aObject, out aValue))
+                        return (T)(object)aValue;
+                }
+                else if (aObject is sbyte || aObject is byte || aObject is short || aObject is ushort || aObject is int || aObject is uint || aObject is long || aObject is ulong || aObject is float || aObject is double || aObject is decimal)
+                {
+                    return (T)(object)System.Convert.ToInt32(aObject);
+                }
+            }
+
+            return default(T);
         }
 
         /*************************************/
