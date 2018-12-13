@@ -102,6 +102,17 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
+        public static ADG.PolyCurve ToDesignScript(this BHG.PolyCurve polyCurve)
+        {
+            List<ADG.PolyCurve> aPolyCurveList = new List<ADG.PolyCurve>();
+            foreach (BHG.ICurve ICurve in polyCurve.Curves)
+                aPolyCurveList.Add(ToDesignScript((ICurve as dynamic).ToDesignScript()));
+
+            return ADG.PolyCurve.ByJoinedCurves(aPolyCurveList);
+        }
+
+        /***************************************************/
+
         public static ADG.BoundingBox ToDesignScript(this BHG.BoundingBox boundingBox)
         {
             return ADG.BoundingBox.ByCorners(boundingBox.Min.ToDesignScript(), boundingBox.Max.ToDesignScript());
