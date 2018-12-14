@@ -85,10 +85,10 @@ namespace BH.UI.Basilisk.Views
                 if (MethodGroup != "")
                     ignore.Add(MethodGroup);
 
-                IEnumerable<MethodBase> methods = GetRelevantMethods();
+                List<MethodBase> methods = GetRelevantMethods().ToList();
                 IEnumerable<string> paths = methods.Select(x => x.ToText(true));
 
-                m_MethodTree = GroupMethodsByName(Engine.DataStructure.Create.Tree(methods, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y))), "Select " + MethodGroup + " methods").ShortenBranches());
+                m_MethodTree = GroupMethodsByName(Engine.DataStructure.Create.Tree(methods, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y)).ToList()).ToList(), "Select " + MethodGroup + " methods").ShortenBranches());
                 m_MethodList = paths.Zip(methods, (k, v) => new Tuple<string, MethodBase>(k, v)).ToList();
 
                 m_MethodTreeStore[nickname] = m_MethodTree;
