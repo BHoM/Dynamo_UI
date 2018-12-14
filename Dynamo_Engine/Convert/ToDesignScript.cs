@@ -88,7 +88,7 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.CoordinateSystem ToDesignScript(this BHG.CoordinateSystem coordinateSystem)
+        public static ADG.CoordinateSystem ToDesignScript(this BHG.CoordinateSystem.Cartesian coordinateSystem)
         {
             return ADG.CoordinateSystem.ByOriginVectors(coordinateSystem.Origin.ToDesignScript(), coordinateSystem.X.ToDesignScript(), coordinateSystem.Y.ToDesignScript());
         }
