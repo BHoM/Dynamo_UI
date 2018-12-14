@@ -106,7 +106,13 @@ namespace BH.Engine.Dynamo
         {
             List<ADG.PolyCurve> aPolyCurveList = new List<ADG.PolyCurve>();
             foreach (BHG.ICurve ICurve in polyCurve.Curves)
-                aPolyCurveList.Add(ToDesignScript((ICurve as dynamic).ToDesignScript()));
+            {
+                if (ICurve is BHG.PolyCurve)
+                    aPolyCurveList.Add(((BHG.PolyCurve)ICurve).ToDesignScript());
+                else
+                    aPolyCurveList.Add(ToDesignScript((ICurve as dynamic)));
+
+            }
 
             return ADG.PolyCurve.ByJoinedCurves(aPolyCurveList);
         }
