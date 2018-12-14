@@ -27,9 +27,9 @@ namespace BH.UI.Basilisk.Views
 
             if (m_FileTree == null || m_FileList == null)
             {
-                IEnumerable<string> names = Engine.Library.Query.LibraryNames();
+                List<string> names = Engine.Library.Query.LibraryNames();
 
-                m_FileTree = Engine.DataStructure.Create.Tree(names, names.Select(x => x.Split('\\')), "select a dataset").ShortenBranches();
+                m_FileTree = Engine.DataStructure.Create.Tree(names, names.Select(x => x.Split('\\').ToList()).ToList(), "select a dataset").ShortenBranches();
                 m_FileList = names.Select(x => new Tuple<string, string>(x, x)).ToList();
             }
         }
