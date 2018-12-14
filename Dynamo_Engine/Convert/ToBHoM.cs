@@ -124,9 +124,9 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.CoordinateSystem ToBHoM(this ADG.CoordinateSystem coordinateSystem)
+        public static BHG.CoordinateSystem.Cartesian ToBHoM(this ADG.CoordinateSystem coordinateSystem)
         {
-            return Geometry.Create.CoordinateSystem(coordinateSystem.Origin.ToBHoM(), coordinateSystem.XAxis.ToBHoM(), coordinateSystem.YAxis.ToBHoM());
+            return Geometry.Create.CartesianCoordinateSystem(coordinateSystem.Origin.ToBHoM(), coordinateSystem.XAxis.ToBHoM(), coordinateSystem.YAxis.ToBHoM());
         }
 
         /***************************************************/
