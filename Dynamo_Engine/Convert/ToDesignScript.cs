@@ -110,8 +110,7 @@ namespace BH.Engine.Dynamo
                 if (ICurve is BHG.PolyCurve)
                     aPolyCurveList.Add(((BHG.PolyCurve)ICurve).ToDesignScript());
                 else
-                    aPolyCurveList.Add(ToDesignScript((ICurve as dynamic)));
-
+                    aPolyCurveList.Add(ADG.PolyCurve.ByJoinedCurves(new ADG.Curve[] { ToDesignScript((ICurve as dynamic)) }));
             }
 
             return ADG.PolyCurve.ByJoinedCurves(aPolyCurveList);
