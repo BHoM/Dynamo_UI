@@ -3,8 +3,6 @@ using System.Collections;
 using ADG = Autodesk.DesignScript.Geometry;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
 using BH.Engine.Dynamo.Objects;
 
