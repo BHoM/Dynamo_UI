@@ -1,9 +1,9 @@
 {
 	"license":"",
 	"file_hash":null,
-	"name":"Basilisk",
+	"name":"BHoM",
 	"version":"2.0.0",
-	"description":"Basilisk package",
+	"description":"Buildings and Habitats object Model (BHoM) package",
 	"group":"BuroHappold",
 	"keywords":["BHoM", "Engineering"],
 	"dependencies":[],
@@ -15,8 +15,8 @@
 	"repository_url":"",
 	"contains_binaries":true,
 	"node_libraries":[
-		"Basilisk",
+		"Dynamo",
 		"Dynamo_Engine",
-		"Methods_Basilisk"
+		"Methods_Dynamo"
 	]
 }
