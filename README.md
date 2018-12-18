@@ -3,8 +3,8 @@ BHoM Dynamo Tools
 
 There have been some fairly major updates to the Basilisk project recently, to make it more flexible for future development. 
 
-### Build Basilisk from Source ###
-You will need the following to build Basilisk:
+### Build Dynamo_Toolkit from Source ###
+You will need the following to build Dynamo_Toolkit:
 
 - Microsoft Visual Studio 2013 or higher
 - [GitHub for Windows](https://windows.github.com/)
@@ -12,8 +12,8 @@ You will need the following to build Basilisk:
 - BHoM version 0.0.1
 - RobotToolkit version 0.0.1
 - Ensure post-build folders are accessible:
-    - Basilisk (zero touch essentials) node library copies to C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools. If you need the package folder that includes the bin folder and pkg.json file, copy from the Basilisk Plugins folder.
-    - Basilisk UI nodes library copies to C:\Program Files\Dynamo 0.9\nodes on build. This folder is protected by default - you'll need to allow write access with local rights.
+    - Dynamo_Toolkit (zero touch essentials) node library copies to C:\Users\$(Username)\AppData\Roaming\Dynamo\0.9\packages\BH Dynamo Tools. If you need the package folder that includes the bin folder and pkg.json file, copy from the Dynamo_Toolkit Plugins folder.
+    - Dynamo_Toolkit UI nodes library copies to C:\Program Files\Dynamo 0.9\nodes on build. This folder is protected by default - you'll need to allow write access with local rights.
 
 ## Contribute ##
 
