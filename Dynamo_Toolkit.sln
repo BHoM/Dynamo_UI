@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio Express 14 for Windows Desktop
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basilisk", "Basilisk\Basilisk.csproj", "{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo", "Dynamo\Dynamo.csproj", "{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Methods_Basilisk", "Methods_Basilisk\Methods_Basilisk.csproj", "{B49B782C-3EE2-4C58-A2C5-D489DD31BD7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Methods_Dynamo", "Methods_Dynamo\Methods_Dynamo.csproj", "{B49B782C-3EE2-4C58-A2C5-D489DD31BD7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo_Engine", "Dynamo_Engine\Dynamo_Engine.csproj", "{01CA6B93-2723-4022-B3FF-0815AF808621}"
 EndProject
