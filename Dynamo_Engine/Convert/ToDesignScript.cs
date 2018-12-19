@@ -70,7 +70,7 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.NurbsCurve ToDesignScript(this BHG.NurbCurve nurbsCurve)
+        public static ADG.NurbsCurve ToDesignScript(this BHG.NurbsCurve nurbsCurve)
         {
 
             List<double> knots = new List<double> { 0, nurbsCurve.Knots.Last() };
@@ -125,7 +125,7 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.Surface ToDesignScript(this BHG.NurbSurface surface)
+        public static ADG.Surface ToDesignScript(this BHG.NurbsSurface surface)
         {
             throw new NotImplementedException();
         }

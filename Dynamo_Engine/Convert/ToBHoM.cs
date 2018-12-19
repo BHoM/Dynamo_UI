@@ -98,16 +98,16 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.NurbCurve ToBHoM(this ADG.Curve nurbCurve)
+        public static BHG.NurbsCurve ToBHoM(this ADG.Curve nurbCurve)
         {
             throw new NotImplementedException();
         }
 
         /***************************************************/
 
-        public static BHG.NurbCurve ToBHoM(this ADG.NurbsCurve nurbCurve)
+        public static BHG.NurbsCurve ToBHoM(this ADG.NurbsCurve nurbCurve)
         {
-            return new BHG.NurbCurve
+            return new BHG.NurbsCurve
             {
                 ControlPoints = nurbCurve.ControlPoints().Select(x => x.ToBHoM()).ToList(),
                 Knots = nurbCurve.Knots().ToList().GetRange(1, nurbCurve.Knots().Count()-2),
@@ -157,14 +157,14 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.NurbSurface ToBHoM(this ADG.Surface surface)
+        public static BHG.NurbsSurface ToBHoM(this ADG.Surface surface)
         {
             throw new NotImplementedException();
         }
 
         /***************************************************/
 
-        public static BHG.NurbSurface ToBHoM(this ADG.NurbsSurface surface)
+        public static BHG.NurbsSurface ToBHoM(this ADG.NurbsSurface surface)
         {
             throw new NotImplementedException();
         }
