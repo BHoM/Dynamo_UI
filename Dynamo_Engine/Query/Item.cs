@@ -35,6 +35,9 @@ namespace BH.Engine.Dynamo
         public static object ItemFromCustom(object container, int index)
         {
             CustomObject custom = container as CustomObject;
+            if (custom == null)
+                return null;
+
             string key = index.ToString();
             if (custom.CustomData.ContainsKey(key))
                 return custom.CustomData[key];
