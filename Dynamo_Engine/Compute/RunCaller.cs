@@ -141,15 +141,19 @@ namespace BH.Engine.Dynamo
             }
             else
             {
-                BH.Engine.Reflection.Compute.RecordError("The method caller cannot be found.");
+                Reflection.Compute.RecordError("The method caller cannot be found.");
                 result = null;
             }
 
-            List<Event> events = Engine.Reflection.Query.CurrentEvents();
-            if (events.Count == 0)
-                return result;
-            else
-                throw new Exception(events.Select(x => x.Message).Aggregate((a, b) => a + "\n" + b));
+            List<Event> events = Reflection.Query.CurrentEvents();
+            if(events != null && events.Count != 0)
+            {
+                events = events.FindAll(x => x.Type == EventType.Error);
+                if(events.Count > 0)
+                    throw new Exception(events.Select(x => x.Message).Aggregate((a, b) => a + "\n" + b));
+
+            }               
+            return result;
         }
 
 
