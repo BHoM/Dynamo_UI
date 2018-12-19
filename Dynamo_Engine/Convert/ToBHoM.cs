@@ -98,20 +98,20 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.NurbsCurve ToBHoM(this ADG.Curve nurbCurve)
+        public static BHG.NurbsCurve ToBHoM(this ADG.Curve nurbsCurve)
         {
             throw new NotImplementedException();
         }
 
         /***************************************************/
 
-        public static BHG.NurbsCurve ToBHoM(this ADG.NurbsCurve nurbCurve)
+        public static BHG.NurbsCurve ToBHoM(this ADG.NurbsCurve nurbsCurve)
         {
             return new BHG.NurbsCurve
             {
-                ControlPoints = nurbCurve.ControlPoints().Select(x => x.ToBHoM()).ToList(),
-                Knots = nurbCurve.Knots().ToList().GetRange(1, nurbCurve.Knots().Count()-2),
-                Weights = nurbCurve.Weights().ToList()
+                ControlPoints = nurbsCurve.ControlPoints().Select(x => x.ToBHoM()).ToList(),
+                Knots = nurbsCurve.Knots().ToList().GetRange(1, nurbsCurve.Knots().Count()-2),
+                Weights = nurbsCurve.Weights().ToList()
             };
         }
 
