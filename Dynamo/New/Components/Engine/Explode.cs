@@ -8,6 +8,8 @@ using ProtoCore.Mirror;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
+using Dynamo.Graph;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -25,9 +27,14 @@ namespace BH.UI.Dynamo.Components
 
 
         /*******************************************/
-        /**** Constructor                       ****/
+        /**** Override Methods                  ****/
         /*******************************************/
 
+        protected override void DeserializeCore(XmlElement element, SaveContext context)
+        {
+            base.DeserializeCore(element, context);
+            RegisterOutputs();
+        }
 
         /*******************************************/
     }
