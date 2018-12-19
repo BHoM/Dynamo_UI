@@ -15,7 +15,7 @@
 	"repository_url":"",
 	"contains_binaries":true,
 	"node_libraries":[
-		"Dynamo",
+		"Dynamo_UI",
 		"Dynamo_Engine",
 		"Methods_Dynamo"
 	]
