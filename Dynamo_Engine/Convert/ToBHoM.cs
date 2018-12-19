@@ -140,7 +140,12 @@ namespace BH.Engine.Dynamo
 
         public static BHG.Polyline ToBHoM(this ADG.Polygon polygon)
         {
-            return Geometry.Create.Polyline(polygon.Points.Select(x => x.ToBHoM()));
+            List<BH.oM.Geometry.Point> pts = polygon.Points.Select(x => x.ToBHoM()).ToList();
+            if (pts.Count == 0)
+                return new BHG.Polyline();
+
+            pts.Add(pts[0]);
+            return Geometry.Create.Polyline(pts);
         }
 
         /***************************************************/
