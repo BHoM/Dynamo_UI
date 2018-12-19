@@ -2,6 +2,7 @@
 using BH.Engine.Dynamo;
 using BH.Engine.Dynamo.Objects;
 using BH.oM.Base;
+using BH.oM.Reflection.Debugging;
 using BH.UI.Templates;
 using System;
 using System.Collections;
@@ -114,6 +115,9 @@ namespace BH.Engine.Dynamo
 
         private static object RunCaller(string callerId, object[] arguments)  // It is super important for this to be private of Dynamo mess things up
         {
+            object result = null;
+            Engine.Reflection.Compute.ClearCurrentEvents();
+
             if (Callers.ContainsKey(callerId))
             {
                 Caller caller = Callers[callerId];
@@ -122,26 +126,33 @@ namespace BH.Engine.Dynamo
                 caller.Run();
 
                 if (accessor.Outputs.Length == 1)
-                    return accessor.Outputs.First();
+                    result = accessor.Outputs.First();
                 else if (accessor.Outputs.Length > 1)
                 {
                     MultiResults[callerId] = accessor.Outputs;
                     Dictionary<string, object> dic = new Dictionary<string, object>();
                     for (int i = 0; i < accessor.Outputs.Length; i++)
                         dic[i.ToString()] = accessor.Outputs[i];
-                    return new CustomObject { CustomData = dic };
+                    result = new CustomObject { CustomData = dic };
                     //return accessor.Outputs;
                 }
                 else
-                    return null;    
+                    result = null;    
             }
             else
             {
                 BH.Engine.Reflection.Compute.RecordError("The method caller cannot be found.");
-                return null;
+                result = null;
             }
-                
+
+            List<Event> events = Engine.Reflection.Query.CurrentEvents();
+            if (events.Count == 0)
+                return result;
+            else
+                throw new Exception(events.Select(x => x.Message).Aggregate((a, b) => a + "\n" + b));
         }
+
+
 
         /***************************************************/
         /**** Public Static Fileds                      ****/
