@@ -34,7 +34,7 @@
     <DocumentationFile>..\Build\Dynamo_UI.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BHoM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BHoM">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
       <Private>False</Private>
@@ -56,15 +56,15 @@
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.1.2.0\lib\net45\CoreNodeModelsWpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DataManipulation_oM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DataManipulation_oM">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\DataManipulation_oM.dll</HintPath>
     </Reference>
-    <Reference Include="DataStructure_Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DataStructure_Engine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM_Engine\Build\DataStructure_Engine.dll</HintPath>
     </Reference>
-    <Reference Include="DataStructure_oM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DataStructure_oM">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\DataStructure_oM.dll</HintPath>
     </Reference>
@@ -95,11 +95,11 @@
     <Reference Include="Geometry_Engine">
       <HintPath>..\..\BHoM_Engine\Build\Geometry_Engine.dll</HintPath>
     </Reference>
-    <Reference Include="Geometry_oM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Geometry_oM">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\Geometry_oM.dll</HintPath>
     </Reference>
-    <Reference Include="Library_Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Library_Engine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM_Engine\Build\Library_Engine.dll</HintPath>
     </Reference>
@@ -125,7 +125,7 @@
       <HintPath>..\packages\DynamoVisualProgramming.Core.1.2.0\lib\net45\ProtoCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ProtoGeometry">
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.2.0\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>True</Private>
     </Reference>
