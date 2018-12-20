@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using ProtoCore.AST.AssociativeAST;
 using System.Xml;
 using Dynamo.Graph;
+using Autodesk.DesignScript.Runtime;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -34,6 +35,7 @@ namespace BH.UI.Dynamo.Components
     [NodeDescription("Create BHoM Reference Data")]
     [NodeCategory("BHoM.oM")]
     [IsDesignScriptCompatible]
+    [IsVisibleInDynamoLibrary(false)]
     public class BHoMDataNode : NodeModel
     {
         /*******************************************/

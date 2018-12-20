@@ -20,6 +20,7 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using Autodesk.DesignScript.Runtime;
 using Dynamo.Engine;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
@@ -36,6 +37,7 @@ namespace BH.UI.Dynamo.Components
     [NodeDescription("Explode a BHoMObject into its properties")]
     [NodeCategory("BHoM.Engine")]
     [IsDesignScriptCompatible]
+    [IsVisibleInDynamoLibrary(false)]
     public class ExplodeObjectNode : VariableOutputNode
     {
         /*******************************************/

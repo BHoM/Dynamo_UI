@@ -27,6 +27,7 @@ using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
 using System.Xml;
 using Dynamo.Graph;
+using Autodesk.DesignScript.Runtime;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -34,6 +35,7 @@ namespace BH.UI.Dynamo.Components
     [NodeDescription("Creates a type to choose from the context menu")]
     [NodeCategory("BHoM.oM")]
     [IsDesignScriptCompatible]
+    [IsVisibleInDynamoLibrary(false)]
     public class BHoMTypeNode : NodeModel
     {
         /*******************************************/
