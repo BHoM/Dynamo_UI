@@ -36,7 +36,7 @@
     <Reference Include="BHoM_Engine">
       <HintPath>..\..\BHoM_Engine\Build\BHoM_Engine.dll</HintPath>
     </Reference>
-    <Reference Include="BHoM_UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BHoM_UI">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM_UI\Build\BHoM_UI.dll</HintPath>
     </Reference>
@@ -90,11 +90,11 @@
       <HintPath>..\packages\DynamoVisualProgramming.Core.1.2.0\lib\net45\ProtoCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ProtoGeometry">
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.2.0\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Reflection_Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Reflection_Engine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
     </Reference>
