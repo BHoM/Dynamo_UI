@@ -37,7 +37,7 @@ namespace BH.UI.Dynamo.Components
     [NodeDescription("Explode a BHoMObject into its properties")]
     [NodeCategory("BHoM.Engine")]
     [IsDesignScriptCompatible]
-    [IsVisibleInDynamoLibrary(false)]
+    //[IsVisibleInDynamoLibrary(false)]
     public class ExplodeObjectNode : VariableOutputNode
     {
         /*******************************************/
