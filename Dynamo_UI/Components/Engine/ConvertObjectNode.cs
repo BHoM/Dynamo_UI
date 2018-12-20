@@ -22,6 +22,7 @@
 
 using Dynamo.Graph.Nodes;
 using BH.UI.Dynamo.Templates;
+using Autodesk.DesignScript.Runtime;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -29,6 +30,7 @@ namespace BH.UI.Dynamo.Components
     [NodeDescription("Convert a BHoM Object inot another type")]
     [NodeCategory("BHoM.Engine")]
     [IsDesignScriptCompatible]
+    [IsVisibleInDynamoLibrary(false)]
     public class ConvertObjectNode : MethodNode
     {
         /*******************************************/

@@ -20,6 +20,7 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using Autodesk.DesignScript.Runtime;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace BH.UI.Dynamo.Components
     [OutPortTypes("string")]
     [OutPortDescriptions("string representing the object in json")]
     [IsDesignScriptCompatible]
+    [IsVisibleInDynamoLibrary(false)]
     public class ToJsonNode : NodeModel
     {
         /*******************************************/

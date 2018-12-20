@@ -20,6 +20,7 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using Autodesk.DesignScript.Runtime;
 using BH.Adapter;
 using BH.UI.Dynamo.Templates;
 using Dynamo.Engine;
@@ -42,6 +43,7 @@ namespace BH.UI.Dynamo.Components
     [OutPortTypes("object[]")]
     [OutPortDescriptions("Objects obtained from the query")]
     [IsDesignScriptCompatible]
+    [IsVisibleInDynamoLibrary(false)]
     public class PullNode : ZeroTouchNode
     {
         /*******************************************/

@@ -20,6 +20,7 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using Autodesk.DesignScript.Runtime;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
@@ -37,6 +38,7 @@ namespace BH.UI.Dynamo.Components
     [OutPortTypes("object")]
     [OutPortDescriptions("Custom BHoM Object")]*/
     [IsDesignScriptCompatible]
+    [IsVisibleInDynamoLibrary(false)]
     public class CustomObjectNode : VariableInputNode
     {
         /*******************************************/

@@ -22,6 +22,7 @@
 
 using Dynamo.Graph.Nodes;
 using BH.UI.Dynamo.Templates;
+using Autodesk.DesignScript.Runtime;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -29,6 +30,7 @@ namespace BH.UI.Dynamo.Components
     [NodeDescription("Creates a BHoMObject to choose from the context menu")]
     [NodeCategory("BHoM.oM")]
     [IsDesignScriptCompatible]
+    [IsVisibleInDynamoLibrary(false)]
     public class BHoMObjectNode : MethodNode
     {
         /*******************************************/
