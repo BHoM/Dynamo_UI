@@ -20,9 +20,11 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using BH.UI.Components;
 using BH.UI.Dynamo.Components;
 using BH.UI.Dynamo.Templates;
 using BH.UI.Global;
+using BH.UI.Templates;
 using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
 using Dynamo.Models;
@@ -66,26 +68,10 @@ namespace BH.UI.Dynamo.Global
         private static void GlobalSearch_ItemSelected(object sender, oM.UI.ComponentRequest request)
         {
             CallerComponent node = null;
+            if (request != null && request.CallerType != null && m_CallerComponentDic.ContainsKey(request.CallerType))
+                node = Activator.CreateInstance(m_CallerComponentDic[request.CallerType]) as CallerComponent;
 
-            switch (request.CallerType.Name)
-            {
-                case "ComputeCaller":
-                    node = new ComputeComponent();
-                    break;
-                case "ConvertCaller":
-                    node = new ConvertComponent();
-                    break;
-                case "CreateObjectCaller":
-                    node = new CreateObjectComponent();
-                    break;
-                case "ModifyCaller":
-                    node = new ModifyComponent();
-                    break;
-                case "QueryCaller":
-                    node = new QueryComponent();
-                    break;
-            }
-            
+
             if (node != null && DynamoModel != null)
             {
                 CreateNodeCommand command = new CreateNodeCommand(node, 0, 0, true, false);
@@ -93,7 +79,6 @@ namespace BH.UI.Dynamo.Global
                 node.Caller.SetItem(request.SelectedItem);
                 node.RefreshComponent();
             }
-            
         }
 
         /*******************************************/
@@ -101,6 +86,36 @@ namespace BH.UI.Dynamo.Global
         /*******************************************/
 
         private static bool m_Activated = false;
+
+        private static Dictionary<Type, Type> m_CallerComponentDic = new Dictionary<Type, Type>
+        {
+            { typeof(CreateAdapterCaller),      typeof(CreateAdapterComponent) },
+            { typeof(CreateQueryCaller),        typeof(CreateQueryComponent) },
+            { typeof(DeleteCaller),             typeof(DeleteComponent) },
+            { typeof(ExecuteCaller),            typeof(ExecuteComponent) },
+            { typeof(MoveCaller),               typeof(MoveComponent) },
+            { typeof(PullCaller),               typeof(PullComponent) },
+            { typeof(PushCaller),               typeof(PushComponent) },
+            { typeof(UpdatePropertyCaller),     typeof(UpdatePropertyComponent) },
+
+            { typeof(ComputeCaller),            typeof(ComputeComponent) },
+            { typeof(ConvertCaller),            typeof(ConvertComponent) },
+            { typeof(ExplodeCaller),            typeof(ExplodeComponent) },
+            { typeof(FromJsonCaller),           typeof(FromJsonComponent) },
+            { typeof(GetInfoCaller),            typeof(GetInfoComponent) },
+            { typeof(GetPropertyCaller),        typeof(GetPropertyComponent) },
+            { typeof(ModifyCaller),             typeof(ModifyComponent) },
+            { typeof(QueryCaller),              typeof(QueryComponent) },
+            { typeof(SetPropertyCaller),        typeof(SetPropertyComponent) },
+            { typeof(ToJsonCaller),             typeof(ToJsonComponent) },
+
+            { typeof(CreateCustomCaller),       typeof(CreateCustomComponent) },
+            { typeof(CreateDataCaller),         typeof(CreateDataComponent) },
+            { typeof(CreateDictionaryCaller),   typeof(CreateDictionaryComponent) },
+            { typeof(CreateEnumCaller),         typeof(CreateEnumComponent) },
+            { typeof(CreateObjectCaller),       typeof(CreateObjectComponent) },
+            { typeof(CreateTypeCaller),         typeof(CreateTypeComponent) }
+        };
 
         /*******************************************/
     }
