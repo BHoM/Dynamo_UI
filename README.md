@@ -34,4 +34,4 @@ New features
 
 ## License ##
 
-Basilisk is licensed under the [LGPL](https://github.com/BHoM/Revit_Toolkit/blob/master/LICENSE) License. Basilisk also uses a number of third party libraries, some with different licenses.
+Basilisk is licensed under the [LGPL](https://github.com/BHoM/Dynamo_Toolkit/blob/master/LICENSE) License. Basilisk also uses a number of third party libraries, some with different licenses.
