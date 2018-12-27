@@ -4,7 +4,7 @@
 	"name":"BHoM",
 	"version":"2.0.0",
 	"description":"Buildings and Habitats object Model (BHoM) package",
-	"group":"BuroHappold",
+	"group":"",
 	"keywords":["BHoM", "Engineering"],
 	"dependencies":[],
 	"contents":"",
