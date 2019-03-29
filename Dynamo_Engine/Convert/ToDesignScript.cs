@@ -173,9 +173,9 @@ namespace BH.Engine.Dynamo
         /***************************************************/
 
         //TODO: implement proper conversion for PlanarSurfce
-        public static ADG.Geometry ToDesignScript(this BHG.PlanarSurface planarSurface)
+        public static BHG.PlanarSurface ToDesignScript(this BHG.PlanarSurface planarSurface)
         {
-            return planarSurface.ExternalBoundary.IToDesignScript();
+            return planarSurface;
         }
 
         /***************************************************/
