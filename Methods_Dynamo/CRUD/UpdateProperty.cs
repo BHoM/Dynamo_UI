@@ -23,7 +23,7 @@
 using Autodesk.DesignScript.Runtime;
 using BH.Adapter;
 using BH.oM.Base;
-using BH.oM.DataManipulation.Queries;
+using BH.oM.Data.Requests;
 using System.Collections.Generic;
 
 namespace BH.UI.Dynamo.Methods
@@ -34,7 +34,7 @@ namespace BH.UI.Dynamo.Methods
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static int UpdateProperty(BHoMAdapter adapter, FilterQuery filter, string property, object newValue, CustomObject config = null, bool active = false)
+        public static int UpdateProperty(BHoMAdapter adapter, FilterRequest filter, string property, object newValue, CustomObject config = null, bool active = false)
         {
             if (active)
             {

@@ -23,7 +23,7 @@
 using Autodesk.DesignScript.Runtime;
 using BH.Adapter;
 using BH.oM.Base;
-using BH.oM.DataManipulation.Queries;
+using BH.oM.Data.Requests;
 using System.Collections.Generic;
 using System.Linq;
 

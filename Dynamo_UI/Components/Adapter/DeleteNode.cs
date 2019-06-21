@@ -33,7 +33,7 @@ namespace BH.UI.Dynamo.Components
     [NodeCategory("BHoM.Adapter")]
     [InPortNames("Adapter", "Filter", "Config", "Active")]
     [InPortTypes("object", "object", "object", "bool")]
-    [InPortDescriptions("Adapter", "FilterQuery\nDefault: new FilterQuery()", "Delete config\nDefault: null", "Execute the delete\nDefault: false")]
+    [InPortDescriptions("Adapter", "FilterRequest\nDefault: new FilterRequest()", "Delete config\nDefault: null", "Execute the delete\nDefault: false")]
     [OutPortNames("#deleted")]
     [OutPortTypes("int")]
     [OutPortDescriptions("Number of objects deleted")]

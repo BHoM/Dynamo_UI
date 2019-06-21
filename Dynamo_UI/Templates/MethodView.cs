@@ -23,14 +23,14 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using BH.oM.DataStructure;
+using BH.oM.Data.Collections;
 using Dynamo.Wpf;
 using Dynamo.Controls;
 using BH.UI.Dynamo.Templates;
 using System.Windows.Controls;
 using System.Linq;
 using BH.Engine.Reflection;
-using BH.Engine.DataStructure;
+using BH.Engine.Data;
 
 namespace BH.UI.Dynamo.Views
 {
@@ -110,7 +110,7 @@ namespace BH.UI.Dynamo.Views
                 List<MethodBase> methods = GetRelevantMethods().ToList();
                 IEnumerable<string> paths = methods.Select(x => x.ToText(true));
 
-                m_MethodTree = GroupMethodsByName(Engine.DataStructure.Create.Tree(methods, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y)).ToList()).ToList(), "Select " + MethodGroup + " methods").ShortenBranches());
+                m_MethodTree = GroupMethodsByName(Engine.Data.Create.Tree(methods, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y)).ToList()).ToList(), "Select " + MethodGroup + " methods").ShortenBranches());
                 m_MethodList = paths.Zip(methods, (k, v) => new Tuple<string, MethodBase>(k, v)).ToList();
 
                 m_MethodTreeStore[nickname] = m_MethodTree;

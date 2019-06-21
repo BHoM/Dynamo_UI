@@ -33,7 +33,7 @@ namespace BH.UI.Dynamo.Components
     [NodeCategory("BHoM.Adapter")]
     [InPortNames("Source", "Target", "Query", "Config", "Active")]
     [InPortTypes("object", "object", "object", "object", "bool")]
-    [InPortDescriptions("Adapter the data is pulled from", "Adapter the data is pushed to", "BHoM Query\nDefault: new FilterQuery()", "Move config (custom object)\nDefault: null", "Execute the move\nDefault: false")]
+    [InPortDescriptions("Adapter the data is pulled from", "Adapter the data is pushed to", "BHoM Query\nDefault: new FilterRequest()", "Move config (custom object)\nDefault: null", "Execute the move\nDefault: false")]
     [OutPortNames("Success")]
     [OutPortTypes("bool")]
     [OutPortDescriptions("Confirms if the operation was successful")]

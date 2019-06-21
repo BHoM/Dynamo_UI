@@ -20,10 +20,10 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
-using BH.Engine.DataStructure;
+using BH.Engine.Data;
 using BH.Engine.Reflection;
 using BH.oM.Base;
-using BH.oM.DataStructure;
+using BH.oM.Data.Collections;
 using BH.UI.Dynamo.Components;
 using BH.UI.Dynamo.Templates;
 using Dynamo.Controls;
@@ -54,7 +54,7 @@ namespace BH.UI.Dynamo.Views
                 IEnumerable<string> paths = types.Select(x => x.ToText(true));
 
                 List<string> ignore = new List<string> { "BH", "oM", "Engine" };
-                m_TypeTree = Engine.DataStructure.Create.Tree(types, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y)).ToList()).ToList(), "select a type").ShortenBranches();
+                m_TypeTree = Engine.Data.Create.Tree(types, paths.Select(x => x.Split('.').Where(y => !ignore.Contains(y)).ToList()).ToList(), "select a type").ShortenBranches();
                 m_TypeList = paths.Zip(types, (k, v) => new Tuple<string, Type>(k, v)).ToList();
             }
         }

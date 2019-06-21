@@ -38,7 +38,7 @@ namespace BH.UI.Dynamo.Components
     [NodeCategory("BHoM.Adapter")]
     [InPortNames("Adapter", "Query", "Config", "Active")]
     [InPortTypes("object", "object", "object", "bool")]
-    [InPortDescriptions("Adapter", "BHoM Query\nDefault: new FilterQuery()", "Pull config\nDefault: null", "Execute the pull\nDefault: false")]
+    [InPortDescriptions("Adapter", "BHoM Query\nDefault: new FilterRequest()", "Pull config\nDefault: null", "Execute the pull\nDefault: false")]
     [OutPortNames("Objects")]
     [OutPortTypes("object[]")]
     [OutPortDescriptions("Objects obtained from the query")]
