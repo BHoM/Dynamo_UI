@@ -23,13 +23,13 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using BH.oM.DataStructure;
+using BH.oM.Data.Collections;
 using Dynamo.Wpf;
 using Dynamo.Controls;
 using BH.UI.Dynamo.Templates;
 using System.Windows.Controls;
 using System.Linq;
-using BH.Engine.DataStructure;
+using BH.Engine.Data;
 using BH.UI.Templates;
 using Dynamo.Engine;
 using Dynamo.Configuration;

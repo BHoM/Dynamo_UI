@@ -30,7 +30,7 @@ using System.Collections.Generic;
 
 namespace BH.UI.Dynamo.Components
 {
-    [NodeName("CreateQuery")]
+    [NodeName("CreateRequest")]
     [NodeCategory("BHoM.Adapter")]
     [NodeDescription("Creates an instance of a selected type of adapter query")]
     [IsDesignScriptCompatible]
@@ -40,7 +40,7 @@ namespace BH.UI.Dynamo.Components
         /**** Properties                        ****/
         /*******************************************/
 
-        public override Caller Caller { get; } = new CreateQueryCaller();
+        public override Caller Caller { get; } = new CreateRequestCaller();
 
 
         /*******************************************/

@@ -21,7 +21,7 @@
  */
 
 using BH.oM.Base;
-using BH.oM.DataManipulation.Queries;
+using BH.oM.Data.Requests;
 using BH.UI.Dynamo.Components;
 using System;
 using System.Collections.Generic;
@@ -45,7 +45,7 @@ namespace BH.UI.Dynamo.Views
 
         public override IEnumerable<MethodBase> GetRelevantMethods()
         {
-            Type queryType = typeof(IQuery);
+            Type queryType = typeof(IRequest);
             return BH.Engine.Reflection.Query.BHoMMethodList().Where(x => queryType.IsAssignableFrom(x.ReturnType)).OrderBy(x => x.Name);
         }
 

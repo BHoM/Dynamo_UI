@@ -23,7 +23,7 @@
 using Autodesk.DesignScript.Runtime;
 using BH.Adapter;
 using BH.oM.Base;
-using BH.oM.DataManipulation.Queries;
+using BH.oM.Data.Requests;
 using System.Collections.Generic;
 
 namespace BH.UI.Dynamo.Methods
@@ -35,10 +35,10 @@ namespace BH.UI.Dynamo.Methods
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static int Delete(BHoMAdapter adapter, FilterQuery query = null, CustomObject config = null, bool active = false)
+        public static int Delete(BHoMAdapter adapter, FilterRequest query = null, CustomObject config = null, bool active = false)
         {
             if (query == null)
-                query = new FilterQuery();
+                query = new FilterRequest();
 
             Dictionary<string, object> conf = (config != null) ? config.CustomData : null;
 

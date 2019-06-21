@@ -20,10 +20,10 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
-using BH.Engine.DataStructure;
+using BH.Engine.Data;
 using BH.Engine.Reflection;
 using BH.oM.Base;
-using BH.oM.DataStructure;
+using BH.oM.Data.Collections;
 using BH.UI.Dynamo.Components;
 using BH.UI.Dynamo.Templates;
 using Dynamo.Controls;
@@ -51,7 +51,7 @@ namespace BH.UI.Dynamo.Views
             {
                 List<string> names = Engine.Library.Query.LibraryNames();
 
-                m_FileTree = Engine.DataStructure.Create.Tree(names, names.Select(x => x.Split('\\').ToList()).ToList(), "select a dataset").ShortenBranches();
+                m_FileTree = Engine.Data.Create.Tree(names, names.Select(x => x.Split('\\').ToList()).ToList(), "select a dataset").ShortenBranches();
                 m_FileList = names.Select(x => new Tuple<string, string>(x, x)).ToList();
             }
         }
