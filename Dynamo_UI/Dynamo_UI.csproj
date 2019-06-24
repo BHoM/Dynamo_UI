@@ -198,7 +198,7 @@
     <Compile Include="Components\oM\BHoMObjectNode.cs" />
     <Compile Include="Components\oM\CustomObjectNode.cs" />
     <Compile Include="Components\Engine\ToJsonNode.cs" />
-    <Compile Include="New\Components\Adapter\CreateQuery.cs" />
+    <Compile Include="New\Components\Adapter\CreateRequest.cs" />
     <Compile Include="New\Components\Adapter\CreateAdapter.cs" />
     <Compile Include="New\Components\Adapter\UpdateProperty.cs" />
     <Compile Include="New\Components\Adapter\Push.cs" />

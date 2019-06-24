@@ -90,7 +90,7 @@ namespace BH.UI.Dynamo.Global
         private static Dictionary<Type, Type> m_CallerComponentDic = new Dictionary<Type, Type>
         {
             { typeof(CreateAdapterCaller),      typeof(CreateAdapterComponent) },
-            { typeof(CreateRequestCaller),        typeof(CreateQueryComponent) },
+            { typeof(CreateRequestCaller),        typeof(CreateRequestComponent) },
             { typeof(DeleteCaller),             typeof(DeleteComponent) },
             { typeof(ExecuteCaller),            typeof(ExecuteComponent) },
             { typeof(MoveCaller),               typeof(MoveComponent) },

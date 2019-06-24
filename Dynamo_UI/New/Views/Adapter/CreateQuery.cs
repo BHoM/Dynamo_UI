@@ -30,7 +30,7 @@ using System.Reflection;
 
 namespace BH.UI.Dynamo.Views
 {
-    public class CreateQueryView : CallerView<CreateQueryComponent> 
+    public class CreatRequestView : CallerView<CreateRequestComponent> 
     {
     }
 }
