@@ -32,9 +32,9 @@ namespace BH.UI.Dynamo.Components
 {
     [NodeName("CreateRequest")]
     [NodeCategory("BHoM.Adapter")]
-    [NodeDescription("Creates an instance of a selected type of adapter query")]
+    [NodeDescription("Creates an instance of a selected type of adapter request")]
     [IsDesignScriptCompatible]
-    public class CreateQueryComponent : CallerComponent
+    public class CreateRequestComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
