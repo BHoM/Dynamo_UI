@@ -227,7 +227,7 @@
     <Compile Include="New\Templates\CallerComponent.cs" />
     <Compile Include="New\Templates\ValueListView.cs" />
     <Compile Include="New\Templates\CallerView.cs" />
-    <Compile Include="New\Views\Adapter\CreateQuery.cs" />
+    <Compile Include="New\Views\Adapter\CreateRequest.cs" />
     <Compile Include="New\Views\Adapter\CreateAdapter.cs" />
     <Compile Include="New\Views\Engine\Explode.cs" />
     <Compile Include="New\Views\oM\CreateCustom.cs" />
