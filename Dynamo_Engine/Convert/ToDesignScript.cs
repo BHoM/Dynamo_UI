@@ -96,8 +96,8 @@ namespace BH.Engine.Dynamo
         {
 
             List<double> knots = new List<double> { 0, nurbsCurve.Knots.Last() };
-            knots.InsertRange(1, nurbsCurve.Knots.ToList());          
-          
+            knots.InsertRange(1, nurbsCurve.Knots.ToList());
+
             return ADG.NurbsCurve.ByControlPointsWeightsKnots(nurbsCurve.ControlPoints.Select(x => x.ToDesignScript()), nurbsCurve.Weights.ToArray(), knots.ToArray(), nurbsCurve.Degree());
         }
 
@@ -147,9 +147,29 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.Surface ToDesignScript(this BHG.NurbsSurface surface)
+        public static ADG.NurbsSurface ToDesignScript(this BHG.NurbsSurface surface)
         {
-            throw new NotImplementedException();
+            if (surface == null)
+                return null;
+
+            List<int> degrees = surface.Degrees();
+            List<int> uvCount = surface.UVCount();
+            double[][] weights = new double[uvCount[0]][];
+            ADG.Point[][] points = new ADG.Point[uvCount[0]][];
+
+            for (int i = 0; i < uvCount[0]; i++)
+            {
+                points[i] = new ADG.Point[uvCount[1]];
+                weights[i] = new double[uvCount[1]];
+                for (int j = 0; j < uvCount[1]; j++)
+                {
+                    points[i][j] = surface.ControlPoints[j + (uvCount[1] * i)].ToDesignScript();
+                    weights[i][j] = surface.Weights[j + (uvCount[1] * i)];
+                }
+            }
+
+            return ADG.NurbsSurface.ByControlPointsWeightsKnots(points, weights,
+                surface.UKnots.ToArray(), surface.VKnots.ToArray(), degrees[0], degrees[1]);
         }
 
         /***************************************************/

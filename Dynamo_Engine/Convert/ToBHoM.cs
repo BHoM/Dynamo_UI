@@ -179,16 +179,22 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.NurbsSurface ToBHoM(this ADG.Surface surface)
+        public static BHG.ISurface ToBHoM(this ADG.Surface surface)
         {
-            throw new NotImplementedException();
+            return ToBHoM(surface as dynamic);
         }
 
         /***************************************************/
 
         public static BHG.NurbsSurface ToBHoM(this ADG.NurbsSurface surface)
         {
-            throw new NotImplementedException();
+            return surface == null ? null : new BHG.NurbsSurface
+            {
+                ControlPoints = surface.ControlPoints().SelectMany(x => x.Select(y => y.ToBHoM())).ToList(),
+                Weights = surface.Weights().SelectMany(x => x).ToList(),
+                UKnots = surface.UKnots().ToList(),
+                VKnots = surface.VKnots().ToList()
+            };
         }
 
         /***************************************************/
