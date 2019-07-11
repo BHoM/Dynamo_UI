@@ -51,7 +51,7 @@ namespace BH.Engine.Dynamo.Objects
 
         public override T GetDataItem<T>(int index)
         {
-            object aObject = GetInputAt(index).IToBHoM();
+            object aObject = GetInputAt(index);
 
             if (aObject == null)
                 return default(T);
@@ -61,7 +61,10 @@ namespace BH.Engine.Dynamo.Objects
             if (aType == typeof(T) || typeof(T).IsAssignableFrom(aType))
                 return (T)aObject;
 
-            if(typeof(T) == typeof(double))
+            if (aType.Namespace.StartsWith("Autodesk.DesignScript"))
+                return (T)(aObject.IToBHoM());
+
+            if (typeof(T) == typeof(double))
             {
                 if (aObject is string)
                 {
