@@ -188,11 +188,11 @@ namespace BH.Engine.Dynamo
 
         public static BHG.NurbsSurface ToBHoM(this ADG.NurbsSurface surface)
         {
-            List<double> uKnots = surface.UKnots().ToList();
+            List<double> uKnots = new List<double>(surface.UKnots());
             uKnots.RemoveAt(0);
             uKnots.RemoveAt(uKnots.Count - 1);
 
-            List<double> vKnots = surface.VKnots().ToList();
+            List<double> vKnots = new List<double>(surface.VKnots());
             vKnots.RemoveAt(0);
             vKnots.RemoveAt(vKnots.Count - 1);
 

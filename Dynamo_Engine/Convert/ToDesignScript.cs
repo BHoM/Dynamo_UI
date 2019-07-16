@@ -157,11 +157,11 @@ namespace BH.Engine.Dynamo
             ADG.Point[][] points = new ADG.Point[uvCount[0]][];
             List<int> degrees = surface.Degrees();
 
-            List<double> uKnots = surface.UKnots;
+            List<double> uKnots = new List<double>(surface.UKnots);
             uKnots.Insert(0, uKnots.First());
             uKnots.Add(uKnots.Last());
 
-            List<double> vKnots = surface.VKnots;
+            List<double> vKnots = new List<double>(surface.VKnots);
             vKnots.Insert(0, vKnots.First());
             vKnots.Add(vKnots.Last());
 
