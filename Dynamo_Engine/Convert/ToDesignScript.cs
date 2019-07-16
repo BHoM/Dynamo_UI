@@ -155,6 +155,15 @@ namespace BH.Engine.Dynamo
             List<int> uvCount = surface.UVCount().Select(x => x -1).ToList(); // Align to Dynamo nurbs definition
             double[][] weights = new double[uvCount[0]][];
             ADG.Point[][] points = new ADG.Point[uvCount[0]][];
+            List<int> degrees = surface.Degrees();
+
+            List<double> uKnots = surface.UKnots;
+            uKnots.Insert(0, uKnots.First());
+            uKnots.Add(uKnots.Last());
+
+            List<double> vKnots = surface.VKnots;
+            vKnots.Insert(0, vKnots.First());
+            vKnots.Add(vKnots.Last());
 
             for (int i = 0; i < uvCount[0]; i++)
             {
@@ -168,7 +177,7 @@ namespace BH.Engine.Dynamo
             }
 
             return ADG.NurbsSurface.ByControlPointsWeightsKnots(points, weights,
-                surface.UKnots.ToArray(), surface.VKnots.ToArray());
+                uKnots.ToArray(), vKnots.ToArray(), degrees[0], degrees[1]);
         }
 
         /***************************************************/

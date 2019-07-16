@@ -188,12 +188,20 @@ namespace BH.Engine.Dynamo
 
         public static BHG.NurbsSurface ToBHoM(this ADG.NurbsSurface surface)
         {
+            List<double> uKnots = surface.UKnots().ToList();
+            uKnots.RemoveAt(0);
+            uKnots.RemoveAt(uKnots.Count - 1);
+
+            List<double> vKnots = surface.VKnots().ToList();
+            vKnots.RemoveAt(0);
+            vKnots.RemoveAt(vKnots.Count - 1);
+
             return surface == null ? null : new BHG.NurbsSurface
             {
                 ControlPoints = surface.ControlPoints().SelectMany(x => x.Select(y => y.ToBHoM())).ToList(),
                 Weights = surface.Weights().SelectMany(x => x).ToList(),
-                UKnots = surface.UKnots().ToList(),
-                VKnots = surface.VKnots().ToList()
+                UKnots = uKnots,
+                VKnots = vKnots
             };
         }
 
