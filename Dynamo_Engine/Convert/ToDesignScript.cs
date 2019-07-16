@@ -152,7 +152,7 @@ namespace BH.Engine.Dynamo
             if (surface == null)
                 return null;
 
-            List<int> uvCount = surface.UVCount().Select(x => x -1).ToList(); // Align to Dynamo nurbs definition
+            List<int> uvCount = surface.UVCount().Select(x => x).ToList(); // Align to Dynamo nurbs definition
             double[][] weights = new double[uvCount[0]][];
             ADG.Point[][] points = new ADG.Point[uvCount[0]][];
             List<int> degrees = surface.Degrees();
