@@ -140,7 +140,10 @@ namespace BH.UI.Dynamo.Templates
                 {
                     case "Component":
                         if (node.Attributes != null && node.Attributes["value"] != null && node.Attributes["value"].Value != null)
+                        {
                             Caller.Read(node.Attributes["value"].Value);
+                            RefreshComponent();
+                        }
                         break;
                 }
             }
