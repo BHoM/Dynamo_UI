@@ -98,12 +98,14 @@ namespace BH.Engine.Dynamo.Objects
 
         public override List<T> GetDataList<T>(int index)
         {
-            object content = GetInputAt(index);
-            if (content is ListWrapper)
-                content = ((ListWrapper)content).Items;
-            IEnumerable data = content as IEnumerable;
+            return GetDataCollection<T>(index).ToList();
+        }
 
-            return data.Cast<object>().Select(x => x.IToBHoM()).Cast<T>().ToList();
+        /*************************************/
+
+        public override T[] GetDataArray<T>(int index)
+        {
+            return GetDataCollection<T>(index).ToArray();
         }
 
         /*************************************/
@@ -176,5 +178,15 @@ namespace BH.Engine.Dynamo.Objects
         }
 
         /***************************************************/
+
+        private IEnumerable<T> GetDataCollection<T>(int index)
+        {
+            object content = GetInputAt(index);
+            if (content is ListWrapper)
+                content = ((ListWrapper)content).Items;
+            IEnumerable data = content as IEnumerable;
+
+            return data.Cast<object>().Select(x => x.IToBHoM()).Cast<T>();
+        }
     }
 }
