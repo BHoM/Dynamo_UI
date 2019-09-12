@@ -34,7 +34,7 @@ namespace BH.UI.Dynamo.Methods
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static bool Move(BHoMAdapter source, BHoMAdapter target, object query = null, CustomObject config = null, bool active = false)
+        public static bool Move(BHoMAdapter source, BHoMAdapter target, object query = null, CustomObject pullConfig = null, CustomObject pushConfig = null, bool active = false)
         {
             if (query == null)
                 query = new FilterRequest();
@@ -43,8 +43,10 @@ namespace BH.UI.Dynamo.Methods
 
             if (active)
             {
-                Dictionary<string, object> conf = (config != null) ? config.CustomData : null;
-                bool result = source.Move(target, query as IRequest, conf);
+                Dictionary<string, object> pullConf = (pullConfig != null) ? pullConfig.CustomData : null;
+                Dictionary<string, object> pushConf = (pushConfig != null) ? pushConfig.CustomData : null;
+
+                bool result = source.Move(target, query as IRequest, pullConf, pushConf);
                 return result;
             }
             else
