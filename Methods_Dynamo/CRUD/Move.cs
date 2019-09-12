@@ -44,7 +44,7 @@ namespace BH.UI.Dynamo.Methods
             if (active)
             {
                 Dictionary<string, object> conf = (config != null) ? config.CustomData : null;
-                bool result = source.PullTo(target, query as IRequest, conf);
+                bool result = source.Move(target, query as IRequest, conf);
                 return result;
             }
             else
