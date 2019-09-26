@@ -101,6 +101,8 @@ namespace BH.Engine.Dynamo.Objects
             object content = GetInputAt(index);
             if (content is ListWrapper)
                 content = ((ListWrapper)content).Items;
+            if (content == null)
+                content = new List<T>();
             IEnumerable data = content as IEnumerable;
 
             return data.Cast<object>().Select(x => x.IToBHoM()).Cast<T>().ToList();
@@ -113,6 +115,8 @@ namespace BH.Engine.Dynamo.Objects
             object content = GetInputAt(index);
             if (content is TreeWrapper)
                 content = ((TreeWrapper)content).Items;
+            if (content == null)
+                content = new List<List<T>>();
             IEnumerable<IEnumerable> data = content as IEnumerable<IEnumerable>;
 
             return data.Select(y => y.Cast<object>().Select(x => x.IToBHoM()).Cast<T>().ToList()).ToList();

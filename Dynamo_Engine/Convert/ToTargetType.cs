@@ -46,6 +46,9 @@ namespace BH.Engine.Dynamo
             else if (item is TreeWrapper)
                 item = ((TreeWrapper)item).Items;
 
+            if (item == null)
+                return null;
+
             if (item.GetType() == type)
                 return item;
             else
