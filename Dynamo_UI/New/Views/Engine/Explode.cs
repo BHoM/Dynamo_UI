@@ -82,20 +82,27 @@ namespace BH.UI.Dynamo.Views
             if (colorsMirror == null || colorsMirror.GetData() == null) return;
 
             MirrorData mirrorData = colorsMirror.GetData();
-            List<object> data = new List<object>();
-
-            if (mirrorData.IsCollection)
-            {
-                IEnumerable<MirrorData> elements = mirrorData.GetElements();
-                if (elements.Count() > 0)
-                    data = elements.Select(x => x.Data).ToList();
-            }
-            else
-                data = new List<object> { mirrorData.Data };
+            List<object> data = CollectData(mirrorData);
 
             ExplodeCaller caller = m_Node.Caller as ExplodeCaller;
             caller.CollectOutputTypes(data);
             m_Node.RefreshComponent();
+        }
+
+        /*******************************************/
+
+        private List<object> CollectData(MirrorData mirrorData)
+        {
+            if (mirrorData.IsCollection)
+            {
+                IEnumerable<MirrorData> elements = mirrorData.GetElements();
+                if (elements.Count() > 0)
+                    return elements.SelectMany(x => CollectData(x)).ToList();
+                else
+                    return new List<object>();
+            }
+            else
+                return new List<object> { mirrorData.Data };
         }
 
         /*******************************************/
