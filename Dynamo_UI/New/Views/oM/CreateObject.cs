@@ -21,16 +21,98 @@
  */
 
 using BH.oM.Base;
+using BH.UI.Components;
 using BH.UI.Dynamo.Components;
 using BH.UI.Dynamo.Templates;
+using Dynamo.Controls;
+using Dynamo.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace BH.UI.Dynamo.Views
 {
     public class CreateObjectView : CallerView<CreateObjectComponent> 
     {
+        /*******************************************/
+        /**** Interface Methods                 ****/
+        /*******************************************/
+
+        public override void CustomizeView(CreateObjectComponent nodeModel, NodeView nodeView)
+        {
+            base.CustomizeView(nodeModel, nodeView);
+
+            m_View = nodeView;
+
+            CreateObjectCaller caller = nodeModel.Caller as CreateObjectCaller;
+            if (caller.SelectedItem is Type)
+                SetButtons();
+        }
+
+        /*******************************************/
+
+        protected override void Caller_ItemSelected(object sender, object e)
+        {
+            CreateObjectCaller caller = m_Node.Caller as CreateObjectCaller;
+            if (caller.SelectedItem is Type)
+                SetButtons();
+
+            base.Caller_ItemSelected(sender, e);
+        }
+
+        /*******************************************/
+        /**** Private Methods                   ****/
+        /*******************************************/
+
+        protected void SetButtons() 
+        {
+            if (m_ButtonPanel != null)
+                m_ButtonPanel.Children.Clear();
+            else
+            {
+                m_ButtonPanel = new WrapPanel
+                {
+                    VerticalAlignment = VerticalAlignment.Top,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Orientation = Orientation.Vertical
+                };
+                m_View.inputGrid.Children.Add(m_ButtonPanel);
+            }
+
+            for (int i = 0; i < m_Node.Caller.InputParams.Count; i++)
+            {
+                var button = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
+                button.Click += RemoveButton_Click;
+                m_ButtonPanel.Children.Add(button);
+            }
+        }
+
+        /*******************************************/
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            DynamoNodeButton button = sender as DynamoNodeButton;
+            int index = m_ButtonPanel.Children.IndexOf(button);
+            m_ButtonPanel.Children.Remove(button);
+
+            CreateObjectCaller caller = m_Node.Caller as CreateObjectCaller;
+            List<string> inputs = m_Node.InPorts.Select(x => x.PortName).ToList();
+            inputs.RemoveAt(index);
+            caller.SetInputs(inputs);
+            m_Node.RefreshComponent();
+        }
+
+
+        /*******************************************/
+        /**** Private Fields                    ****/
+        /*******************************************/
+
+        protected NodeView m_View = null;
+        protected WrapPanel m_ButtonPanel = null;
+
+        /*******************************************/
     }
 }
