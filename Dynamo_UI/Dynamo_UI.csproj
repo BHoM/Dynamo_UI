@@ -175,7 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Adapter\MoveNode.cs" />
-    <Compile Include="Components\Adapter\UpdatePropertyNode.cs" />
     <Compile Include="Components\Adapter\PullNode.cs" />
     <Compile Include="Components\Adapter\PushNode.cs" />
     <Compile Include="Components\Adapter\ExecuteNode.cs" />
@@ -200,7 +199,6 @@
     <Compile Include="Components\Engine\ToJsonNode.cs" />
     <Compile Include="New\Components\Adapter\CreateRequest.cs" />
     <Compile Include="New\Components\Adapter\CreateAdapter.cs" />
-    <Compile Include="New\Components\Adapter\UpdateProperty.cs" />
     <Compile Include="New\Components\Adapter\Push.cs" />
     <Compile Include="New\Components\Adapter\Pull.cs" />
     <Compile Include="New\Components\Adapter\Move.cs" />
