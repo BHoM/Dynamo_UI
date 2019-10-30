@@ -96,7 +96,6 @@ namespace BH.UI.Dynamo.Global
             { typeof(MoveCaller),               typeof(MoveComponent) },
             { typeof(PullCaller),               typeof(PullComponent) },
             { typeof(PushCaller),               typeof(PushComponent) },
-            { typeof(UpdatePropertyCaller),     typeof(UpdatePropertyComponent) },
 
             { typeof(ComputeCaller),            typeof(ComputeComponent) },
             { typeof(ConvertCaller),            typeof(ConvertComponent) },

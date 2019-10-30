@@ -157,7 +157,6 @@
     <Compile Include="Create\ListWrapper.cs" />
     <Compile Include="Create\TreeWrapper.cs" />
     <Compile Include="CRUD\Move.cs" />
-    <Compile Include="CRUD\UpdateProperty.cs" />
     <Compile Include="CRUD\Execute.cs" />
     <Compile Include="CRUD\Pull.cs" />
     <Compile Include="CRUD\Push.cs" />
