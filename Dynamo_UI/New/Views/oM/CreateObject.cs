@@ -21,6 +21,7 @@
  */
 
 using BH.oM.Base;
+using BH.oM.UI;
 using BH.UI.Components;
 using BH.UI.Dynamo.Components;
 using BH.UI.Dynamo.Templates;
@@ -48,8 +49,13 @@ namespace BH.UI.Dynamo.Views
             m_View = nodeView;
 
             CreateObjectCaller caller = nodeModel.Caller as CreateObjectCaller;
-            if (caller.SelectedItem is Type)
-                SetButtons();
+            if (caller != null)
+            {
+                if (caller.SelectedItem is Type)
+                    SetButtons();
+
+                caller.InputToggled += Caller_InputToggled;
+            }   
         }
 
         /*******************************************/
@@ -61,6 +67,15 @@ namespace BH.UI.Dynamo.Views
                 SetButtons();
 
             base.Caller_ItemSelected(sender, e);
+        }
+
+        /*******************************************/
+
+        private void Caller_InputToggled(object sender, Tuple<ParamInfo, bool> e)
+        {
+            CreateObjectCaller caller = m_Node.Caller as CreateObjectCaller;
+            if (caller.SelectedItem is Type)
+                SetButtons();
         }
 
         /*******************************************/
@@ -100,8 +115,8 @@ namespace BH.UI.Dynamo.Views
 
             CreateObjectCaller caller = m_Node.Caller as CreateObjectCaller;
             List<string> inputs = m_Node.InPorts.Select(x => x.PortName).ToList();
+            caller.RemoveInput(inputs[index]);
             inputs.RemoveAt(index);
-            caller.SetInputs(inputs);
             m_Node.RefreshComponent();
         }
 

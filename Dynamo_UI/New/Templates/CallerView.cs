@@ -53,6 +53,7 @@ namespace BH.UI.Dynamo.Templates
             Global.GlobalSearchMenu.DynamoModel = nodeView.ViewModel.DynamoViewModel.Model; //TODO: Find a better way to do this
 
             m_Node = component;
+            m_View = nodeView;
             m_DynamoEngine = nodeView.ViewModel.DynamoViewModel.Model.EngineController;
             Caller caller = component.Caller;
 
@@ -75,6 +76,11 @@ namespace BH.UI.Dynamo.Templates
         protected virtual void Caller_ItemSelected(object sender, object e)
         {
             m_Node.RefreshComponent();
+
+            Caller caller = m_Node.Caller;
+
+            if (caller != null && m_View != null)
+                caller.AddToMenu(m_View.MainContextMenu);
         }
 
 
@@ -83,6 +89,7 @@ namespace BH.UI.Dynamo.Templates
         /*******************************************/
 
         protected CallerComponent m_Node = null;
+        protected NodeView m_View = null;
         protected EngineController m_DynamoEngine = null;
 
         /*******************************************/
