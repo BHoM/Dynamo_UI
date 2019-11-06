@@ -27,6 +27,10 @@ using BH.UI.Templates;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
+using System;
+using BH.oM.UI;
+using BH.Engine.Dynamo;
+using System.Linq;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -41,6 +45,38 @@ namespace BH.UI.Dynamo.Components
         /*******************************************/
 
         public override Caller Caller { get; } = new CreateObjectCaller();
+
+
+        /*******************************************/
+        /**** Constructors                      ****/
+        /*******************************************/
+
+        public CreateObjectComponent() : base()
+        {
+            CreateObjectCaller caller = Caller as CreateObjectCaller;
+            if (caller != null)
+                caller.InputToggled += Caller_InputToggled;
+        }
+
+
+        /*******************************************/
+        /**** Private Methods                   ****/
+        /*******************************************/
+
+        private void Caller_InputToggled(object sender, Tuple<ParamInfo, bool> e)
+        {
+            if (e.Item2)
+                AddPort(PortType.Input, e.Item1.ToPortData(), InPorts.Count);
+            else
+            {
+                int index = InPorts.ToList().FindIndex(x => x.PortName == e.Item1.Name);
+                if (index >= 0)
+                    InPorts.RemoveAt(index);
+            }
+
+            RaisesModificationEvents = true;
+            OnNodeModified();
+        }
 
 
         /*******************************************/
