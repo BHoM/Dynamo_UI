@@ -94,8 +94,7 @@ namespace BH.Engine.Dynamo
 
         public static ADG.NurbsCurve ToDesignScript(this BHG.NurbsCurve nurbsCurve)
         {
-
-            List<double> knots = new List<double> { 0, nurbsCurve.Knots.Last() };
+            List<double> knots = new List<double> { nurbsCurve.Knots.First(), nurbsCurve.Knots.Last() };
             knots.InsertRange(1, nurbsCurve.Knots.ToList());
 
             return ADG.NurbsCurve.ByControlPointsWeightsKnots(nurbsCurve.ControlPoints.Select(x => x.ToDesignScript()), nurbsCurve.Weights.ToArray(), knots.ToArray(), nurbsCurve.Degree());
@@ -147,7 +146,7 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.NurbsSurface ToDesignScript(this BHG.NurbsSurface surface)
+        public static ADG.Surface ToDesignScript(this BHG.NurbsSurface surface)
         {
             if (surface == null)
                 return null;
@@ -155,7 +154,6 @@ namespace BH.Engine.Dynamo
             List<int> uvCount = surface.UVCount(); // Align to Dynamo nurbs definition
             double[][] weights = new double[uvCount[0]][];
             ADG.Point[][] points = new ADG.Point[uvCount[0]][];
-            List<int> degrees = surface.Degrees();
 
             List<double> uKnots = new List<double>(surface.UKnots);
             uKnots.Insert(0, uKnots.First());
@@ -176,8 +174,21 @@ namespace BH.Engine.Dynamo
                 }
             }
 
-            return ADG.NurbsSurface.ByControlPointsWeightsKnots(points, weights,
-                uKnots.ToArray(), vKnots.ToArray(), degrees[0], degrees[1]);
+            ADG.Surface ADGSurface = ADG.NurbsSurface.ByControlPointsWeightsKnots(points, weights,
+                uKnots.ToArray(), vKnots.ToArray(), surface.UDegree, surface.VDegree);
+
+            try
+            {
+                List<ADG.PolyCurve> trims = surface.ExternalBoundaries3d.Select(x => (x as BHG.PolyCurve).ToDesignScript()).ToList();
+                trims.AddRange(surface.InternalBoundaries3d.Select(x => (x as BHG.PolyCurve).ToDesignScript()).ToList());
+                ADGSurface = ADGSurface.TrimWithEdgeLoops(trims);
+            }
+            catch
+            {
+                Reflection.Compute.RecordWarning("Surface trim failed. Untrimmed surface has been returned instead.");
+            }
+
+            return ADGSurface;
         }
 
         /***************************************************/
