@@ -69,7 +69,8 @@ namespace BH.UI.Dynamo.Components
                 AddPort(PortType.Input, e.Item1.ToPortData(), InPorts.Count);
             else
             {
-                int index = InPorts.ToList().FindIndex(x => x.PortName == e.Item1.Name);
+                string name = e.Item1.Name.ToLower();
+                int index = InPorts.ToList().FindIndex(x => x.PortName.ToLower() == name);
                 if (index >= 0)
                     InPorts.RemoveAt(index);
             }
