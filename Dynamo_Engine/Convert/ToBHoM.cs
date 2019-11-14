@@ -197,12 +197,16 @@ namespace BH.Engine.Dynamo
             vKnots.RemoveAt(vKnots.Count - 1);
 
             return surface == null ? null : new BHG.NurbsSurface
-            {
-                ControlPoints = surface.ControlPoints().SelectMany(x => x.Select(y => y.ToBHoM())).ToList(),
-                Weights = surface.Weights().SelectMany(x => x).ToList(),
-                UKnots = uKnots,
-                VKnots = vKnots
-            };
+            (
+                surface.ControlPoints().SelectMany(x => x.Select(y => y.ToBHoM())).ToList(),
+                surface.Weights().SelectMany(x => x).ToList(),
+                uKnots,
+                vKnots,
+                surface.DegreeU,
+                surface.DegreeV,
+                new List<BHG.SurfaceTrim>(),
+                new List<BHG.SurfaceTrim>()
+            );
         }
 
         /***************************************************/
