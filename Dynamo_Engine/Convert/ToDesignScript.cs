@@ -179,8 +179,8 @@ namespace BH.Engine.Dynamo
 
             try
             {
-                List<ADG.PolyCurve> trims = surface.ExternalBoundaries3d.Select(x => (x as BHG.PolyCurve).ToDesignScript()).ToList();
-                trims.AddRange(surface.InternalBoundaries3d.Select(x => (x as BHG.PolyCurve).ToDesignScript()).ToList());
+                List<ADG.PolyCurve> trims = surface.OuterTrims.Select(x => (x.Curve3d as BHG.PolyCurve).ToDesignScript()).ToList();
+                trims.AddRange(surface.InnerTrims.Select(x => (x.Curve3d as BHG.PolyCurve).ToDesignScript()).ToList());
                 ADGSurface = ADGSurface.TrimWithEdgeLoops(trims);
             }
             catch
