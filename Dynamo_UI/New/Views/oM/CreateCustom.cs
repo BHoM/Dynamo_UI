@@ -183,7 +183,6 @@ namespace BH.UI.Dynamo.Views
         /**** Private Fields                    ****/
         /*******************************************/
 
-        protected NodeView m_View = null;
         protected WrapPanel m_ButtonPanel = null;
         protected List<TextBox> m_InputNameItems = new List<TextBox>();
         protected ContextMenu m_Menu;
