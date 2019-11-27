@@ -174,46 +174,46 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="New\Components\Adapter\CreateRequest.cs" />
-    <Compile Include="New\Components\Adapter\CreateAdapter.cs" />
-    <Compile Include="New\Components\Adapter\Push.cs" />
-    <Compile Include="New\Components\Adapter\Pull.cs" />
-    <Compile Include="New\Components\Adapter\Move.cs" />
-    <Compile Include="New\Components\Adapter\Execute.cs" />
-    <Compile Include="New\Components\Adapter\Delete.cs" />
-    <Compile Include="New\Components\Engine\Explode.cs" />
-    <Compile Include="New\Components\Engine\GetInfo.cs" />
-    <Compile Include="New\Components\Engine\Query.cs" />
-    <Compile Include="New\Components\Engine\Modify.cs" />
-    <Compile Include="New\Components\Engine\Convert.cs" />
-    <Compile Include="New\Components\Engine\Compute.cs" />
-    <Compile Include="New\Components\Engine\SetProperty.cs" />
-    <Compile Include="New\Components\Engine\GetProperty.cs" />
-    <Compile Include="New\Components\Engine\FromJson.cs" />
-    <Compile Include="New\Components\Engine\ToJson.cs" />
-    <Compile Include="New\Components\oM\CreateCustom.cs" />
-    <Compile Include="New\Components\oM\CreateEnum.cs" />
-    <Compile Include="New\Components\oM\CreateDictionary.cs" />
-    <Compile Include="New\Components\oM\CreateData.cs" />
-    <Compile Include="New\Components\oM\CreateType.cs" />
-    <Compile Include="New\Components\oM\CreateObject.cs" />
-    <Compile Include="New\Global\GlobalSearch.cs" />
-    <Compile Include="New\Templates\CallerValueList.cs" />
-    <Compile Include="New\Templates\CallerComponent.cs" />
-    <Compile Include="New\Templates\ValueListView.cs" />
-    <Compile Include="New\Templates\CallerView.cs" />
-    <Compile Include="New\Views\Adapter\CreateRequest.cs" />
-    <Compile Include="New\Views\Adapter\CreateAdapter.cs" />
-    <Compile Include="New\Views\Engine\Explode.cs" />
-    <Compile Include="New\Views\oM\CreateCustom.cs" />
-    <Compile Include="New\Views\oM\CreateEnum.cs" />
-    <Compile Include="New\Views\oM\CreateData.cs" />
-    <Compile Include="New\Views\oM\CreateType.cs" />
-    <Compile Include="New\Views\oM\CreateObject.cs" />
-    <Compile Include="New\Views\Engine\Query.cs" />
-    <Compile Include="New\Views\Engine\Modify.cs" />
-    <Compile Include="New\Views\Engine\Convert.cs" />
-    <Compile Include="New\Views\Engine\Compute.cs" />
+    <Compile Include="Components\Adapter\CreateRequest.cs" />
+    <Compile Include="Components\Adapter\CreateAdapter.cs" />
+    <Compile Include="Components\Adapter\Push.cs" />
+    <Compile Include="Components\Adapter\Pull.cs" />
+    <Compile Include="Components\Adapter\Move.cs" />
+    <Compile Include="Components\Adapter\Execute.cs" />
+    <Compile Include="Components\Adapter\Delete.cs" />
+    <Compile Include="Components\Engine\Explode.cs" />
+    <Compile Include="Components\Engine\GetInfo.cs" />
+    <Compile Include="Components\Engine\Query.cs" />
+    <Compile Include="Components\Engine\Modify.cs" />
+    <Compile Include="Components\Engine\Convert.cs" />
+    <Compile Include="Components\Engine\Compute.cs" />
+    <Compile Include="Components\Engine\SetProperty.cs" />
+    <Compile Include="Components\Engine\GetProperty.cs" />
+    <Compile Include="Components\Engine\FromJson.cs" />
+    <Compile Include="Components\Engine\ToJson.cs" />
+    <Compile Include="Components\oM\CreateCustom.cs" />
+    <Compile Include="Components\oM\CreateEnum.cs" />
+    <Compile Include="Components\oM\CreateDictionary.cs" />
+    <Compile Include="Components\oM\CreateData.cs" />
+    <Compile Include="Components\oM\CreateType.cs" />
+    <Compile Include="Components\oM\CreateObject.cs" />
+    <Compile Include="Global\GlobalSearch.cs" />
+    <Compile Include="Templates\CallerValueList.cs" />
+    <Compile Include="Templates\CallerComponent.cs" />
+    <Compile Include="Templates\ValueListView.cs" />
+    <Compile Include="Templates\CallerView.cs" />
+    <Compile Include="Views\Adapter\CreateRequest.cs" />
+    <Compile Include="Views\Adapter\CreateAdapter.cs" />
+    <Compile Include="Views\Engine\Explode.cs" />
+    <Compile Include="Views\oM\CreateCustom.cs" />
+    <Compile Include="Views\oM\CreateEnum.cs" />
+    <Compile Include="Views\oM\CreateData.cs" />
+    <Compile Include="Views\oM\CreateType.cs" />
+    <Compile Include="Views\oM\CreateObject.cs" />
+    <Compile Include="Views\Engine\Query.cs" />
+    <Compile Include="Views\Engine\Modify.cs" />
+    <Compile Include="Views\Engine\Convert.cs" />
+    <Compile Include="Views\Engine\Compute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -232,7 +232,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="New\Components\UI\" />
+    <Folder Include="Components\UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
