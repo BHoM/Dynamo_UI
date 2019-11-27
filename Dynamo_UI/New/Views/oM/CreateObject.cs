@@ -125,7 +125,6 @@ namespace BH.UI.Dynamo.Views
         /**** Private Fields                    ****/
         /*******************************************/
 
-        protected NodeView m_View = null;
         protected WrapPanel m_ButtonPanel = null;
 
         /*******************************************/
