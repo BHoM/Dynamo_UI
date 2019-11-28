@@ -30,17 +30,17 @@ using System.Collections.Generic;
 
 namespace BH.UI.Dynamo.Components
 {
-    [NodeName("Delete")]
+    [NodeName("Remove")]
     [NodeCategory("BHoM.Adapter")]
-    [NodeDescription("Delete objects in the external software")]
+    [NodeDescription("Removes objects from the external software")]
     [IsDesignScriptCompatible]
-    public class DeleteComponent : CallerComponent
+    public class RemoveComponent : CallerComponent
     {
         /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
-        public override Caller Caller { get; } = new DeleteCaller();
+        public override Caller Caller { get; } = new RemoveCaller();
 
 
         /*******************************************/

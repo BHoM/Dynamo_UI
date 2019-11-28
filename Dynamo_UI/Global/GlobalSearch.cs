@@ -91,7 +91,7 @@ namespace BH.UI.Dynamo.Global
         {
             { typeof(CreateAdapterCaller),      typeof(CreateAdapterComponent) },
             { typeof(CreateRequestCaller),        typeof(CreateRequestComponent) },
-            { typeof(DeleteCaller),             typeof(DeleteComponent) },
+            { typeof(RemoveCaller),             typeof(RemoveComponent) },
             { typeof(ExecuteCaller),            typeof(ExecuteComponent) },
             { typeof(MoveCaller),               typeof(MoveComponent) },
             { typeof(PullCaller),               typeof(PullComponent) },
