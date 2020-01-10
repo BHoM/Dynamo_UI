@@ -64,6 +64,7 @@ namespace BH.UI.Dynamo.Templates
 
             Caller.SetDataAccessor(new DataAccessor_Dynamo());
             BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
+            BH.Engine.Dynamo.Compute.Nodes[InstanceID.ToString()] = this;
 
             AddPort(PortType.Output, Caller.OutputParams.First().ToPortData(), 0);
 

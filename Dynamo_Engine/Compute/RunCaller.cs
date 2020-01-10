@@ -26,6 +26,7 @@ using BH.Engine.Dynamo.Objects;
 using BH.oM.Base;
 using BH.oM.Reflection.Debugging;
 using BH.UI.Templates;
+using Dynamo.Graph.Nodes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -140,6 +141,7 @@ namespace BH.Engine.Dynamo
             object result = null;
             Engine.Reflection.Compute.ClearCurrentEvents();
 
+            // Run the caller
             if (Callers.ContainsKey(callerId))
             {
                 Caller caller = Callers[callerId];
@@ -167,17 +169,41 @@ namespace BH.Engine.Dynamo
                 result = null;
             }
 
+            // Handle errors and warnings
             List<Event> events = Reflection.Query.CurrentEvents();
-            if(events != null && events.Count != 0)
+            if (events != null && events.Count != 0)
             {
-                events = events.FindAll(x => x.Type == EventType.Error);
-                if(events.Count > 0)
-                    throw new Exception(events.Select(x => x.Message).Aggregate((a, b) => a + "\n" + b));
+                List<Event> errors = events.FindAll(x => x.Type == EventType.Error);
+                if (errors.Count > 0)
+                    throw new Exception(errors.Select(x => x.Message).Aggregate((a, b) => a + "\n" + b));
+                else if (Nodes.ContainsKey(callerId))
+                {
+                    List<Event> warnings = events.FindAll(x => x.Type == EventType.Warning);
+                    if (warnings.Count > 0)
+                        Nodes[callerId].Warning(warnings.Select(x => x.Message).Aggregate((a, b) => a + "\n" + b), true);
+                    else
+                        ClearWarnings(callerId);
+                }
+            }
+            else
+                ClearWarnings(callerId);
 
-            }               
             return result;
         }
 
+        /***************************************************/
+
+        private static void ClearWarnings(string id)
+        {
+            if (Nodes.ContainsKey(id))
+            {
+                NodeModel node = Nodes[id];
+                FieldInfo field = typeof(NodeModel).GetField("persistentWarning", BindingFlags.NonPublic | BindingFlags.Instance);
+                if (field != null)
+                    field.SetValue(node, "");
+                node.ClearRuntimeError();
+            }
+        }
 
 
         /***************************************************/
@@ -185,6 +211,8 @@ namespace BH.Engine.Dynamo
         /***************************************************/
 
         public static Dictionary<string, Caller> Callers { get; } = new Dictionary<string, Caller>();
+
+        public static Dictionary<string, NodeModel> Nodes { get; } = new Dictionary<string, NodeModel>();
 
         public static Dictionary<string, object[]> MultiResults { get; } = new Dictionary<string, object[]>();
 
