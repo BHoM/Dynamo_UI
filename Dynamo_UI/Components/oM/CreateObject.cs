@@ -31,6 +31,7 @@ using System;
 using BH.oM.UI;
 using BH.Engine.Dynamo;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -66,11 +67,11 @@ namespace BH.UI.Dynamo.Components
         private void Caller_InputToggled(object sender, Tuple<ParamInfo, bool> e)
         {
             if (e.Item2)
-                AddPort(PortType.Input, e.Item1.ToPortData(), InPorts.Count);
+                InPorts.Add(new PortModel(PortType.Input, this, e.Item1.ToPortData()));
             else
             {
                 string name = e.Item1.Name.ToLower();
-                int index = InPorts.ToList().FindIndex(x => x.PortName.ToLower() == name);
+                int index = InPorts.ToList().FindIndex(x => x.Name.ToLower() == name);
                 if (index >= 0)
                     InPorts.RemoveAt(index);
             }

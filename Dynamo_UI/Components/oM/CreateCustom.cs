@@ -30,6 +30,7 @@ using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -45,6 +46,17 @@ namespace BH.UI.Dynamo.Components
 
         public override Caller Caller { get; } = new CreateCustomCaller();
 
+
+        /*******************************************/
+        /**** Constructors                      ****/
+        /*******************************************/
+
+        public CreateCustomComponent() : base() { }
+
+        /*******************************************/
+
+        [JsonConstructor]
+        public CreateCustomComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
 
         /*******************************************/
     }

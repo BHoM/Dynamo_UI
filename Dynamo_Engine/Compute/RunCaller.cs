@@ -201,7 +201,7 @@ namespace BH.Engine.Dynamo
                 FieldInfo field = typeof(NodeModel).GetField("persistentWarning", BindingFlags.NonPublic | BindingFlags.Instance);
                 if (field != null)
                     field.SetValue(node, "");
-                node.ClearRuntimeError();
+                node.ToolTipText = "";
             }
         }
 

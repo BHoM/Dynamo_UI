@@ -27,6 +27,7 @@ using BH.UI.Templates;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -43,6 +44,17 @@ namespace BH.UI.Dynamo.Components
 
         public override Caller Caller { get; } = new ToJsonCaller();
 
+
+        /*******************************************/
+        /**** Constructors                      ****/
+        /*******************************************/
+
+        public ToJsonComponent() : base() { }
+
+        /*******************************************/
+
+        [JsonConstructor]
+        public ToJsonComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
 
         /*******************************************/
     }

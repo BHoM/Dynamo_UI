@@ -27,6 +27,7 @@ using BH.UI.Templates;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -42,6 +43,17 @@ namespace BH.UI.Dynamo.Components
 
         public override Caller Caller { get; } = new MoveCaller();
 
+
+        /*******************************************/
+        /**** Constructors                      ****/
+        /*******************************************/
+
+        public MoveComponent() : base() { }
+
+        /*******************************************/
+
+        [JsonConstructor]
+        public MoveComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
 
         /*******************************************/
     }

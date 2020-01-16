@@ -37,6 +37,7 @@ using System.Collections;
 using CoreNodeModels;
 using System.Xml;
 using Dynamo.Graph;
+using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Templates
 {
@@ -46,11 +47,19 @@ namespace BH.UI.Dynamo.Templates
         /**** Properties                        ****/
         /*******************************************/
 
+        [JsonIgnore]
         public abstract MultiChoiceCaller Caller { get; }
 
+        [JsonIgnore]
         protected Guid InstanceID { get; } = Guid.NewGuid();
 
         public int SelectedIndex = -1;
+
+        public string SerialisedCaller
+        {
+            get { return Caller.Write(); }
+            set { Caller.Read(value); }
+        }
 
 
         /*******************************************/
@@ -66,9 +75,22 @@ namespace BH.UI.Dynamo.Templates
             BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
             BH.Engine.Dynamo.Compute.Nodes[InstanceID.ToString()] = this;
 
-            AddPort(PortType.Output, Caller.OutputParams.First().ToPortData(), 0);
+            OutPorts.Add(new PortModel(PortType.Output, this, Caller.OutputParams.First().ToPortData()));
 
             RefreshComponent();
+        }
+
+        /*******************************************/
+
+        [JsonConstructor]
+        public CallerValueList(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+            Category = "BHoM." + Caller.Category;
+            ArgumentLacing = LacingStrategy.Shortest;
+
+            Caller.SetDataAccessor(new DataAccessor_Dynamo());
+            BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
+            BH.Engine.Dynamo.Compute.Nodes[InstanceID.ToString()] = this;
         }
 
 
@@ -78,7 +100,7 @@ namespace BH.UI.Dynamo.Templates
 
         public void RefreshComponent()
         {
-            NickName = Caller.Name;
+            Name = Caller.Name;
             Description = Caller.Description;
 
             MarkNodeAsModified(true);

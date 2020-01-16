@@ -32,6 +32,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using Dynamo.ViewModels;
 
 namespace BH.UI.Dynamo.Views
 {
@@ -97,7 +98,7 @@ namespace BH.UI.Dynamo.Views
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             CreateCustomCaller caller = m_Node.Caller as CreateCustomCaller;
-            List<string> inputs = m_Node.InPorts.Select(x => x.PortName).ToList();
+            List<string> inputs = m_Node.InPorts.Select(x => x.Name).ToList();
             
             var button = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
             button.Click += RemoveButton_Click;
@@ -119,7 +120,7 @@ namespace BH.UI.Dynamo.Views
             m_ButtonPanel.Children.Remove(button);
 
             CreateCustomCaller caller = m_Node.Caller as CreateCustomCaller;
-            List<string> inputs = m_Node.InPorts.Select(x => x.PortName).ToList();
+            List<string> inputs = m_Node.InPorts.Select(x => x.Name).ToList();
             inputs.RemoveAt(index);
             caller.SetInputs(inputs);
             m_Node.RefreshComponent();
@@ -143,7 +144,7 @@ namespace BH.UI.Dynamo.Views
 
             for (int i = m_InputNameItems.Count; i < m_Node.InPorts.Count; i++)
             {
-                TextBox textBox = new TextBox { Text = m_Node.InPorts[i].PortName };
+                TextBox textBox = new TextBox { Text = m_Node.InPorts[i].Name };
                 textBox.TextChanged += TextBox_TextChanged;
                 m_Menu.Items.Add(textBox);
                 m_InputNameItems.Add(textBox);
@@ -168,6 +169,10 @@ namespace BH.UI.Dynamo.Views
                 List<string> inputs = m_InputNameItems.Select(x => x.Text).ToList();
                 caller.SetInputs(inputs);
                 m_Node.RefreshComponent();
+
+                MethodInfo method = typeof(Microsoft.Practices.Prism.ViewModel.NotificationObject).GetMethod("RaisePropertyChanged", BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(string) }, null);
+                foreach(PortViewModel port in m_View.ViewModel.InPorts)
+                    method.Invoke(port, new object[] { "PortName" });
             }
         }
 
