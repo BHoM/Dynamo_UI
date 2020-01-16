@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using Dynamo.Graph;
+using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -46,6 +47,18 @@ namespace BH.UI.Dynamo.Components
         /*******************************************/
 
         public override Caller Caller { get; } = new ExplodeCaller();
+
+
+        /*******************************************/
+        /**** Constructors                      ****/
+        /*******************************************/
+
+        public ExplodeComponent() : base() { }
+
+        /*******************************************/
+
+        [JsonConstructor]
+        public ExplodeComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
 
 
         /*******************************************/

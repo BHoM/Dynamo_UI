@@ -71,6 +71,18 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
+        public static ADG.CoordinateSystem ToDesignScript(this BHG.Basis basis)
+        {
+            return ADG.CoordinateSystem.ByOriginVectors(
+                ADG.Point.ByCoordinates(0,0,0),
+                basis.X.ToDesignScript(),
+                basis.Y.ToDesignScript(),
+                basis.Z.ToDesignScript()
+            );
+        }
+
+        /***************************************************/
+
         public static ADG.Arc ToDesignScript(this BHG.Arc arc)
         {
             return ADG.Arc.ByThreePoints(arc.StartPoint().ToDesignScript(), arc.PointAtParameter(0.5).ToDesignScript(), arc.EndPoint().ToDesignScript());

@@ -28,6 +28,7 @@ using CoreNodeModels;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Components
 {
@@ -43,6 +44,17 @@ namespace BH.UI.Dynamo.Components
 
         public override MultiChoiceCaller Caller { get; } = new CreateEnumCaller();
 
+
+        /*******************************************/
+        /**** Constructors                      ****/
+        /*******************************************/
+
+        public CreateEnumComponent() : base() { }
+
+        /*******************************************/
+
+        [JsonConstructor]
+        public CreateEnumComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
 
         /*******************************************/
     }

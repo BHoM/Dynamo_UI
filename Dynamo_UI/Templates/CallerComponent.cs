@@ -37,6 +37,8 @@ using System.Collections;
 using BH.UI.Dynamo.Global;
 using System.Xml;
 using Dynamo.Graph;
+using Dynamo.Graph.Connectors;
+using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Templates
 {
@@ -46,9 +48,17 @@ namespace BH.UI.Dynamo.Templates
         /**** Properties                        ****/
         /*******************************************/
 
+        [JsonIgnore]
         public abstract Caller Caller { get; }
 
+        [JsonIgnore]
         protected Guid InstanceID { get; } = Guid.NewGuid();
+
+        public string SerialisedCaller
+        {
+            get { return Caller.Write(); }
+            set { Caller.Read(value); }
+        }
 
 
         /*******************************************/
@@ -70,6 +80,20 @@ namespace BH.UI.Dynamo.Templates
 
         /*******************************************/
 
+        [JsonConstructor]
+        public CallerComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+            Category = "BHoM." + Caller.Category;
+            ArgumentLacing = LacingStrategy.Shortest;
+
+            Caller.SetDataAccessor(new DataAccessor_Dynamo());
+            Caller.ItemSelected += (sender, e) => RefreshComponent();
+            BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
+            BH.Engine.Dynamo.Compute.Nodes[InstanceID.ToString()] = this;
+        }
+
+        /*******************************************/
+
         static CallerComponent()
         {
             GlobalSearchMenu.Activate();
@@ -82,12 +106,11 @@ namespace BH.UI.Dynamo.Templates
 
         public void RefreshComponent()
         {
-            NickName = Caller.Name;
+            Name = Caller.Name;
             Description = Caller.Description;
 
             RegisterInputs();
             RegisterOutputs();
-            ValidateConnections();
         }
 
 
@@ -251,13 +274,13 @@ namespace BH.UI.Dynamo.Templates
             int nbOld = InPorts.Count;
 
             for (int i = 0; i < Math.Min(nbNew, nbOld); i++)
-                InPorts[i].SetPortData(inputs[i].ToPortData());
+                ReplacePort(InPorts[i], inputs[i].ToPortData());
 
             for (int i = nbOld - 1; i >= nbNew; i--)
                 InPorts.RemoveAt(i);
 
             for (int i = nbOld; i < nbNew; i++)
-                AddPort(PortType.Input, inputs[i].ToPortData(), i);
+                InPorts.Add(new PortModel(PortType.Input, this, inputs[i].ToPortData()));
 
             RaisesModificationEvents = true;
             OnNodeModified();
@@ -275,16 +298,39 @@ namespace BH.UI.Dynamo.Templates
             int nbOld = OutPorts.Count;
 
             for (int i = 0; i < Math.Min(nbNew, nbOld); i++)
-                OutPorts[i].SetPortData(outputs[i].ToPortData());
+                ReplacePort(OutPorts[i], outputs[i].ToPortData());
 
             for (int i = nbOld - 1; i >= nbNew; i--)
                 OutPorts.RemoveAt(i);
 
             for (int i = nbOld; i < nbNew; i++)
-                AddPort(PortType.Output, outputs[i].ToPortData(), i);
+                OutPorts.Add(new PortModel(PortType.Output, this, outputs[i].ToPortData()));
 
             RaisesModificationEvents = true;
             OnNodeModified();
+        }
+
+        /*******************************************/
+
+        protected void ReplacePort(PortModel model, PortData data)
+        {
+            Type portModelType = typeof(PortModel);
+
+            if (model.Name != data.Name)
+            {
+                PropertyInfo prop = typeof(PortModel).GetProperty("Name");
+                if (prop != null)
+                    prop.SetValue(model, data.Name);
+            }
+
+            if (model.DefaultValue != data.DefaultValue)
+            {
+                PropertyInfo prop = typeof(PortModel).GetProperty("DefaultValue");
+                if (prop != null)
+                    prop.SetValue(model, data.DefaultValue);
+            }
+
+            model.ToolTip = data.ToolTipString;
         }
 
         /*******************************************/

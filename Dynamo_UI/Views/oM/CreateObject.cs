@@ -114,7 +114,7 @@ namespace BH.UI.Dynamo.Views
             m_ButtonPanel.Children.Remove(button);
 
             CreateObjectCaller caller = m_Node.Caller as CreateObjectCaller;
-            List<string> inputs = m_Node.InPorts.Select(x => x.PortName).ToList();
+            List<string> inputs = m_Node.InPorts.Select(x => x.Name).ToList();
             caller.RemoveInput(inputs[index]);
             inputs.RemoveAt(index);
             m_Node.RefreshComponent();
