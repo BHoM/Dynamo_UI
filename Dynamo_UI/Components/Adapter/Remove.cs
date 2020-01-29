@@ -48,12 +48,12 @@ namespace BH.UI.Dynamo.Components
         /**** Constructors                      ****/
         /*******************************************/
 
-        public DeleteComponent() : base() { }
+        public RemoveComponent() : base() { }
 
         /*******************************************/
 
         [JsonConstructor]
-        public DeleteComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
+        public RemoveComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
 
         /*******************************************/
     }
