@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo_UI", "Dynamo_UI\Dynamo_UI.csproj", "{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo20_UI", "Dynamo20\Dynamo_UI\Dynamo20_UI.csproj", "{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo_Engine", "Dynamo_Engine\Dynamo_Engine.csproj", "{01CA6B93-2723-4022-B3FF-0815AF808621}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo20_Engine", "Dynamo20\Dynamo_Engine\Dynamo20_Engine.csproj", "{01CA6B93-2723-4022-B3FF-0815AF808621}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dynamo20", "Dynamo20", "{C541BE38-852B-4864-A2D2-A29472239A74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo13_Engine", "Dynamo13\Dynamo_Engine\Dynamo13_Engine.csproj", "{0D9719C7-AF66-4210-9028-9BA37A95E93D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dynamo13", "Dynamo13", "{9ACE0735-9345-4DB3-A364-E09DB8890B2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo13_UI", "Dynamo13\Dynamo_UI\Dynamo13_UI.csproj", "{5C3E5433-DBC3-4F5B-9D7D-A8258BC3E6A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +29,23 @@ Global
 		{01CA6B93-2723-4022-B3FF-0815AF808621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01CA6B93-2723-4022-B3FF-0815AF808621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01CA6B93-2723-4022-B3FF-0815AF808621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D9719C7-AF66-4210-9028-9BA37A95E93D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D9719C7-AF66-4210-9028-9BA37A95E93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D9719C7-AF66-4210-9028-9BA37A95E93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D9719C7-AF66-4210-9028-9BA37A95E93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C3E5433-DBC3-4F5B-9D7D-A8258BC3E6A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C3E5433-DBC3-4F5B-9D7D-A8258BC3E6A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C3E5433-DBC3-4F5B-9D7D-A8258BC3E6A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C3E5433-DBC3-4F5B-9D7D-A8258BC3E6A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{814CCB48-C68A-4D65-A4B4-958EA6AB0BB6} = {C541BE38-852B-4864-A2D2-A29472239A74}
+		{01CA6B93-2723-4022-B3FF-0815AF808621} = {C541BE38-852B-4864-A2D2-A29472239A74}
+		{0D9719C7-AF66-4210-9028-9BA37A95E93D} = {9ACE0735-9345-4DB3-A364-E09DB8890B2F}
+		{5C3E5433-DBC3-4F5B-9D7D-A8258BC3E6A4} = {9ACE0735-9345-4DB3-A364-E09DB8890B2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48B5F551-9843-4857-9439-37F81AF6EEE9}
