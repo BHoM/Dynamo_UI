@@ -1,0 +1,37 @@
+<Workspace Version="0.8.0.950" X="438.138558580827" Y="249.373194530881" zoom="0.179554232508648" Name="Home" RunType="Automatic" RunPeriod="100" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Function guid="ee99cf42-85dc-4953-855a-078b46fcbf98" type="Dynamo.Nodes.Function" nickname="Element.Location" x="1629.69741618488" y="427.445912981512" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="0b59c4d8-afe4-4063-bf7e-2195fa33e8a9" />
+      <Name value="Element.Location" />
+      <Description value="Returns the location of an element as an XYZ (or if it's line-based the start and end point of the line), along with some booleans to help filtering the results. Use this for some element types (e.g. walls or lines) that do not work with the built-in Get Family Instance Location node. " />
+      <Inputs>
+        <Input value="Element(s)" />
+      </Inputs>
+      <Outputs>
+        <Output value="Points" />
+        <Output value="Curve Endpoints" />
+        <Output value="Curves" />
+        <Output value="Is Point" />
+        <Output value="Is Curve" />
+        <Output value="Has Location" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.DSFunction guid="d2680d88-892c-42fd-94ae-7b226dec701c" type="Dynamo.Nodes.DSFunction" nickname="Point.X" x="1982.77990043969" y="437.21527830231" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Point.X" />
+    <Dynamo.Nodes.DSFunction guid="eaad990d-2199-4c0a-b040-c68de65f3cdf" type="Dynamo.Nodes.DSFunction" nickname="Point.Y" x="1983.97350042754" y="44.5208822998276" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Point.Y" />
+    <Dynamo.Nodes.DSFunction guid="9419038a-613a-466b-a3fe-c7846b38e9f2" type="Dynamo.Nodes.DSFunction" nickname="Point.Z" x="1983.97350042754" y="826.328874341244" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Point.Z" />
+    <DSRevitNodesUI.Categories guid="9b1b7f67-d5f1-4454-a37c-0a4cfd6d4101" type="DSRevitNodesUI.Categories" nickname="Categories" x="-634.390689143037" y="-73.996849253262" isVisible="true" isUpstreamVisible="true" lacing="Disabled" index="119:Columns" />
+    <DSRevitNodesUI.ElementsOfCategory guid="9386343e-c6cb-4121-a82e-3f3414820e4e" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="-403.466764311469" y="-76.0722585097632" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.Watch guid="0e80f28f-248f-4d8c-ab09-4c2be6d23bfc" type="Dynamo.Nodes.Watch" nickname="Watch" x="-51.4771874212438" y="83.8835171054334" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.DSFunction guid="07f6e910-f3d5-437b-a856-e345ce2c184a" type="Dynamo.Nodes.DSFunction" nickname="Element.Curves" x="105.125988518426" y="-359.914107140126" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Element.Curves" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="ee99cf42-85dc-4953-855a-078b46fcbf98" start_index="0" end="eaad990d-2199-4c0a-b040-c68de65f3cdf" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ee99cf42-85dc-4953-855a-078b46fcbf98" start_index="0" end="d2680d88-892c-42fd-94ae-7b226dec701c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ee99cf42-85dc-4953-855a-078b46fcbf98" start_index="0" end="9419038a-613a-466b-a3fe-c7846b38e9f2" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9b1b7f67-d5f1-4454-a37c-0a4cfd6d4101" start_index="0" end="9386343e-c6cb-4121-a82e-3f3414820e4e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9386343e-c6cb-4121-a82e-3f3414820e4e" start_index="0" end="0e80f28f-248f-4d8c-ab09-4c2be6d23bfc" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9386343e-c6cb-4121-a82e-3f3414820e4e" start_index="0" end="07f6e910-f3d5-437b-a856-e345ce2c184a" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>
