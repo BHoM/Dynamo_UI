@@ -41,7 +41,7 @@
     </Reference>
     <Reference Include="BHoM_Adapter">
       <HintPath>..\..\..\BHoM_Adapter\Build\BHoM_Adapter.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="BHoM_Engine">
       <HintPath>..\..\..\BHoM_Engine\Build\BHoM_Engine.dll</HintPath>
@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="BHoM_UI">
       <HintPath>..\..\..\BHoM_UI\Build\BHoM_UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModels, Version=1.2.0.2690, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.WpfUILibrary.1.2.0\lib\net45\CoreNodeModels.dll</HintPath>
@@ -61,10 +62,12 @@
     <Reference Include="Data_Engine, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\BHoM_Engine\Build\Data_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Data_oM, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\BHoM\Build\Data_oM.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DesignScriptBuiltin, Version=2.3.0.5885, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.3.0.5885\lib\net47\DesignScriptBuiltin.dll</HintPath>
@@ -108,14 +111,17 @@
     </Reference>
     <Reference Include="Geometry_Engine">
       <HintPath>..\..\..\BHoM_Engine\Build\Geometry_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Geometry_oM">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\BHoM\Build\Geometry_oM.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Library_Engine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\BHoM_Engine\Build\Library_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -149,12 +155,15 @@
     </Reference>
     <Reference Include="Reflection_Engine">
       <HintPath>..\..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Serialiser_Engine">
       <HintPath>..\..\..\BHoM_Engine\Build\Serialiser_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Structure_Engine">
       <HintPath>..\..\..\BHoM_Engine\Build\Structure_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -186,12 +195,15 @@
     </Reference>
     <Reference Include="UI_Engine">
       <HintPath>..\..\..\BHoM_UI\Build\UI_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UI_oM">
       <HintPath>..\..\..\BHoM_UI\Build\UI_oM.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UI_PostBuild">
       <HintPath>..\..\..\BHoM_UI\Build\UI_PostBuild.exe</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VMDataBridge, Version=2.3.0.5885, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.3.0.5885\lib\net47\VMDataBridge.dll</HintPath>
