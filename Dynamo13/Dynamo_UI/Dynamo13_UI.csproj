@@ -181,10 +181,6 @@
       <HintPath>..\..\..\BHoM_UI\Build\UI_oM.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UI_PostBuild">
-      <HintPath>..\..\..\BHoM_UI\Build\UI_PostBuild.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -250,14 +246,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(TargetDir)UI_PostBuild.exe" ..\..\..\ "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.3\packages\BHoM\bin"
+    <PostBuildEvent>call "..\..\..\BHoM_UI\Build\UI_PostBuild.exe" ..\..\..\ "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.3\packages\BHoM\bin"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.3\packages\BHoM\bin"
 
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\1.3\packages\BHoM\pkg.json"
 
 
 
-call "$(TargetDir)UI_PostBuild.exe" ..\..\..\ "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\BHoM\bin"
+call "..\..\..\BHoM_UI\Build\UI_PostBuild.exe" ..\..\..\ "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\BHoM\bin"
 
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\BHoM\pkg.json"</PostBuildEvent>
