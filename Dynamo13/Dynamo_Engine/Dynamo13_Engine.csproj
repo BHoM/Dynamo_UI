@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="Dimensional_oM">
       <HintPath>..\..\..\BHoM\Build\Dimensional_oM.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore, Version=1.2.0.2690, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.1.2.0\lib\net45\DynamoCore.dll</HintPath>
