@@ -2,13 +2,13 @@
 	"license":"",
 	"file_hash":null,
 	"name":"BHoM",
-	"version":"2.0.0",
+	"version":"3.1.0",
 	"description":"Buildings and Habitats object Model (BHoM) package",
 	"group":"",
 	"keywords":["BHoM", "Engineering"],
 	"dependencies":[],
 	"contents":"",
-	"engine_version":"1.2.1.3083",
+	"engine_version":"2.0.1.5055",
 	"engine":"dynamo",
 	"engine_metadata":"",
 	"site_url":"",
@@ -16,7 +16,6 @@
 	"contains_binaries":true,
 	"node_libraries":[
 		"Dynamo_UI",
-		"Dynamo_Engine",
-		"Methods_Dynamo"
+		"Dynamo_Engine"
 	]
 }
