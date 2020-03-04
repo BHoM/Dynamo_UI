@@ -211,10 +211,10 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.Mesh ToBHoM(this ADG.Mesh DSMesh)
+        public static BHG.Mesh ToBHoM(this ADG.Mesh dSMesh)
         {
-            List<BHG.Point> vertices = DSMesh.VertexPositions.ToList().Select(x => x.ToBHoM()).ToList();
-            List<ADG.IndexGroup> DSFacesIndex = DSMesh.FaceIndices.ToList();
+            List<BHG.Point> vertices = dSMesh.VertexPositions.ToList().Select(x => x.ToBHoM()).ToList();
+            List<ADG.IndexGroup> DSFacesIndex = dSMesh.FaceIndices.ToList();
             List<BHG.Face> Faces = new List<BHG.Face>();
 
             for (int i = 0; i < DSFacesIndex.Count; i++)
