@@ -62,7 +62,7 @@ namespace BH.Engine.Dynamo.Objects
                 return (T)aObject;
 
             if (aType.Namespace.StartsWith("Autodesk.DesignScript"))
-                return (T)(aObject.IToBHoM());
+                return (T)(aObject.IFromDesignScript());
 
             if (typeof(T) == typeof(double))
             {
@@ -105,7 +105,7 @@ namespace BH.Engine.Dynamo.Objects
                 content = new List<T>();
             IEnumerable data = content as IEnumerable;
 
-            return data.Cast<object>().Select(x => x.IToBHoM()).Cast<T>().ToList();
+            return data.Cast<object>().Select(x => x.IFromDesignScript()).Cast<T>().ToList();
         }
 
         /*************************************/
@@ -119,7 +119,7 @@ namespace BH.Engine.Dynamo.Objects
                 content = new List<List<T>>();
             IEnumerable<IEnumerable> data = content as IEnumerable<IEnumerable>;
 
-            return data.Select(y => y.Cast<object>().Select(x => x.IToBHoM()).Cast<T>().ToList()).ToList();
+            return data.Select(y => y.Cast<object>().Select(x => x.IFromDesignScript()).Cast<T>().ToList()).ToList();
         }
 
 
