@@ -40,19 +40,19 @@ namespace BH.Engine.Dynamo
         /**** Public Methods  - Interfaces              ****/
         /***************************************************/
 
-        public static object IToBHoM(this object obj)
+        public static object IFromDesignScript(this object obj)
         {
             if (obj is IEnumerable || obj is ADG.Geometry || obj is ADG.Vector)
-                return Convert.ToBHoM(obj as dynamic);
+                return Convert.FromDesignScript(obj as dynamic);
             else
                 return obj;
         }
 
         /***************************************************/
 
-        public static BHG.IGeometry IToBHoM(this ADG.Geometry geometry)
+        public static BHG.IGeometry IFromDesignScript(this ADG.Geometry geometry)
         {
-            return Convert.ToBHoM(geometry as dynamic);
+            return Convert.FromDesignScript(geometry as dynamic);
         }
 
 
@@ -60,7 +60,7 @@ namespace BH.Engine.Dynamo
         /**** Public Methods  - Collections             ****/
         /***************************************************/
 
-        public static IEnumerable ToBHoM(this IEnumerable list)
+        public static IEnumerable FromDesignScript(this IEnumerable list)
         {
             if (list is string || list.GetType().Name.StartsWith("Dictionary"))
                 return list;
@@ -68,7 +68,7 @@ namespace BH.Engine.Dynamo
             {
                 List<object> newList = new List<object>();
                 foreach (object item in list)
-                    newList.Add(item.IToBHoM());
+                    newList.Add(item.IFromDesignScript());
                 return newList;
             }
         }
@@ -76,62 +76,62 @@ namespace BH.Engine.Dynamo
         /***************************************************/
 
         // Issue with natvie Dynamo nodes to be confused (Issue 83)
-        //public static IEnumerable<object> ToBHoM(this ArrayList list)
+        //public static IEnumerable<object> FromDesignScript(this ArrayList list)
         //{
-        //    return list.ToArray().Select(x => x.IToBHoM()).ToList();
+        //    return list.ToArray().Select(x => x.IFromDesignScript()).ToList();
         //}
 
         /***************************************************/
         /**** Public Methods  - Geometry                ****/
         /***************************************************/
 
-        public static BHG.Point ToBHoM(this ADG.Point designScriptPt)
+        public static BHG.Point FromDesignScript(this ADG.Point designScriptPt)
         {
             return Geometry.Create.Point(designScriptPt.X, designScriptPt.Y, designScriptPt.Z);
         }
 
         /***************************************************/
 
-        public static BHG.Vector ToBHoM(this ADG.Vector designScriptVec)
+        public static BHG.Vector FromDesignScript(this ADG.Vector designScriptVec)
         {
             return Geometry.Create.Vector(designScriptVec.X, designScriptVec.Y, designScriptVec.Z);
         }
 
         /***************************************************/
 
-        public static BHG.Arc ToBHoM(this ADG.Arc arc)
+        public static BHG.Arc FromDesignScript(this ADG.Arc arc)
         {
-            return Geometry.Create.Arc(arc.StartPoint.ToBHoM(), arc.PointAtParameter(0.5).ToBHoM(), arc.EndPoint.ToBHoM());
+            return Geometry.Create.Arc(arc.StartPoint.FromDesignScript(), arc.PointAtParameter(0.5).FromDesignScript(), arc.EndPoint.FromDesignScript());
         }
 
         /***************************************************/
 
-        public static BHG.Circle ToBHoM(this ADG.Circle circle)
+        public static BHG.Circle FromDesignScript(this ADG.Circle circle)
         {
-            return Geometry.Create.Circle(circle.CenterPoint.ToBHoM(), circle.Normal.ToBHoM(), circle.Radius);
+            return Geometry.Create.Circle(circle.CenterPoint.FromDesignScript(), circle.Normal.FromDesignScript(), circle.Radius);
         }
 
         /***************************************************/
 
-        public static BHG.Line ToBHoM(this ADG.Line line)
+        public static BHG.Line FromDesignScript(this ADG.Line line)
         {
-            return Geometry.Create.Line(line.StartPoint.ToBHoM(), line.EndPoint.ToBHoM());
+            return Geometry.Create.Line(line.StartPoint.FromDesignScript(), line.EndPoint.FromDesignScript());
         }
 
         /***************************************************/
 
-        public static BHG.NurbsCurve ToBHoM(this ADG.Curve nurbsCurve)
+        public static BHG.NurbsCurve FromDesignScript(this ADG.Curve nurbsCurve)
         {
             throw new NotImplementedException();
         }
 
         /***************************************************/
 
-        public static BHG.NurbsCurve ToBHoM(this ADG.NurbsCurve nurbsCurve)
+        public static BHG.NurbsCurve FromDesignScript(this ADG.NurbsCurve nurbsCurve)
         {
             return new BHG.NurbsCurve
             {
-                ControlPoints = nurbsCurve.ControlPoints().Select(x => x.ToBHoM()).ToList(),
+                ControlPoints = nurbsCurve.ControlPoints().Select(x => x.FromDesignScript()).ToList(),
                 Knots = nurbsCurve.Knots().ToList().GetRange(1, nurbsCurve.Knots().Count()-2),
                 Weights = nurbsCurve.Weights().ToList()
             };
@@ -139,30 +139,30 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.Plane ToBHoM(this ADG.Plane plane)
+        public static BHG.Plane FromDesignScript(this ADG.Plane plane)
         {
-            return Geometry.Create.Plane(plane.Origin.ToBHoM(), plane.Normal.ToBHoM());
+            return Geometry.Create.Plane(plane.Origin.FromDesignScript(), plane.Normal.FromDesignScript());
         }
 
         /***************************************************/
 
-        public static BHG.CoordinateSystem.Cartesian ToBHoM(this ADG.CoordinateSystem coordinateSystem)
+        public static BHG.CoordinateSystem.Cartesian FromDesignScript(this ADG.CoordinateSystem coordinateSystem)
         {
-            return Geometry.Create.CartesianCoordinateSystem(coordinateSystem.Origin.ToBHoM(), coordinateSystem.XAxis.ToBHoM(), coordinateSystem.YAxis.ToBHoM());
+            return Geometry.Create.CartesianCoordinateSystem(coordinateSystem.Origin.FromDesignScript(), coordinateSystem.XAxis.FromDesignScript(), coordinateSystem.YAxis.FromDesignScript());
         }
 
         /***************************************************/
 
-        public static BHG.PolyCurve ToBHoM(this ADG.PolyCurve polyCurve)
+        public static BHG.PolyCurve FromDesignScript(this ADG.PolyCurve polyCurve)
         {
-            return Geometry.Create.PolyCurve(polyCurve.Curves().Select(x => x.ToBHoM()));
+            return Geometry.Create.PolyCurve(polyCurve.Curves().Select(x => x.FromDesignScript()));
         }
 
         /***************************************************/
 
-        public static BHG.Polyline ToBHoM(this ADG.Polygon polygon)
+        public static BHG.Polyline FromDesignScript(this ADG.Polygon polygon)
         {
-            List<BH.oM.Geometry.Point> pts = polygon.Points.Select(x => x.ToBHoM()).ToList();
+            List<BH.oM.Geometry.Point> pts = polygon.Points.Select(x => x.FromDesignScript()).ToList();
             if (pts.Count == 0)
                 return new BHG.Polyline();
 
@@ -172,21 +172,21 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.BoundingBox ToBHoM(this ADG.BoundingBox boundingBox)
+        public static BHG.BoundingBox FromDesignScript(this ADG.BoundingBox boundingBox)
         {
-            return Geometry.Create.BoundingBox(boundingBox.MinPoint.ToBHoM(), boundingBox.MaxPoint.ToBHoM());
+            return Geometry.Create.BoundingBox(boundingBox.MinPoint.FromDesignScript(), boundingBox.MaxPoint.FromDesignScript());
         }
 
         /***************************************************/
 
-        public static BHG.ISurface ToBHoM(this ADG.Surface surface)
+        public static BHG.ISurface FromDesignScript(this ADG.Surface surface)
         {
-            return ToBHoM(surface as dynamic);
+            return FromDesignScript(surface as dynamic);
         }
 
         /***************************************************/
 
-        public static BHG.NurbsSurface ToBHoM(this ADG.NurbsSurface surface)
+        public static BHG.NurbsSurface FromDesignScript(this ADG.NurbsSurface surface)
         {
             List<double> uKnots = new List<double>(surface.UKnots());
             uKnots.RemoveAt(0);
@@ -198,7 +198,7 @@ namespace BH.Engine.Dynamo
 
             return surface == null ? null : new BHG.NurbsSurface
             (
-                surface.ControlPoints().SelectMany(x => x.Select(y => y.ToBHoM())).ToList(),
+                surface.ControlPoints().SelectMany(x => x.Select(y => y.FromDesignScript())).ToList(),
                 surface.Weights().SelectMany(x => x).ToList(),
                 uKnots,
                 vKnots,
@@ -211,9 +211,9 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.Mesh ToBHoM(this ADG.Mesh dSMesh)
+        public static BHG.Mesh FromDesignScript(this ADG.Mesh dSMesh)
         {
-            List<BHG.Point> vertices = dSMesh.VertexPositions.ToList().Select(x => x.ToBHoM()).ToList();
+            List<BHG.Point> vertices = dSMesh.VertexPositions.ToList().Select(x => x.FromDesignScript()).ToList();
             List<ADG.IndexGroup> DSFacesIndex = dSMesh.FaceIndices.ToList();
             List<BHG.Face> Faces = new List<BHG.Face>();
 

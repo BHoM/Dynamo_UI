@@ -161,7 +161,7 @@
   <ItemGroup>
     <Compile Include="Compute\RunCaller.cs" />
     <Compile Include="Convert\ToDesignScript.cs" />
-    <Compile Include="Convert\ToBHoM.cs" />
+    <Compile Include="Convert\FromDesignScript.cs" />
     <Compile Include="Convert\ToPortData.cs" />
     <Compile Include="Convert\ToTargetType.cs" />
     <Compile Include="Create\ListWrapper.cs" />

@@ -78,7 +78,7 @@ namespace BH.Engine.Dynamo
         public static T ToType<T>(this object item)
         {
             if (item is ADG.Geometry || item is ADG.Vector)
-                return (T)Convert.ToBHoM(item as dynamic);
+                return (T)Convert.FromDesignScript(item as dynamic);
             else
                 return (T)(item as dynamic);
         }
