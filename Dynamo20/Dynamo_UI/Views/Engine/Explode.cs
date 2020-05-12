@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using BH.Engine.Dynamo;
 
 namespace BH.UI.Dynamo.Views
 {
@@ -102,7 +103,7 @@ namespace BH.UI.Dynamo.Views
                     return new List<object>();
             }
             else
-                return new List<object> { mirrorData.Data };
+                return new List<object> { mirrorData.Data.IFromDesignScript() };
         }
 
         /*******************************************/

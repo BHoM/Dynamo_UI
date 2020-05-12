@@ -42,10 +42,7 @@ namespace BH.Engine.Dynamo
 
         public static object IFromDesignScript(this object obj)
         {
-            if (obj is IEnumerable || obj is ADG.Geometry || obj is ADG.Vector)
-                return Convert.FromDesignScript(obj as dynamic);
-            else
-                return obj;
+            return Convert.FromDesignScript(obj as dynamic);
         }
 
         /***************************************************/
@@ -73,6 +70,18 @@ namespace BH.Engine.Dynamo
             }
         }
 
+
+        /***************************************************/
+
+        public static Dictionary<string, object> FromDesignScript(this DesignScript.Builtin.Dictionary dic)
+        {
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            foreach (string key in dic.Keys)
+                result[key] = dic.ValueAtKey(key);
+
+            return result;
+        }
+
         /***************************************************/
 
         // Issue with natvie Dynamo nodes to be confused (Issue 83)
@@ -80,6 +89,16 @@ namespace BH.Engine.Dynamo
         //{
         //    return list.ToArray().Select(x => x.IFromDesignScript()).ToList();
         //}
+
+
+        /***************************************************/
+        /**** Public Methods  - Fallback                ****/
+        /***************************************************/
+
+        public static object FromDesignScript(this object obj)
+        {
+            return obj;
+        }
 
         /***************************************************/
         /**** Public Methods  - Geometry                ****/
