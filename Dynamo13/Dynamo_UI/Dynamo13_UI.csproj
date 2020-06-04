@@ -36,19 +36,19 @@
   <ItemGroup>
     <Reference Include="BHoM">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\BHoM\Build\BHoM.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="BHoM_Adapter">
-      <HintPath>..\..\..\BHoM_Adapter\Build\BHoM_Adapter.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM_Adapter.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="BHoM_Engine">
-      <HintPath>..\..\..\BHoM_Engine\Build\BHoM_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="BHoM_UI">
-      <HintPath>..\..\..\BHoM_UI\Build\BHoM_UI.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM_UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModels, Version=1.2.0.2690, Culture=neutral, processorArchitecture=MSIL">
@@ -59,14 +59,14 @@
       <HintPath>..\..\packages\DynamoVisualProgramming.WpfUILibrary.1.2.0\lib\net45\CoreNodeModelsWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Data_Engine, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Data_Engine">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\BHoM_Engine\Build\Data_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\Data_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Data_oM, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Data_oM">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\BHoM\Build\Data_oM.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\Data_oM.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore, Version=1.2.0.2690, Culture=neutral, processorArchitecture=MSIL">
@@ -94,17 +94,17 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Geometry_Engine">
-      <HintPath>..\..\..\BHoM_Engine\Build\Geometry_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\Geometry_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Geometry_oM">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\BHoM\Build\Geometry_oM.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\Geometry_oM.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Library_Engine">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\BHoM_Engine\Build\Library_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\Library_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -134,15 +134,15 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Reflection_Engine">
-      <HintPath>..\..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\Reflection_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Serialiser_Engine">
-      <HintPath>..\..\..\BHoM_Engine\Build\Serialiser_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\Serialiser_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Structure_Engine">
-      <HintPath>..\..\..\BHoM_Engine\Build\Structure_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\Structure_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -174,11 +174,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UI_Engine">
-      <HintPath>..\..\..\BHoM_UI\Build\UI_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\UI_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UI_oM">
-      <HintPath>..\..\..\BHoM_UI\Build\UI_oM.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\UI_oM.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
