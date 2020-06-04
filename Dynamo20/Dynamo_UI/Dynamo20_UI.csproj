@@ -283,7 +283,9 @@ Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3
 
 call "..\..\..\BHoM_UI\Build\UI_PostBuild.exe" ..\..\..\ "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\bin"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\bin"
-Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\pkg.json"</PostBuildEvent>
+Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\pkg.json"
+
+xcopy \"$(TargetDir)$(TargetFileName)\"  \"C:\\ProgramData\\BHoM\\Assemblies\" /Y</PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo\Dynamo Revit\1.3\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>
