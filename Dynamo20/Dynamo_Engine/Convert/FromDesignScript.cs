@@ -25,10 +25,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ADG = Autodesk.DesignScript.Geometry;
 using BHG = BH.oM.Geometry;
+using BH.Engine.Geometry;
 
 
 namespace BH.Engine.Dynamo
@@ -50,6 +49,13 @@ namespace BH.Engine.Dynamo
         public static BHG.IGeometry IFromDesignScript(this ADG.Geometry geometry)
         {
             return Convert.FromDesignScript(geometry as dynamic);
+        }
+
+        /***************************************************/
+
+        public static BHG.ICurve IFromDesignScript(this ADG.Curve curve)
+        {
+            return Convert.FromDesignScript(curve as dynamic);
         }
 
 
@@ -100,8 +106,9 @@ namespace BH.Engine.Dynamo
             return obj;
         }
 
+
         /***************************************************/
-        /**** Public Methods  - Geometry                ****/
+        /****         Public Methods  - Vector          ****/
         /***************************************************/
 
         public static BHG.Point FromDesignScript(this ADG.Point designScriptPt)
@@ -114,46 +121,6 @@ namespace BH.Engine.Dynamo
         public static BHG.Vector FromDesignScript(this ADG.Vector designScriptVec)
         {
             return Geometry.Create.Vector(designScriptVec.X, designScriptVec.Y, designScriptVec.Z);
-        }
-
-        /***************************************************/
-
-        public static BHG.Arc FromDesignScript(this ADG.Arc arc)
-        {
-            return Geometry.Create.Arc(arc.StartPoint.FromDesignScript(), arc.PointAtParameter(0.5).FromDesignScript(), arc.EndPoint.FromDesignScript());
-        }
-
-        /***************************************************/
-
-        public static BHG.Circle FromDesignScript(this ADG.Circle circle)
-        {
-            return Geometry.Create.Circle(circle.CenterPoint.FromDesignScript(), circle.Normal.FromDesignScript(), circle.Radius);
-        }
-
-        /***************************************************/
-
-        public static BHG.Line FromDesignScript(this ADG.Line line)
-        {
-            return Geometry.Create.Line(line.StartPoint.FromDesignScript(), line.EndPoint.FromDesignScript());
-        }
-
-        /***************************************************/
-
-        public static BHG.NurbsCurve FromDesignScript(this ADG.Curve nurbsCurve)
-        {
-            throw new NotImplementedException();
-        }
-
-        /***************************************************/
-
-        public static BHG.NurbsCurve FromDesignScript(this ADG.NurbsCurve nurbsCurve)
-        {
-            return new BHG.NurbsCurve
-            {
-                ControlPoints = nurbsCurve.ControlPoints().Select(x => x.FromDesignScript()).ToList(),
-                Knots = nurbsCurve.Knots().ToList().GetRange(1, nurbsCurve.Knots().Count()-2),
-                Weights = nurbsCurve.Weights().ToList()
-            };
         }
 
         /***************************************************/
@@ -172,9 +139,74 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
+        public static BHG.BoundingBox FromDesignScript(this ADG.BoundingBox boundingBox)
+        {
+            return Geometry.Create.BoundingBox(boundingBox.MinPoint.FromDesignScript(), boundingBox.MaxPoint.FromDesignScript());
+        }
+
+
+        /***************************************************/
+        /****         Public Methods  - Curve           ****/
+        /***************************************************/
+
+        public static BHG.Line FromDesignScript(this ADG.Line line)
+        {
+            return Geometry.Create.Line(line.StartPoint.FromDesignScript(), line.EndPoint.FromDesignScript());
+        }
+
+        /***************************************************/
+
+        // A quasi-fallback method - lines sometimes come out of Dynamo as objects of type Line, sometimes of type Curve.
+        public static BHG.ICurve FromDesignScript(this ADG.Curve curve)
+        {
+            if (Math.Abs(curve.StartPoint.DistanceTo(curve.EndPoint) - curve.Length) <= 1e-6)
+                return Geometry.Create.Line(curve.StartPoint.FromDesignScript(), curve.EndPoint.FromDesignScript());
+            else
+            {
+                BH.Engine.Reflection.Compute.RecordWarning(String.Format("Convert from DesignScript to BHoM is missing for curves of type {0}. The curve has been approximated with lines and arcs.", curve.GetType()));
+                return new BHG.PolyCurve { Curves = curve.ApproximateWithArcAndLineSegments().Select(x => x.IFromDesignScript()).ToList() };
+            }
+            
+        }
+
+        /***************************************************/
+
+        public static BHG.Arc FromDesignScript(this ADG.Arc arc)
+        {
+            return Geometry.Create.Arc(arc.StartPoint.FromDesignScript(), arc.PointAtParameter(0.5).FromDesignScript(), arc.EndPoint.FromDesignScript());
+        }
+
+        /***************************************************/
+
+        public static BHG.Circle FromDesignScript(this ADG.Circle circle)
+        {
+            return Geometry.Create.Circle(circle.CenterPoint.FromDesignScript(), circle.Normal.FromDesignScript(), circle.Radius);
+        }
+
+        /***************************************************/
+
+        public static BHG.ICurve FromDesignScript(this ADG.Ellipse ellipse)
+        {
+            throw new NotImplementedException();
+        }
+
+        /***************************************************/
+
+        public static BHG.NurbsCurve FromDesignScript(this ADG.NurbsCurve nurbsCurve)
+        {
+            return new BHG.NurbsCurve
+            {
+                ControlPoints = nurbsCurve.ControlPoints().Select(x => x.FromDesignScript()).ToList(),
+                Knots = nurbsCurve.Knots().ToList().GetRange(1, nurbsCurve.Knots().Count()-2),
+                Weights = nurbsCurve.Weights().ToList()
+            };
+        }
+
+        /***************************************************/
+
         public static BHG.PolyCurve FromDesignScript(this ADG.PolyCurve polyCurve)
         {
-            return Geometry.Create.PolyCurve(polyCurve.Curves().Select(x => x.FromDesignScript()));
+            return Geometry.Create.PolyCurve(polyCurve.Curves().Select(x => x.IFromDesignScript()));
         }
 
         /***************************************************/
@@ -189,18 +221,22 @@ namespace BH.Engine.Dynamo
             return Geometry.Create.Polyline(pts);
         }
 
+
+        /***************************************************/
+        /****         Public Methods  - Surface         ****/
         /***************************************************/
 
-        public static BHG.BoundingBox FromDesignScript(this ADG.BoundingBox boundingBox)
+        public static BHG.PlanarSurface FromDesignScript(this ADG.Surface surface)
         {
-            return Geometry.Create.BoundingBox(boundingBox.MinPoint.FromDesignScript(), boundingBox.MaxPoint.FromDesignScript());
+            return BH.Engine.Geometry.Create.PlanarSurface(surface.Edges.Select(x => x.CurveGeometry.IFromDesignScript()).ToList().IJoin().Cast<BHG.ICurve>().ToList()).FirstOrDefault();
         }
 
         /***************************************************/
 
-        public static BHG.ISurface FromDesignScript(this ADG.Surface surface)
+        public static BHG.PolySurface FromDesignScript(this ADG.PolySurface surface)
         {
-            return FromDesignScript(surface as dynamic);
+            List<BHG.ISurface> surfaces = surface.Surfaces().Select(x => x.IFromDesignScript()).Cast<BHG.ISurface>().ToList();
+            return new BHG.PolySurface { Surfaces = surfaces };
         }
 
         /***************************************************/
@@ -228,6 +264,9 @@ namespace BH.Engine.Dynamo
             );
         }
 
+
+        /***************************************************/
+        /****          Public Methods  - Mesh           ****/
         /***************************************************/
 
         public static BHG.Mesh FromDesignScript(this ADG.Mesh dSMesh)
