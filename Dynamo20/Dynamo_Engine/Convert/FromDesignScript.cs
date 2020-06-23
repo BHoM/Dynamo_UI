@@ -204,9 +204,19 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.PolyCurve FromDesignScript(this ADG.PolyCurve polyCurve)
+        public static BHG.ICurve FromDesignScript(this ADG.PolyCurve polyCurve)
         {
-            return Geometry.Create.PolyCurve(polyCurve.Curves().Select(x => x.IFromDesignScript()));
+            List<BHG.ICurve> curves = polyCurve.Curves().Select(x => x.IFromDesignScript()).ToList();
+
+            // Force convert to BH.oM.Geometry.Polyline if the curve consists of linear segments only.
+            if (curves.Count != 0 && curves.All(x => x is BHG.Line))
+            {
+                List<BHG.Point> controlPoints = new List<BHG.Point> { ((BHG.Line)curves[0]).Start };
+                controlPoints.AddRange(curves.Select(x => ((BHG.Line)x).End));
+                return new BHG.Polyline { ControlPoints = controlPoints };
+            }
+            else
+                return Geometry.Create.PolyCurve(polyCurve.Curves().Select(x => x.IFromDesignScript()));
         }
 
         /***************************************************/
