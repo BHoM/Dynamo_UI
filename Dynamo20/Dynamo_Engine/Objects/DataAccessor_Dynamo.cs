@@ -58,7 +58,7 @@ namespace BH.Engine.Dynamo.Objects
 
             Type aType = aObject.GetType();
 
-            if (aType.Namespace.StartsWith("Autodesk.DesignScript") || aType.Namespace.StartsWith("DesignScript.Builtin"))
+            if (typeof(T).Namespace.StartsWith("BH.oM") && (aType.Namespace.StartsWith("Autodesk.DesignScript") || aType.Namespace.StartsWith("DesignScript.Builtin")))
                 return (T)(aObject.IFromDesignScript());
 
             if (aType == typeof(T) || typeof(T).IsAssignableFrom(aType))
