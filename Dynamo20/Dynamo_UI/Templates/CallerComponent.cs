@@ -68,7 +68,7 @@ namespace BH.UI.Dynamo.Templates
         public CallerComponent() : base()
         {
             Category = "BHoM." + Caller.Category;
-            ArgumentLacing = LacingStrategy.Shortest;
+            ArgumentLacing = LacingStrategy.Auto;
 
             Caller.SetDataAccessor(new DataAccessor_Dynamo());
             Caller.ItemSelected += (sender, e) => RefreshComponent();
@@ -84,7 +84,7 @@ namespace BH.UI.Dynamo.Templates
         public CallerComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
             Category = "BHoM." + Caller.Category;
-            ArgumentLacing = LacingStrategy.Shortest;
+            ArgumentLacing = LacingStrategy.Auto;
 
             Caller.SetDataAccessor(new DataAccessor_Dynamo());
             Caller.ItemSelected += (sender, e) => RefreshComponent();

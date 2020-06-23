@@ -69,7 +69,7 @@ namespace BH.UI.Dynamo.Templates
         public CallerValueList() : base()
         {
             Category = "BHoM." + Caller.Category;
-            ArgumentLacing = LacingStrategy.Shortest;
+            ArgumentLacing = LacingStrategy.Auto;
 
             Caller.SetDataAccessor(new DataAccessor_Dynamo());
             BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
@@ -86,7 +86,7 @@ namespace BH.UI.Dynamo.Templates
         public CallerValueList(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
             Category = "BHoM." + Caller.Category;
-            ArgumentLacing = LacingStrategy.Shortest;
+            ArgumentLacing = LacingStrategy.Auto;
 
             Caller.SetDataAccessor(new DataAccessor_Dynamo());
             BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
