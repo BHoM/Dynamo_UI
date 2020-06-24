@@ -159,8 +159,14 @@ namespace BH.Engine.Dynamo
         // A quasi-fallback method - lines sometimes come out of Dynamo as objects of type Line, sometimes of type Curve.
         public static BHG.ICurve FromDesignScript(this ADG.Curve curve)
         {
-            if (Math.Abs(curve.StartPoint.DistanceTo(curve.EndPoint) - curve.Length) <= 1e-6)
-                return Geometry.Create.Line(curve.StartPoint.FromDesignScript(), curve.EndPoint.FromDesignScript());
+            if (curve.GetType() == typeof(ADG.Curve))
+            {
+                List<ADG.Curve> curves = curve.Explode().Cast<ADG.Curve>().ToList();
+                if (curves.Count != 0)
+                    return curves[0].IFromDesignScript();
+                else
+                    return new BHG.PolyCurve { Curves = curves.Select(x => x.IFromDesignScript()).ToList() };
+            }
             else
             {
                 BH.Engine.Reflection.Compute.RecordWarning(String.Format("Convert from DesignScript to BHoM is missing for curves of type {0}. The curve has been approximated with lines and arcs.", curve.GetType()));
@@ -185,9 +191,12 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static BHG.ICurve FromDesignScript(this ADG.Ellipse ellipse)
+        public static BHG.Ellipse FromDesignScript(this ADG.Ellipse ellipse)
         {
-            throw new NotImplementedException();
+            BHG.Point centre = ellipse.CenterPoint.FromDesignScript();
+            BHG.Vector xAxis = ellipse.MajorAxis.FromDesignScript();
+            BHG.Vector yAxis = ellipse.MinorAxis.FromDesignScript();
+            return new BHG.Ellipse { Centre = centre, Axis1 = xAxis.Normalise(), Axis2 = yAxis.Normalise(), Radius1 = xAxis.Length(), Radius2 = yAxis.Length() };
         }
 
         /***************************************************/
