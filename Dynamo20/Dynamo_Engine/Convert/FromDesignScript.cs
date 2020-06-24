@@ -163,7 +163,7 @@ namespace BH.Engine.Dynamo
             if (curve.GetType() == typeof(ADG.Curve))
             {
                 List<ADG.Curve> curves = curve.Explode().Cast<ADG.Curve>().ToList();
-                if (curves.Count != 0)
+                if (curves.Count == 1)
                     return curves[0].IFromDesignScript();
                 else
                     return new BHG.PolyCurve { Curves = curves.Select(x => x.IFromDesignScript()).ToList() };
