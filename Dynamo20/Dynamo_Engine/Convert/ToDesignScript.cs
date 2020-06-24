@@ -23,8 +23,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ADG = Autodesk.DesignScript.Geometry;
 using BHG = BH.oM.Geometry;
 using BH.Engine.Geometry;
@@ -52,9 +50,23 @@ namespace BH.Engine.Dynamo
             return Convert.ToDesignScript(geometry as dynamic);
         }
 
+        /***************************************************/
+
+        public static ADG.Curve IToDesignScript(this BHG.ICurve curve)
+        {
+            return Convert.ToDesignScript(curve as dynamic);
+        }
 
         /***************************************************/
-        /**** Public Methods - Geometry                 ****/
+
+        public static ADG.Surface IToDesignScript(this BHG.ISurface surface)
+        {
+            return Convert.ToDesignScript(surface as dynamic);
+        }
+
+
+        /***************************************************/
+        /****         Public Methods  - Vector          ****/
         /***************************************************/
 
         public static ADG.Point ToDesignScript(this BHG.Point point)
@@ -71,6 +83,20 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
+        public static ADG.Plane ToDesignScript(this BHG.Plane plane)
+        {
+            return ADG.Plane.ByOriginNormal(plane.Origin.ToDesignScript(), plane.Normal.ToDesignScript());
+        }
+
+        /***************************************************/
+
+        public static ADG.BoundingBox ToDesignScript(this BHG.BoundingBox boundingBox)
+        {
+            return ADG.BoundingBox.ByCorners(boundingBox.Min.ToDesignScript(), boundingBox.Max.ToDesignScript());
+        }
+
+        /***************************************************/
+
         public static ADG.CoordinateSystem ToDesignScript(this BHG.Basis basis)
         {
             return ADG.CoordinateSystem.ByOriginVectors(
@@ -79,6 +105,23 @@ namespace BH.Engine.Dynamo
                 basis.Y.ToDesignScript(),
                 basis.Z.ToDesignScript()
             );
+        }
+
+        /***************************************************/
+
+        public static ADG.CoordinateSystem ToDesignScript(this BHG.CoordinateSystem.Cartesian coordinateSystem)
+        {
+            return ADG.CoordinateSystem.ByOriginVectors(coordinateSystem.Origin.ToDesignScript(), coordinateSystem.X.ToDesignScript(), coordinateSystem.Y.ToDesignScript());
+        }
+
+
+        /***************************************************/
+        /****         Public Methods  - Curve           ****/
+        /***************************************************/
+
+        public static ADG.Line ToDesignScript(this BHG.Line line)
+        {
+            return ADG.Line.ByStartPointEndPoint(line.Start.ToDesignScript(), line.End.ToDesignScript());
         }
 
         /***************************************************/
@@ -97,9 +140,12 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.Line ToDesignScript(this BHG.Line line)
+        public static ADG.Ellipse ToDesignScript(this BHG.Ellipse ellipse)
         {
-            return ADG.Line.ByStartPointEndPoint(line.Start.ToDesignScript(), line.End.ToDesignScript());
+            ADG.Point centre = ellipse.Centre.ToDesignScript();
+            ADG.Vector xAxis = (ellipse.Axis1 * ellipse.Radius1).ToDesignScript();
+            ADG.Vector yAxis = (ellipse.Axis2 * ellipse.Radius2).ToDesignScript();
+            return ADG.Ellipse.ByOriginVectors(centre, xAxis, yAxis);
         }
 
         /***************************************************/
@@ -114,20 +160,6 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.Plane ToDesignScript(this BHG.Plane plane)
-        {
-            return ADG.Plane.ByOriginNormal(plane.Origin.ToDesignScript(), plane.Normal.ToDesignScript());
-        }
-
-        /***************************************************/
-
-        public static ADG.CoordinateSystem ToDesignScript(this BHG.CoordinateSystem.Cartesian coordinateSystem)
-        {
-            return ADG.CoordinateSystem.ByOriginVectors(coordinateSystem.Origin.ToDesignScript(), coordinateSystem.X.ToDesignScript(), coordinateSystem.Y.ToDesignScript());
-        }
-
-        /***************************************************/
-
         public static ADG.PolyCurve ToDesignScript(this BHG.Polyline polyLine)
         {
             return ADG.PolyCurve.ByPoints(polyLine.ControlPoints.Select(x => x.ToDesignScript()));
@@ -137,25 +169,12 @@ namespace BH.Engine.Dynamo
 
         public static ADG.PolyCurve ToDesignScript(this BHG.PolyCurve polyCurve)
         {
-            List<ADG.PolyCurve> aPolyCurveList = new List<ADG.PolyCurve>();
-            foreach (BHG.ICurve ICurve in polyCurve.Curves)
-            {
-                if (ICurve is BHG.PolyCurve)
-                    aPolyCurveList.Add(((BHG.PolyCurve)ICurve).ToDesignScript());
-                else
-                    aPolyCurveList.Add(ADG.PolyCurve.ByJoinedCurves(new ADG.Curve[] { ToDesignScript((ICurve as dynamic)) }));
-            }
-
-            return ADG.PolyCurve.ByJoinedCurves(aPolyCurveList);
+            return ADG.PolyCurve.ByJoinedCurves(polyCurve.Curves.Select(x => x.IToDesignScript()));
         }
+
 
         /***************************************************/
-
-        public static ADG.BoundingBox ToDesignScript(this BHG.BoundingBox boundingBox)
-        {
-            return ADG.BoundingBox.ByCorners(boundingBox.Min.ToDesignScript(), boundingBox.Max.ToDesignScript());
-        }
-
+        /****         Public Methods  - Surface         ****/
         /***************************************************/
 
         public static ADG.Surface ToDesignScript(this BHG.NurbsSurface surface)
@@ -205,6 +224,29 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
+        public static ADG.Surface ToDesignScript(this BHG.PlanarSurface surface)
+        {
+            if (surface.InternalBoundaries.Count != 0)
+            {
+                BH.Engine.Reflection.Compute.RecordError("Dynamo does not support surfaces with openings, convert failed.");
+                return null;
+            }
+
+            return ADG.Surface.ByPatch(surface.ExternalBoundary.IToDesignScript());
+        }
+
+        /***************************************************/
+
+        public static ADG.PolySurface ToDesignScript(this BHG.PolySurface surface)
+        {
+            return ADG.PolySurface.ByJoinedSurfaces(surface.Surfaces.Select(x => x.IToDesignScript()));
+        }
+
+
+        /***************************************************/
+        /****          Public Methods  - Mesh           ****/
+        /***************************************************/
+
         public static ADG.Mesh ToDesignScript(this BHG.Mesh mesh)
         {
             List<ADG.IndexGroup> faceIndexes = new List<ADG.IndexGroup>();
@@ -219,14 +261,6 @@ namespace BH.Engine.Dynamo
             }
 
             return ADG.Mesh.ByPointsFaceIndices(vertices, faceIndexes);
-        }
-
-        /***************************************************/
-
-        //TODO: implement proper conversion for PlanarSurfce
-        public static BHG.PlanarSurface ToDesignScript(this BHG.PlanarSurface planarSurface)
-        {
-            return planarSurface;
         }
 
         /***************************************************/
