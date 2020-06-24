@@ -216,7 +216,7 @@ namespace BH.Engine.Dynamo
                 return new BHG.Polyline { ControlPoints = controlPoints };
             }
             else
-                return Geometry.Create.PolyCurve(polyCurve.Curves().Select(x => x.IFromDesignScript()));
+                return Geometry.Create.PolyCurve(curves);
         }
 
         /***************************************************/
