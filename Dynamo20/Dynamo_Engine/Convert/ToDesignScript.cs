@@ -160,9 +160,12 @@ namespace BH.Engine.Dynamo
 
         /***************************************************/
 
-        public static ADG.PolyCurve ToDesignScript(this BHG.Polyline polyLine)
+        public static ADG.PolyCurve ToDesignScript(this BHG.Polyline polyline)
         {
-            return ADG.PolyCurve.ByPoints(polyLine.ControlPoints.Select(x => x.ToDesignScript()));
+            if (polyline.IsClosed())
+                return ADG.Polygon.ByPoints(polyline.ControlPoints.Select(x => x.ToDesignScript()));
+            else
+                return ADG.PolyCurve.ByPoints(polyline.ControlPoints.Select(x => x.ToDesignScript()));
         }
 
         /***************************************************/
