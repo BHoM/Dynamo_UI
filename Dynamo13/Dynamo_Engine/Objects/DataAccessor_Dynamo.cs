@@ -23,6 +23,7 @@
 using Autodesk.DesignScript.Runtime;
 using BH.Engine.Dynamo;
 using BH.Engine.Dynamo.Objects;
+using BH.oM.UI;
 using BH.UI.Templates;
 using System;
 using System.Collections;
@@ -34,7 +35,7 @@ using System.Threading.Tasks;
 namespace BH.Engine.Dynamo.Objects
 {
     [IsVisibleInDynamoLibrary(false)]
-    public class DataAccessor_Dynamo : DataAccessor
+    public class DataAccessor_Dynamo : IDataAccessor
     {
         /***************************************************/
         /**** Public Properties                         ****/
@@ -49,7 +50,7 @@ namespace BH.Engine.Dynamo.Objects
         /**** Input Getter Methods        ****/
         /*************************************/
 
-        public override T GetDataItem<T>(int index)
+        public T GetDataItem<T>(int index)
         {
             object aObject = GetInputAt(index);
 
@@ -96,7 +97,7 @@ namespace BH.Engine.Dynamo.Objects
 
         /*************************************/
 
-        public override List<T> GetDataList<T>(int index)
+        public List<T> GetDataList<T>(int index)
         {
             object content = GetInputAt(index);
             if (content is ListWrapper)
@@ -110,7 +111,7 @@ namespace BH.Engine.Dynamo.Objects
 
         /*************************************/
 
-        public override List<List<T>> GetDataTree<T>(int index)
+        public List<List<T>> GetDataTree<T>(int index)
         {
             object content = GetInputAt(index);
             if (content is TreeWrapper)
@@ -127,7 +128,7 @@ namespace BH.Engine.Dynamo.Objects
         /**** Output Setter Methods       ****/
         /*************************************/
 
-        public override bool SetDataItem<T>(int index, T data)
+        public bool SetDataItem<T>(int index, T data)
         {
             SetOutputAt(index, data.IToDesignScript());
             return true;
@@ -135,7 +136,7 @@ namespace BH.Engine.Dynamo.Objects
 
         /*************************************/
 
-        public override bool SetDataList<T>(int index, IEnumerable<T> data)
+        public bool SetDataList<T>(int index, IEnumerable<T> data)
         {
             SetOutputAt(index, data.Select(x => x.IToDesignScript()).ToList());
             return true;
@@ -143,7 +144,7 @@ namespace BH.Engine.Dynamo.Objects
 
         /*************************************/
 
-        public override bool SetDataTree<T>(int index, IEnumerable<IEnumerable<T>> data)
+        public bool SetDataTree<T>(int index, IEnumerable<IEnumerable<T>> data)
         {
             SetOutputAt(index, data.Select(y => y.Select(x => x.IToDesignScript()).ToList()).ToList());
             return true;
