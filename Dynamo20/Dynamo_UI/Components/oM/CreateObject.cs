@@ -56,7 +56,7 @@ namespace BH.UI.Dynamo.Components
         {
             CreateObjectCaller caller = Caller as CreateObjectCaller;
             if (caller != null)
-                caller.InputToggled += Caller_InputToggled;
+                caller.Modified += Caller_InputToggled;
         }
 
 
@@ -64,16 +64,22 @@ namespace BH.UI.Dynamo.Components
         /**** Private Methods                   ****/
         /*******************************************/
 
-        private void Caller_InputToggled(object sender, Tuple<ParamInfo, bool> e)
+        private void Caller_InputToggled(object sender, CallerUpdate update)
         {
-            if (e.Item2)
-                InPorts.Add(new PortModel(PortType.Input, this, e.Item1.ToPortData()));
-            else
+            if (update.Cause != CallerUpdateCause.InputSelection)
+                return;
+
+            foreach (IParamUpdate paramUpdate in update.InputUpdates)
             {
-                string name = e.Item1.Name.ToLower();
-                int index = InPorts.ToList().FindIndex(x => x.Name.ToLower() == name);
-                if (index >= 0)
-                    InPorts.RemoveAt(index);
+                if (paramUpdate is ParamAdded)
+                    InPorts.Add(new PortModel(PortType.Input, this, paramUpdate.Param.ToPortData()));
+                else
+                {
+                    string name = paramUpdate.Param.Name.ToLower();
+                    int index = InPorts.ToList().FindIndex(x => x.Name.ToLower() == name);
+                    if (index >= 0)
+                        InPorts.RemoveAt(index);
+                }
             }
 
             RaisesModificationEvents = true;
