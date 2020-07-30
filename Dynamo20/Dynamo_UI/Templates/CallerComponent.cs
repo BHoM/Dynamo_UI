@@ -71,7 +71,7 @@ namespace BH.UI.Dynamo.Templates
             ArgumentLacing = LacingStrategy.Auto;
 
             Caller.SetDataAccessor(new DataAccessor_Dynamo());
-            Caller.ItemSelected += (sender, e) => RefreshComponent();
+            Caller.Modified += (sender, e) => RefreshComponent();
             BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
             BH.Engine.Dynamo.Compute.Nodes[InstanceID.ToString()] = this;
 
@@ -87,7 +87,7 @@ namespace BH.UI.Dynamo.Templates
             ArgumentLacing = LacingStrategy.Auto;
 
             Caller.SetDataAccessor(new DataAccessor_Dynamo());
-            Caller.ItemSelected += (sender, e) => RefreshComponent();
+            Caller.Modified += (sender, e) => RefreshComponent();
             BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
             BH.Engine.Dynamo.Compute.Nodes[InstanceID.ToString()] = this;
         }

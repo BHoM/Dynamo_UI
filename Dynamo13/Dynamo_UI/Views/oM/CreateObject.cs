@@ -54,7 +54,7 @@ namespace BH.UI.Dynamo.Views
                 if (caller.SelectedItem is Type)
                     SetButtons();
 
-                caller.InputToggled += Caller_InputToggled;
+                caller.Modified += Caller_InputToggled;
             }   
         }
 
@@ -71,8 +71,11 @@ namespace BH.UI.Dynamo.Views
 
         /*******************************************/
 
-        private void Caller_InputToggled(object sender, Tuple<ParamInfo, bool> e)
+        private void Caller_InputToggled(object sender, CallerUpdate update)
         {
+            if (update.Cause != CallerUpdateCause.InputSelection)
+                return;
+
             CreateObjectCaller caller = m_Node.Caller as CreateObjectCaller;
             if (caller.SelectedItem is Type)
                 SetButtons();

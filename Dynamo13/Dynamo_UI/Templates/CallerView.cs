@@ -60,7 +60,7 @@ namespace BH.UI.Dynamo.Templates
             if (caller != null)
             {
                 caller.AddToMenu(nodeView.MainContextMenu);
-                caller.ItemSelected += Caller_ItemSelected;
+                caller.Modified += Caller_ItemSelected;
             }
         }
 
