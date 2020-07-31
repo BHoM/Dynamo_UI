@@ -50,7 +50,6 @@ namespace BH.UI.Dynamo.Views
             SetButtons();
             AppendInputNameMenu(true);
 
-            nodeView.MainContextMenu.Closed += MainContextMenu_Closed;
             nodeModel.InPorts.CollectionChanged += InPorts_CollectionChanged;
         }
 
@@ -98,14 +97,13 @@ namespace BH.UI.Dynamo.Views
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             CreateCustomCaller caller = m_Node.Caller as CreateCustomCaller;
-            List<string> inputs = m_Node.InPorts.Select(x => x.Name).ToList();
+            int inputCount = m_Node.InPorts.Count;
             
             var button = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
             button.Click += RemoveButton_Click;
-            m_ButtonPanel.Children.Insert(inputs.Count, button );
+            m_ButtonPanel.Children.Insert(inputCount, button );
 
-            inputs.Add("item" + inputs.Count);
-            caller.SetInputs(inputs);
+            caller.AddInput(inputCount, "item" + inputCount);
             m_Node.RefreshComponent();
 
             var a = m_View.ContentGrid.Children;
@@ -120,9 +118,7 @@ namespace BH.UI.Dynamo.Views
             m_ButtonPanel.Children.Remove(button);
 
             CreateCustomCaller caller = m_Node.Caller as CreateCustomCaller;
-            List<string> inputs = m_Node.InPorts.Select(x => x.Name).ToList();
-            inputs.RemoveAt(index);
-            caller.SetInputs(inputs);
+            caller.RemoveInput(m_Node.InPorts[index].Name);
             m_Node.RefreshComponent();
         }
 
@@ -156,24 +152,6 @@ namespace BH.UI.Dynamo.Views
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             m_InputsNeedRefreshing = true;
-        }
-
-        /*******************************************/
-
-        private void MainContextMenu_Closed(object sender, RoutedEventArgs e)
-        {
-            if (m_InputsNeedRefreshing)
-            {
-                m_InputsNeedRefreshing = false;
-                CreateCustomCaller caller = m_Node.Caller as CreateCustomCaller;
-                List<string> inputs = m_InputNameItems.Select(x => x.Text).ToList();
-                caller.SetInputs(inputs);
-                m_Node.RefreshComponent();
-
-                MethodInfo method = typeof(Microsoft.Practices.Prism.ViewModel.NotificationObject).GetMethod("RaisePropertyChanged", BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(string) }, null);
-                foreach(PortViewModel port in m_View.ViewModel.InPorts)
-                    method.Invoke(port, new object[] { "PortName" });
-            }
         }
 
         /*******************************************/
