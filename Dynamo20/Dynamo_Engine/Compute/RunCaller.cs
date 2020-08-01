@@ -25,6 +25,7 @@ using BH.Engine.Dynamo;
 using BH.Engine.Dynamo.Objects;
 using BH.oM.Base;
 using BH.oM.Reflection.Debugging;
+using BH.oM.UI;
 using BH.UI.Templates;
 using Dynamo.Graph.Nodes;
 using System;
@@ -142,10 +143,10 @@ namespace BH.Engine.Dynamo
             Engine.Reflection.Compute.ClearCurrentEvents();
 
             // Run the caller
-            if (Callers.ContainsKey(callerId))
+            if (Callers.ContainsKey(callerId) && DataAccessors.ContainsKey(callerId))
             {
                 Caller caller = Callers[callerId];
-                DataAccessor_Dynamo accessor = caller.DataAccessor as DataAccessor_Dynamo;
+                DataAccessor_Dynamo accessor = DataAccessors[callerId];
                 accessor.Inputs = arguments;
                 caller.Run();
 
@@ -211,6 +212,8 @@ namespace BH.Engine.Dynamo
         /***************************************************/
 
         public static Dictionary<string, Caller> Callers { get; } = new Dictionary<string, Caller>();
+
+        public static Dictionary<string, DataAccessor_Dynamo> DataAccessors { get; } = new Dictionary<string, DataAccessor_Dynamo>();
 
         public static Dictionary<string, NodeModel> Nodes { get; } = new Dictionary<string, NodeModel>();
 

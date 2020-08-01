@@ -70,10 +70,14 @@ namespace BH.UI.Dynamo.Templates
             Category = "BHoM." + Caller.Category;
             ArgumentLacing = LacingStrategy.Auto;
 
-            Caller.SetDataAccessor(new DataAccessor_Dynamo());
+            string instanceId = InstanceID.ToString();
+            DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
+            Caller.SetDataAccessor(dataAccessor);
+            BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
+            BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;
+            BH.Engine.Dynamo.Compute.Nodes[instanceId] = this;
+
             Caller.Modified += (sender, e) => RefreshComponent();
-            BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
-            BH.Engine.Dynamo.Compute.Nodes[InstanceID.ToString()] = this;
 
             RefreshComponent();
         }
@@ -86,10 +90,14 @@ namespace BH.UI.Dynamo.Templates
             Category = "BHoM." + Caller.Category;
             ArgumentLacing = LacingStrategy.Auto;
 
-            Caller.SetDataAccessor(new DataAccessor_Dynamo());
+            string instanceId = InstanceID.ToString();
+            DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
+            Caller.SetDataAccessor(dataAccessor);
+            BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
+            BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;
+            BH.Engine.Dynamo.Compute.Nodes[instanceId] = this;
+
             Caller.Modified += (sender, e) => RefreshComponent();
-            BH.Engine.Dynamo.Compute.Callers[InstanceID.ToString()] = Caller;
-            BH.Engine.Dynamo.Compute.Nodes[InstanceID.ToString()] = this;
         }
 
         /*******************************************/
