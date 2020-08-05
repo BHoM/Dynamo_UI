@@ -23,8 +23,8 @@
 using BH.oM.Base;
 using BH.UI.Dynamo.Components;
 using BH.UI.Dynamo.Templates;
-using BH.UI.Components;
-using BH.UI.Templates;
+using BH.UI.Base.Components;
+using BH.UI.Base;
 using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
 using ProtoCore.Mirror;

@@ -22,7 +22,7 @@
 
 using BH.oM.Base;
 using BH.oM.UI;
-using BH.UI.Components;
+using BH.UI.Base.Components;
 using BH.UI.Dynamo.Components;
 using BH.UI.Dynamo.Templates;
 using Dynamo.Controls;

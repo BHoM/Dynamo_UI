@@ -20,11 +20,11 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
-using BH.UI.Components;
+using BH.UI.Base.Components;
 using BH.UI.Dynamo.Components;
 using BH.UI.Dynamo.Templates;
-using BH.UI.Global;
-using BH.UI.Templates;
+using BH.UI.Base.Global;
+using BH.UI.Base;
 using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
 using Dynamo.Models;
