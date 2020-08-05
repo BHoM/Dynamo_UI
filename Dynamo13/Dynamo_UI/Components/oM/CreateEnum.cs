@@ -22,8 +22,8 @@
 
 using BH.Engine.Dynamo.Objects;
 using BH.UI.Dynamo.Templates;
-using BH.UI.Components;
-using BH.UI.Templates;
+using BH.UI.Base.Components;
+using BH.UI.Base;
 using CoreNodeModels;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
