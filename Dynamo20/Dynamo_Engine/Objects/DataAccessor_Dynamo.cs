@@ -123,6 +123,13 @@ namespace BH.Engine.Dynamo.Objects
             return data.Select(y => y.Cast<object>().Select(x => x.IFromDesignScript()).Cast<T>().ToList()).ToList();
         }
 
+        /*************************************/
+
+        public List<object> GetAllData(int index)
+        {
+            //TODO
+            return new List<object>();
+        }
 
         /*************************************/
         /**** Output Setter Methods       ****/
