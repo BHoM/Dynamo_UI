@@ -143,9 +143,10 @@ namespace BH.Engine.Dynamo
             Engine.Reflection.Compute.ClearCurrentEvents();
 
             // Run the caller
+            Caller caller = null;
             if (Callers.ContainsKey(callerId) && DataAccessors.ContainsKey(callerId))
             {
-                Caller caller = Callers[callerId];
+                caller = Callers[callerId];
                 DataAccessor_Dynamo accessor = DataAccessors[callerId];
                 accessor.Inputs = arguments;
                 caller.Run();
@@ -188,6 +189,13 @@ namespace BH.Engine.Dynamo
             }
             else
                 ClearWarnings(callerId);
+
+            // Log usage
+            try
+            {
+                UI.Compute.LogUsage("Dynamo", "2.0", Guid.Parse(callerId), caller?.Name, caller?.SelectedItem, events);
+            }
+            catch { }
 
             return result;
         }
