@@ -59,6 +59,11 @@ namespace BH.UI.Dynamo.Components
                 caller.Modified += Caller_InputToggled;
         }
 
+        /*******************************************/
+
+        [JsonConstructor]
+        public CreateObjectComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
+
 
         /*******************************************/
         /**** Private Methods                   ****/
