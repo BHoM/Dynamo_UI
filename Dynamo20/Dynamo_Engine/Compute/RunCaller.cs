@@ -193,7 +193,7 @@ namespace BH.Engine.Dynamo
             // Log usage
             try
             {
-                UI.Compute.LogUsage("Dynamo", "2.0", Guid.Parse(callerId), caller?.Name, caller?.SelectedItem, events);
+                UI.Compute.LogUsage("Dynamo", "2.0", Guid.Parse(callerId), caller?.GetType().Name, caller?.SelectedItem, events);
             }
             catch { }
 
