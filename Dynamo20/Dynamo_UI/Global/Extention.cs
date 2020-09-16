@@ -20,75 +20,67 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using BH.UI.Base.Components;
+using BH.UI.Dynamo.Components;
+using BH.UI.Dynamo.Templates;
+using BH.UI.Base.Global;
+using BH.UI.Base;
+using Dynamo.Controls;
+using Dynamo.Graph.Nodes;
+using Dynamo.Models;
+using Dynamo.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using BH.oM.Data.Collections;
-using Dynamo.Wpf;
-using Dynamo.Controls;
-using BH.UI.Dynamo.Templates;
-using System.Windows.Controls;
 using System.Linq;
-using BH.Engine.Data;
-using BH.UI.Base;
-using Dynamo.Engine;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using static Dynamo.Models.DynamoModel;
+using Dynamo.Extensions;
 
-namespace BH.UI.Dynamo.Templates
+namespace BH.UI.Dynamo.Global
 {
-    public abstract class CallerView<T> : INodeViewCustomization<T> where T : CallerComponent
+    public class Extension : IExtension
     {
         /*******************************************/
-        /**** Constructors                      ****/
+        /**** Properties                        ****/
         /*******************************************/
 
-        public CallerView() {}
+        public string Name { get; } = "BHoM Extension";
+
+        public string UniqueId { get; } = Guid.NewGuid().ToString();
 
 
         /*******************************************/
-        /**** Interface Methods                 ****/
+        /**** IExtension Methods                ****/
         /*******************************************/
 
-        public virtual void CustomizeView(T component, NodeView nodeView)
+        public void Startup(StartupParams sp)
         {
-            m_Node = component;
-            m_View = nodeView;
-            m_DynamoEngine = nodeView.ViewModel.DynamoViewModel.Model.EngineController;
-            Caller caller = component.Caller;
+        }
 
-            if (caller != null)
+        /*******************************************/
+
+        public void Ready(ReadyParams sp)
+        {
+            Application.Current.Startup += (sender, e) =>
             {
-                caller.AddToMenu(nodeView.MainContextMenu);
-                caller.Modified += Caller_ItemSelected;
-            }
+                GlobalSearchMenu.Activate();
+            };
         }
 
         /*******************************************/
 
-        public void Dispose() { }
-
-
-        /*******************************************/
-        /**** Protected Methods                 ****/
-        /*******************************************/
-
-        protected virtual void Caller_ItemSelected(object sender, object e)
+        public void Shutdown()
         {
-            m_Node.RefreshComponent();
-
-            Caller caller = m_Node.Caller;
-
-            if (caller != null && m_View != null)
-                caller.AddToMenu(m_View.MainContextMenu);
         }
 
-
-        /*******************************************/
-        /**** Private Fields                    ****/
         /*******************************************/
 
-        protected CallerComponent m_Node = null;
-        protected NodeView m_View = null;
-        protected EngineController m_DynamoEngine = null;
+        public void Dispose()
+        {
+        }
 
         /*******************************************/
     }

@@ -1,0 +1,4 @@
+<ExtensionDefinition>
+  <AssemblyPath>..\bin\Dynamo_UI.dll</AssemblyPath>
+  <TypeName>BH.UI.Dynamo.Global.Extension</TypeName>
+</ExtensionDefinition>
