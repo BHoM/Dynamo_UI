@@ -41,21 +41,30 @@ namespace BH.Engine.Dynamo
 
         public static object IFromDesignScript(this object obj)
         {
-            return Convert.FromDesignScript(obj as dynamic);
+            if (obj == null)
+                return null;
+            else
+                return FromDesignScript(obj as dynamic);
         }
 
         /***************************************************/
 
         public static BHG.IGeometry IFromDesignScript(this ADG.Geometry geometry)
         {
-            return Convert.FromDesignScript(geometry as dynamic);
+            if (geometry == null)
+                return null;
+            else
+                return FromDesignScript(geometry as dynamic);
         }
 
         /***************************************************/
 
         public static BHG.ICurve IFromDesignScript(this ADG.Curve curve)
         {
-            return Convert.FromDesignScript(curve as dynamic);
+            if (curve == null)
+                return null;
+            else
+                return FromDesignScript(curve as dynamic);
         }
 
 
