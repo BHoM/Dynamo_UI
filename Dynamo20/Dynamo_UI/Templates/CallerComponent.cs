@@ -100,13 +100,6 @@ namespace BH.UI.Dynamo.Templates
             Caller.Modified += (sender, e) => RefreshComponent();
         }
 
-        /*******************************************/
-
-        static CallerComponent()
-        {
-            GlobalSearchMenu.Activate();
-        }
-
 
         /*******************************************/
         /**** Public Methods                    ****/

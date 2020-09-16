@@ -53,7 +53,18 @@ namespace BH.UI.Dynamo.Global
         {
             if (!m_Activated && Application.Current != null)
             {
-                Window window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+                // Get the window
+                DynamoView window = Application.Current.Windows.OfType<DynamoView>().SingleOrDefault();
+                if (window == null)
+                    return;
+
+                // Get the Dynamo model
+                DynamoViewModel viewModel = window.DataContext as DynamoViewModel;
+                if (viewModel == null)
+                    return;
+                DynamoModel = viewModel.Model;
+
+                // Activate the global menu
                 GlobalSearch.Activate(window);
                 GlobalSearch.ItemSelected += GlobalSearch_ItemSelected;
                 m_Activated = true;
