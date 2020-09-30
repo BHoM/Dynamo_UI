@@ -38,10 +38,13 @@ using System.Windows;
 using System.Windows.Controls;
 using static Dynamo.Models.DynamoModel;
 using Dynamo.Extensions;
+using Dynamo.Wpf.Extensions;
+using System.Diagnostics;
+using System.Windows.Input;
 
 namespace BH.UI.Dynamo.Global
 {
-    public class Extension : IExtension
+    public class Extension : IViewExtension
     {
         /*******************************************/
         /**** Properties                        ****/
@@ -51,23 +54,44 @@ namespace BH.UI.Dynamo.Global
 
         public string UniqueId { get; } = Guid.NewGuid().ToString();
 
+        public static string RevitVersion { get; private set; } = "";
+
+        public static DynamoView DynamoWindow { get; private set; } = null;
+
 
         /*******************************************/
         /**** IExtension Methods                ****/
         /*******************************************/
 
-        public void Startup(StartupParams sp)
+        public void Startup(ViewStartupParams sp)
         {
+            // Get the Revit version i ncase some version need to be treated differently
+            string[] revitPath = sp.PathManager.HostApplicationDirectory.Split(new char[] { '/', '\\' });
+            RevitVersion = revitPath.Where(x => x.StartsWith("Revit"))
+                .Select(x => x.Split(new char[] { ' ', '_' }))
+                .Where(x => x.Length == 2)
+                .Select(x => x[1])
+                .FirstOrDefault();
+
+            // Preload all the BHoM content
+            Engine.Reflection.Compute.LoadAllAssemblies();
+            Engine.Reflection.Query.AllTypeList();
+            Engine.Reflection.Query.AllMethodList();
         }
 
         /*******************************************/
 
-        public void Ready(ReadyParams sp)
+        public void Loaded(ViewLoadedParams sp)
         {
-            Application.Current.Startup += (sender, e) =>
+            DynamoWindow = sp.DynamoWindow as DynamoView;
+            if (DynamoWindow != null)
             {
-                GlobalSearchMenu.Activate();
-            };
+                DynamoWindow.GotFocus += (sender, e) =>
+                {
+                    Debug.WriteLine("Window got focus");
+                    Global.GlobalSearchMenu.Activate(DynamoWindow);
+                };
+            }     
         }
 
         /*******************************************/

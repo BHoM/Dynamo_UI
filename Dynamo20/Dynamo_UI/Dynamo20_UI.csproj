@@ -273,22 +273,22 @@
     <PostBuildEvent>xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\bin"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\pkg.json"
-xcopy /Y /I ..\*_ExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\extra"
+xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\extra"
 
 xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\pkg.json"
-xcopy /Y /I ..\*_ExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\extra"
+xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\extra"
 
 xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM\bin"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM\pkg.json"
-xcopy /Y /I ..\*_ExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM\extra"
+xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM\extra"
 
 xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\bin"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\pkg.json"
-xcopy /Y /I ..\*_ExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\extra"</PostBuildEvent>
+xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\extra"</PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo\Dynamo Revit\1.3\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>

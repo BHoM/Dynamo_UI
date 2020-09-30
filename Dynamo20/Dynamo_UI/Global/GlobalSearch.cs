@@ -37,37 +37,47 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using static Dynamo.Models.DynamoModel;
+using System.Diagnostics;
 
 namespace BH.UI.Dynamo.Global
 {
     public static class GlobalSearchMenu
     {
-        public static DynamoModel DynamoModel { get; set; } = null;
-
-
         /*******************************************/
         /**** Public Methods                    ****/
         /*******************************************/
 
-        public static void Activate()
+        public static void Activate(DynamoView window)
         {
-            if (!m_Activated && Application.Current != null)
+            if (window != null)
             {
-                // Get the window
-                DynamoView window = Application.Current.Windows.OfType<DynamoView>().SingleOrDefault();
-                if (window == null)
-                    return;
+                Debug.WriteLine("Trying to activate global menu for a window");
 
-                // Get the Dynamo model
-                DynamoViewModel viewModel = window.DataContext as DynamoViewModel;
-                if (viewModel == null)
-                    return;
-                DynamoModel = viewModel.Model;
+                try
+                {
+                    // Get the Dynamo model
+                    DynamoViewModel viewModel = window.DataContext as DynamoViewModel;
+                    if (viewModel == null)
+                        return;
 
-                // Activate the global menu
-                GlobalSearch.Activate(window);
-                GlobalSearch.ItemSelected += GlobalSearch_ItemSelected;
-                m_Activated = true;
+                    if (!m_ActiveWindows.Contains(window))
+                    {
+                        // Activate the global menu
+                        GlobalSearch.Activate(window);
+                        GlobalSearch.ItemSelected += (sender, request) => GlobalSearch_ItemSelected(viewModel.Model, request);
+                        m_ActiveWindows.Add(window);
+
+                        Debug.WriteLine("Global menu activated for new window");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Global menu already activated for that window");
+                    }
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine("Error on global menu activation: " + e.Message);
+                }
             }
         }
 
@@ -76,17 +86,17 @@ namespace BH.UI.Dynamo.Global
         /**** Private Methods                   ****/
         /*******************************************/
 
-        private static void GlobalSearch_ItemSelected(object sender, oM.UI.ComponentRequest request)
+        private static void GlobalSearch_ItemSelected(DynamoModel dynamoModel, oM.UI.ComponentRequest request)
         {
             CallerComponent node = null;
             if (request != null && request.CallerType != null && m_CallerComponentDic.ContainsKey(request.CallerType))
                 node = Activator.CreateInstance(m_CallerComponentDic[request.CallerType]) as CallerComponent;
 
 
-            if (node != null && DynamoModel != null)
+            if (node != null && dynamoModel != null)
             {
                 CreateNodeCommand command = new CreateNodeCommand(node, 0, 0, true, false);
-                DynamoModel.ExecuteCommand(command);
+                dynamoModel.ExecuteCommand(command);
                 node.Caller.SetItem(request.SelectedItem);
                 node.RefreshComponent();
             }
@@ -96,7 +106,7 @@ namespace BH.UI.Dynamo.Global
         /**** Private Fields                    ****/
         /*******************************************/
 
-        private static bool m_Activated = false;
+        private static List<DynamoView> m_ActiveWindows = new List<DynamoView>();
 
         private static Dictionary<Type, Type> m_CallerComponentDic = new Dictionary<Type, Type>
         {
