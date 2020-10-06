@@ -42,79 +42,8 @@ using Newtonsoft.Json;
 
 namespace BH.UI.Dynamo.Templates
 {
-    public abstract class CallerComponent : NodeModel
+    public abstract partial class CallerComponent : NodeModel
     {
-        /*******************************************/
-        /**** Properties                        ****/
-        /*******************************************/
-
-        [JsonIgnore]
-        public abstract Caller Caller { get; }
-
-        [JsonIgnore]
-        protected Guid InstanceID { get; } = Guid.NewGuid();
-
-        public string SerialisedCaller
-        {
-            get { return Caller.Write(); }
-            set { Caller.Read(value); }
-        }
-
-
-        /*******************************************/
-        /**** Constructors                      ****/
-        /*******************************************/
-
-        public CallerComponent() : base()
-        {
-            Category = "BHoM." + Caller.Category;
-            ArgumentLacing = LacingStrategy.Auto;
-
-            string instanceId = InstanceID.ToString();
-            DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
-            Caller.SetDataAccessor(dataAccessor);
-            BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
-            BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;
-            BH.Engine.Dynamo.Compute.Nodes[instanceId] = this;
-
-            Caller.Modified += (sender, e) => RefreshComponent();
-
-            RefreshComponent();
-        }
-
-        /*******************************************/
-
-        [JsonConstructor]
-        public CallerComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
-        {
-            Category = "BHoM." + Caller.Category;
-            ArgumentLacing = LacingStrategy.Auto;
-
-            string instanceId = InstanceID.ToString();
-            DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
-            Caller.SetDataAccessor(dataAccessor);
-            BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
-            BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;
-            BH.Engine.Dynamo.Compute.Nodes[instanceId] = this;
-
-            Caller.Modified += (sender, e) => RefreshComponent();
-        }
-
-
-        /*******************************************/
-        /**** Public Methods                    ****/
-        /*******************************************/
-
-        public void RefreshComponent()
-        {
-            Name = Caller.Name;
-            Description = Caller.Description;
-
-            RegisterInputs();
-            RegisterOutputs();
-        }
-
-
         /*******************************************/
         /**** Override Methods                  ****/
         /*******************************************/
@@ -139,39 +68,6 @@ namespace BH.UI.Dynamo.Templates
             List<AssociativeNode> transforms = processed.Item2;
             List<AssociativeNode> assignments = CreateOutputAssignments(functionCall, callerId);
             return transforms.Concat(assignments).ToList();
-        }
-
-        /*******************************************/
-
-        protected override void SerializeCore(XmlElement element, SaveContext context)
-        {
-            base.SerializeCore(element, context);
-            var xmlDoc = element.OwnerDocument;
-
-            var componentString = xmlDoc.CreateElement("Component");
-            componentString.SetAttribute("value", Caller.Write());
-            element.AppendChild(componentString);
-        }
-
-        /*******************************************/
-
-        protected override void DeserializeCore(XmlElement element, SaveContext context)
-        {
-            base.DeserializeCore(element, context);
-
-            foreach (XmlNode node in element.ChildNodes)
-            {
-                switch (node.Name)
-                {
-                    case "Component":
-                        if (node.Attributes != null && node.Attributes["value"] != null && node.Attributes["value"].Value != null)
-                        {
-                            Caller.Read(node.Attributes["value"].Value);
-                            RefreshComponent();
-                        }
-                        break;
-                }
-            }
         }
 
 
@@ -261,77 +157,6 @@ namespace BH.UI.Dynamo.Templates
             }
 
             return assignments;
-        }
-
-        /*******************************************/
-
-        protected void RegisterInputs()
-        {
-            if (Caller == null)
-                return;
-
-            List<ParamInfo> inputs = Caller.InputParams;
-            int nbNew = inputs.Count;
-            int nbOld = InPorts.Count;
-
-            for (int i = 0; i < Math.Min(nbNew, nbOld); i++)
-                ReplacePort(InPorts[i], inputs[i].ToPortData());
-
-            for (int i = nbOld - 1; i >= nbNew; i--)
-                InPorts.RemoveAt(i);
-
-            for (int i = nbOld; i < nbNew; i++)
-                InPorts.Add(new PortModel(PortType.Input, this, inputs[i].ToPortData()));
-
-            RaisesModificationEvents = true;
-            OnNodeModified();
-        }
-
-        /*******************************************/
-
-        protected void RegisterOutputs()
-        {
-            if (Caller == null)
-                return;
-
-            List<ParamInfo> outputs = Caller.OutputParams;
-            int nbNew = outputs.Count;
-            int nbOld = OutPorts.Count;
-
-            for (int i = 0; i < Math.Min(nbNew, nbOld); i++)
-                ReplacePort(OutPorts[i], outputs[i].ToPortData());
-
-            for (int i = nbOld - 1; i >= nbNew; i--)
-                OutPorts.RemoveAt(i);
-
-            for (int i = nbOld; i < nbNew; i++)
-                OutPorts.Add(new PortModel(PortType.Output, this, outputs[i].ToPortData()));
-
-            RaisesModificationEvents = true;
-            OnNodeModified();
-        }
-
-        /*******************************************/
-
-        protected void ReplacePort(PortModel model, PortData data)
-        {
-            Type portModelType = typeof(PortModel);
-
-            if (model.Name != data.Name)
-            {
-                PropertyInfo prop = typeof(PortModel).GetProperty("Name");
-                if (prop != null)
-                    prop.SetValue(model, data.Name);
-            }
-
-            if (model.DefaultValue != data.DefaultValue)
-            {
-                PropertyInfo prop = typeof(PortModel).GetProperty("DefaultValue");
-                if (prop != null)
-                    prop.SetValue(model, data.DefaultValue);
-            }
-
-            model.ToolTip = data.ToolTipString;
         }
 
         /*******************************************/
