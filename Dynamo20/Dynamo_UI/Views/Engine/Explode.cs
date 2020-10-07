@@ -87,7 +87,6 @@ namespace BH.UI.Dynamo.Views
 
             ExplodeCaller caller = m_Node.Caller as ExplodeCaller;
             caller.CollectOutputTypes(data);
-            m_Node.RefreshComponent();
         }
 
         /*******************************************/

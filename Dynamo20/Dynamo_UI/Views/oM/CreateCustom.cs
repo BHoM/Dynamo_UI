@@ -33,6 +33,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using Dynamo.ViewModels;
+using BH.oM.UI;
 
 namespace BH.UI.Dynamo.Views
 {
@@ -55,10 +56,10 @@ namespace BH.UI.Dynamo.Views
 
         /*******************************************/
 
-        protected override void Caller_ItemSelected(object sender, object e)
+        protected override void OnCallerModified(object sender, CallerUpdate update)
         {
             SetButtons();
-            base.Caller_ItemSelected(sender, e);
+            base.OnCallerModified(sender, update);
         }
 
         /*******************************************/
@@ -80,7 +81,7 @@ namespace BH.UI.Dynamo.Views
                 m_View.inputGrid.Children.Add(m_ButtonPanel);
             }
 
-            for (int i = 0; i < m_Node.Caller.InputParams.Count; i++)
+            for (int i = 0; i < m_Node.Caller.InputParams.Where(x => x.IsSelected).Count(); i++)
             {
                 var button = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
                 button.Click += RemoveButton_Click;
@@ -104,7 +105,6 @@ namespace BH.UI.Dynamo.Views
             m_ButtonPanel.Children.Insert(inputCount, button );
 
             caller.AddInput(inputCount, "item" + inputCount);
-            m_Node.RefreshComponent();
 
             var a = m_View.ContentGrid.Children;
         }
@@ -119,7 +119,6 @@ namespace BH.UI.Dynamo.Views
 
             CreateCustomCaller caller = m_Node.Caller as CreateCustomCaller;
             caller.RemoveInput(m_Node.InPorts[index].Name);
-            m_Node.RefreshComponent();
         }
 
         /*******************************************/

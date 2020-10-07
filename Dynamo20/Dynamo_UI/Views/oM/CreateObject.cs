@@ -53,20 +53,18 @@ namespace BH.UI.Dynamo.Views
             {
                 if (caller.SelectedItem is Type)
                     SetButtons();
-
-                caller.Modified += Caller_InputToggled;
             }   
         }
 
         /*******************************************/
 
-        protected override void Caller_ItemSelected(object sender, object e)
+        protected override void OnCallerModified(object sender, CallerUpdate update)
         {
             CreateObjectCaller caller = m_Node.Caller as CreateObjectCaller;
             if (caller.SelectedItem is Type)
                 SetButtons();
 
-            base.Caller_ItemSelected(sender, e);
+            base.OnCallerModified(sender, update);
         }
 
         /*******************************************/
@@ -100,7 +98,7 @@ namespace BH.UI.Dynamo.Views
                 m_View.inputGrid.Children.Add(m_ButtonPanel);
             }
 
-            for (int i = 0; i < m_Node.Caller.InputParams.Count; i++)
+            for (int i = 0; i < m_Node.Caller.InputParams.Where(x => x.IsSelected).Count(); i++)
             {
                 var button = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
                 button.Click += RemoveButton_Click;
@@ -120,7 +118,6 @@ namespace BH.UI.Dynamo.Views
             List<string> inputs = m_Node.InPorts.Select(x => x.Name).ToList();
             caller.RemoveInput(inputs[index]);
             inputs.RemoveAt(index);
-            m_Node.RefreshComponent();
         }
 
 

@@ -32,10 +32,14 @@ using System.Linq;
 using BH.Engine.Data;
 using BH.UI.Base;
 using Dynamo.Engine;
+using BH.oM.UI;
+using System.Collections.ObjectModel;
+using Dynamo.Graph.Nodes;
+using Dynamo.ViewModels;
 
 namespace BH.UI.Dynamo.Templates
 {
-    public abstract class CallerView<T> : INodeViewCustomization<T> where T : CallerComponent
+    public abstract partial class CallerView<T> : INodeViewCustomization<T> where T : CallerComponent
     {
         /*******************************************/
         /**** Constructors                      ****/
@@ -53,13 +57,14 @@ namespace BH.UI.Dynamo.Templates
             m_Node = component;
             m_View = nodeView;
             m_DynamoEngine = nodeView.ViewModel.DynamoViewModel.Model.EngineController;
-            Caller caller = component.Caller;
 
-            if (caller != null)
+            if (component != null)
             {
-                caller.AddToMenu(nodeView.MainContextMenu);
-                caller.Modified += Caller_ItemSelected;
-            }
+                component.ModifiedByCaller += OnCallerModified;
+
+                if (component.Caller != null)
+                    component.Caller.AddToMenu(nodeView.MainContextMenu);
+            }   
         }
 
         /*******************************************/
@@ -68,17 +73,46 @@ namespace BH.UI.Dynamo.Templates
 
 
         /*******************************************/
-        /**** Protected Methods                 ****/
+        /**** Private Methods                   ****/
         /*******************************************/
 
-        protected virtual void Caller_ItemSelected(object sender, object e)
+        protected virtual void OnCallerModified(object sender, CallerUpdate update)
         {
-            m_Node.RefreshComponent();
+            if (update == null)
+                return;
 
-            Caller caller = m_Node.Caller;
+            // Update the menu
+            if (update.Cause == CallerUpdateCause.ItemSelected || update.Cause == CallerUpdateCause.ReadFromSave)
+            {
+                Caller caller = m_Node.Caller;
+                if (caller != null && m_View != null)
+                    caller.AddToMenu(m_View.MainContextMenu);
+            }
 
-            if (caller != null && m_View != null)
-                caller.AddToMenu(m_View.MainContextMenu);
+            // Dynamo NodeViewModel is bugged and will always add items added to NodeModel.InPorts at the end of its list regardless of where they really 
+            // So we need to fix that ourselves
+            if (m_Node != null && m_View != null)
+            {
+                FixPortOrder(m_Node.InPorts, m_View.ViewModel.InPorts);
+                FixPortOrder(m_Node.OutPorts, m_View.ViewModel.OutPorts);
+                m_View.UpdateLayout();
+            }
+ 
+        }
+
+        /*******************************************/
+
+        protected virtual void FixPortOrder(ObservableCollection<PortModel> nodePorts, ObservableCollection<PortViewModel> viewPorts)
+        {
+            List<string> names = nodePorts.Select(x => x.Name).ToList();
+
+            for (int i = 0; i < viewPorts.Count; i++)
+            {
+                string name = viewPorts[i].PortName;
+                int index = names.FindIndex(x => x == name);
+                if (index != i)
+                    viewPorts.Move(i, index);
+            }
         }
 
 
