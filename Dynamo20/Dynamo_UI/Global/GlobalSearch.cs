@@ -98,7 +98,6 @@ namespace BH.UI.Dynamo.Global
                 CreateNodeCommand command = new CreateNodeCommand(node, 0, 0, true, false);
                 dynamoModel.ExecuteCommand(command);
                 node.Caller.SetItem(request.SelectedItem);
-                node.RefreshComponent();
             }
         }
 

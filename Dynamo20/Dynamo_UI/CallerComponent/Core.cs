@@ -45,6 +45,13 @@ namespace BH.UI.Dynamo.Templates
     public abstract partial class CallerComponent : NodeModel
     {
         /*******************************************/
+        /**** Events                            ****/
+        /*******************************************/
+
+        public event EventHandler<CallerUpdate> ModifiedByCaller;
+
+
+        /*******************************************/
         /**** Properties                        ****/
         /*******************************************/
 
@@ -56,8 +63,12 @@ namespace BH.UI.Dynamo.Templates
 
         public string SerialisedCaller
         {
-            get { return Caller.Write(); }
-            set { Caller.Read(value); }
+            get {
+                return Caller.Write();
+            }
+            set {
+                Caller.Read(value);
+            }
         }
 
 
@@ -68,7 +79,6 @@ namespace BH.UI.Dynamo.Templates
         public CallerComponent() : base()
         {
             Initialise();
-            RefreshComponent();
         }
 
         /*******************************************/
@@ -81,18 +91,29 @@ namespace BH.UI.Dynamo.Templates
 
 
         /*******************************************/
-        /**** Public Methods                    ****/
+        /**** Private Methods                   ****/
         /*******************************************/
 
-        public void RefreshComponent()
+        protected virtual void Initialise()
         {
-            Name = Caller.Name;
-            Description = Caller.Description;
+            Category = "BHoM." + Caller.Category;
+            ArgumentLacing = LacingStrategy.Auto;
 
-            RegisterInputs();
-            RegisterOutputs();
+            string instanceId = InstanceID.ToString();
+            DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
+            Caller.SetDataAccessor(dataAccessor);
+            BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
+            BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;
+            BH.Engine.Dynamo.Compute.Nodes[instanceId] = this;
+
+            foreach (ParamInfo info in Caller.InputParams.Where(x => x.IsSelected))
+                InPorts.Add(new PortModel(PortType.Input, this, info.ToPortData()));
+
+            foreach (ParamInfo info in Caller.OutputParams.Where(x => x.IsSelected))
+                OutPorts.Add(new PortModel(PortType.Output, this, info.ToPortData()));
+
+            Caller.Modified += OnCallerModified;
         }
-
 
         /*******************************************/
     }

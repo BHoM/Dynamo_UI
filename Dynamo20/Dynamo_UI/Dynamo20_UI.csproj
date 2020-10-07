@@ -207,8 +207,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CallerComponent\Initialise.cs" />
-    <Compile Include="CallerComponent\Serialise.cs" />
+    <Compile Include="CallerComponent\OnCallerModified.cs" />
+    <Compile Include="CallerComponent\CopyPaste.cs" />
     <Compile Include="CallerComponent\Core.cs" />
     <Compile Include="Components\Adapter\CreateRequest.cs" />
     <Compile Include="Components\Adapter\CreateAdapter.cs" />
@@ -238,7 +238,7 @@
     <Compile Include="Templates\CallerValueList.cs" />
     <Compile Include="CallerComponent\BuildOutputAst.cs" />
     <Compile Include="Templates\ValueListView.cs" />
-    <Compile Include="CallerComponent\CallerView.cs" />
+    <Compile Include="CallerComponent\View.cs" />
     <Compile Include="Views\Adapter\CreateRequest.cs" />
     <Compile Include="Views\Adapter\CreateAdapter.cs" />
     <Compile Include="Views\Engine\Explode.cs" />

@@ -77,7 +77,7 @@ namespace BH.UI.Dynamo.Templates
 
         protected bool IsReady(List<AssociativeNode> inputAstNodes)
         {
-            List<bool> hasDefaultList = Caller.InputParams.Select(x => x.HasDefaultValue).ToList();
+            List<bool> hasDefaultList = Caller.InputParams.Where(x => x.IsSelected).Select(x => x.HasDefaultValue).ToList();
             bool isReady = inputAstNodes != null && inputAstNodes.Count == hasDefaultList.Count();
             if (isReady)
             {
@@ -99,7 +99,7 @@ namespace BH.UI.Dynamo.Templates
         protected Tuple<List<AssociativeNode>, List<AssociativeNode>> GetProcessedInputs(List<AssociativeNode> inputAstNodes)
         {
             // Get the params from the method caller and make sure they are the correct length
-            List<ParamInfo> paramInfos = Caller.InputParams;
+            List<ParamInfo> paramInfos = Caller.InputParams.Where(x => x.IsSelected).ToList();
             if (paramInfos.Count != inputAstNodes.Count)
                 return new Tuple<List<AssociativeNode>, List<AssociativeNode>>(inputAstNodes, new List<AssociativeNode>());
 

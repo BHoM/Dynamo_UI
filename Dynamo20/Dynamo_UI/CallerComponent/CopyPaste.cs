@@ -50,6 +50,8 @@ namespace BH.UI.Dynamo.Templates
 
         protected override void SerializeCore(XmlElement element, SaveContext context)
         {
+            // This is marked as dperecated by it still the only way to get copy/paste to work
+
             base.SerializeCore(element, context);
             var xmlDoc = element.OwnerDocument;
 
@@ -62,6 +64,8 @@ namespace BH.UI.Dynamo.Templates
 
         protected override void DeserializeCore(XmlElement element, SaveContext context)
         {
+            // This is marked as dperecated by it still the only way to get copy/paste to work
+
             base.DeserializeCore(element, context);
 
             foreach (XmlNode node in element.ChildNodes)
@@ -72,10 +76,21 @@ namespace BH.UI.Dynamo.Templates
                         if (node.Attributes != null && node.Attributes["value"] != null && node.Attributes["value"].Value != null)
                         {
                             Caller.Read(node.Attributes["value"].Value);
-                            RefreshComponent();
                         }
                         break;
                 }
+            }
+
+            // Do Dynamo's job once more (should have been covered by base.DeserializeCore if it wasn't buggy)
+            if (InPorts.Count == 0)
+            {
+                foreach (ParamInfo param in Caller.InputParams.Where(x => x.IsSelected))
+                    InPorts.Add(new PortModel(PortType.Input, this, param.ToPortData()));
+            }
+            if (OutPorts.Count == 0)
+            {
+                foreach (ParamInfo param in Caller.OutputParams.Where(x => x.IsSelected))
+                    OutPorts.Add(new PortModel(PortType.Output, this, param.ToPortData()));
             }
         }
 

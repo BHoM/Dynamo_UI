@@ -60,17 +60,6 @@ namespace BH.UI.Dynamo.Components
         [JsonConstructor]
         public ExplodeComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
 
-
-        /*******************************************/
-        /**** Override Methods                  ****/
-        /*******************************************/
-
-        protected override void DeserializeCore(XmlElement element, SaveContext context)
-        {
-            base.DeserializeCore(element, context);
-            RegisterOutputs();
-        }
-
         /*******************************************/
     }
 }

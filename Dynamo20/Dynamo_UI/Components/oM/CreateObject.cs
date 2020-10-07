@@ -52,44 +52,12 @@ namespace BH.UI.Dynamo.Components
         /**** Constructors                      ****/
         /*******************************************/
 
-        public CreateObjectComponent() : base()
-        {
-            CreateObjectCaller caller = Caller as CreateObjectCaller;
-            if (caller != null)
-                caller.Modified += Caller_InputToggled;
-        }
+        public CreateObjectComponent() : base() {}
 
         /*******************************************/
 
         [JsonConstructor]
         public CreateObjectComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
-
-
-        /*******************************************/
-        /**** Private Methods                   ****/
-        /*******************************************/
-
-        private void Caller_InputToggled(object sender, CallerUpdate update)
-        {
-            if (update.Cause != CallerUpdateCause.InputSelection)
-                return;
-
-            foreach (IParamUpdate paramUpdate in update.InputUpdates)
-            {
-                if (paramUpdate is ParamAdded)
-                    InPorts.Add(new PortModel(PortType.Input, this, paramUpdate.Param.ToPortData()));
-                else
-                {
-                    string name = paramUpdate.Param.Name.ToLower();
-                    int index = InPorts.ToList().FindIndex(x => x.Name.ToLower() == name);
-                    if (index >= 0)
-                        InPorts.RemoveAt(index);
-                }
-            }
-
-            RaisesModificationEvents = true;
-            OnNodeModified();
-        }
 
 
         /*******************************************/
