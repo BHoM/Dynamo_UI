@@ -36,6 +36,7 @@ using BH.oM.UI;
 using System.Collections.ObjectModel;
 using Dynamo.Graph.Nodes;
 using Dynamo.ViewModels;
+using BH.Engine.Dynamo.Objects;
 
 namespace BH.UI.Dynamo.Templates
 {
@@ -56,7 +57,7 @@ namespace BH.UI.Dynamo.Templates
         {
             m_Node = component;
             m_View = nodeView;
-            m_DynamoEngine = nodeView.ViewModel.DynamoViewModel.Model.EngineController;
+            DataAccessor_Dynamo.DynamoEngine = nodeView.ViewModel.DynamoViewModel.Model.EngineController;
 
             if (component != null)
             {
@@ -122,7 +123,6 @@ namespace BH.UI.Dynamo.Templates
 
         protected CallerComponent m_Node = null;
         protected NodeView m_View = null;
-        protected EngineController m_DynamoEngine = null;
 
         /*******************************************/
     }
