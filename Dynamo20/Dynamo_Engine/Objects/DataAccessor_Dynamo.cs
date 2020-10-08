@@ -25,9 +25,13 @@ using BH.Engine.Dynamo;
 using BH.Engine.Dynamo.Objects;
 using BH.oM.UI;
 using BH.UI.Base;
+using Dynamo.Engine;
+using Dynamo.Graph.Nodes;
+using ProtoCore.Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +48,10 @@ namespace BH.Engine.Dynamo.Objects
         public object[] Inputs { get; set; } = new object[] { };
 
         public object[] Outputs { get; set; } = new object[] { };
+
+        public ObservableCollection<PortModel> InPorts { get; set; } = new ObservableCollection<PortModel>();
+
+        public static EngineController DynamoEngine { get; set; } = null;
 
 
         /*************************************/
@@ -127,8 +135,19 @@ namespace BH.Engine.Dynamo.Objects
 
         public List<object> GetAllData(int index)
         {
-            //TODO
-            return new List<object>();
+            if (DynamoEngine == null || InPorts.Count <= index || InPorts[index].Connectors.Count == 0)
+                return new List<object>();
+
+            // Get the accessor to the data feeding into this input
+            NodeModel valuesNode = InPorts[index].Connectors[0].Start.Owner;
+            int outIndex = InPorts[index].Connectors[0].Start.Index;
+            string startId = valuesNode.GetAstIdentifierForOutputIndex(outIndex).Name;
+            RuntimeMirror colorsMirror = DynamoEngine.GetMirror(startId);
+            if (colorsMirror == null || colorsMirror.GetData() == null)
+                return new List<object>();
+
+            // return the collected data
+            return CollectData(colorsMirror.GetData());
         }
 
         /*************************************/
@@ -162,7 +181,7 @@ namespace BH.Engine.Dynamo.Objects
         /**** Private Methods                           ****/
         /***************************************************/
 
-        public object GetInputAt(int index)
+        private object GetInputAt(int index)
         {
             if (index >= 0 && index < Inputs.Length)
                 return Inputs[index];
@@ -172,7 +191,7 @@ namespace BH.Engine.Dynamo.Objects
 
         /***************************************************/
 
-        public void SetOutputAt(int index, object data)
+        private void SetOutputAt(int index, object data)
         {
             if (index < 0)
                 return;
@@ -185,6 +204,22 @@ namespace BH.Engine.Dynamo.Objects
             }
 
             Outputs[index] = data;
+        }
+
+        /*******************************************/
+
+        private List<object> CollectData(MirrorData mirrorData)
+        {
+            if (mirrorData.IsCollection)
+            {
+                IEnumerable<MirrorData> elements = mirrorData.GetElements();
+                if (elements.Count() > 0)
+                    return elements.SelectMany(x => CollectData(x)).ToList();
+                else
+                    return new List<object>();
+            }
+            else
+                return new List<object> { mirrorData.Data.IFromDesignScript() };
         }
 
         /***************************************************/

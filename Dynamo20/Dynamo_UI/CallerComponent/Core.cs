@@ -99,20 +99,25 @@ namespace BH.UI.Dynamo.Templates
             Category = "BHoM." + Caller.Category;
             ArgumentLacing = LacingStrategy.Auto;
 
-            string instanceId = InstanceID.ToString();
-            DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
-            Caller.SetDataAccessor(dataAccessor);
-            BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
-            BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;
-            BH.Engine.Dynamo.Compute.Nodes[instanceId] = this;
-
             foreach (ParamInfo info in Caller.InputParams.Where(x => x.IsSelected))
                 InPorts.Add(new PortModel(PortType.Input, this, info.ToPortData()));
 
             foreach (ParamInfo info in Caller.OutputParams.Where(x => x.IsSelected))
                 OutPorts.Add(new PortModel(PortType.Output, this, info.ToPortData()));
 
+            string instanceId = InstanceID.ToString();
+            DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
+            dataAccessor.InPorts = InPorts;
+            Caller.SetDataAccessor(dataAccessor);
+
+            BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
+            BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;
+            BH.Engine.Dynamo.Compute.Nodes[instanceId] = this;
+
             Caller.Modified += OnCallerModified;
+
+            PortConnected += (port, connector) => Caller.UpdateInput(port.Index, port.Name);
+            PortDisconnected += (port) => Caller.UpdateInput(port.Index, port.Name);
         }
 
         /*******************************************/
