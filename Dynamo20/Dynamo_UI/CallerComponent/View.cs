@@ -37,6 +37,9 @@ using System.Collections.ObjectModel;
 using Dynamo.Graph.Nodes;
 using Dynamo.ViewModels;
 using BH.Engine.Dynamo.Objects;
+using System.Windows.Controls.Primitives;
+using System.Windows;
+using Dynamo.Nodes;
 
 namespace BH.UI.Dynamo.Templates
 {
@@ -69,7 +72,9 @@ namespace BH.UI.Dynamo.Templates
                     component.Caller.AddToMenu(nodeView.MainContextMenu);
                     RemoveOutputSelectionMenu(nodeView.MainContextMenu);
                 }      
-            }   
+            }
+
+            SetButtons();
         }
 
         /*******************************************/
@@ -105,7 +110,8 @@ namespace BH.UI.Dynamo.Templates
                 FixPortOrder(m_Node.OutPorts, m_View.ViewModel.OutPorts);
                 m_View.UpdateLayout();
             }
- 
+
+            SetButtons();
         }
 
         /*******************************************/
@@ -134,11 +140,60 @@ namespace BH.UI.Dynamo.Templates
                 menu.Items.Remove(outputSelector);
         }
 
+        /*******************************************/
+
+        protected void SetButtons()
+        {
+            if (m_ButtonPanel != null)
+                m_ButtonPanel.Children.Clear();
+            else
+            {
+                m_ButtonPanel = new UniformGrid
+                {
+                    VerticalAlignment = VerticalAlignment.Top,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Columns = 1
+                };
+                m_View.inputGrid.Children.Add(m_ButtonPanel);
+            }
+
+            List<ParamInfo> inputs = m_Node.Caller.InputParams.Where(x => x.IsSelected).ToList();
+            for (int i = 0; i < inputs.Count(); i++)
+            {
+                if (inputs[i].IsRequired)
+                {
+                    Label emptyLabel = new Label { Content = "", Width = 26, Height = 26 };
+                    m_ButtonPanel.Children.Add(emptyLabel);   
+                }
+                else
+                {
+                    // Add the remove button
+                    var removeButton = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
+                    removeButton.Click += RemoveButton_Click;
+                    m_ButtonPanel.Children.Add(removeButton);
+                }                
+            }
+        }
+
+        /*******************************************/
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            DynamoNodeButton button = sender as DynamoNodeButton;
+            int index = m_ButtonPanel.Children.IndexOf(button);
+            m_ButtonPanel.Children.Remove(button);
+
+            m_Node.Caller.RemoveInput(m_Node.InPorts[index].Name);
+            m_Node.InPorts.RemoveAt(index);
+        }
+
+
 
         /*******************************************/
         /**** Private Fields                    ****/
         /*******************************************/
 
+        protected UniformGrid m_ButtonPanel = null;
         protected CallerComponent m_Node = null;
         protected NodeView m_View = null;
 
