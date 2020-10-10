@@ -121,6 +121,7 @@ namespace BH.UI.Dynamo.Templates
             BH.Engine.Dynamo.Compute.Nodes[instanceId] = this;
 
             Caller.Modified += OnCallerModified;
+            Caller.SolutionExpired += (s, e) => OnNodeModified(true);
 
             PortConnected += (port, connector) => PortConnectionChanged(port);
             PortDisconnected += (port) => PortConnectionChanged(port);
