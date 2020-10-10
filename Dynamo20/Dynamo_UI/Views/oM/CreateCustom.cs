@@ -34,6 +34,9 @@ using System.Windows;
 using System.Windows.Controls;
 using Dynamo.ViewModels;
 using BH.oM.UI;
+using Dynamo.Graph.Nodes;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace BH.UI.Dynamo.Views
 {
@@ -49,9 +52,6 @@ namespace BH.UI.Dynamo.Views
 
             m_View = nodeView;
             SetButtons();
-            AppendInputNameMenu(true);
-
-            nodeModel.InPorts.CollectionChanged += InPorts_CollectionChanged;
         }
 
         /*******************************************/
@@ -72,20 +72,26 @@ namespace BH.UI.Dynamo.Views
                 m_ButtonPanel.Children.Clear();
             else
             {
-                m_ButtonPanel = new WrapPanel
-                {
+                m_ButtonPanel = new UniformGrid { 
                     VerticalAlignment = VerticalAlignment.Top,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Orientation = Orientation.Vertical
+                    Columns = 2
                 };
                 m_View.inputGrid.Children.Add(m_ButtonPanel);
             }
 
-            for (int i = 0; i < m_Node.Caller.InputParams.Where(x => x.IsSelected).Count(); i++)
+            List<ParamInfo> inputs = m_Node.Caller.InputParams.Where(x => x.IsSelected).ToList();
+            for (int i = 0; i < inputs.Count(); i++)
             {
-                var button = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
-                button.Click += RemoveButton_Click;
-                m_ButtonPanel.Children.Add(button);
+                // Add the remove button
+                var removeButton = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
+                removeButton.Click += RemoveButton_Click;
+                m_ButtonPanel.Children.Add(removeButton);
+
+                // Add the edit button
+                var editButton = new DynamoNodeButton() { Content = "\u270E", Width = 26, Height = 26 };
+                editButton.Click += EditButton_Click;
+                m_ButtonPanel.Children.Add(editButton);
             }
             
             var addButton = new DynamoNodeButton() { Content = "+", Width = 26, Height = 26 };
@@ -99,14 +105,21 @@ namespace BH.UI.Dynamo.Views
         {
             CreateCustomCaller caller = m_Node.Caller as CreateCustomCaller;
             int inputCount = m_Node.InPorts.Count;
-            
-            var button = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
-            button.Click += RemoveButton_Click;
-            m_ButtonPanel.Children.Insert(inputCount, button );
 
-            caller.AddInput(inputCount, "item" + inputCount);
+            // Add the remove button
+            var removeButton = new DynamoNodeButton() { Content = "-", Width = 26, Height = 26 };
+            removeButton.Click += RemoveButton_Click;
+            m_ButtonPanel.Children.Insert(2*inputCount, removeButton );
 
-            var a = m_View.ContentGrid.Children;
+            // Add the edit button
+            var editButton = new DynamoNodeButton() { Content = "\u270E", Width = 26, Height = 26 };
+            editButton.Click += EditButton_Click;
+            m_ButtonPanel.Children.Insert(2 * inputCount + 1, editButton);
+
+            // Add the input port
+            string name = "item" + inputCount;
+            caller.AddInput(inputCount, name);
+            m_Node.InPorts.Add(new PortModel(PortType.Input, m_Node, new PortData(name, "")));
         }
 
         /*******************************************/
@@ -116,48 +129,107 @@ namespace BH.UI.Dynamo.Views
             DynamoNodeButton button = sender as DynamoNodeButton;
             int index = m_ButtonPanel.Children.IndexOf(button);
             m_ButtonPanel.Children.Remove(button);
+            m_ButtonPanel.Children.RemoveAt(index);
 
+            index /= 2;
             CreateCustomCaller caller = m_Node.Caller as CreateCustomCaller;
             caller.RemoveInput(m_Node.InPorts[index].Name);
+            m_Node.InPorts.RemoveAt(index);
         }
 
         /*******************************************/
 
-        protected void AppendInputNameMenu(bool firstTime = false)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (firstTime)
+            DynamoNodeButton button = sender as DynamoNodeButton;
+            int index = m_ButtonPanel.Children.IndexOf(button) / 2;
+            PortModel port = m_Node.InPorts[index];
+
+            Window mainWindow = Application.Current.MainWindow;
+            Point mousePosition = System.Windows.Input.Mouse.GetPosition(mainWindow);
+            var dialog = new Window {
+                Title = "Edit Name",
+                Height = 150,
+                Width = 250,
+                ResizeMode = ResizeMode.NoResize,
+                Left = mousePosition.X + mainWindow.Left - 125,
+                Top = mousePosition.Y + mainWindow.Top - 75
+            };
+
+            Grid grid = new Grid();
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.RowDefinitions.Add(new RowDefinition());
+            grid.RowDefinitions.Add(new RowDefinition());
+            dialog.Content = grid;
+
+            TextBox inputBox = new TextBox {
+                Text = port.Name,
+                Margin = new Thickness(10),
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                VerticalContentAlignment = VerticalAlignment.Center
+            };
+            Grid.SetRow(inputBox, 0);
+            Grid.SetColumn(inputBox, 0);
+            Grid.SetColumnSpan(inputBox, 2);
+            grid.Children.Add(inputBox);
+
+            Button okButton = new Button { Content = "OK", Margin = new Thickness(10) };
+            okButton.Click += (s, a) => {
+                m_EditedName = inputBox.Text;
+                dialog.DialogResult = true;
+                dialog.Close();
+            };
+            Grid.SetRow(okButton, 1);
+            Grid.SetColumn(okButton, 0);
+            grid.Children.Add(okButton);
+
+            Button cancelButton = new Button { Content = "Cancel", Margin = new Thickness(10) };
+            cancelButton.Click += (s, a) => {
+                dialog.DialogResult = false;
+                dialog.Close();
+            };
+            Grid.SetRow(cancelButton, 1);
+            Grid.SetColumn(cancelButton, 1);
+            grid.Children.Add(cancelButton);
+
+            bool? result = dialog.ShowDialog();
+            if (result.HasValue && result.Value)
             {
-                m_Menu = m_View.MainContextMenu;
-                m_Menu.Items.Add(new Separator());
+                // Dynamo doesn't provide functionality to change the name of a port so have to be a bit creative.
+                string oldName = m_Node.InPorts[index].Name;
+                m_Node.Caller.UpdateInput(index, m_EditedName);
+                port.GetType().GetProperty("Name").SetValue(port, m_EditedName);
 
-                MenuItem label = new MenuItem { Header = "Input Names", IsCheckable = false };
-                m_Menu.Items.Add(label);
+                // Make sure to also manually update the wpf content of the node
+                TextBlock textBlock = FindVisualChildren<TextBlock>(m_View).Where(x => x.Text == oldName).FirstOrDefault();
+                if (textBlock != null)
+                    textBlock.Text = m_EditedName;
+
+                // Ask the node to refresh
+                m_Node.OnNodeModified(true);
+                m_View.UpdateLayout();
             }
+        }
 
-            for (int i = m_Node.InPorts.Count; i < m_InputNameItems.Count; i++)
-                m_Menu.Items.Remove(m_InputNameItems[i]);
+        /*******************************************/
 
-            for (int i = m_InputNameItems.Count; i < m_Node.InPorts.Count; i++)
+        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
             {
-                TextBox textBox = new TextBox { Text = m_Node.InPorts[i].Name };
-                textBox.TextChanged += TextBox_TextChanged;
-                m_Menu.Items.Add(textBox);
-                m_InputNameItems.Add(textBox);
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                        yield return (T)child;
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                        yield return childOfChild;
+                }
             }
-        }
-
-        /*******************************************/
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            m_InputsNeedRefreshing = true;
-        }
-
-        /*******************************************/
-
-        private void InPorts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            AppendInputNameMenu();
         }
 
 
@@ -165,10 +237,9 @@ namespace BH.UI.Dynamo.Views
         /**** Private Fields                    ****/
         /*******************************************/
 
-        protected WrapPanel m_ButtonPanel = null;
-        protected List<TextBox> m_InputNameItems = new List<TextBox>();
+        protected UniformGrid m_ButtonPanel = null;
         protected ContextMenu m_Menu;
-        protected bool m_InputsNeedRefreshing = false;
+        protected static string m_EditedName;
 
         /*******************************************/
     }

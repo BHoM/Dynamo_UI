@@ -63,8 +63,12 @@ namespace BH.UI.Dynamo.Templates
             {
                 component.ModifiedByCaller += OnCallerModified;
 
+                // Add the menu
                 if (component.Caller != null)
+                {
                     component.Caller.AddToMenu(nodeView.MainContextMenu);
+                    RemoveOutputSelectionMenu(nodeView.MainContextMenu);
+                }      
             }   
         }
 
@@ -87,7 +91,10 @@ namespace BH.UI.Dynamo.Templates
             {
                 Caller caller = m_Node.Caller;
                 if (caller != null && m_View != null)
+                {
                     caller.AddToMenu(m_View.MainContextMenu);
+                    RemoveOutputSelectionMenu(m_View.MainContextMenu);
+                }    
             }
 
             // Dynamo NodeViewModel is bugged and will always add items added to NodeModel.InPorts at the end of its list regardless of where they really 
@@ -114,6 +121,17 @@ namespace BH.UI.Dynamo.Templates
                 if (index != i)
                     viewPorts.Move(i, index);
             }
+        }
+
+        /*******************************************/
+
+        protected virtual void RemoveOutputSelectionMenu(ContextMenu menu)
+        {
+            // Dynamo is too buggy when it comes to dynamically changing the output params so we disable that functionality
+            // See this issue on GitHub that was closed withotu being resolved: https://github.com/DynamoDS/Dynamo/issues/8912
+            MenuItem outputSelector = menu.Items.OfType<MenuItem>().Where(x => x.Header.ToString() == "Add/Remove Outputs").FirstOrDefault();
+            if (outputSelector != null)
+                menu.Items.Remove(outputSelector);
         }
 
 

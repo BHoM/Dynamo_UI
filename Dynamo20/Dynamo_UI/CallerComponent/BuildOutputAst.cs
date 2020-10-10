@@ -77,18 +77,22 @@ namespace BH.UI.Dynamo.Templates
 
         protected bool IsReady(List<AssociativeNode> inputAstNodes)
         {
-            List<bool> hasDefaultList = Caller.InputParams.Where(x => x.IsSelected).Select(x => x.HasDefaultValue).ToList();
-            bool isReady = inputAstNodes != null && inputAstNodes.Count == hasDefaultList.Count();
+            List<ParamInfo> selectedParams = Caller.InputParams.Where(x => x.IsSelected).ToList();
+            bool isReady = inputAstNodes != null && inputAstNodes.Count == selectedParams.Count();
             if (isReady)
             {
+                string message = "";
                 for (int i = 0; i < inputAstNodes.Count; i++)
                 {
-                    if (inputAstNodes[i].Kind == AstKind.Null && !hasDefaultList[i])
+                    if (inputAstNodes[i].Kind == AstKind.Null && selectedParams[i].IsRequired)
                     {
                         isReady = false;
-                        break;
+                        message += "The input for " + selectedParams[i].Name + " is missing\n";
                     }
                 }
+
+                if (!isReady)
+                    Warning(message, true);
             }
 
             return isReady;
@@ -131,7 +135,7 @@ namespace BH.UI.Dynamo.Templates
 
         protected List<AssociativeNode> CreateOutputAssignments(AssociativeNode functionCall, AssociativeNode callerId)
         {
-            List<ParamInfo> outParams = Caller.OutputParams;
+            List<ParamInfo> outParams = Caller.OutputParams.Where(x => x.IsSelected).ToList();
             List<AssociativeNode> assignments = new List<AssociativeNode>();
 
             int nbOutputs = Math.Min(outParams.Count, OutPorts.Count);
