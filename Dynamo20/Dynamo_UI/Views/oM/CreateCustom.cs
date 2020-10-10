@@ -145,7 +145,7 @@ namespace BH.UI.Dynamo.Views
             int index = m_ButtonPanel.Children.IndexOf(button) / 2;
             PortModel port = m_Node.InPorts[index];
 
-            Window mainWindow = Application.Current.MainWindow;
+            Window mainWindow = Global.Extension.DynamoWindow;
             Point mousePosition = System.Windows.Input.Mouse.GetPosition(mainWindow);
             var dialog = new Window {
                 Title = "Edit Name",
