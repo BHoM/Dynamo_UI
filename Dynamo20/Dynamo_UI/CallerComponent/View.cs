@@ -142,7 +142,7 @@ namespace BH.UI.Dynamo.Templates
 
         /*******************************************/
 
-        protected void SetButtons()
+        protected virtual void SetButtons()
         {
             if (m_ButtonPanel != null)
                 m_ButtonPanel.Children.Clear();
@@ -177,7 +177,7 @@ namespace BH.UI.Dynamo.Templates
 
         /*******************************************/
 
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        protected virtual void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             DynamoNodeButton button = sender as DynamoNodeButton;
             int index = m_ButtonPanel.Children.IndexOf(button);

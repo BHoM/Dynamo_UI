@@ -43,30 +43,10 @@ namespace BH.UI.Dynamo.Views
     public class CreateCustomView : CallerView<CreateCustomComponent> 
     {
         /*******************************************/
-        /**** Interface Methods                 ****/
-        /*******************************************/
-
-        public override void CustomizeView(CreateCustomComponent nodeModel, NodeView nodeView)
-        {
-            base.CustomizeView(nodeModel, nodeView);
-
-            m_View = nodeView;
-            SetButtons();
-        }
-
-        /*******************************************/
-
-        protected override void OnCallerModified(object sender, CallerUpdate update)
-        {
-            SetButtons();
-            base.OnCallerModified(sender, update);
-        }
-
-        /*******************************************/
         /**** Private Methods                   ****/
         /*******************************************/
 
-        protected void SetButtons() //TODO: Consider having one pair of buttons per input to allow more flexible changes
+        protected override void SetButtons() //TODO: Consider having one pair of buttons per input to allow more flexible changes
         {
             if (m_ButtonPanel != null)
                 m_ButtonPanel.Children.Clear();
@@ -124,7 +104,7 @@ namespace BH.UI.Dynamo.Views
 
         /*******************************************/
 
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        protected override void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             DynamoNodeButton button = sender as DynamoNodeButton;
             int index = m_ButtonPanel.Children.IndexOf(button);
