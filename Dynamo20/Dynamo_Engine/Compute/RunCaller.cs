@@ -147,8 +147,10 @@ namespace BH.Engine.Dynamo
             if (Callers.ContainsKey(callerId) && DataAccessors.ContainsKey(callerId))
             {
                 caller = Callers[callerId];
+                int nbOutputs = caller.OutputParams.Where(x => x.IsSelected).Count();
                 DataAccessor_Dynamo accessor = DataAccessors[callerId];
                 accessor.Inputs = arguments;
+                accessor.Outputs = new object[nbOutputs];
                 caller.Run();
 
                 if (accessor.Outputs.Length == 1)
@@ -211,6 +213,7 @@ namespace BH.Engine.Dynamo
                 if (field != null)
                     field.SetValue(node, "");
                 node.ToolTipText = "";
+                node.State = ElementState.Active;
             }
         }
 

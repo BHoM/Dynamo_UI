@@ -59,13 +59,14 @@ namespace BH.UI.Dynamo.Templates
             // Update the outputs
             update.OutputUpdates.ForEach(x => UpdateOutput(x as dynamic));
 
-            // Ask component to refresh (not sure why we need to call so many thing but we need to apparently)
-            RaisesModificationEvents = true;
-            MarkNodeAsModified(true);
-            OnNodeModified(true);
-
             // Let the NodeView know that this was updated
             ModifiedByCaller?.Invoke(this, update);
+
+            // Dynamo is not really capable of dealing with anything else that adding an input at the end of the list so need to fix it ourselves
+            FixInputNodes();
+
+            // Ask component to refresh 
+            OnNodeModified(true);
         }
 
         /*******************************************/
@@ -234,6 +235,22 @@ namespace BH.UI.Dynamo.Templates
                     connector.Start.Connectors.Remove(connector);
                 if (connector.End != null && connector.End.Connectors.Contains(connector))
                     connector.End.Connectors.Remove(connector);
+            }
+        }
+
+        /*******************************************/
+
+        protected virtual void FixInputNodes()
+        {
+            for (int i = 0; i < InPorts.Count; i++)
+            {
+                if (InPorts[i].Connectors.Count > 0)
+                {
+                    PortModel source = InPorts[i].Connectors[0].Start;
+                    InputNodes[i] = new Tuple<int, NodeModel>(source.Index, source.Owner);
+                }
+                else
+                    InputNodes[i] = null;
             }
         }
 

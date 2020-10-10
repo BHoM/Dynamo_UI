@@ -99,12 +99,18 @@ namespace BH.UI.Dynamo.Templates
             Category = "BHoM." + Caller.Category;
             ArgumentLacing = LacingStrategy.Auto;
 
-            foreach (ParamInfo info in Caller.InputParams.Where(x => x.IsSelected))
-                InPorts.Add(new PortModel(PortType.Input, this, info.ToPortData()));
+            if (InPorts.Count == 0)
+            {
+                foreach (ParamInfo info in Caller.InputParams.Where(x => x.IsSelected))
+                    InPorts.Add(new PortModel(PortType.Input, this, info.ToPortData()));
+            }
 
-            foreach (ParamInfo info in Caller.OutputParams.Where(x => x.IsSelected))
-                OutPorts.Add(new PortModel(PortType.Output, this, info.ToPortData()));
-
+            if (OutPorts.Count == 0)
+            {
+                foreach (ParamInfo info in Caller.OutputParams.Where(x => x.IsSelected))
+                    OutPorts.Add(new PortModel(PortType.Output, this, info.ToPortData()));
+            }
+                
             string instanceId = InstanceID.ToString();
             DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
             dataAccessor.InPorts = InPorts;
@@ -116,8 +122,16 @@ namespace BH.UI.Dynamo.Templates
 
             Caller.Modified += OnCallerModified;
 
-            PortConnected += (port, connector) => Caller.UpdateInput(port.Index, port.Name);
-            PortDisconnected += (port) => Caller.UpdateInput(port.Index, port.Name);
+            PortConnected += (port, connector) => PortConnectionChanged(port);
+            PortDisconnected += (port) => PortConnectionChanged(port);
+        }
+
+        /*******************************************/
+
+        protected void PortConnectionChanged(PortModel port)
+        {
+            if (port.PortType == PortType.Input && port.Index >= 0)
+                Caller.UpdateInput(port.Index);
         }
 
         /*******************************************/

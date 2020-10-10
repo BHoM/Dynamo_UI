@@ -51,8 +51,6 @@ namespace BH.UI.Dynamo.Global
         {
             if (window != null)
             {
-                Debug.WriteLine("Trying to activate global menu for a window");
-
                 try
                 {
                     // Get the Dynamo model
@@ -66,12 +64,6 @@ namespace BH.UI.Dynamo.Global
                         GlobalSearch.Activate(window);
                         GlobalSearch.ItemSelected += (sender, request) => GlobalSearch_ItemSelected(viewModel.Model, request);
                         m_ActiveWindows.Add(window);
-
-                        Debug.WriteLine("Global menu activated for new window");
-                    }
-                    else
-                    {
-                        Debug.WriteLine("Global menu already activated for that window");
                     }
                 }
                 catch(Exception e)
