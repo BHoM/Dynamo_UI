@@ -237,7 +237,6 @@ namespace BH.UI.Dynamo.Views
         /**** Private Fields                    ****/
         /*******************************************/
 
-        protected UniformGrid m_ButtonPanel = null;
         protected ContextMenu m_Menu;
         protected static string m_EditedName;
 
