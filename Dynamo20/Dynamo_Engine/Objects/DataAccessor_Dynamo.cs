@@ -156,24 +156,51 @@ namespace BH.Engine.Dynamo.Objects
 
         public bool SetDataItem<T>(int index, T data)
         {
-            SetOutputAt(index, data.IToDesignScript());
-            return true;
+            try
+            {
+                SetOutputAt(index, data.IToDesignScript());
+                return true;
+            }
+            catch (Exception e)
+            {
+                SetOutputAt(index, data);
+                Engine.Reflection.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
+                return false;
+            }
         }
 
         /*************************************/
 
         public bool SetDataList<T>(int index, IEnumerable<T> data)
         {
-            SetOutputAt(index, data.Select(x => x.IToDesignScript()).ToList());
-            return true;
+            try
+            {
+                SetOutputAt(index, data.Select(x => x.IToDesignScript()).ToList());
+                return true;
+            }
+            catch (Exception e)
+            {
+                SetOutputAt(index, data);
+                Engine.Reflection.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
+                return false;
+            }
         }
 
         /*************************************/
 
         public bool SetDataTree<T>(int index, IEnumerable<IEnumerable<T>> data)
         {
-            SetOutputAt(index, data.Select(y => y.Select(x => x.IToDesignScript()).ToList()).ToList());
-            return true;
+            try
+            {
+                SetOutputAt(index, data.Select(y => y.Select(x => x.IToDesignScript()).ToList()).ToList());
+                return true;
+            }
+            catch (Exception e)
+            {
+                SetOutputAt(index, data);
+                Engine.Reflection.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
+                return false;
+            }
         }
 
 
