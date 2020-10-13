@@ -78,8 +78,10 @@ namespace BH.UI.Dynamo.Templates
 
             foreach (string name in m_Node.Caller.GetChoiceNames())
                 m_Combo.Items.Add(name);
-            if (m_Node.SelectedIndex > 0)
-                m_Combo.SelectedIndex = m_Node.SelectedIndex;
+            if (m_Combo.Items.Count > 0 && m_Node.SelectedIndex < 0)
+                m_Node.SelectedIndex = 0;
+            m_Combo.SelectedIndex = m_Node.SelectedIndex;
+            m_Node.RefreshComponent();
 
             m_Combo.SelectionChanged += M_Combo_SelectionChanged;
         }
