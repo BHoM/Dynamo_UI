@@ -156,6 +156,12 @@ namespace BH.Engine.Dynamo.Objects
 
         public bool SetDataItem<T>(int index, T data)
         {
+            if (data == null)
+            {
+                SetOutputAt(index, null);
+                return true;
+            }
+
             try
             {
                 SetOutputAt(index, data.IToDesignScript());
@@ -173,9 +179,15 @@ namespace BH.Engine.Dynamo.Objects
 
         public bool SetDataList<T>(int index, IEnumerable<T> data)
         {
+            if (data == null)
+            {
+                SetOutputAt(index, new List<T>());
+                return true;
+            }
+
             try
             {
-                SetOutputAt(index, data.Select(x => x.IToDesignScript()).ToList());
+                SetOutputAt(index, data.Select(x => x == null ? null : x.IToDesignScript()).ToList());
                 return true;
             }
             catch (Exception e)
@@ -190,9 +202,15 @@ namespace BH.Engine.Dynamo.Objects
 
         public bool SetDataTree<T>(int index, IEnumerable<IEnumerable<T>> data)
         {
+            if (data == null)
+            {
+                SetOutputAt(index, new List<List<T>>());
+                return true;
+            }
+
             try
             {
-                SetOutputAt(index, data.Select(y => y.Select(x => x.IToDesignScript()).ToList()).ToList());
+                SetOutputAt(index, data.Select(y => y.Select(x => x == null ? null : x.IToDesignScript()).ToList()).ToList());
                 return true;
             }
             catch (Exception e)
