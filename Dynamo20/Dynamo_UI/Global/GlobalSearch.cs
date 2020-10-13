@@ -80,17 +80,20 @@ namespace BH.UI.Dynamo.Global
 
         private static void GlobalSearch_ItemSelected(DynamoModel dynamoModel, oM.UI.ComponentRequest request)
         {
-            CallerComponent node = null;
+            NodeModel node = null;
             if (request != null && request.CallerType != null && m_CallerComponentDic.ContainsKey(request.CallerType))
-                node = Activator.CreateInstance(m_CallerComponentDic[request.CallerType]) as CallerComponent;
-
+                node = Activator.CreateInstance(m_CallerComponentDic[request.CallerType]) as NodeModel;
 
             if (node != null && dynamoModel != null)
             {
                 CreateNodeCommand command = new CreateNodeCommand(node, 0, 0, true, false);
                 dynamoModel.ExecuteCommand(command);
-                node.Caller.SetItem(request.SelectedItem);
             }
+
+            if (node is CallerComponent)
+                ((CallerComponent)node).Caller.SetItem(request.SelectedItem);
+            else if (node is CallerValueList)
+                ((CallerValueList)node).Caller.SetItem(request.SelectedItem);
         }
 
         /*******************************************/
