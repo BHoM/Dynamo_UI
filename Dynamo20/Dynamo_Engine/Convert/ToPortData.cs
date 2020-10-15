@@ -39,7 +39,7 @@ namespace BH.Engine.Dynamo
 
         public static PortData ToPortData(this ParamInfo info)
         {
-            if (info.HasDefaultValue)
+            if (info.HasDefaultValue && !info.IsRequired)
             {
                 object defaultValue = info.DefaultValue;
                 AssociativeNode defaultNode = null;
