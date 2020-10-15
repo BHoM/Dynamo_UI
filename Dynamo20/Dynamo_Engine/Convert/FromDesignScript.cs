@@ -80,7 +80,7 @@ namespace BH.Engine.Dynamo
             {
                 List<object> newList = new List<object>();
                 foreach (object item in list)
-                    newList.Add(item.IFromDesignScript());
+                    newList.Add(item?.IFromDesignScript());
                 return newList;
             }
         }
@@ -122,35 +122,50 @@ namespace BH.Engine.Dynamo
 
         public static BHG.Point FromDesignScript(this ADG.Point designScriptPt)
         {
-            return Geometry.Create.Point(designScriptPt.X, designScriptPt.Y, designScriptPt.Z);
+            if (designScriptPt == null)
+                return null;
+            else
+                return Geometry.Create.Point(designScriptPt.X, designScriptPt.Y, designScriptPt.Z);
         }
 
         /***************************************************/
 
         public static BHG.Vector FromDesignScript(this ADG.Vector designScriptVec)
         {
-            return Geometry.Create.Vector(designScriptVec.X, designScriptVec.Y, designScriptVec.Z);
+            if (designScriptVec == null)
+                return null;
+            else
+                return Geometry.Create.Vector(designScriptVec.X, designScriptVec.Y, designScriptVec.Z);
         }
 
         /***************************************************/
 
         public static BHG.Plane FromDesignScript(this ADG.Plane plane)
         {
-            return Geometry.Create.Plane(plane.Origin.FromDesignScript(), plane.Normal.FromDesignScript());
+            if (plane == null)
+                return null;
+            else
+                return Geometry.Create.Plane(plane.Origin?.FromDesignScript(), plane.Normal?.FromDesignScript());
         }
 
         /***************************************************/
 
         public static BHG.CoordinateSystem.Cartesian FromDesignScript(this ADG.CoordinateSystem coordinateSystem)
         {
-            return Geometry.Create.CartesianCoordinateSystem(coordinateSystem.Origin.FromDesignScript(), coordinateSystem.XAxis.FromDesignScript(), coordinateSystem.YAxis.FromDesignScript());
+            if (coordinateSystem == null)
+                return null;
+            else
+                return Geometry.Create.CartesianCoordinateSystem(coordinateSystem.Origin?.FromDesignScript(), coordinateSystem.XAxis?.FromDesignScript(), coordinateSystem.YAxis?.FromDesignScript());
         }
 
         /***************************************************/
 
         public static BHG.BoundingBox FromDesignScript(this ADG.BoundingBox boundingBox)
         {
-            return Geometry.Create.BoundingBox(boundingBox.MinPoint.FromDesignScript(), boundingBox.MaxPoint.FromDesignScript());
+            if (boundingBox == null)
+                return null;
+            else
+                return Geometry.Create.BoundingBox(boundingBox.MinPoint?.FromDesignScript(), boundingBox.MaxPoint?.FromDesignScript());
         }
 
 
@@ -160,7 +175,10 @@ namespace BH.Engine.Dynamo
 
         public static BHG.Line FromDesignScript(this ADG.Line line)
         {
-            return Geometry.Create.Line(line.StartPoint.FromDesignScript(), line.EndPoint.FromDesignScript());
+            if (line == null)
+                return null;
+            else
+                return Geometry.Create.Line(line.StartPoint?.FromDesignScript(), line.EndPoint?.FromDesignScript());
         }
 
         /***************************************************/
@@ -168,20 +186,23 @@ namespace BH.Engine.Dynamo
         // A quasi-fallback method - lines sometimes come out of Dynamo as objects of type Line, sometimes of type Curve.
         public static BHG.ICurve FromDesignScript(this ADG.Curve curve)
         {
+            if (curve == null)
+                return null;
+
             // For some reason Dynamo wraps curves of other type into Curve, instead of using them as they are - Explode here is simply unwrapping the actual curves of more specific types.
             if (curve.GetType() == typeof(ADG.Curve))
             {
                 List<ADG.Curve> curves = curve.Explode().Cast<ADG.Curve>().ToList();
                 if (curves.Count == 1)
-                    return curves[0].IFromDesignScript();
+                    return curves[0]?.IFromDesignScript();
                 else
-                    return new BHG.PolyCurve { Curves = curves.Select(x => x.IFromDesignScript()).ToList() };
+                    return new BHG.PolyCurve { Curves = curves.Select(x => x?.IFromDesignScript()).ToList() };
             }
             else
             {
                 // Fallback method for the missing converts, e.g. Helix.
                 BH.Engine.Reflection.Compute.RecordWarning(String.Format("Convert from DesignScript to BHoM is missing for curves of type {0}. The curve has been approximated with lines and arcs.", curve.GetType()));
-                return new BHG.PolyCurve { Curves = curve.ApproximateWithArcAndLineSegments().Select(x => x.IFromDesignScript()).ToList() };
+                return new BHG.PolyCurve { Curves = curve.ApproximateWithArcAndLineSegments().Select(x => x?.IFromDesignScript()).ToList() };
             }
             
         }
@@ -190,49 +211,67 @@ namespace BH.Engine.Dynamo
 
         public static BHG.Arc FromDesignScript(this ADG.Arc arc)
         {
-            return Geometry.Create.Arc(arc.StartPoint.FromDesignScript(), arc.PointAtParameter(0.5).FromDesignScript(), arc.EndPoint.FromDesignScript());
+            if (arc == null)
+                return null;
+            else
+                return Geometry.Create.Arc(arc.StartPoint?.FromDesignScript(), arc.PointAtParameter(0.5)?.FromDesignScript(), arc.EndPoint?.FromDesignScript());
         }
 
         /***************************************************/
 
         public static BHG.Circle FromDesignScript(this ADG.Circle circle)
         {
-            return Geometry.Create.Circle(circle.CenterPoint.FromDesignScript(), circle.Normal.FromDesignScript(), circle.Radius);
+            if (circle == null)
+                return null;
+            else
+                return Geometry.Create.Circle(circle.CenterPoint?.FromDesignScript(), circle.Normal?.FromDesignScript(), circle.Radius);
         }
 
         /***************************************************/
 
         public static BHG.Ellipse FromDesignScript(this ADG.Ellipse ellipse)
         {
-            BHG.Point centre = ellipse.CenterPoint.FromDesignScript();
-            BHG.Vector xAxis = ellipse.MajorAxis.FromDesignScript();
-            BHG.Vector yAxis = ellipse.MinorAxis.FromDesignScript();
-            return new BHG.Ellipse { Centre = centre, Axis1 = xAxis.Normalise(), Axis2 = yAxis.Normalise(), Radius1 = xAxis.Length(), Radius2 = yAxis.Length() };
+            if (ellipse == null)
+                return null;
+            else
+            {
+                BHG.Point centre = ellipse.CenterPoint?.FromDesignScript();
+                BHG.Vector xAxis = ellipse.MajorAxis?.FromDesignScript();
+                BHG.Vector yAxis = ellipse.MinorAxis?.FromDesignScript();
+                return new BHG.Ellipse { Centre = centre, Axis1 = xAxis?.Normalise(), Axis2 = yAxis?.Normalise(), Radius1 = xAxis == null ? 0 : xAxis.Length(), Radius2 = yAxis == null ? 0 : yAxis.Length() };
+            }
+                
         }
 
         /***************************************************/
 
         public static BHG.NurbsCurve FromDesignScript(this ADG.NurbsCurve nurbsCurve)
         {
-            return new BHG.NurbsCurve
-            {
-                ControlPoints = nurbsCurve.ControlPoints().Select(x => x.FromDesignScript()).ToList(),
-                Knots = nurbsCurve.Knots().ToList().GetRange(1, nurbsCurve.Knots().Count()-2),
-                Weights = nurbsCurve.Weights().ToList()
-            };
+            if (nurbsCurve == null)
+                return null;
+            else
+                return new BHG.NurbsCurve
+                {
+                    ControlPoints = nurbsCurve.ControlPoints().Select(x => x?.FromDesignScript()).ToList(),
+                    Knots = nurbsCurve.Knots().ToList().GetRange(1, nurbsCurve.Knots().Count()-2),
+                    Weights = nurbsCurve.Weights().ToList()
+                };
         }
 
         /***************************************************/
 
         public static BHG.ICurve FromDesignScript(this ADG.PolyCurve polyCurve)
         {
-            List<BHG.ICurve> curves = polyCurve.Curves().Select(x => x.IFromDesignScript()).ToList();
+            if (polyCurve == null)
+                return null;
+
+            List<BHG.ICurve> curves = polyCurve.Curves().Select(x => x?.IFromDesignScript()).ToList();
 
             // Force convert to BH.oM.Geometry.Polyline if the curve consists of linear segments only.
             if (curves.Count != 0 && curves.All(x => x is BHG.Line))
             {
-                List<BHG.Point> controlPoints = new List<BHG.Point> { ((BHG.Line)curves[0]).Start };
-                controlPoints.AddRange(curves.Select(x => ((BHG.Line)x).End));
+                List<BHG.Point> controlPoints = new List<BHG.Point> { ((BHG.Line)curves[0])?.Start };
+                controlPoints.AddRange(curves.Select(x => ((BHG.Line)x)?.End));
                 return new BHG.Polyline { ControlPoints = controlPoints };
             }
             else
@@ -243,7 +282,10 @@ namespace BH.Engine.Dynamo
 
         public static BHG.Polyline FromDesignScript(this ADG.Polygon polygon)
         {
-            List<BH.oM.Geometry.Point> pts = polygon.Points.Select(x => x.FromDesignScript()).ToList();
+            if (polygon == null)
+                return null;
+
+            List<BH.oM.Geometry.Point> pts = polygon.Points.Select(x => x?.FromDesignScript()).ToList();
             if (pts.Count == 0)
                 return new BHG.Polyline();
 
@@ -258,21 +300,32 @@ namespace BH.Engine.Dynamo
 
         public static BHG.PlanarSurface FromDesignScript(this ADG.Surface surface)
         {
-            return BH.Engine.Geometry.Create.PlanarSurface(surface.Edges.Select(x => x.CurveGeometry.IFromDesignScript()).ToList().IJoin().Cast<BHG.ICurve>().ToList()).FirstOrDefault();
+            if (surface == null)
+                return null;
+            else
+                return BH.Engine.Geometry.Create.PlanarSurface(surface.Edges.Select(x => x?.CurveGeometry.IFromDesignScript()).ToList().IJoin().Cast<BHG.ICurve>().ToList()).FirstOrDefault();
         }
 
         /***************************************************/
 
         public static BHG.PolySurface FromDesignScript(this ADG.PolySurface surface)
         {
-            List<BHG.ISurface> surfaces = surface.Surfaces().Select(x => x.IFromDesignScript()).Cast<BHG.ISurface>().ToList();
-            return new BHG.PolySurface { Surfaces = surfaces };
+            if (surface == null)
+                return null;
+            else
+            {
+                List<BHG.ISurface> surfaces = surface.Surfaces().Select(x => x?.IFromDesignScript()).Cast<BHG.ISurface>().ToList();
+                return new BHG.PolySurface { Surfaces = surfaces };
+            }   
         }
 
         /***************************************************/
 
         public static BHG.NurbsSurface FromDesignScript(this ADG.NurbsSurface surface)
         {
+            if (surface == null)
+                return null;
+
             List<double> uKnots = new List<double>(surface.UKnots());
             uKnots.RemoveAt(0);
             uKnots.RemoveAt(uKnots.Count - 1);
@@ -283,7 +336,7 @@ namespace BH.Engine.Dynamo
 
             return surface == null ? null : new BHG.NurbsSurface
             (
-                surface.ControlPoints().SelectMany(x => x.Select(y => y.FromDesignScript())).ToList(),
+                surface.ControlPoints().SelectMany(x => x.Select(y => y?.FromDesignScript())).ToList(),
                 surface.Weights().SelectMany(x => x).ToList(),
                 uKnots,
                 vKnots,
@@ -301,7 +354,10 @@ namespace BH.Engine.Dynamo
 
         public static BHG.Mesh FromDesignScript(this ADG.Mesh dSMesh)
         {
-            List<BHG.Point> vertices = dSMesh.VertexPositions.ToList().Select(x => x.FromDesignScript()).ToList();
+            if (dSMesh == null)
+                return null;
+
+            List<BHG.Point> vertices = dSMesh.VertexPositions.ToList().Select(x => x?.FromDesignScript()).ToList();
             List<ADG.IndexGroup> DSFacesIndex = dSMesh.FaceIndices.ToList();
             List<BHG.Face> Faces = new List<BHG.Face>();
 
