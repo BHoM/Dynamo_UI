@@ -132,6 +132,228 @@ namespace BH.Engine.Dynamo
             return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12 });
         }
 
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32, object a33)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32, object a33, object a34)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33, a34 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32, object a33, object a34, object a35)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33, a34, a35 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32, object a33, object a34, object a35, object a36)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33, a34, a35, a36 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32, object a33, object a34, object a35, object a36, object a37)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33, a34, a35, a36, a37 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32, object a33, object a34, object a35, object a36, object a37, object a38)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33, a34, a35, a36, a37, a38 });
+        }
+
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32, object a33, object a34, object a35, object a36, object a37, object a38, object a39)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33, a34, a35, a36, a37, a38, a39 });
+        }
+
+        /***************************************************/
+
+        public static object RunCaller(string callerId, object a1, object a2, object a3, object a4, object a5, object a6, object a7, object a8, object a9, object a10, object a11, object a12, object a13, object a14, object a15, object a16, object a17, object a18, object a19, object a20, object a21, object a22, object a23, object a24, object a25, object a26, object a27, object a28, object a29, object a30, object a31, object a32, object a33, object a34, object a35, object a36, object a37, object a38, object a39, object a40)
+        {
+            return RunCaller(callerId, new object[] { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33, a34, a35, a36, a37, a38, a39, a40 });
+        }
+
 
         /***************************************************/
         /**** Private Methods                           ****/
