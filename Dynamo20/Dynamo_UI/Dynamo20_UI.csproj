@@ -218,6 +218,7 @@
     <Compile Include="Components\Adapter\Execute.cs" />
     <Compile Include="Components\Adapter\Remove.cs" />
     <Compile Include="Components\Engine\Explode.cs" />
+    <Compile Include="Components\Engine\GetEvents.cs" />
     <Compile Include="Components\Engine\GetInfo.cs" />
     <Compile Include="Components\Engine\Query.cs" />
     <Compile Include="Components\Engine\Modify.cs" />
