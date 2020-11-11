@@ -117,6 +117,7 @@ namespace BH.UI.Dynamo.Global
             { typeof(ExplodeCaller),            typeof(ExplodeComponent) },
             { typeof(FromJsonCaller),           typeof(FromJsonComponent) },
             { typeof(GetInfoCaller),            typeof(GetInfoComponent) },
+            { typeof(GetEventsCaller),          typeof(GetEventsComponent) },
             { typeof(GetPropertyCaller),        typeof(GetPropertyComponent) },
             { typeof(ModifyCaller),             typeof(ModifyComponent) },
             { typeof(QueryCaller),              typeof(QueryComponent) },
