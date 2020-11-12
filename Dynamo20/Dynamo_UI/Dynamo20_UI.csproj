@@ -273,21 +273,25 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\bin"
+    <PostBuildEvent>rd /S /Q "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM"
+xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\bin"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\pkg.json"
 xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\extra"
 
+rd /S /Q "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM"
 xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\pkg.json"
 xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\extra"
 
+rd /S /Q "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM"
 powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -File ..\postBuild.ps1 "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\DynamoSettings.xml"
 xcopy /Y /E /I ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM\pkg.json"
 xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.3\packages\BHoM\extra"
 
+rd /S /Q "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM"
 powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -File ..\postBuild.ps1 "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\DynamoSettings.xml"
 xcopy /Y /E /I ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.3\packages\BHoM\pkg.json"
