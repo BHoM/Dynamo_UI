@@ -30,9 +30,8 @@ using System.Reflection;
 
 namespace BH.UI.Dynamo.Views
 {
-    public class QueryView : CallerView<QueryComponent> 
+    public class RunCodeView : CallerView<RunCodeComponent> 
     {
     }
 }
-
 

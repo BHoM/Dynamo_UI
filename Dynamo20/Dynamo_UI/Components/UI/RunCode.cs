@@ -20,19 +20,42 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
-using BH.oM.Base;
-using BH.UI.Dynamo.Components;
+using BH.Engine.Dynamo.Objects;
 using BH.UI.Dynamo.Templates;
-using System;
+using BH.UI.Base.Components;
+using BH.UI.Base;
+using Dynamo.Graph.Nodes;
+using ProtoCore.AST.AssociativeAST;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+using Newtonsoft.Json;
 
-namespace BH.UI.Dynamo.Views
+namespace BH.UI.Dynamo.Components
 {
-    public class QueryView : CallerView<QueryComponent> 
+    [NodeName("RunCode")]
+    [NodeCategory("BHoM.UI")]
+    [NodeDescription("Allow to load code and edit it before executing it like any other component.")]
+    [IsDesignScriptCompatible]
+    public class RunCodeComponent : CallerComponent
     {
+        /*******************************************/
+        /**** Properties                        ****/
+        /*******************************************/
+
+        public override Caller Caller { get; } = new RunCodeCaller();
+
+
+        /*******************************************/
+        /**** Constructors                      ****/
+        /*******************************************/
+
+        public RunCodeComponent() : base() { }
+
+        /*******************************************/
+
+        [JsonConstructor]
+        public RunCodeComponent(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
+
+        /*******************************************/
     }
 }
-
 

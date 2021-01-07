@@ -234,6 +234,7 @@
     <Compile Include="Components\oM\CreateData.cs" />
     <Compile Include="Components\oM\CreateType.cs" />
     <Compile Include="Components\oM\CreateObject.cs" />
+    <Compile Include="Components\UI\RunCode.cs" />
     <Compile Include="Global\Extention.cs" />
     <Compile Include="Global\GlobalSearch.cs" />
     <Compile Include="Templates\CallerValueList.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Views\Engine\Convert.cs" />
     <Compile Include="Views\Engine\Compute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\UI\RunCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dynamo_Engine\Dynamo20_Engine.csproj">
@@ -269,9 +271,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rd /S /Q "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM"
