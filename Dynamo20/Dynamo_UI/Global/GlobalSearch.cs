@@ -75,6 +75,51 @@ namespace BH.UI.Dynamo.Global
 
 
         /*******************************************/
+        /**** Public Static Constructor         ****/
+        /*******************************************/
+
+        static GlobalSearchMenu()
+        {
+            try
+            {
+                m_CallerComponentDic = new Dictionary<Type, Type>
+                {
+                    { typeof(CreateAdapterCaller),      typeof(CreateAdapterComponent) },
+                    { typeof(CreateRequestCaller),        typeof(CreateRequestComponent) },
+                    { typeof(RemoveCaller),             typeof(RemoveComponent) },
+                    { typeof(ExecuteCaller),            typeof(ExecuteComponent) },
+                    { typeof(MoveCaller),               typeof(MoveComponent) },
+                    { typeof(PullCaller),               typeof(PullComponent) },
+                    { typeof(PushCaller),               typeof(PushComponent) },
+
+                    { typeof(ComputeCaller),            typeof(ComputeComponent) },
+                    { typeof(ConvertCaller),            typeof(ConvertComponent) },
+                    { typeof(ExplodeCaller),            typeof(ExplodeComponent) },
+                    { typeof(FromJsonCaller),           typeof(FromJsonComponent) },
+                    { typeof(GetInfoCaller),            typeof(GetInfoComponent) },
+                    { typeof(GetEventsCaller),          typeof(GetEventsComponent) },
+                    { typeof(GetPropertyCaller),        typeof(GetPropertyComponent) },
+                    { typeof(ModifyCaller),             typeof(ModifyComponent) },
+                    { typeof(QueryCaller),              typeof(QueryComponent) },
+                    { typeof(SetPropertyCaller),        typeof(SetPropertyComponent) },
+                    { typeof(ToJsonCaller),             typeof(ToJsonComponent) },
+
+                    { typeof(CreateCustomCaller),       typeof(CreateCustomComponent) },
+                    { typeof(CreateDataCaller),         typeof(CreateDataComponent) },
+                    { typeof(CreateDictionaryCaller),   typeof(CreateDictionaryComponent) },
+                    { typeof(CreateEnumCaller),         typeof(CreateEnumComponent) },
+                    { typeof(CreateObjectCaller),       typeof(CreateObjectComponent) },
+                    { typeof(CreateTypeCaller),         typeof(CreateTypeComponent) }
+                };
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine("Error on initialisation of the GlobalSearchMenu type: " + e.Message);
+            }
+        }
+
+
+        /*******************************************/
         /**** Private Methods                   ****/
         /*******************************************/
 
@@ -101,36 +146,7 @@ namespace BH.UI.Dynamo.Global
         /*******************************************/
 
         private static List<DynamoView> m_ActiveWindows = new List<DynamoView>();
-
-        private static Dictionary<Type, Type> m_CallerComponentDic = new Dictionary<Type, Type>
-        {
-            { typeof(CreateAdapterCaller),      typeof(CreateAdapterComponent) },
-            { typeof(CreateRequestCaller),        typeof(CreateRequestComponent) },
-            { typeof(RemoveCaller),             typeof(RemoveComponent) },
-            { typeof(ExecuteCaller),            typeof(ExecuteComponent) },
-            { typeof(MoveCaller),               typeof(MoveComponent) },
-            { typeof(PullCaller),               typeof(PullComponent) },
-            { typeof(PushCaller),               typeof(PushComponent) },
-
-            { typeof(ComputeCaller),            typeof(ComputeComponent) },
-            { typeof(ConvertCaller),            typeof(ConvertComponent) },
-            { typeof(ExplodeCaller),            typeof(ExplodeComponent) },
-            { typeof(FromJsonCaller),           typeof(FromJsonComponent) },
-            { typeof(GetInfoCaller),            typeof(GetInfoComponent) },
-            { typeof(GetEventsCaller),          typeof(GetEventsComponent) },
-            { typeof(GetPropertyCaller),        typeof(GetPropertyComponent) },
-            { typeof(ModifyCaller),             typeof(ModifyComponent) },
-            { typeof(QueryCaller),              typeof(QueryComponent) },
-            { typeof(SetPropertyCaller),        typeof(SetPropertyComponent) },
-            { typeof(ToJsonCaller),             typeof(ToJsonComponent) },
-
-            { typeof(CreateCustomCaller),       typeof(CreateCustomComponent) },
-            { typeof(CreateDataCaller),         typeof(CreateDataComponent) },
-            { typeof(CreateDictionaryCaller),   typeof(CreateDictionaryComponent) },
-            { typeof(CreateEnumCaller),         typeof(CreateEnumComponent) },
-            { typeof(CreateObjectCaller),       typeof(CreateObjectComponent) },
-            { typeof(CreateTypeCaller),         typeof(CreateTypeComponent) }
-        };
+        private static Dictionary<Type, Type> m_CallerComponentDic = new Dictionary<Type, Type>();
 
         /*******************************************/
     }
