@@ -275,13 +275,15 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rd /S /Q "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM"
-xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\bin" /EXCLUDE:$(ProjectDir)excludes.txt
+xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\bin"
+del "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin\ICSharpCode.AvalonEdit.dll"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\pkg.json"
 xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Core\2.0\packages\BHoM\extra"
 
 rd /S /Q "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM"
-xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin" /EXCLUDE:$(ProjectDir)excludes.txt
+xcopy /Y /E /I C:\ProgramData\BHoM\Assemblies\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin"
+del "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin\ICSharpCode.AvalonEdit.dll"
 xcopy /Y /E ..\Build\*.dll "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\bin"
 Copy /Y ..\pkg.json "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\pkg.json"
 xcopy /Y /I ..\*_ViewExtensionDefinition.xml "C:\Users\$(Username)\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\BHoM\extra"
