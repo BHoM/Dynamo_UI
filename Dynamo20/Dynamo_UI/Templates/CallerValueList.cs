@@ -38,6 +38,7 @@ using CoreNodeModels;
 using System.Xml;
 using Dynamo.Graph;
 using Newtonsoft.Json;
+using BH.UI.Dynamo.Global;
 
 namespace BH.UI.Dynamo.Templates
 {
@@ -73,6 +74,7 @@ namespace BH.UI.Dynamo.Templates
 
             string instanceId = InstanceID.ToString();
             DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
+            dataAccessor.DynamoModel = Extension.DynamoModel;
             Caller.SetDataAccessor(dataAccessor);
             BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
             BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;
@@ -93,6 +95,7 @@ namespace BH.UI.Dynamo.Templates
 
             string instanceId = InstanceID.ToString();
             DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
+            dataAccessor.DynamoModel = Extension.DynamoModel;
             Caller.SetDataAccessor(dataAccessor);
             BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
             BH.Engine.Dynamo.Compute.DataAccessors[instanceId] = dataAccessor;

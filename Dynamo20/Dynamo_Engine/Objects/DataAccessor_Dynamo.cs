@@ -27,6 +27,8 @@ using BH.oM.UI;
 using BH.UI.Base;
 using Dynamo.Engine;
 using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Workspaces;
+using Dynamo.Models;
 using ProtoCore.Mirror;
 using System;
 using System.Collections;
@@ -52,6 +54,8 @@ namespace BH.Engine.Dynamo.Objects
         public ObservableCollection<PortModel> InPorts { get; set; } = new ObservableCollection<PortModel>();
 
         public static EngineController DynamoEngine { get; set; } = null;
+
+        public DynamoModel DynamoModel { get; set; } = null;
 
 
         /*************************************/

@@ -58,6 +58,8 @@ namespace BH.UI.Dynamo.Global
 
         public static DynamoView DynamoWindow { get; private set; } = null;
 
+        public static DynamoModel DynamoModel { get; private set; } = null;
+
 
         /*******************************************/
         /**** IExtension Methods                ****/
@@ -90,6 +92,10 @@ namespace BH.UI.Dynamo.Global
                 {
                     Debug.WriteLine("Window got focus");
                     Global.GlobalSearchMenu.Activate(DynamoWindow);
+
+                    DynamoViewModel viewModel = DynamoWindow.DataContext as DynamoViewModel;
+                    if (viewModel != null)
+                        DynamoModel = viewModel.Model;
                 };
             }     
         }
