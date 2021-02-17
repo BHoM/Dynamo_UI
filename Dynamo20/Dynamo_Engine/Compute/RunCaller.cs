@@ -28,6 +28,8 @@ using BH.oM.Reflection.Debugging;
 using BH.oM.UI;
 using BH.UI.Base;
 using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Workspaces;
+using Dynamo.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -417,7 +419,21 @@ namespace BH.Engine.Dynamo
             // Log usage
             try
             {
-                UI.Compute.LogUsage("Dynamo", "2.0", Guid.Parse(callerId), caller?.GetType().Name, caller?.SelectedItem, events);
+                string fileName = "";
+                string fileId = "";
+                if (DataAccessors.ContainsKey(callerId))
+                {
+                    DynamoModel model = DataAccessors[callerId].DynamoModel;
+                    if (model != null)
+                    {
+                        WorkspaceModel workspace = model.CurrentWorkspace;
+                        fileName = workspace?.FileName;
+                        fileId = workspace?.Guid.ToString();
+
+                    }
+                }
+
+                UI.Compute.LogUsage("Dynamo", "2.0", Guid.Parse(callerId), caller?.GetType().Name, caller?.SelectedItem, events, fileId, fileName);
             }
             catch { }
 

@@ -39,6 +39,8 @@ using System.Xml;
 using Dynamo.Graph;
 using Dynamo.Graph.Connectors;
 using Newtonsoft.Json;
+using Dynamo.Models;
+using Dynamo.Graph.Workspaces;
 
 namespace BH.UI.Dynamo.Templates
 {
@@ -114,6 +116,7 @@ namespace BH.UI.Dynamo.Templates
             string instanceId = InstanceID.ToString();
             DataAccessor_Dynamo dataAccessor = new DataAccessor_Dynamo();
             dataAccessor.InPorts = InPorts;
+            dataAccessor.DynamoModel = Extension.DynamoModel;
             Caller.SetDataAccessor(dataAccessor);
 
             BH.Engine.Dynamo.Compute.Callers[instanceId] = Caller;
