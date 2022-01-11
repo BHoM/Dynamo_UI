@@ -201,7 +201,7 @@ namespace BH.Engine.Dynamo
             else
             {
                 // Fallback method for the missing converts, e.g. Helix.
-                BH.Engine.Reflection.Compute.RecordWarning(String.Format("Convert from DesignScript to BHoM is missing for curves of type {0}. The curve has been approximated with lines and arcs.", curve.GetType()));
+                BH.Engine.Base.Compute.RecordWarning(String.Format("Convert from DesignScript to BHoM is missing for curves of type {0}. The curve has been approximated with lines and arcs.", curve.GetType()));
                 return new BHG.PolyCurve { Curves = curve.ApproximateWithArcAndLineSegments().Select(x => x?.IFromDesignScript()).ToList() };
             }
             

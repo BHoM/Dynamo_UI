@@ -76,9 +76,9 @@ namespace BH.UI.Dynamo.Global
                 .FirstOrDefault();
 
             // Preload all the BHoM content
-            Engine.Reflection.Compute.LoadAllAssemblies();
-            Engine.Reflection.Query.AllTypeList();
-            Engine.Reflection.Query.AllMethodList();
+            Engine.Base.Compute.LoadAllAssemblies();
+            Engine.Base.Query.AllTypeList();
+            Engine.Base.Query.AllMethodList();
         }
 
         /*******************************************/

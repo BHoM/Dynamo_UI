@@ -266,7 +266,7 @@ namespace BH.Engine.Dynamo
             }
             catch
             {
-                Reflection.Compute.RecordWarning("Surface trim failed. Untrimmed surface has been returned instead.");
+                Base.Compute.RecordWarning("Surface trim failed. Untrimmed surface has been returned instead.");
             }
 
             return ADGSurface;
@@ -280,7 +280,7 @@ namespace BH.Engine.Dynamo
                 return null;
             else if (surface.InternalBoundaries.Count != 0)
             {
-                BH.Engine.Reflection.Compute.RecordError("Dynamo does not support surfaces with openings, convert failed.");
+                BH.Engine.Base.Compute.RecordError("Dynamo does not support surfaces with openings, convert failed.");
                 return null;
             }
             else
