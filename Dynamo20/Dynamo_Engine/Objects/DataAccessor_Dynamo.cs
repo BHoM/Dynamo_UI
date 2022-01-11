@@ -174,7 +174,7 @@ namespace BH.Engine.Dynamo.Objects
             catch (Exception e)
             {
                 SetOutputAt(index, data);
-                Engine.Reflection.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
+                Engine.Base.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
                 return false;
             }
         }
@@ -197,7 +197,7 @@ namespace BH.Engine.Dynamo.Objects
             catch (Exception e)
             {
                 SetOutputAt(index, data);
-                Engine.Reflection.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
+                Engine.Base.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
                 return false;
             }
         }
@@ -220,7 +220,7 @@ namespace BH.Engine.Dynamo.Objects
             catch (Exception e)
             {
                 SetOutputAt(index, data);
-                Engine.Reflection.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
+                Engine.Base.Compute.RecordWarning("Failed to convert output " + index + " to DesignScript. Returning it without conversion.\nError: " + e.Message);
                 return false;
             }
         }

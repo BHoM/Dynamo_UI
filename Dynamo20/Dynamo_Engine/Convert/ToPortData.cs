@@ -71,7 +71,7 @@ namespace BH.Engine.Dynamo
 
                 if (defaultNode == null)
                 {
-                    BH.Engine.Reflection.Compute.RecordError("Port " + info.Name + " failed to assigned it default value of " + defaultValue.ToString());
+                    BH.Engine.Base.Compute.RecordError("Port " + info.Name + " failed to assigned it default value of " + defaultValue.ToString());
                     return new PortData(info.Name, info.Description);
                 }   
                 else

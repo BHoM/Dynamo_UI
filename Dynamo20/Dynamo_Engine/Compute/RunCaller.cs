@@ -24,7 +24,7 @@ using Autodesk.DesignScript.Runtime;
 using BH.Engine.Dynamo;
 using BH.Engine.Dynamo.Objects;
 using BH.oM.Base;
-using BH.oM.Reflection.Debugging;
+using BH.oM.Base.Debugging;
 using BH.oM.UI;
 using BH.UI.Base;
 using Dynamo.Graph.Nodes;
@@ -364,7 +364,7 @@ namespace BH.Engine.Dynamo
         private static object RunCaller(string callerId, object[] arguments)  // It is super important for this to be private of Dynamo mess things up
         {
             object result = null;
-            Engine.Reflection.Compute.ClearCurrentEvents();
+            Engine.Base.Compute.ClearCurrentEvents();
 
             // Run the caller
             Caller caller = null;
@@ -393,12 +393,12 @@ namespace BH.Engine.Dynamo
             }
             else
             {
-                Reflection.Compute.RecordError("The method caller cannot be found.");
+                Base.Compute.RecordError("The method caller cannot be found.");
                 result = null;
             }
 
             // Handle errors and warnings
-            List<Event> events = Reflection.Query.CurrentEvents();
+            List<Event> events = Base.Query.CurrentEvents();
             if (events != null && events.Count != 0)
             {
                 List<Event> errors = events.FindAll(x => x.Type == EventType.Error);
