@@ -313,7 +313,7 @@
       xcopy /Y /I ..\*_ViewExtensionDefinition.xml "$(AppData)\Dynamo\Dynamo Revit\$(DynRevitVersion)\packages\BHoM\extra"
       </PostBuildEvent>
     <StartAction>Program</StartAction>
-    <StartProgram>C:\Program Files\Dynamo\Dynamo Core\$(DynCoreVersion)\DynamoSandbox.exe</StartProgram>
+    <StartProgram>C:\Program Files\Dynamo\Dynamo Revit\$(DynRevitVersion)\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
