@@ -285,6 +285,7 @@
   <PropertyGroup>
     <DynCoreVersion>2.13</DynCoreVersion>
     <DynRevitVersion>2.10</DynRevitVersion>
+    <DynCivil3DVersion>2.12</DynCivil3DVersion>
     <PostBuildEvent>
       rd /S /Q "$(AppData)\Dynamo\Dynamo Core\$(DynCoreVersion)\packages\BHoM"
       xcopy /Y /E /I $(ProgramData)\BHoM\Assemblies\*.dll "$(AppData)\Dynamo\Dynamo Core\$(DynCoreVersion)\packages\BHoM\bin"
@@ -311,6 +312,13 @@
       xcopy /Y /E /I ..\Build\*.dll "$(AppData)\Dynamo\Dynamo Revit\$(DynRevitVersion)\packages\BHoM\bin"
       Copy /Y ..\pkg.json "$(AppData)\Dynamo\Dynamo Revit\$(DynRevitVersion)\packages\BHoM\pkg.json"
       xcopy /Y /I ..\*_ViewExtensionDefinition.xml "$(AppData)\Dynamo\Dynamo Revit\$(DynRevitVersion)\packages\BHoM\extra"
+
+      rd /S /Q "$(AppData)\Autodesk\C3D 2022\$(DynCivil3DVersion)\packages\BHoM"
+      xcopy /Y /E /I $(ProgramData)\BHoM\Assemblies\*.dll "$(AppData)\Autodesk\C3D 2022\Dynamo\$(DynCivil3DVersion)\packages\BHoM\bin"
+      del "$(AppData)\Autodesk\C3D 2022\Dynamo\$(DynCivil3DVersion)\packages\BHoM\bin\ICSharpCode.AvalonEdit.dll"
+      xcopy /Y /E ..\Build\*.dll "$(AppData)\Autodesk\C3D 2022\Dynamo\$(DynCivil3DVersion)\packages\BHoM\bin"
+      Copy /Y ..\pkg.json "$(AppData)\Autodesk\C3D 2022\Dynamo\$(DynCivil3DVersion)\packages\BHoM\pkg.json"
+      xcopy /Y /I ..\*_ViewExtensionDefinition.xml "$(AppData)\Autodesk\C3D 2022\Dynamo\$(DynCivil3DVersion)\packages\BHoM\extra"
       </PostBuildEvent>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo\Dynamo Revit\$(DynRevitVersion)\DynamoSandbox.exe</StartProgram>
